@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="http://cloudthat-cloudbilling.com.s3-website.ap-south-1.amazonaws.com/assets/css/cerulean/bootstrap.min.css">
+<link rel="stylesheet" href="http://cloudthat-cloudbilling.com.s3-website.ap-south-1.amazonaws.com/assets/css/jquery.dataTables.min.css">
+<script src="http://cloudthat-cloudbilling.com.s3-website.ap-south-1.amazonaws.com/assets/js/jquery-1.12.4.js"></script>
+<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+<script src="http://cloudthat-cloudbilling.com.s3-website.ap-south-1.amazonaws.com/assets/js/bootstrap.min.js"></script></head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.190.0.min.js"></script>
+<script src="http://cloudthat-cloudbilling.com.s3-website.ap-south-1.amazonaws.com/assets/js/config.js"></script>
+<script src="http://cloudthat-cloudbilling.com.s3-website.ap-south-1.amazonaws.com/assets/js/aws-cognito-sdk.min.js"></script>
+<script src="http://cloudthat-cloudbilling.com.s3-website.ap-south-1.amazonaws.com/assets/js/amazon-cognito-identity.min.js"></script>
+<script src="http://cloudthat-cloudbilling.com.s3-website.ap-south-1.amazonaws.com/assets/js/notify.min.js"></script></head>
+
+<script type="text/javascript">
+  alreadylogin();
+  $.notify.defaults( { globalPosition: 'top center'} );
+  $(document).ready(function(){
+	var poolData = {
+		UserPoolId : _config.cognito.userPoolId,
+		ClientId: _config.cognito.userPoolClientId
+	}
+	var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+	
+	
+	console.log(userPool)
+	$('#signup').click(function(){
+    console.log((($('#email').val()).substring(($('#email').val()).lastIndexOf("@")+1)));
+		if($('#email').val() == "" || $('#password').val() == "" || $('c_#password').val() == "" || $('#mobile').val() == ""){
+			//alert("Error")
+      $.notify("please fill up all the textboxes","error");
+		}
+		else if($('#password').val() !== $('#c_password').val()){
+			$.notify("password doesn't match","error");
+		}
+    
+    else if(((($('#email').val()).substring(($('#email').val()).lastIndexOf("@")+1)) !== "cloudthat.in") && ((($('#email').val()).substring(($('#email').val()).lastIndexOf("@")+1)) !== "cloudthat.com")) {
+
+         $.notify("please use cloudthat email address to register","error");
+    }
+		else{
+				
+				var attributeList=[];
+				
+				var dataPhoneNumber = {
+					Name : 'phone_number',
+					Value : "+91"+$('#mobile').val()
+				};
+        console.log(dataPhoneNumber.Value);
+	      console.log($('#mobile').val());
+
+				var dataEmail ={
+					Name : 'email',
+					Value : $('#email').val()
+				};
+				console.log('Email :'+dataEmail);
+				var attributeEmail = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataEmail);
+				var attributePhoneNumber = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataPhoneNumber);
+				console.log('Attribute Email :'+attributeEmail);
+				attributeList.push(attributeEmail);
+				attributeList.push(attributePhoneNumber);
+				console.log('attributeList :'+attributeList);
+				userPool.signUp($('#username').val(),$('#password').val(), attributeList, null, function(err, result){
+					if (err) {
+            $.notify(err,"error");
+						console.log(err);
+            return;
+					}
+					else{
+						$('#verifydiv').show();
+						cognitoUser = result.user;
+            console.log('user name is ' + cognitoUser.getUsername());
+            $('#verifybutton').click(function(){
+              $.notify("please check your mail for a code","success");
+							if($('#code').val() == ""){
+								$.notify("Please Enter Verification Code","error");
+							}
+							else{
+								cognitoUser.confirmRegistration($('#code').val(), true, function(err, regresult) {
+									if (err) {
+										$.notify(err,"error");  
+                    return;
+									}
+                  else{
+                      console.log('call regresult : ' + regresult);
+                      $.notify("Registeration Complete","success");
+                      window.location.href='login.html';
+                    }
+								});
+							}
+						});
+					}
+				});
+		}
+	});
+});
+
+function alreadylogin(){
+  if(window.localStorage.length===0){
+        //session = window.localStorage;
+      window.localStorage.clear();
+        //console.log("session_storage"+session);   
+    }
+    else{
+        //sessionValid();
+      window.location.href="cloudbilling.html";
+    }
+}
+  
+</script>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sign up page</title>
+  </head>
+  <body>
+  	<main>
+    <center><hr>
+      <img class="responsive-img" src="/assets/images/logo1.png" />
+      <br>
+      <h5 class="indigo-text" id="heading_of_signin"><b>Create Your Account</b></h5>
+      <div class="container card col-md-4" id="loginContainer">
+        <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
+          <table class="col-md-12">
+            <tr>
+              <td>
+                <br>
+                <div class='row'>
+              <div class='input-field col s12'>
+                <div class="form-group">
+                  <label for="username"><b>Username :</b></label>
+                  <input type="text" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter Your Username">
+                </div>
+              </div>
+            </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="form-group">
+                  <label for="email"><b>Email :</b></label>
+                  <input type="email" class="form-control" id="email" placeholder="Enter Your Email">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="form-group">
+                  <label for="number"><b>Mobile Number :</b></label>
+                  <input type="text" class="form-control" id="mobile" placeholder="Enter Your Mobile Number">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="form-group">
+                  <label for="number"><b>Password :</b></label>
+                  <input type="password" class="form-control" id="password" placeholder="Enter New Password">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="form-group">
+                  <label for="number"><b>Repeat Password :</b></label>
+                  <input type="password" class="form-control" id="c_password" placeholder="Repeat Your Password">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="form-group">
+                	<div class="row">
+                		<div class="col-md-6" style="max-width: 99% !important;">
+                			<button type="button" id="signup" class="btn btn-info col-md-12"><b>Sign Up</b></button><t>
+		                
+                		</div>
+                		<div class="col-md-6" style="max-width: 99%;">
+                			<a  href="login.html" ><button type="button" id="signup" class="btn btn-outline-info col-md-12"><b>Back to login</b></button></a>
+                		</div>
+		                
+	       			</div>
+       			</div>
+              </td>
+            </tr>
+
+            <tr>
+
+            	<td> 
+            		<div id="verifydiv" style="display:none;">
+            			<hr>
+            		 <div class="form-group">
+                		<div class="row">
+                			<div class="col-md-8" style="max-width: 99% !important;">
+			            		<!--   style="display:none;" -->
+									<input type="text" id="code" class="form-control" placeholder="Enter Verification Code ">
+							</div>
+							
+	                			<div class="col-md-4" style="max-width: 99% !important;">
+									<button id="verifybutton" class="btn btn-info col-md-12">Verify</button>
+								</div>
+									
+						</div>
+					</div>
+            		</div>
+            		
+				 </div>
+            	</td>
+            </tr>
+          </table>
+        </div>
+      </div><br><hr>
+    </center>
+  </main>
+ </body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<!-- <link rel="stylesheet" href="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/css/bootstrap.min.css"/> -->
+<link rel="stylesheet" href="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/css/cerulean/bootstrap.min.css">
+<link rel="stylesheet" href="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/css/jquery.dataTables.min.css"></link>
+<link rel="stylesheet" href="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/css/buttons.dataTables.min.css"></link>
+<link rel="stylesheet" href="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/css/daterangepicker.css"></link>
+<!-- <script src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/js/bootstrap.min.js"></script>-->
+<script src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/js/config.js"></script>
+<script src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/js/aws-cognito-sdk.min.js"></script>
+<script src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/js/amazon-cognito-identity.min.js"></script>
+<script src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/js/jquery.min.js"></script>
+<script src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/js/jquery.dataTables.min.js"></script>
+<script  src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/js/dataTables.buttons.min.js"></script>
+<script  src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/js/dataTables.buttons.min.js"></script>
+<script  src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/js/jszip.min.js"></script>
+<script  src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/js/pdfmake.min.js"></script>
+<script  src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/js/vfs_fonts.js"></script>
+<script  src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/js/buttons.html5.min.js"></script>
+<script  src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/js/buttons.print.min.js"></script>
+<script src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/js/notify.min.js"></script>
+<script type="text/javascript" src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/js/moment.min.js"></script>
+<script type="text/javascript" src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/js/daterangepicker.js"></script>
+<script type="text/javascript" src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/js/signout.js"></script>
+</head>
+<script>
+function refresh() {
+	location.reload();
+}
+</script>
+<script type="text/javascript">
+var poolData = {
+	UserPoolId : _config.cognito.userPoolId,
+	ClientId: _config.cognito.userPoolClientId
+}
+var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+var cognitoUser = userPool.getCurrentUser();
+checklogin();
+$.notify.defaults( { globalPosition: 'top center'} );
+var SelectedResourceVar;
+var token = window.localStorage.getItem('token');
+var Uno;
+	var Iname;
+	var policyuser;
+	var acType;
+	var lamdadata;
+	var pot;
+	var days;
+var startD;
+var endD;
+var expiredate;
+var edate;
+var sdate;
+var companyname;
+$(function() {
+	$('[data-filter-type="date-range"]').daterangepicker({
+		"autoUpdateInput": true,
+		"autoApply": true,
+		"drops":"up",
+	locale: {
+	format: 'DD/MM/YYYY'
+	}
+		//"alwaysShowCalendars": true,
+	// timePicker: true,
+// timePickerIncrement: 30,
+	},
+	function(startD, endD) {
+		days = (moment(endD).diff(startD,'days') + 1).toString();
+// alert("No of days for Training are " + days);
+		startdate = new Date(startD);
+		var dateS = startdate.getDate();
+		var monthS = startdate.getMonth();
+			var yearS = startdate.getFullYear();
+		function startd(n) {
+			return n<10 ? '0'+n : n
+		}
+		sdate = startd(dateS) + "-" + startd(monthS + 1) + "-" + yearS;
+		// alert("This is Only startDATE"+ sdate);
+		expiredate = new Date(endD);
+		var dateE = expiredate.getDate();
+		var monthE = expiredate.getMonth();
+			var yearE = expiredate.getFullYear();
+		function pad(n) {
+			return n<10 ? '0'+n : n
+		}
+		edate = pad(dateE) + "-" + pad(monthE + 1) + "-" + yearE;
+		// alert("This is Only endDATE"+ edate);
+		// edate = expiredate.toLocaleString().toString();
+		// alert("Starting Date is " +sdate+ " Last Date of Training is " + edate);
+	});
+	
+	$('#tdate').on('apply.daterangepicker', function(ev, picker) {
+DateTimetotaldates = $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+		// startD =  $(this).val(picker.startDate.format('DD/MMM/YYYY'));
+		// endD =  $(this).val(picker.endDate.format('DD/MMM/YYYY'));
+	});
+});
+function sendget()
+	{
+	$("#loading").show();
+	
+	nouser = $("#nuser").val();
+	Iname = $("#uname").val();
+	policyuser =$("#uPolicy").val();
+	acType = $("#acType").val();
+	companyname = $("#cname").val()
+	// training = $("#tname").val();
+	//pot = $("#tdate").val();
+	var lamdadata={
+		nuser : nouser,
+		cname : companyname,
+		uname : Iname,
+		upolicy : policyuser,
+		account : acType,
+		// tname : training,
+		tdays : days,
+		expdate : edate,
+		stsdate : sdate,
+		// expdt :
+		method : "CreateHtmlIam"
+	};
+	// console.log(lamdadata);
+	//alert(JSON.stringify(mydata));
+		$(document).ready(function() {
+										// 				$("#Tcreation").validate({
+				// 	rules: {
+				// 	nuser: "required",
+				// 	uname: "required",
+				// 	upolicy: "required"
+		// },
+		// messages: {
+				// 	nuser:"Please enter the no of user you want",
+				// 	uname: "Please enter the username",
+				// 	upolicy: "Select a valid policy"
+		// }
+			checklogin();
+			token = window.localStorage.getItem('token');
+			console.log("username : "+userPool.getCurrentUser());
+			console.log(window.localStorage.username);
+			$('#username').text(window.localStorage.username);
+		});
+		$.ajax({
+		url: ' https://grv9dj23ok.execute-api.ap-southeast-1.amazonaws.com/IAM/iam',
+		type: 'POST',
+		crossDomain: true,
+		contentType: 'application/json',
+		dataType: 'json',
+		data: JSON.stringify(lamdadata),
+		success: function(getdata) {
+			$("#nuser").val("");
+			$("#uname").val("");
+			$("#upolicy").val("");
+			$("#cname").val("");
+			// $("#tname").val("");
+			$("#acType").val("dev");
+			$("#userTable").show();
+			$('#mytable').dataTable().fnDestroy();
+			//console.log(getdata.finaldata["0"].User.UserName);
+			//alert(getdata.finaldata["0"].User.UserName);
+			// $("#mytable").append('<caption style="caption-side: top">'+ training +'</caption>');
+			//$("#a1").text(training);
+						// $("#mytable").append('#tname').val();
+			$("#mytable").DataTable({
+				//console.log(getdata);
+				
+				data : getdata.finaldata,
+				
+				"columnDefs": [
+					{
+						"targets": [ 0 ],
+						"data": "User.UserName"
+						},
+						{
+						"targets": [ 1 ],
+						"visible": false,
+						"data": "User.AccessKeyId"
+					},
+						{
+						"targets": [ 2 ],
+						"visible": false,
+						"data": "User.SecretAccessKey"
+					},
+						{
+						"targets": [ 3 ],
+						"visible": false,
+						"data":"User.UPassword"
+					},
+						{
+						"targets": [ 4 ],
+						"data": "User.CreateDate"
+															},
+				],
+				dom: 'Bfrtip',
+					buttons: [
+							'csv', 'excel'
+				]
+			});
+			$("#loading").hide();
+		//$('#iam_user').val(JSON.parse(JSON.stringify(getdata.User.UserName)));
+					//	alert(mydata);
+	//console.log(getdata)
+//success stuff. data here is the response, not your original data
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+		alert("error")
+		//error handling stuff
+		}
+	});
+	// });
+	//alert("hello");
+}
+</script>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>demo</title>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<a class="navbar-brand" href="#"><b>User Creation</b></a>
+		<div class="collapse navbar-collapse" id="navbarColor01">
+			<ul class="navbar-nav mr-auto">
+				<li>
+					<a href="demo.html" class=" text-white col-md-12">Create Users</a>
+				</li>
+				<li class="nav-item active" >
+					<a href="iamallusers.html" class=" text-white col-md-12">List Users</a>
+				</li>
+				<li class="nav-item active" >
+					<a href="createreports.html" class=" text-white col-md-12">Reports</a>
+				</li>
+			</li>
+		</ul>
+		<form class="form-inline my-6 my-lg-0 my-sm-0 pull-right">
+			<div class="form-group">
+				<b><label class="nav-link text-white">Account</label></b>
+				<select class="form-control" id="acType">
+					<option value="dev" selected="true">Developer</option>
+					<option value="training">Training</option>
+					<option value="ost">Training Others</option>
+				</select>
+			</div>
+		</form>
+		<form class="form-inline my-6 my-lg-0 my-sm-0 pull-right">
+			<div class="form-group">
+				<b><label class="nav-link text-white">Services</label></b>
+				<!-- <select class="form-control" id="main_service"> -->
+				<input type="text" value="IAM" readonly="readonly" class="form-control" size="5"/>
+				<!-- <option value="cf">CloudFormation</option> -->
+				<!-- </select> -->
+			</div>
+		</form>
+		<form class="form-inline my-6 my-lg-0 my-sm-0 pull-right">
+			<div class="form-group">
+				<div class="col-md-1 float-md-right">
+					<a class="btn" id="signout" onclick="signout();" title="signout" style="margin-right: -27px;"><img src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/images/profilelogo.png" style="width: 25px;" />
+					</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</nav>
+<br>
+<br>
+<div class="row">
+	<div class="col-md-12">
+		<table class="col-md-12">
+			<tr class="col-md-12">
+				<td width="25%">
+					<div class="row">
+						<div class="col-md-11 col-md-offset-1">
+							<form id="Tcreation" style="margin-left: 12px;">
+								<div class="form-group">
+									<label class="col-form-label" for="uPolicy"><b>Select a Training</b></label>
+									<select class="form-control" id="uPolicy">
+										<option selected="true">Select a Training</option>
+										<option value="AWS-L2">AWS L2</option>
+										<option value="L3-Intuit-training">Intuit L3</option>
+										<option value="AWS-L3">AWS L3</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label class="col-form-label" for="nuser"><b>Enter the number of Participants :</b></label>
+									<input type="text" id="nuser" placeholder="Enter the number of Participants" class="form-control" size="5">
+									<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+									-->
+								</div>
+								<div class="form-group">
+									<label class="col-form-label" for="uname"><b>Enter the Username Name :</b></label>
+									<input type="text" id="uname" placeholder = "Enter the Username Name" class="form-control">
+									<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+									-->
+								</div>
+								<div class="form-group">
+									<label class="col-form-label" for="cname"><b>Enter the Company Name :</b></label>
+									<input type="text" id="cname" placeholder = "Enter the Company Name" class="form-control">
+									<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+									-->
+								</div>
+								<!-- <div class="form-group">
+												<label class="col-form-label" for="tname"><b>Enter the Training Name :</b></label>
+												<input type="text" id="tname" placeholder = "Enter the Training Name" class="form-control">
+								</div> -->
+								<div class="form-group">
+									<label class="col-form-label" for="tdate" ><b>Training Duration :</b></label>
+									<input type="text" id="tdate" data-toggle="daterangepicker" data-filter-type="date-range" class="form-control">
+									<!-- <input type="text" id="edate" placeholder = "Training End" class="form-control"> -->
+								</div>
+								<div class="form-group col-md-12">
+									<button type="button" onclick="sendget()" class="btn btn-info col-md-4">Submit</button>
+									
+									<a class="btn refresh" id="refresh" onclick="refresh()" title="Reload"><img src="http://cloudthat-cloudbilling.com.s3-website.ap-south-1.amazonaws.com/assets/icons/reload1.png"/></a>
+									
+								</div>
+							</div>
+							
+							<!-- <input type="text" id="nuser" placeholder = "Enter the number of users"></input><br><br>
+								<input type="text" id="uname" placeholder = "Enter the Name"></input><br><br>
+							
+							<select id="acType">
+											<option selected="true"> Select Account</option>
+											<option value ="dev">Developer Account</option>
+											<option value ="training">Training Acoount</option>
+							</select> <br><br>
+							
+							<select id="uPolicy">
+											<option selected="true">Select a Policy</option>
+											<option value="arn:aws:iam::869630519277:policy/AWS_L2">AWS L2</option>
+											<option value="arn:aws:iam::aws:policy/AmazonEC2FullAccess">AWS L3</option>
+							</select> <br><br>
+							
+							<button onclick="sendget()">Submit</button> <t><t><t>
+							<button onclick="refresh()">Refresh</button><br><br> -->
+						</form>
+					</div>
+				</div>
+				
+				
+			</td>
+			<td width="75%">
+				<div class="row" id="userTable"  style="display: none;">
+					<div class="col-md-11">
+						
+						<table id="mytable" class="table table-striped table-bordered" cellspacing="0">
+							<thead>
+								<!-- 										<tr id="a1">
+									
+								</tr> -->
+								<tr>
+									<th>USERNAME</th>
+									<th style="display: none;">ACCESS KEY</th>
+									<th style="display: none;">SECERET KEY</th>
+									<th style="display: none;">PASSWORD</th>
+									<th>CREATED ON</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+</div>
+<div id="loading" style="display: none;background-color: rgb(20, 20, 20);">
+<p style="position: absolute; top: 40%; left:45%;">
+	<img src="http://cloudthat-cloudbilling.com.s3-website.ap-south-1.amazonaws.com/assets/images/loader.gif"/>
+</p>
+</div>
+</body>
+</html>

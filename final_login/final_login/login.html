@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="http://cloudthat-cloudbilling.com.s3-website.ap-south-1.amazonaws.com/assets/css/cerulean/bootstrap.min.css">
+<link rel="stylesheet" href="http://cloudthat-cloudbilling.com.s3-website.ap-south-1.amazonaws.com/assets/css/jquery.dataTables.min.css">
+<script src="http://cloudthat-cloudbilling.com.s3-website.ap-south-1.amazonaws.com/assets/js/jquery-1.12.4.js"></script>
+<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+<script src="http://cloudthat-cloudbilling.com.s3-website.ap-south-1.amazonaws.com/assets/js/bootstrap.min.js"></script></head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.190.0.min.js"></script>
+<script src="http://cloudthat-cloudbilling.com.s3-website.ap-south-1.amazonaws.com/assets/js/config.js"></script>
+<script src="http://cloudthat-cloudbilling.com.s3-website.ap-south-1.amazonaws.com/assets/js/aws-cognito-sdk.min.js"></script>
+<script src="http://cloudthat-cloudbilling.com.s3-website.ap-south-1.amazonaws.com/assets/js/amazon-cognito-identity.min.js"></script>
+<script src="http://cloudthat-cloudbilling.com.s3-website.ap-south-1.amazonaws.com/assets/js/notify.min.js"></script></head>
+<script type="text/javascript">
+var userPool;
+alreadylogin();
+$.notify.defaults({globalPosition: 'top center'} );
+  $(document).ready(function(){
+  	
+	var poolData = {
+		UserPoolId : _config.cognito.userPoolId,
+		ClientId: _config.cognito.userPoolClientId
+	}
+	userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+	
+	
+	console.log("current user : "+userPool.getCurrentUser())
+	$('#login').click(function(){
+		if($('#username').val() == "" || $('#password').val() == ""){
+			$.notify("please fill up all the textboxes","error");
+		}
+		else{
+			var authenticationData = {
+				Username : $('#username').val(),
+				Password : $('#password').val()
+			};
+			console.log("DATA " + authenticationData)
+			var userData = {
+				Username : $('#username').val(), // your username here
+				Pool : userPool
+			};
+			//alert(userData.Username)
+			var authenticationDetails = new AWSCognito.CognitoIdentityServiceProvider.AuthenticationDetails(authenticationData);
+			console.log("Response \n"+authenticationDetails);
+			
+			var cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
+			
+			cognitoUser.authenticateUser(authenticationDetails, {
+                onSuccess: function (result) {
+                    console.log('authentication successful!');
+                    if (typeof(Storage) !== "undefined") {
+ 				   		// Code for localStorage/localStorage.
+ 				   		var idtoken=result.getIdToken().getJwtToken();
+						var actoken=result.getAccessToken().getJwtToken();
+						//var reftoken=result.getRefreshToken().getJwtToken();
+						window.localStorage.setItem('token',idtoken);
+						window.localStorage.setItem('actoken',actoken);
+						//window.localStorage.setItem('userdata',JSON.stringify(userData));
+						console.log("idtoken : "+idtoken);
+						console.log("actoken : "+actoken);
+						window.localStorage.setItem('username',$('#username').val())
+						//console.log("reftoken : "+reftoken);
+						console.log("UserData : "+window.localStorage.getItem('userdata'));
+						console.log("Session : "+result.isValid());
+						sessionValid();
+    				}
+					else {
+   						// Sorry! No Web Storage support..
+   						alert("Sorry no support of local storage");
+					}
+				},
+
+                onFailure: function(err) {
+                    //alert(err);
+                    $.notify(err,"error");
+                }
+
+            });
+		}
+	});
+  });
+
+function sessionValid(){
+	var cognitoUser = userPool.getCurrentUser();
+	if (cognitoUser === undefined){
+		console.log("undefined")
+	}
+	else{
+		cognitoUser.getSession(function(err, session) {
+        if (err) {
+            alert(err);
+            return;
+        }
+    	else if(session.isValid()){
+    		console.log('session validity: ' + session.isValid());
+    		session = window.localStorage;
+    		window.location.href='demo.html';
+    	}
+    	else{
+    		console.log('session validity: ' + session.isValid());
+    		window.localStorage.clear();
+    	}
+	});
+  }
+}
+
+function alreadylogin(){
+	if(window.localStorage.length===0){
+    		window.localStorage.clear();
+  			//console.log("session_storage"+session);   
+  	}
+  	else{
+  			//sessionValid();
+  			console.log("Session Already Defiend");
+  			window.location.href='demo.html';
+  	}
+}
+ 
+</script>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Login page</title>
+  </head>
+  <body>
+    <main>
+    <center><hr>
+      <img class="responsive-img" src="/assets/images/logo1.png" />
+      <br>
+      <br>
+      <h5 class="indigo-text" id="heading_of_signin">Please, login into your account</h5>
+      <br>
+      <div class="container card col-md-4" id="loginContainer">
+        <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
+          <table class="col-md-12">
+            <tr>
+              <td>
+                <br>
+                <div class='row'>
+              <div class='input-field col s12'>
+                <div class="form-group">
+                  <label for="username"><b>Username :</b></label>
+                  <input type="text" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter Your Username">
+                  <small id="emailHelp" class="form-text text-muted">We'll never share your details with anyone else.</small>
+                </div>
+              </div>
+            </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="form-group">
+                  <label for="password"><b>Password :</b></label>
+                  <input type="password" class="form-control" id="password" placeholder="Enter Your Password">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="form-group">
+                	<div class="row">
+                		<div class="col-md-6" style="max-width: 99% !important;">
+                			<button type="button" id="login" class="btn btn-info col-md-12"><b>Login</b></button><t>
+		                
+                		</div>
+                		<div class="col-md-6" style="max-width: 99%;">
+                			<a  href="signup.html" ><button type="button" id="signup" class="btn btn-outline-info col-md-12"><b>Sign Up</b></button></a>
+                		</div>
+		                
+	       			</div>
+       			</div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div><br><hr>
+    </center>
+  </main>
+	<!-- Enter Username : <input type="text" id="username" placeholder="Enter Your Email"><br><br>
+	Enter Password : <input type="text" id="password" placeholder="Enter Your Password"><br><br>
+	<button id="login">Login</button> <a  href="signup.html" ><button id="signup" >Sign up</button></a> -->
+	</br></br>
+	
+  </body>
+</html>
