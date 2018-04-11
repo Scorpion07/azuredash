@@ -3,31 +3,31 @@
 <head>
 
 <!-- <link rel="stylesheet" href="assets/css/bootstrap.min.css"/> -->
-<link rel="stylesheet" href="assets/css/cerulean/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/jquery.dataTables.min.css"> 
-<link rel="stylesheet" href="assets/css/buttons.dataTables.min.css">
-<link rel="stylesheet" href="assets/css/daterangepicker.css">
+    <link rel="stylesheet" href="../assets/css/cerulean/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="../assets/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="../assets/css/daterangepicker.css">
 <!-- <script src="assets/js/bootstrap.min.js"></script>
 -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.dataTables.min.js"></script>
-<script  src="assets/js/dataTables.buttons.min.js"></script>
-<script  src="assets/js/dataTables.buttons.min.js"></script>
-<script  src="assets/js/jszip.min.js"></script>
-<script  src="assets/js/pdfmake.min.js"></script>
-<script  src="assets/js/vfs_fonts.js"></script>
-<script  src="assets/js/buttons.html5.min.js"></script>
-<script  src="assets/js/buttons.print.min.js"></script>
-<script type="text/javascript" src="assets/js/moment.min.js"></script>
-<script type="text/javascript" src="assets/js/daterangepicker.js"></script>
-<script src="assets/js/notify.min.js"></script>
-<script src="assets/js/tether.min.js"></script>
-<script src="assets/js/bootstrap.min.js">
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/jquery.dataTables.min.js"></script>
+    <script src="../assets/js/dataTables.buttons.min.js"></script>
+    <script src="../assets/js/dataTables.buttons.min.js"></script>
+    <script src="../assets/js/jszip.min.js"></script>
+    <script src="../assets/js/pdfmake.min.js"></script>
+    <script src="../assets/js/vfs_fonts.js"></script>
+    <script src="../assets/js/buttons.html5.min.js"></script>
+    <script src="../assets/js/buttons.print.min.js"></script>
+    <script type="text/javascript" src="../assets/js/moment.min.js"></script>
+    <script type="text/javascript" src="../assets/js/daterangepicker.js"></script>
+    <script src="../assets/js/notify.min.js"></script>
+    <script src="../assets/js/tether.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js">
 </script>
-<script src="assets/js/config.js"></script>
-<script src="assets/js/aws-cognito-sdk.min.js"></script>
-<script src="assets/js/amazon-cognito-identity.min.js"></script>
-<script type="text/javascript" src="assets/js/signout.js"></script>
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/aws-cognito-sdk.min.js"></script>
+    <script src="../assets/js/amazon-cognito-identity.min.js"></script>
+    <script type="text/javascript" src="../assets/js/signout.js"></script>
 
 <script>
 function refresh() {
@@ -108,7 +108,7 @@ function sendget()
 				
 				data : getdata.finaldata,
 										'rowCallback': function(row,data,iDisplayIndex){
-								var edit ='<a class="btn" style="margin-right: -27px;"id="editdate" onclick="goFurther()" href="#" data-date="'+data.createdDate+'"><img src="assets/images/edit-icon.png" style="width: 25px;" /></a>';
+                                            var edit = '<a class="btn" style="margin-right: -27px;"id="editdate" onclick="goFurther()" href="#" data-date="' + data.createdDate + '"><img src="../assets/images/edit-icon.png" style="width: 25px;" /></a>';
 								
 								$('td:eq(6)',row).html(edit);
 					},
@@ -249,7 +249,9 @@ $(document).on("click",".saveExpiryDate",function() {
 					<form class="form-inline my-6 my-lg-0 my-sm-0 pull-right">
 			<div class="form-group">
 				<div class="dropdown col-md-1 float-md-right">
-					<a class="btn dropdown-toggle" id="userdetail" onclick="usermenu()" aria-haspopup="true" aria-expanded="true" data-toggle="dropdown" title="signout" style="margin-right: -27px;"><img src="assets/images/profilelogo.png" style="width: 25px;" />
+                    <a class="btn dropdown-toggle" id="userdetail" onclick="usermenu()" aria-haspopup="true"
+                       aria-expanded="true" data-toggle="dropdown" title="signout" style="margin-right: -27px;"><img
+                            src="../assets/images/profilelogo.png" style="width: 25px;"/>
 					</a>
 					<div class="dropdown-menu" id="hideshowdropdown" aria-labelledby="btnGroupDrop1" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 12px; left: -78px; transform: translate3d(0px, 38px, 0px);">
 <!-- 						<ul style="list-style-type: none;">
