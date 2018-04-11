@@ -8,6 +8,4 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
-artifacts:
-  files:
-    - '**/*'
+      - aws s3 cp ./. s3://resources.cloudthat.com/ --recursive
