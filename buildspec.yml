@@ -1,0 +1,11 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Reading the Repo...
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - aws s3 cp ./. s3://resources.cloudthat.com/ --recursive
