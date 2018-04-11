@@ -2,15 +2,15 @@
 <head>
     <link rel="stylesheet" href="assets/css/cerulean/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/jquery.dataTables.min.css">
-<script src="assets/js/jquery-1.12.4.js"></script>
-<script src="assets/js/tether.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/aws-sdk-2.190.0.min.js"></script>
-<script src="assets/js/config.js"></script>
-<script src="assets/js/aws-cognito-sdk.min.js"></script>
-<script src="assets/js/amazon-cognito-identity.min.js"></script>
-<script src="assets/js/notify.min.js"></script>
+    <script src="assets/js/dependancies/jquery-1.12.4.js"></script>
+    <script src="assets/js/dependancies/tether.min.js"></script>
+    <script src="assets/js/dependancies/bootstrap.min.js"></script>
+    <script src="assets/js/dependancies/jquery.min.js"></script>
+    <script src="assets/js/dependancies/aws-sdk-2.190.0.min.js"></script>
+    <script src="assets/js/dependancies/config.js"></script>
+    <script src="assets/js/dependancies/aws-cognito-sdk.min.js"></script>
+    <script src="assets/js/dependancies/amazon-cognito-identity.min.js"></script>
+    <script src="assets/js/dependancies/notify.min.js"></script>
 <script type="text/javascript">
 var userPool;
 alreadylogin();
@@ -111,8 +111,8 @@ function alreadylogin(){
   	}
   	else{
   			//sessionValid();
-  			console.log("Session Already Defiend");
-  			window.location.href='demo.html';
+        console.log("Session Already Defined");
+        window.location.href = 'index.html';
   	}
 }
  

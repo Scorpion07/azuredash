@@ -6,21 +6,21 @@
 	<link rel="stylesheet" href="../assets/css/buttons.dataTables.min.css">
 	<link rel="stylesheet" href="../assets/css/daterangepicker.css">
 	<!-- <script src="/assets/js/bootstrap.min.js"></script>-->
-	<script src="../assets/js/config.js"></script>
-	<script src="../assets/js/aws-cognito-sdk.min.js"></script>
-	<script src="../assets/js/amazon-cognito-identity.min.js"></script>
-	<script src="../assets/js/jquery.min.js"></script>
-	<script src="../assets/js/jquery.dataTables.min.js"></script>
-	<script src="../assets/js/dataTables.buttons.min.js"></script>
-	<script src="../assets/js/dataTables.buttons.min.js"></script>
-	<script src="../assets/js/jszip.min.js"></script>
-	<script src="../assets/js/pdfmake.min.js"></script>
-	<script src="../assets/js/vfs_fonts.js"></script>
-	<script src="../assets/js/buttons.html5.min.js"></script>
-	<script src="../assets/js/buttons.print.min.js"></script>
-	<script src="../assets/js/notify.min.js"></script>
-	<script type="text/javascript" src="../assets/js/moment.min.js"></script>
-	<script type="text/javascript" src="../assets/js/daterangepicker.js"></script>
+	<script src="../assets/js/dependancies/config.js"></script>
+	<script src="../assets/js/dependancies/aws-cognito-sdk.min.js"></script>
+	<script src="../assets/js/dependancies/amazon-cognito-identity.min.js"></script>
+	<script src="../assets/js/dependancies/jquery.min.js"></script>
+	<script src="../assets/js/dependancies/jquery.dataTables.min.js"></script>
+	<script src="../assets/js/dependancies/dataTables.buttons.min.js"></script>
+	<!--<script src="../assets/js/dependancies/dataTables.buttons.min.js"></script>-->
+	<script src="../assets/js/dependancies/jszip.min.js"></script>
+	<script src="../assets/js/dependancies/pdfmake.min.js"></script>
+	<script src="../assets/js/dependancies/vfs_fonts.js"></script>
+	<script src="../assets/js/dependancies/buttons.html5.min.js"></script>
+	<script src="../assets/js/dependancies/buttons.print.min.js"></script>
+	<script src="../assets/js/dependancies/notify.min.js"></script>
+	<script type="text/javascript" src="../assets/js/dependancies/moment.min.js"></script>
+	<script type="text/javascript" src="../assets/js/dependancies/daterangepicker.js"></script>
 	<script type="text/javascript" src="../assets/js/signout.js"></script>
 	<script>
         function refresh() {
@@ -85,22 +85,18 @@
                     var dateS = startdate.getDate();
                     var monthS = startdate.getMonth();
                     var yearS = startdate.getFullYear();
-
                     function startd(n) {
                         return n < 10 ? '0' + n : n
                     }
-
                     sdate = startd(dateS) + "-" + startd(monthS + 1) + "-" + yearS;
                     // alert("This is Only startDATE"+ sdate);
                     expiredate = new Date(endD);
                     var dateE = expiredate.getDate();
                     var monthE = expiredate.getMonth();
                     var yearE = expiredate.getFullYear();
-
                     function pad(n) {
                         return n < 10 ? '0' + n : n
                     }
-
                     edate = pad(dateE) + "-" + pad(monthE + 1) + "-" + yearE;
                     // alert("This is Only endDATE"+ edate);
                     // edate = expiredate.toLocaleString().toString();
@@ -233,7 +229,7 @@
 	<div class="collapse navbar-collapse" id="navbarColor01">
 		<ul class="navbar-nav mr-auto">
 			<li>
-				<a href="iam.html" class=" text-white col-md-12">Create Users</a>
+				<a href="demo.html" class=" text-white col-md-12">Create Users</a>
 			</li>
 			<li class="nav-item active">
 				<a href="iamallusers.html" class=" text-white col-md-12">List Users</a>

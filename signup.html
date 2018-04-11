@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="assets/css/cerulean/bootstrap.min.css">
 <link rel="stylesheet" href="assets/css/jquery.dataTables.min.css">
-<script src="assets/js/jquery-1.12.4.js"></script>
-<script src="assets/js/tether.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script></head>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/aws-sdk-2.190.0.min.js"></script>
-<script src="assets/js/config.js"></script>
-<script src="assets/js/aws-cognito-sdk.min.js"></script>
-<script src="assets/js/amazon-cognito-identity.min.js"></script>
-<script src="assets/js/notify.min.js"></script></head>
+<script src="assets/js/dependancies/jquery-1.12.4.js"></script>
+<script src="assets/js/dependancies/tether.min.js"></script>
+<script src="assets/js/dependancies/bootstrap.min.js"></script>
+<script src="assets/js/dependancies/jquery.min.js"></script>
+<script src="assets/js/dependancies/aws-sdk-2.190.0.min.js"></script>
+<script src="assets/js/dependancies/config.js"></script>
+<script src="assets/js/dependancies/aws-cognito-sdk.min.js"></script>
+<script src="assets/js/dependancies/amazon-cognito-identity.min.js"></script>
+<script src="assets/js/dependancies/notify.min.js"></script>
 <script type="text/javascript">
     alreadylogin();
     $.notify.defaults({globalPosition: 'top center'});
@@ -26,7 +26,7 @@
             console.log((($('#email').val()).substring(($('#email').val()).lastIndexOf("@") + 1)));
             if ($('#email').val() == "" || $('#password').val() == "" || $('c_#password').val() == "" || $('#mobile').val() == "") {
                 //alert("Error")
-                $.notify("please fill up all the textboxes", "error");
+                $.notify("please fill up all the form Details", "error");
             }
             else if ($('#password').val() !== $('#c_password').val()) {
                 $.notify("password doesn't match", "error");
@@ -165,7 +165,7 @@
                     <tr>
                         <td>
                             <div class="form-group">
-                                <label for="c_password"><b>Repeat Password :</b></label>
+                                <label for="c_password"><b>Confirm Password :</b></label>
                                 <input type="password" class="form-control" id="c_password"
                                        placeholder="Repeat Your Password">
                             </div>
