@@ -1,0 +1,50 @@
+.example-modal .modal {
+      position: relative;
+      top: auto;
+      bottom: auto;
+      right: auto;
+      left: auto;
+      display: block;
+      z-index: 1;
+    }
+.modal-backdrop
+{
+    opacity:0.5 !important;
+}
+    .example-modal .modal {
+      background: transparent !important;
+    }
+  .skin-blue .main-header .navbar {
+  background-color: #20629b;
+  }
+  .skin-blue .main-header .logo {
+  background-color: #20629b;
+  color: #fff;
+  border-bottom: 0 solid transparent;
+  }
+  table{
+    background: white;
+  }
+  #table{
+  width: 100%;.   
+  }
+  .dt-center{
+   text-align: center;   
+  }
+  .text-white {
+    color: #ffffff !important;
+}
+  .select-all selected
+  {
+  width: 100%;
+  }
+  h4 {
+    font-size: 17px;
+}
+ h3 {
+    margin-top: 20px;
+    margin-bottom: -27px;
+}
+.costinline{
+    display: inline;
+}
