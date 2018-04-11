@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/css/cerulean/bootstrap.min.css">
-<link rel="stylesheet" href="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/css/jquery.dataTables.min.css"></link>
+<link rel="stylesheet" href="assets/css/cerulean/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/jquery.dataTables.min.css">
 <!--<link rel="stylesheet" href="https://cdn.datatables.net/select/1.2.5/css/select.dataTables.min.css"></link>
 <script src="https://cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"></script>-->
-<script src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.min.js"></script>
 <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
-<script src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/js/jquery.dataTables.min.js"></script>
-<script src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/js/notify.min.js"></script>
-<script src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/js/tether.min.js"></script>
-<script src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/js/bootstrap.min.js">
+<script src="assets/js/jquery.dataTables.min.js"></script>
+<script src="assets/js/notify.min.js"></script>
+<script src="assets/js/tether.min.js"></script>
+<script src="assets/js/bootstrap.min.js">
 </script>
-<script src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/js/config.js"></script>
-<script src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/js/aws-cognito-sdk.min.js"></script>
-<script src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/js/amazon-cognito-identity.min.js"></script>
-<script type="text/javascript" src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/js/signout.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/aws-cognito-sdk.min.js"></script>
+<script src="assets/js/amazon-cognito-identity.min.js"></script>
+<script type="text/javascript" src="assets/js/signout.js"></script>
 <script>
 function refresh() {
 // location.reload();
@@ -81,7 +81,7 @@ function goFurther(){
 			token = window.localStorage.getItem('token');
 
 			$("#loginname").text(currUser.toString().trim());
-			usermenu();
+
 		acType = $("#acType").val();
 		sendget();
 	$('#acType').change(function(){
@@ -285,14 +285,12 @@ function sendget()
 				<form class="form-inline my-6 my-lg-0 my-sm-0 pull-right">
 					<div class="form-group">
 						<div class="dropdown col-md-1 float-md-right">
-							<a class="btn dropdown-toggle" id="userdetail" onclick="usermenu()" aria-haspopup="true" aria-expanded="true" data-toggle="dropdown" title="signout" style="margin-right: -27px;"><img src="http://training-resource-creation.s3-website-ap-southeast-1.amazonaws.com/assets/images/profilelogo.png" style="width: 25px;" />
+                            <a class="btn dropdown-toggle" id="userdetail" onclick="usermenu()" aria-haspopup="true"
+                               aria-expanded="true" data-toggle="dropdown" title="signout" style="margin-right: -27px;"><img
+                                    src="assets/images/profilelogo.png" style="width: 25px;"/>
 							</a>
 							<div class="dropdown-menu" id="hideshowdropdown" aria-labelledby="btnGroupDrop1" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 12px; left: -78px; transform: translate3d(0px, 38px, 0px);">
-								<!-- 						<ul style="list-style-type: none;">
-									<li><span class="btn btn-disabled" id="loginname"></span></li><li>
-									<a class="btn" id="signout" onclick="signout();" title="signout" style="margin-right: -27px;">Logout
-									</a></li>
-									-->
+
 									<span class="btn btn-disabled" id="loginname"></span><br>
 									<a class="btn" id="signout" onclick="signout();" title="signout" style="margin-right: -27px;">Logout
 									</a>
@@ -306,7 +304,8 @@ function sendget()
 		</form id="Tcreation">
 		<div class="form-group col-md-12">
 			<button id="userdelete" type="button" onclick="sendget()" class="btn btn-info col-md-1" disabled>Delete</button>
-			<a class="btn refresh" id="refresh" onclick="refresh()" title="Reload"><img src="http://cloudthat-cloudbilling.com.s3-website.ap-south-1.amazonaws.com/assets/icons/reload1.png"/></a>
+            <a class="btn refresh" id="refresh" onclick="refresh()" title="Reload"><img
+                    src="assets/images/reload1.png"/></a>
 		</div>
 		<!-- 	<button id="delete">Delete</button>
 		<button onclick="refresh()">Refresh</button> -->
@@ -343,7 +342,7 @@ function sendget()
 				</div>
 				<div id="loadingMulModal" style="display: none;background-color: rgb(20, 20, 20);">
 					<p style="position: absolute; top: 40%; left:45%;">
-						<img src="http://cloudthat-cloudbilling.com.s3-website.ap-south-1.amazonaws.com/assets/images/loader.gif"/>
+                        <img src="assets/images/loader.gif"/>
 					</p>
 				</div>
 				<div class="modal-footer">
@@ -355,7 +354,7 @@ function sendget()
 	</div>
 	<div id="loading" style="display: none;background-color: rgb(20, 20, 20);">
 		<p style="position: absolute; top: 40%; left:45%;">
-			<img src="http://cloudthat-cloudbilling.com.s3-website.ap-south-1.amazonaws.com/assets/images/loader.gif"/>
+            <img src="assets/images/loader.gif"/>
 		</p>
 	</div>
 </body>
