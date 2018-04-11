@@ -149,8 +149,8 @@ function showDashboard()
 				data: JSON.stringify(instances),
 				success: function (result){
 					console.log(result);
-					var right = "<img src='/assets/images/right.png' style='width: 15px;'>"
-					var stop = "<img src='/assets/images/red.png' style='width: 16px;'>"
+					var right = "<img src='assets/images/right.png' style='width: 15px;'>"
+					var stop = "<img src='assets/images/red.png' style='width: 16px;'>"
 					$("#InstancesRunning").html(right+" "+result.InstancesRunning);
 					$("#InstancesStop").html(stop+"  "+result.InstancesStop);
 					if(currentTime.getHours()<12 || currentTime.getHours()>17)
@@ -186,8 +186,8 @@ function showDashboard()
 				data: JSON.stringify(nat),
 				success: function (result){
 					console.log(result);			
-					var right = "<img src='/assets/images/right.png' style='width: 15px;'>"
-					var stop = "<img src='/assets/images/red.png' style='width: 16px;'>"
+					var right = "<img src='assets/images/right.png' style='width: 15px;'>"
+					var stop = "<img src='assets/images/red.png' style='width: 16px;'>"
 					$("#natRunning").html(right+" "+result.availablenatgateway);
 					$("#natStop").html(stop+"  "+result.failednatgateway);
 					$("#vpn").text(result.vpnconnection);					
