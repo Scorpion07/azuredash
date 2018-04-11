@@ -7,5 +7,7 @@ phases:
       - echo Reading the Repo...
   post_build:
     commands:
-      - echo Build completed on `date`
+      - echo S3 Copy Started
       - aws s3 cp ./. s3://resources.cloudthat.com/ --recursive
+      - echo S3 Copy Completed
+      - echo Build completed on `date`
