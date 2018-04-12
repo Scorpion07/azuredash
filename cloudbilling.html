@@ -392,7 +392,7 @@
           <div class="small-box bg border-bottom">
           <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;" width="100%">
             <tr>
-              <td colspan="2" ><h4>Redshift Running Resources<div style="display: inline;" id="totalRdsCost"></div></h4></td>
+              <td colspan="2" ><h4>Redshift Running Resources<div style="display: inline;" id="totalRSCost"></div></h4></td>
             </tr>
             <tr>
               <td><b>Resources</b></td>
@@ -411,7 +411,7 @@
         <div class="small-box bg border-bottom">
           <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;" width="100%">
             <tr>
-              <td colspan="2"><h4>SageMaker Running Resources<div style="display: inline;" id="totalEc2Cost"></div></h4></td>
+              <td colspan="2"><h4>SageMaker Running Resources<div style="display: inline;" id="totalSagemakerCost"></div></h4></td>
             </tr>
             <tr>
               <td><b>Resources</b></td>
@@ -502,6 +502,7 @@
       <!-- /.col -->
     </div>
     <!-- /.row -->
+    </div>
   </section>
 </div>
 
@@ -520,7 +521,7 @@
         <div class="modal-body">
           <p id="delete_heading">Are you sure, you want to delete all this snapshots ?</p>
           <input type="hidden" value="" class="modal_cluster_ids" id="deleteids" name="modal_cluster_ids"/>
-          <input type="hidden" value="" class="modal_ids" id="deleteids" name="modal_ids"/>
+          <input type="hidden" value="" class="modal_ids"  name="modal_ids"/>
           <input type="hidden" value="" class="modal_regions" id="delete_regions" name="modal_regions"/>
           <input type="hidden" value="" class="modal_allo_ids" id="modal_allo_ids" name="modal_allo_ids"/>
           <input type="hidden" value="" class="modal_asso_ids" id="modal_asso_ids" name="modal_asso_ids"/>

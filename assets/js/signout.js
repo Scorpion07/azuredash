@@ -45,7 +45,7 @@ function signout(){
     window.localStorage.clear();
     console.log("clear : "+window.localStorage.getItem('token'))
     cognitoUser.signOut();
-    window.location.href='login.html';
+    window.location.href='/';
     console.log("Signout");
 }
 
