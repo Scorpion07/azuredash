@@ -1,587 +1,691 @@
-<html style="height: auto; min-height: 100%;"><head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Cloud Billing</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <!--<meta http-equiv="refresh" content="300;URL='/cloudbilling.html'" /> -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
+<html style="height: auto; min-height: 100%;">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cloud Billing</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <!--<meta http-equiv="refresh" content="300;URL='/cloudbilling.html'" /> -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="assets/bower_components/font-awesome/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="assets/bower_components/Ionicons/css/ionicons.min.css">
-  <!-- jvectormap -->
-  <link rel="stylesheet" href="assets/bower_components/jvectormap/jquery-jvectormap.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="assets/dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-  folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="assets/dist/css/skins/_all-skins.min.css">
-  <script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="assets/dist/js/adminlte.min.js"></script>
-  <script src="assets/js/dependancies/jquery-1.12.4.js"></script>
-  <script src="assets/js/dependancies/jquery.dataTables.min.js"></script>
-  <script src="assets/js/dependancies/notify.min.js"></script>
-  <script src="//npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
-  <script src="assets/js/dependancies/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="assets/bower_components/font-awesome/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="assets/bower_components/Ionicons/css/ionicons.min.css">
-  <link rel="stylesheet" href="assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-  <script src="assets/js/dependancies/config.js"></script>
-  <script src="assets/js/dependancies/aws-cognito-sdk.min.js"></script>
-  <script src="assets/js/dependancies/amazon-cognito-identity.min.js"></script>
-  <link rel="stylesheet" href="assets/css/custom.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="assets/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="assets/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="assets/bower_components/jvectormap/jquery-jvectormap.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="assets/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+    folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="assets/dist/css/skins/_all-skins.min.css">
+    <script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="assets/dist/js/adminlte.min.js"></script>
+    <script src="assets/js/dependancies/jquery-1.12.4.js"></script>
+    <script src="assets/js/dependancies/jquery.dataTables.min.js"></script>
+    <script src="assets/js/dependancies/notify.min.js"></script>
+    <script src="//npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+    <script src="assets/js/dependancies/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="assets/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="assets/bower_components/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <script src="assets/js/dependancies/config.js"></script>
+    <script src="assets/js/dependancies/aws-cognito-sdk.min.js"></script>
+    <script src="assets/js/dependancies/amazon-cognito-identity.min.js"></script>
+    <link rel="stylesheet" href="assets/css/custom.css">
 </head>
 <body class="skin-blue sidebar-mini sidebar-open" style="height: auto; min-height: 100%;">
-  <div class="wrapper" style="height: auto; min-height: 100%;">
+<div class="wrapper" style="height: auto; min-height: 100%;">
     <header class="main-header">
-      <!-- Logo -->
-      <a href="#" class="logo">
-        <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>C</b>B</span>
-        <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Cloud </b>Billing</span>
-      </a>
-      <!-- Header Navbar: style can be found in header.less -->
-      <nav class="navbar navbar-static-top">
-        <!-- Sidebar toggle button-->
-        <a href="#" class="sidebar-toggle" id="defaultclick" data-toggle="push-menu" role="button">
-          <span class="sr-only">Toggle navigation</span>
+        <!-- Logo -->
+        <a href="#" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>C</b>B</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>Cloud </b>Billing</span>
         </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" id="defaultclick" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
 
-        <!-- Navbar Right Menu -->
-        <div class="navbar-custom-menu">
-          <div class="nav navbar-nav">
-            <div style=" float: none;display: inline-block;"><!-- <li></li> -->
-                <div class="form-group" style="margin-right: 66px;">
-                 <div class="form-group" style="font-size: 18px;">
-                    <label class="nav-link text-white"><div id="totalOtherCost" class="col align-self-start">
+            <!-- Navbar Right Menu -->
+            <div class="navbar-custom-menu">
+                <div class="nav navbar-nav">
+                    <div style=" float: none;display: inline-block;"><!-- <li></li> -->
+                        <div class="form-group" style="margin-right: 66px;">
+                            <div class="form-group" style="font-size: 18px;">
+                                <label class="nav-link text-white">
+                                    <div id="totalOtherCost" class="col align-self-start">
 
-                </div>
-                    </label>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div><!--  <ul> -->
+                    <div style=" float: none;display: inline-block;"><!-- <li></li> -->
+                        <div class="form-group" style="margin-right: 66px;">
+                            <div class="form-group" style="font-size: 18px;">
+                                <label class="nav-link text-white">
+                                    <div id="totalAccountCost" class="col align-self-end">
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div><!--  <ul> -->
+                    <div style=" float: none;display: inline-block;"><!-- <li></li> -->
+                        <div class="form-group" style="margin-right: 66px;">
+                            <select class="form-control" id="account"
+                                    style="font-size: 16px;width: 143px;height: 36px;">
+                                <option value="dev">Developer</option>
+                                <option value="training">Training</option>
+                            </select>
+                        </div>
+
+                        <div>  <!-- <li></li> -->
+                            <!-- <a href="#" data-toggle="control-sidebar" style="float: right;margin-top: -32px;padding-right: 20px;"><i class="fa fa-gears"></i></a> -->
+                            <a class="btn" id="signout" onclick="signout();" title="signout"
+                               style="float: right;margin-top: -44px;  padding-right: 17px;">
+                                <input type="image" src="assets/icons/logout.png" alt="Submit" width="25"></a>
+                        </div>
                     </div>
                 </div>
-            </div><!--  <ul> -->
-              <div style=" float: none;display: inline-block;"><!-- <li></li> -->
-                <div class="form-group" style="margin-right: 66px;">
-                 <div class="form-group" style="font-size: 18px;">
-                    <label class="nav-link text-white"><div id="totalAccountCost" class="col align-self-end">
+            </div>
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar user panel -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="assets/images/user2-160x160.png" class="img-circle" alt="User Image">
                 </div>
-                    </label>
-                    </div>
+                <div class="pull-left info">
+                    <p style="font-size: 15px;" id="username">Username</p>
                 </div>
-            </div><!--  <ul> -->
-              <div style=" float: none;display: inline-block;"><!-- <li></li> -->
-                <div class="form-group" style="margin-right: 66px;">
-                  <select class="form-control" id="account" style="font-size: 16px;width: 143px;height: 36px;">
-                    <option value="dev">Developer</option>
-                    <option value="training">Training</option>
-                  </select>
-                </div>
-
-              <div>  <!-- <li></li> -->
-        <!-- <a href="#" data-toggle="control-sidebar" style="float: right;margin-top: -32px;padding-right: 20px;"><i class="fa fa-gears"></i></a> -->
-         <a class="btn" id="signout" onclick="signout();" title="signout" style="float: right;margin-top: -44px;  padding-right: 17px;">
-          <input type="image" src="assets/icons/logout.png" alt="Submit" width="25"></a>
-       </div>
-      </div>
-    </div>
-  </div>
-</nav>
-</header>
-<!-- Left side column. contains the logo and sidebar -->
-<aside class="main-sidebar">
-<!-- sidebar: style can be found in sidebar.less -->
-  <section class="sidebar">
-    <!-- Sidebar user panel -->
-    <div class="user-panel">
-      <div class="pull-left image">
-        <img src="assets/images/user2-160x160.png" class="img-circle" alt="User Image">
-      </div>
-      <div class="pull-left info">
-        <p style="font-size: 15px;" id="username" >Username</p>
-      </div>
-    </div>
-    <!-- search form -->
-    <form action="#" method="get" class="sidebar-form">
-      <div class="input-group">
-        <!-- <input type="text" name="q" class="form-control" placeholder="Search..."> -->
-        <input type="text" id="filter" placeholder="Search...">
-        <span class="input-group-btn">
+            </div>
+            <!-- search form -->
+            <form action="#" method="get" class="sidebar-form">
+                <div class="input-group">
+                    <!-- <input type="text" name="q" class="form-control" placeholder="Search..."> -->
+                    <input type="text" id="filter" placeholder="Search...">
+                    <span class="input-group-btn">
           <button type="submit" name="search" id="search-btn" class="btn btn-flat disabled">
           <i class="fa fa-search"></i>
           </button>
         </span>
-      </div>
-    </form>
-    <!-- /.search form -->
-    <!-- sidebar menu: : style can be found in sidebar.less -->
-    <b>
-    <ul  class="sidebar-menu tree" data-widget="tree">
-      <li class="header">AWS Services</li>
-      <li class="active">
-        <a href="#" class="SelectedResource" data-resource="dashboard">
-          <i class="fa fa-th"></i> <span>Dashboard</span>
-        </a>
-      </li>
-      <li class="treeview">
-        <a href="#">
-          <img src='assets/images/ec2.png'>  <span>EC2</span>
-          <span class="pull-right-container" style="margin: -3px;">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul id="myUL" class="treeview-menu" style="display: none;">
-          <li><a href="#" class="SelectedResource" data-resource="ec2_instance"><i class="fa fa-circle-o"></i>EC2 Instances</a></li>
-          <li><a href="#" class="SelectedResource" data-resource="ebs_volume"><i class="fa fa-circle-o"></i>EBS Volumes</a></li>
-          <li><a href="#" class="SelectedResource" data-resource="elastic_ip"><i class="fa fa-circle-o"></i>Elastic IPs</a></li>
-          <li><a href="#" class="SelectedResource" data-resource="elb"><i class="fa fa-circle-o"></i>Elastic Load Balancers</a></li>
-          <li><a href="#" class="SelectedResource" data-resource="eni"><i class="fa fa-circle-o"></i>Elastic Network Interface</a></li>
-          <li><a href="#" class="SelectedResource" data-resource="ebs_snapshot"><i class="fa fa-circle-o"></i>EBS Snapshots</a></li>
-        </ul>
-      </li>
-      <li class="treeview">
-        <a href="#">
-          <img src='assets/images/rds.png' >  <span>RDS</span>
-          <span class="pull-right-container" style="margin: -3px;">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li><a href="#" class="SelectedResource" data-resource="dbinstance"><i class="fa fa-circle-o"></i>DB Instances</a></li>
-          <li><a href="#" class="SelectedResource" data-resource="dbcluster"><i class="fa fa-circle-o"></i>DB Clusters</a></li>
-          <li><a href="#" class="SelectedResource" data-resource="dbsnapshot"><i class="fa fa-circle-o"></i>DB Snapshots</a></li>
-        </ul>
-      </li>
-      <li class="treeview">
-        <a href="#">
-          <img src='assets/images/vpc.png' >  <span>VPC</span>
-          <span class="pull-right-container" style="margin: -3px;">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li><a href="#" class="SelectedResource" data-resource="vpc"><i class="fa fa-circle-o"></i>VPCs</a></li>
-          <li><a href="#" class="SelectedResource" data-resource="vpn"><i class="fa fa-circle-o"></i>VPN Connections</a></li>
-          <li><a href="#" class="SelectedResource" data-resource="vpc_nat"><i class="fa fa-circle-o"></i>Nat Gateways</a></li>
-        </ul>
-      </li>
-      <li class="treeview">
-        <a href="#">
-          <img src='assets/images/redshift.png' >  <span>Redshift</span>
-          <span class="pull-right-container" style="margin: -3px;">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li><a href="#" class="SelectedResource" data-resource="redshift_cluster"><i class="fa fa-circle-o"></i>Redshift Clusters</a></li>
-          <li><a href="#" class="SelectedResource" data-resource="redshift_cluster_snapshot"><i class="fa fa-circle-o"></i>Redshift Snapshots</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#" class="SelectedResource" data-resource="lambda">
-          <img src='assets/images/lambda.png' >  <span>Lambda Functions</span>
-        </a>
-      </li>
-      <li>
-        <a href="#" class="SelectedResource" data-resource="stack">
-          <img src='assets/images/stack.png' >  <span>CloudFormation Stacks</span>
-        </a>
-      </li>
-      <li class="treeview">
-        <a href="#">
-          <img src='assets/images/sagemaker.png' >  <span>SageMaker</span>
-          <span class="pull-right-container" style="margin: -3px;">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li><a href="#" class="SelectedResource" data-resource="notebook_instance"><i class="fa fa-circle-o"></i>Notebook Instances</a></li>
-          <li><a href="#" class="SelectedResource" data-resource="jobs"><i class="fa fa-circle-o"></i>Jobs</a></li>
-          <li><a href="#" class="SelectedResource" data-resource="models"><i class="fa fa-circle-o"></i>Models</a></li>
-          <li><a href="#" class="SelectedResource" data-resource="endpoints"><i class="fa fa-circle-o"></i>Endpoints</a></li>
-          <li><a href="#" class="SelectedResource" data-resource="endpointconfigs"><i class="fa fa-circle-o"></i>Endpoint configurations</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#" class="SelectedResource" data-resource="route53">
-          <img src='assets/images/route53.png' >  <span>Route 53</span>
-        </a>
-      </li>
-    </ul>
-    </b>
-  </section>
-<!-- /.sidebar -->
-</aside>
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper" style="min-height: 916px;">
-<!-- Content Header (Page header) -->
-<div id="Dashboard">
-  <section class="content-header">
-      <h1>
-      Dashboard
-      </h1>
-
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i>CloudBilling</a></li>
-        <li class="active">Dashboard</li>
-      </ol>
-  </section>
-  <section class="content">
-    <div class="row">
-      <div class="col-lg-4 col-xs-6">
-        <!-- small box -->
-        <div class="small-box bg border-bottom">
-          <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;" width="100%">
-            <tr>
-              <td colspan="3"><h4>EC2 Running Resources<div style="display: inline;" id="totalEc2Cost"></div></h4></td>
-            </tr>
-            <tr>
-              <td><b>Resources</b></td>
-              <td><b>Cost</b></td>
-              <td><b>Running</b></td>
-            </tr>
-            <tr id="InstanceD">
-              <td>EC2 Instances</td>
-              <td id="ec2Instancecost"></td>
-              <td><h7 class="card-title" id="InstancesRunning"></h7><hr style="margin-top: 0rem;margin-bottom: 0rem;">
-              <h7 class="card-title" id="InstancesStop"></h7></td>
-            </tr>
-            <tr id="elbD">
-              <td>ELBs</td>
-              <td id="elbcost"></td>
-              <td ><h7 class="card-title" id="elb"></h7></td>
-            </tr>
-            <tr id="SnapshotsD">
-              <td>EBS Snapshots</td>
-              <td id="snapcost"> </td>
-              <td ><h7 class="card-title" id="Snapshots"></h7></td>
-            </tr>
-            <tr id="eniD">
-              <td >ENIs</td>
-              <td>No Cost</td>
-              <td ><h7 class="card-title" id="eni"></h7></td>
-            </tr>
-            <tr id="volumesD">
-              <td>EBS Volumes</td>
-              <td id="volumecost"> </td>
-              <td ><h7 class="card-title" id="volumes"></h7></td>
-            </tr>
-            <tr id="eipD">
-              <td>EIPs</td>
-              <td id="eipcost"></td>
-              <td ><h7 class="card-title" id="eip"></h7></td>
-            </tr>
-          </table>
-        </div>
-        <div class="small-box bg border-bottom">
-          <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;" width="100%">
-            <tr>
-              <td colspan="3" ><h4>RDS Running Resources<div style="display: inline;" id="totalRdsCost"></div></h4></td>
-            </tr>
-            <tr>
-              <td><b>Resources</b></td>
-              <td><b>Cost</b></td>
-              <td><b>Running</b></td>
-            </tr>
-            <tr id="dbinstancecluster">
-              <td >DB Instances/Clusters</td>
-              <td id="dbintcost"></td>
-              <td ><h7 class="card-title" id="DBInstances"></h7></td>
-            </tr>
-            <tr id="dbsnapshot">
-              <td>DB Snapshots</td>
-              <td id="dbsnapcost"></td>
-              <td ><h7 class="card-title" id="DBSnapshots"></h7></td>
-            </tr>
-          </table>
-        </div>
-        <div class="small-box bg border-bottom">
-          <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;" width="100%">
-            <tr>
-              <td colspan="2" ><h4>Route53 Resources<div style="display: inline;" id="route53Cost"></div></h4></td>
-            </tr>
-            <tr>
-              <td><b>Resources</b></td>
-              <!-- <td><b>Cost</b></td> -->
-              <td><b>Running</b></td>
-            </tr>
-            <tr id="route53">
-              <td >Hosted Zone</td>
-              <!-- <td id="dbintcost"></td> -->
-              <td ><h7 class="card-title" id="hostedzone"></h7></td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <!-- ./col -->
-      <div class="col-lg-4 col-xs-6">
-        <div class="small-box bg border-bottom">
-          <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;" width="100%">
-            <tr>
-              <td colspan="2"><h4>CloudFormation Stacks</h4></td>
-            </tr>
-            <tr>
-
-              <td><b>Resources</b></td>
-              <td><b>Available</b></td>
-            </tr>
-            <tr id="stackD">
-              <td id="stackcost">Stacks</td>
-              <td ><h7 class="card-title" id="stack"></h7></td>
-            </tr>
-          </table>
-        </div>
-        <div class="small-box bg border-bottom">
-          <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;" width="100%">
-            <tr>
-              <td colspan="2"><h4>Lambda Resources</h4></td>
-            </tr>
-            <tr>
-
-              <td><b>Resources</b></td>
-              <td><b>Available</b></td>
-            </tr>
-            <tr id="lambdaD">
-              <td id="lambdacost">Lambda Functions</td>
-              <td ><h7 class="card-title" id="lambda"></h7></td>
-            </tr>
-          </table>
-        </div>
-        <div class="small-box bg border-bottom">
-          <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;" width="100%">
-            <tr>
-              <td colspan="3"><h4>VPC Running Resources</h4></td>
-            </tr>
-            <tr>
-              <td><b>Resources</b></td>
-              <td><b>Cost</b></td>
-              <td><b>Running</b></td>
-            </tr>
-            <tr id="natD">
-              <td>NAT Gateways</td>
-              <td id="natcost"></td>
-              <td><h7 class="card-title" id="natRunning"></h7><hr style="margin-top: 0rem;margin-bottom: 0rem;">
-              <h7 class="card-title" id="natStop"></h7></td>
-            </tr>
-            <tr id="vpnD">
-              <td id="vpncost">VPN Connections</td>
-              <td>-</td>
-              <td ><h7 class="card-title" id="vpn"></h7></td>
-            </tr>
-            <tr id="vpcD">
-              <td id="vpccost">VPCs</td>
-              <td>-</td>
-              <td ><h7 class="card-title" id="vpc"></h7></td>
-            </tr>
-          </table>
-        </div>
-        <!-- small box -->
-
-      </div>
-      <!-- ./col -->
-      <!-- ./col -->
-      <div class="col-lg-4 col-xs-6">
-        <!-- small box -->
-          <div class="small-box bg border-bottom">
-          <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;" width="100%">
-            <tr>
-              <td colspan="2" ><h4>Redshift Running Resources<div style="display: inline;" id="totalRSCost"></div></h4></td>
-            </tr>
-            <tr>
-              <td><b>Resources</b></td>
-              <td><b>Running</b></td>
-            </tr>
-            <tr id="redshift_cluster">
-              <td >Redshift Clusters</td>
-              <td ><h7 class="card-title" id="red_clust"></h7></td>
-            </tr>
-            <tr id="redsnapshot">
-              <td>Redshift Snapshots</td>
-              <td ><h7 class="card-title" id="red_snapshots"></h7></td>
-            </tr>
-          </table>
-        </div>
-        <div class="small-box bg border-bottom">
-          <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;" width="100%">
-            <tr>
-              <td colspan="2"><h4>SageMaker Running Resources<div style="display: inline;" id="totalSagemakerCost"></div></h4></td>
-            </tr>
-            <tr>
-              <td><b>Resources</b></td>
-              <td><b>Running</b></td>
-            </tr>
-            <tr id="InstanceSagemaker">
-              <td>Notebook Instances</td>
-              <td ><h7 class="card-title" id="noteint"></h7></td>
-            </tr>
-            <tr id="endD">
-              <td>Endpoints</td>
-              <td ><h7 class="card-title" id="end"></h7></td>
-            </tr>
-            <tr id="jobsD">
-              <td>Jobs</td>
-              <td ><h7 class="card-title" id="jobs"></h7></td>
-            </tr>
-            <tr id="modelD">
-              <td >Models</td>
-              <td ><h7 class="card-title" id="model"></h7></td>
-            </tr>
-            <tr id="endconfigD">
-              <td>Endpoint configuration</td>
-              <td ><h7 class="card-title" id="endconfig"></h7></td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <!-- ./col -->
-    </div>
-</section>
-</div>
-<div id="Services" style="display: none;">
-  <section class="content-header">
-    <h1 id="main_title">
-    </h1>
-    <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">Dashboard</li>
-    </ol>
-  </section>
-  <section class="content">
-    <div class="row">
-       <div class="col-md-9" >
-
-      </div>
-      <div class="col-md-2 pull-left" >
-        <a class="btn btn-danger pull-right" id="btnmultipledelete" class="disable disabled btnmultipledelete" title="Delete selected"></a>
-      </div>
-
-      <div class="col-md-1 pull-right" style="margin: -9px;">
-        <a class="btn refresh" id="refresh" onclick="reloadFunc()" title="Reload"><img src="assets/icons/reload1.png" class="img-circle"/></a>
-      </div>
-    </div>
-    <br>
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="box box-primary">
-          <div class="box-header">
-            <div class="row">
-              <div class="col-xs-12">
-                <div class="col-xs-6">
-                  <h3 class="box-title" id="tableHeading"></h3>
                 </div>
-              <div class="col-xs-6">
-                <h3 class="box-title pull-right" id="totalOfService"></h3>
-                <!-- <h3 class="box-title pull-left" id="cost">Previous month cost:&nbsp;$&nbsp;<div id="prev" style="float: right;">123</div></h3>
-                <h3 class="box-title pull-right" id="cost">Current month cost:&nbsp;$&nbsp;<div id="current" style="float: right;">156</div></h3> -->
-              </div>
-              </div>
+            </form>
+            <!-- /.search form -->
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <b>
+                <ul class="sidebar-menu tree" data-widget="tree">
+                    <li class="header">AWS Services</li>
+                    <li class="active">
+                        <a href="#" class="SelectedResource" data-resource="dashboard">
+                            <i class="fa fa-th"></i> <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <img src='assets/images/ec2.png'> <span>EC2</span>
+                            <span class="pull-right-container" style="margin: -3px;">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+                        </a>
+                        <ul id="myUL" class="treeview-menu" style="display: none;">
+                            <li><a href="#" class="SelectedResource" data-resource="ec2_instance"><i
+                                    class="fa fa-circle-o"></i>EC2 Instances</a></li>
+                            <li><a href="#" class="SelectedResource" data-resource="ebs_volume"><i
+                                    class="fa fa-circle-o"></i>EBS Volumes</a></li>
+                            <li><a href="#" class="SelectedResource" data-resource="elastic_ip"><i
+                                    class="fa fa-circle-o"></i>Elastic IPs</a></li>
+                            <li><a href="#" class="SelectedResource" data-resource="elb"><i class="fa fa-circle-o"></i>Elastic
+                                Load Balancers</a></li>
+                            <li><a href="#" class="SelectedResource" data-resource="eni"><i class="fa fa-circle-o"></i>Elastic
+                                Network Interface</a></li>
+                            <li><a href="#" class="SelectedResource" data-resource="ebs_snapshot"><i
+                                    class="fa fa-circle-o"></i>EBS Snapshots</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <img src='assets/images/rds.png'> <span>RDS</span>
+                            <span class="pull-right-container" style="margin: -3px;">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#" class="SelectedResource" data-resource="dbinstance"><i
+                                    class="fa fa-circle-o"></i>DB Instances</a></li>
+                            <li><a href="#" class="SelectedResource" data-resource="dbcluster"><i
+                                    class="fa fa-circle-o"></i>DB Clusters</a></li>
+                            <li><a href="#" class="SelectedResource" data-resource="dbsnapshot"><i
+                                    class="fa fa-circle-o"></i>DB Snapshots</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <img src='assets/images/vpc.png'> <span>VPC</span>
+                            <span class="pull-right-container" style="margin: -3px;">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#" class="SelectedResource" data-resource="vpc"><i class="fa fa-circle-o"></i>VPCs</a>
+                            </li>
+                            <li><a href="#" class="SelectedResource" data-resource="vpn"><i class="fa fa-circle-o"></i>VPN
+                                Connections</a></li>
+                            <li><a href="#" class="SelectedResource" data-resource="vpc_nat"><i
+                                    class="fa fa-circle-o"></i>Nat Gateways</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <img src='assets/images/redshift.png'> <span>Redshift</span>
+                            <span class="pull-right-container" style="margin: -3px;">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#" class="SelectedResource" data-resource="redshift_cluster"><i
+                                    class="fa fa-circle-o"></i>Redshift Clusters</a></li>
+                            <li><a href="#" class="SelectedResource" data-resource="redshift_cluster_snapshot"><i
+                                    class="fa fa-circle-o"></i>Redshift Snapshots</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="SelectedResource" data-resource="lambda">
+                            <img src='assets/images/lambda.png'> <span>Lambda Functions</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="SelectedResource" data-resource="stack">
+                            <img src='assets/images/stack.png'> <span>CloudFormation Stacks</span>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <img src='assets/images/sagemaker.png'> <span>SageMaker</span>
+                            <span class="pull-right-container" style="margin: -3px;">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#" class="SelectedResource" data-resource="notebook_instance"><i
+                                    class="fa fa-circle-o"></i>Notebook Instances</a></li>
+                            <li><a href="#" class="SelectedResource" data-resource="jobs"><i class="fa fa-circle-o"></i>Jobs</a>
+                            </li>
+                            <li><a href="#" class="SelectedResource" data-resource="models"><i
+                                    class="fa fa-circle-o"></i>Models</a></li>
+                            <li><a href="#" class="SelectedResource" data-resource="endpoints"><i
+                                    class="fa fa-circle-o"></i>Endpoints</a></li>
+                            <li><a href="#" class="SelectedResource" data-resource="endpointconfigs"><i
+                                    class="fa fa-circle-o"></i>Endpoint configurations</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="SelectedResource" data-resource="route53">
+                            <img src='assets/images/route53.png'> <span>Route 53</span>
+                        </a>
+                    </li>
+                </ul>
+            </b>
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="min-height: 916px;">
+        <!-- Content Header (Page header) -->
+        <div id="Dashboard">
+            <section class="content-header">
+                <h1>
+                    Dashboard
+                </h1>
+
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i>CloudBilling</a></li>
+                    <li class="active">Dashboard</li>
+                </ol>
+            </section>
+            <section class="content">
+                <div class="row">
+                    <div class="col-lg-4 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg border-bottom">
+                            <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;"
+                                   width="100%">
+                                <tr>
+                                    <td colspan="3">
+                                        <h4>EC2 Running Resources
+                                            <div style="display: inline;" id="totalEc2Cost"></div>
+                                        </h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Resources</b></td>
+                                    <td><b>Cost</b></td>
+                                    <td><b>Running</b></td>
+                                </tr>
+                                <tr id="InstanceD">
+                                    <td>EC2 Instances</td>
+                                    <td id="ec2Instancecost"></td>
+                                    <td>
+                                        <h7 class="card-title" id="InstancesRunning"></h7>
+                                        <hr style="margin-top: 0rem;margin-bottom: 0rem;">
+                                        <h7 class="card-title" id="InstancesStop"></h7>
+                                    </td>
+                                </tr>
+                                <tr id="elbD">
+                                    <td>ELBs</td>
+                                    <td id="elbcost"></td>
+                                    <td>
+                                        <h7 class="card-title" id="elb"></h7>
+                                    </td>
+                                </tr>
+                                <tr id="SnapshotsD">
+                                    <td>EBS Snapshots</td>
+                                    <td id="snapcost"></td>
+                                    <td>
+                                        <h7 class="card-title" id="Snapshots"></h7>
+                                    </td>
+                                </tr>
+                                <tr id="eniD">
+                                    <td>ENIs</td>
+                                    <td>No Cost</td>
+                                    <td>
+                                        <h7 class="card-title" id="eni"></h7>
+                                    </td>
+                                </tr>
+                                <tr id="volumesD">
+                                    <td>EBS Volumes</td>
+                                    <td id="volumecost"></td>
+                                    <td>
+                                        <h7 class="card-title" id="volumes"></h7>
+                                    </td>
+                                </tr>
+                                <tr id="eipD">
+                                    <td>EIPs</td>
+                                    <td id="eipcost"></td>
+                                    <td>
+                                        <h7 class="card-title" id="eip"></h7>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="small-box bg border-bottom">
+                            <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;"
+                                   width="100%">
+                                <tr>
+                                    <td colspan="3">
+                                        <h4>RDS Running Resources
+                                            <div style="display: inline;" id="totalRdsCost"></div>
+                                        </h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Resources</b></td>
+                                    <td><b>Cost</b></td>
+                                    <td><b>Running</b></td>
+                                </tr>
+                                <tr id="dbinstancecluster">
+                                    <td>DB Instances/Clusters</td>
+                                    <td id="dbintcost"></td>
+                                    <td>
+                                        <h7 class="card-title" id="DBInstances"></h7>
+                                    </td>
+                                </tr>
+                                <tr id="dbsnapshot">
+                                    <td>DB Snapshots</td>
+                                    <td id="dbsnapcost"></td>
+                                    <td>
+                                        <h7 class="card-title" id="DBSnapshots"></h7>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="small-box bg border-bottom">
+                            <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;"
+                                   width="100%">
+                                <tr>
+                                    <td colspan="2">
+                                        <h4>Route53 Resources
+                                            <div style="display: inline;" id="route53Cost"></div>
+                                        </h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Resources</b></td>
+                                    <!-- <td><b>Cost</b></td> -->
+                                    <td><b>Running</b></td>
+                                </tr>
+                                <tr id="route53">
+                                    <td>Hosted Zone</td>
+                                    <!-- <td id="dbintcost"></td> -->
+                                    <td>
+                                        <h7 class="card-title" id="hostedzone"></h7>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-4 col-xs-6">
+                        <div class="small-box bg border-bottom">
+                            <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;"
+                                   width="100%">
+                                <tr>
+                                    <td colspan="2"><h4>CloudFormation Stacks</h4></td>
+                                </tr>
+                                <tr>
+
+                                    <td><b>Resources</b></td>
+                                    <td><b>Available</b></td>
+                                </tr>
+                                <tr id="stackD">
+                                    <td id="stackcost">Stacks</td>
+                                    <td>
+                                        <h7 class="card-title" id="stack"></h7>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="small-box bg border-bottom">
+                            <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;"
+                                   width="100%">
+                                <tr>
+                                    <td colspan="2"><h4>Lambda Resources</h4></td>
+                                </tr>
+                                <tr>
+
+                                    <td><b>Resources</b></td>
+                                    <td><b>Available</b></td>
+                                </tr>
+                                <tr id="lambdaD">
+                                    <td id="lambdacost">Lambda Functions</td>
+                                    <td>
+                                        <h7 class="card-title" id="lambda"></h7>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="small-box bg border-bottom">
+                            <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;"
+                                   width="100%">
+                                <tr>
+                                    <td colspan="3"><h4>VPC Running Resources</h4></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Resources</b></td>
+                                    <td><b>Cost</b></td>
+                                    <td><b>Running</b></td>
+                                </tr>
+                                <tr id="natD">
+                                    <td>NAT Gateways</td>
+                                    <td id="natcost"></td>
+                                    <td>
+                                        <h7 class="card-title" id="natRunning"></h7>
+                                        <hr style="margin-top: 0rem;margin-bottom: 0rem;">
+                                        <h7 class="card-title" id="natStop"></h7>
+                                    </td>
+                                </tr>
+                                <tr id="vpnD">
+                                    <td id="vpncost">VPN Connections</td>
+                                    <td>-</td>
+                                    <td>
+                                        <h7 class="card-title" id="vpn"></h7>
+                                    </td>
+                                </tr>
+                                <tr id="vpcD">
+                                    <td id="vpccost">VPCs</td>
+                                    <td>-</td>
+                                    <td>
+                                        <h7 class="card-title" id="vpc"></h7>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- small box -->
+
+                    </div>
+                    <!-- ./col -->
+                    <!-- ./col -->
+                    <div class="col-lg-4 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg border-bottom">
+                            <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;"
+                                   width="100%">
+                                <tr>
+                                    <td colspan="2">
+                                        <h4>Redshift Running Resources
+                                            <div style="display: inline;" id="totalRSCost"></div>
+                                        </h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Resources</b></td>
+                                    <td><b>Running</b></td>
+                                </tr>
+                                <tr id="redshift_cluster">
+                                    <td>Redshift Clusters</td>
+                                    <td>
+                                        <h7 class="card-title" id="red_clust"></h7>
+                                    </td>
+                                </tr>
+                                <tr id="redsnapshot">
+                                    <td>Redshift Snapshots</td>
+                                    <td>
+                                        <h7 class="card-title" id="red_snapshots"></h7>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="small-box bg border-bottom">
+                            <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;"
+                                   width="100%">
+                                <tr>
+                                    <td colspan="2">
+                                        <h4>SageMaker Running Resources
+                                            <div style="display: inline;" id="totalSagemakerCost"></div>
+                                        </h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Resources</b></td>
+                                    <td><b>Running</b></td>
+                                </tr>
+                                <tr id="InstanceSagemaker">
+                                    <td>Notebook Instances</td>
+                                    <td>
+                                        <h7 class="card-title" id="noteint"></h7>
+                                    </td>
+                                </tr>
+                                <tr id="endD">
+                                    <td>Endpoints</td>
+                                    <td>
+                                        <h7 class="card-title" id="end"></h7>
+                                    </td>
+                                </tr>
+                                <tr id="jobsD">
+                                    <td>Jobs</td>
+                                    <td>
+                                        <h7 class="card-title" id="jobs"></h7>
+                                    </td>
+                                </tr>
+                                <tr id="modelD">
+                                    <td>Models</td>
+                                    <td>
+                                        <h7 class="card-title" id="model"></h7>
+                                    </td>
+                                </tr>
+                                <tr id="endconfigD">
+                                    <td>Endpoint configuration</td>
+                                    <td>
+                                        <h7 class="card-title" id="endconfig"></h7>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                </div>
+            </section>
+        </div>
+        <div id="Services" style="display: none;">
+            <section class="content-header">
+                <h1 id="main_title">
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="active">Dashboard</li>
+                </ol>
+            </section>
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-9">
+
+                    </div>
+                    <div class="col-md-2 pull-left">
+                        <a class="btn btn-danger pull-right" id="btnmultipledelete"
+                           class="disable disabled btnmultipledelete" title="Delete selected"></a>
+                    </div>
+
+                    <div class="col-md-1 pull-right" style="margin: -9px;">
+                        <a class="btn refresh" id="refresh" onclick="reloadFunc()" title="Reload"><img
+                                src="assets/icons/reload1.png" class="img-circle"/></a>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box box-primary">
+                            <div class="box-header">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="col-xs-6">
+                                            <h3 class="box-title" id="tableHeading"></h3>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <h3 class="box-title pull-right" id="totalOfService"></h3>
+                                            <!-- <h3 class="box-title pull-left" id="cost">Previous month cost:&nbsp;$&nbsp;<div id="prev" style="float: right;">123</div></h3>
+                                            <h3 class="box-title pull-right" id="cost">Current month cost:&nbsp;$&nbsp;<div id="current" style="float: right;">156</div></h3> -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                    <div class="row">
+                                        <div class="col-sm-6"></div>
+                                        <div class="col-sm-6"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 tableDisplay">
+                                            <!-- <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+
+                                            </table> -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+            </section>
+        </div>
+
+        <!-- Main content -->
+
+    </div>
+    <div class="modal" id="deleteMulConformation">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal_title">Snapshots Deletion</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="delete_heading">Are you sure, you want to delete all this snapshots ?</p>
+                    <input type="hidden" value="" class="modal_cluster_ids" id="deleteids" name="modal_cluster_ids"/>
+                    <input type="hidden" value="" class="modal_ids" name="modal_ids"/>
+                    <input type="hidden" value="" class="modal_regions" id="delete_regions" name="modal_regions"/>
+                    <input type="hidden" value="" class="modal_allo_ids" id="modal_allo_ids" name="modal_allo_ids"/>
+                    <input type="hidden" value="" class="modal_asso_ids" id="modal_asso_ids" name="modal_asso_ids"/>
+
+                    <div>
+                        <ul id="delete_li_show">
+
+                        </ul>
+                    </div>
+                </div>
+                <div id="loadingMulModal" style="display: none;background-color: rgb(20, 20, 20);">
+                    <p style="position: absolute; top: 40%; left:45%;">
+                        <img src="assets/images/loader.gif"/>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="yesModal" class="btn btn-primary deleteMul" onclick="ModalClickdelete()">
+                        Yes
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
             </div>
-
-          </div>
-          <!-- /.box-header -->
-          <div class="box-body">
-            <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap"><div class="row"><div class="col-sm-6"></div><div class="col-sm-6"></div></div>
-            <div class="row">
-              <div class="col-sm-12 tableDisplay">
-                <!-- <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
-
-                </table> -->
-              </div>
-            </div>
-          </div>
-
         </div>
-      </div>
-      <!-- /.col -->
     </div>
-    <!-- /.row -->
+    <div id="loading" style="display: none;background-color: rgb(20, 20, 20);">
+        <p style="position: absolute; top: 25%; left:45%;">
+            <img src="assets/images/loader.gif"/>
+        </p>
     </div>
-  </section>
-</div>
-
-<!-- Main content -->
-
-</div>
-<div class="modal" id="deleteMulConformation">
-      <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modal_title">Snapshots Deletion</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>Version</b> 2.4.0
         </div>
-        <div class="modal-body">
-          <p id="delete_heading">Are you sure, you want to delete all this snapshots ?</p>
-          <input type="hidden" value="" class="modal_cluster_ids" id="deleteids" name="modal_cluster_ids"/>
-          <input type="hidden" value="" class="modal_ids"  name="modal_ids"/>
-          <input type="hidden" value="" class="modal_regions" id="delete_regions" name="modal_regions"/>
-          <input type="hidden" value="" class="modal_allo_ids" id="modal_allo_ids" name="modal_allo_ids"/>
-          <input type="hidden" value="" class="modal_asso_ids" id="modal_asso_ids" name="modal_asso_ids"/>
-
-          <div>
-            <ul id="delete_li_show">
-
-            </ul>
-          </div>
-        </div>
-        <div id="loadingMulModal" style="display: none;background-color: rgb(20, 20, 20);">
-      <p style="position: absolute; top: 40%; left:45%;">
-        <img src="assets/images/loader.gif"/>
-      </p>
-      </div>
-        <div class="modal-footer">
-          <button type="button" id="yesModal" class="btn btn-primary deleteMul" onclick="ModalClickdelete()">Yes</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-        </div>
-      </div>
-    </div>
-        </div>
-<div id="loading" style="display: none;background-color: rgb(20, 20, 20);">
-<p style="position: absolute; top: 25%; left:45%;">
-<img src="assets/images/loader.gif"/>
-</p>
-</div>
-<!-- /.content-wrapper -->
-<footer class="main-footer">
-<div class="pull-right hidden-xs">
-<b>Version</b> 2.4.0
-</div>
-<strong>Copyright © 2012-2018 <a href="//adminlte.io">CloudThat</a>.</strong> All rights
-reserved.
-</footer>
+        <strong>Copyright © 2012-2018 <a href="//adminlte.io">CloudThat</a>.</strong> All rights
+        reserved.
+    </footer>
 </div>
 <script type="text/javascript" src="assets/js/signout.js"></script>
-<script type="text/javascript" src="assets/js/ec2/Ec2Instance.js" ></script>
-<script type="text/javascript" src="assets/js/ec2/EbsVolume.js" ></script>
+<script type="text/javascript" src="assets/js/ec2/Ec2Instance.js"></script>
+<script type="text/javascript" src="assets/js/ec2/EbsVolume.js"></script>
 <script type="text/javascript" src="assets/js/ec2/EbsSnapshot.js"></script>
-<script type="text/javascript" src="assets/js/ec2/ElasticIP.js" ></script>
-<script type="text/javascript" src="assets/js/ec2/ElasticNetworkInterface.js" ></script>
+<script type="text/javascript" src="assets/js/ec2/ElasticIP.js"></script>
+<script type="text/javascript" src="assets/js/ec2/ElasticNetworkInterface.js"></script>
 <script type="text/javascript" src="assets/js/lambda/LambdaFunction.js"></script>
-<script type="text/javascript" src="assets/js/cloudformation/StackList.js" ></script>
+<script type="text/javascript" src="assets/js/cloudformation/StackList.js"></script>
 <script type="text/javascript" src="assets/js/rds/DbCluster.js"></script>
 <script type="text/javascript" src="assets/js/rds/DbInstance.js"></script>
 <script type="text/javascript" src="assets/js/rds/DbSnapshot.js"></script>
 <script type="text/javascript" src="assets/js/ec2/ELB.js"></script>
 <script type="text/javascript" src="assets/js/Dashboard.js"></script>
-<script type="text/javascript" src="assets/js/vpc/NatGateway.js" ></script>
-<script type="text/javascript" src="assets/js/vpc/VpnConnection.js" ></script>
-<script type="text/javascript" src="assets/js/vpc/Vpc.js" ></script>
-<script type="text/javascript" src="assets/js/redshift/redshift_cluster.js" ></script>
-<script type="text/javascript" src="assets/js/redshift/redshift_snapshot.js" ></script>
-<script type="text/javascript" src="assets/js/sagemaker/NotebookInstance.js" ></script>
-<script type="text/javascript" src="assets/js/sagemaker/Endpoint.js" ></script>
-<script type="text/javascript" src="assets/js/sagemaker/Jobs.js" ></script>
-<script type="text/javascript" src="assets/js/sagemaker/Model.js" ></script>
-<script type="text/javascript" src="assets/js/sagemaker/EndpointConfiguration.js" ></script>
-<script type="text/javascript" src="assets/js/route53/hostzone.js" ></script>
+<script type="text/javascript" src="assets/js/vpc/NatGateway.js"></script>
+<script type="text/javascript" src="assets/js/vpc/VpnConnection.js"></script>
+<script type="text/javascript" src="assets/js/vpc/Vpc.js"></script>
+<script type="text/javascript" src="assets/js/redshift/redshift_cluster.js"></script>
+<script type="text/javascript" src="assets/js/redshift/redshift_snapshot.js"></script>
+<script type="text/javascript" src="assets/js/sagemaker/NotebookInstance.js"></script>
+<script type="text/javascript" src="assets/js/sagemaker/Endpoint.js"></script>
+<script type="text/javascript" src="assets/js/sagemaker/Jobs.js"></script>
+<script type="text/javascript" src="assets/js/sagemaker/Model.js"></script>
+<script type="text/javascript" src="assets/js/sagemaker/EndpointConfiguration.js"></script>
+<script type="text/javascript" src="assets/js/route53/hostzone.js"></script>
 <script type="text/javascript" src="assets/js/main.js"></script>
 <script type="text/javascript" src="assets/js/other/loadingFunctionForAllJS.js"></script>
 <script type="text/javascript" src="assets/js/other/forOpeningModel.js"></script>
