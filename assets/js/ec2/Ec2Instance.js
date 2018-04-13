@@ -10,12 +10,120 @@ function showEc2Instances() {
     var addTbody = '';
     var service;
     var token = window.localStorage.getItem('token');
-    $("#btnmultipledelete").html('<i class="glyphicon glyphicon-trash"></i> Terminate Selected');
+    if (account !== 'prod') {
+        $("#btnmultipledelete").show();
+        $("#btnmultipledelete").html('<i class="glyphicon glyphicon-trash"></i> Terminate Selected');
+    }
+    else {
+        $("#btnmultipledelete").hide();
+    }
     $("#tablehead").html("");
     $("#tablebody").html("");
-    $("#tablehead").append('<tr><th><input name="select_all" class="select_all" type="checkbox"></th><th>Tag</th><th>Instance ID</th><th>Instance Type</th><th>Launch Time</th><th>Instance State</th><th>Volume ID</th><th>Region</th>');
-    $("#tablebody").append('<tr><th></th><th>Tag</th><th>Instance ID</th><th>Instance Type</th><th>Launch Time</th><th>Instance State</th><th>Volume ID</th><th>Region</th>');
+    if (account !== 'prod') {
+        $("#tablehead").append('<tr><th><input name="select_all" class="select_all" type="checkbox"></th><th>Tag</th><th>Instance ID</th><th>Instance Type</th><th>Launch Time</th><th>Instance State</th><th>Volume ID</th><th>Region</th>');
+        $("#tablebody").append('<tr><th></th><th>Tag</th><th>Instance ID</th><th>Instance Type</th><th>Launch Time</th><th>Instance State</th><th>Volume ID</th><th>Region</th>');
+    }
+    else {
+        $("#tablehead").append('<tr><th>No.</th><th>Tag</th><th>Instance ID</th><th>Instance Type</th><th>Launch Time</th><th>Instance State</th><th>Volume ID</th><th>Region</th>');
+        $("#tablebody").append('<tr><th></th><th>Tag</th><th>Instance ID</th><th>Instance Type</th><th>Launch Time</th><th>Instance State</th><th>Volume ID</th><th>Region</th>');
+    }
     ListInstanceData();
+}
+
+function ListInstanceData() {
+    var count = 0;
+    $('#loading').show();
+    var submit = {
+        submethod: SelectedResourceVar,
+        method: "ListResources",
+        account: account
+    }
+    console.log(submit);
+    $.ajax({
+        url: 'https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/ec2resource/listservices',
+        headers: {"Authorization": token},
+        type: 'post',
+        dataType: 'json',
+        contentType: 'application/json',
+        crossDomain: true,
+        data: JSON.stringify(submit),
+        success: function (respdata) {
+            console.log(respdata)
+            $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
+            $('#table').dataTable().fnDestroy();
+            table = $('#table').DataTable({
+                data: respdata.data,
+                serverside: true,
+                order: [],
+                'rowCallback': function (row, data, iDisplayIndex) {
+                    if (account !== 'prod') {
+                        var check = '<input type="checkbox" id="checkboxclick" name="id[]" class="checkboxclick checkboxes" data_instance_id="' + data.InstanceId + '" data_region="' + data.Region + '">';
+                        $('td:eq(0)', row).html(check);
+                    }
+                    else {
+                        $('td:eq(0)', row).html(count += 1);
+                    }
+                },
+
+                'columnDefs': [
+                    {"className": "dt-center", "defaultContent": "-", "targets": "_all"},
+                    {
+                        'targets': [0],
+                        'searchable': false,
+                        'orderable': false,
+                        'data': null,
+                    },
+                    {
+                        'targets': [1],
+                        'orderable': true,
+                        'data': 'Tags.0.Value'
+                    },
+                    {
+                        'targets': [2],
+                        'orderable': true,
+                        'data': 'InstanceId',
+                    },
+                    {
+                        'targets': [3],
+                        'orderable': true,
+                        'data': 'InstanceType'
+                    },
+                    {
+                        'targets': [4],
+                        'orderable': true,
+                        'data': 'LaunchTime'
+                    },
+                    {
+                        'targets': [5],
+                        'orderable': true,
+                        'data': 'State.Name'
+                    },
+                    {
+                        'targets': [6],
+                        'orderable': true,
+                        'data': 'BlockDeviceMappings.0.Ebs.VolumeId'
+                    },
+                    {
+                        'targets': [7],
+                        'orderable': true,
+                        'data': 'RegionName'
+                    }
+                ],
+
+                'select': {
+                    'style': 'multi'
+                },
+
+
+            });
+            $('#loading').hide();
+
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            $('#loading').hide();
+            $.notify("Unable to Load", "error");
+        }
+    });
 }
 
 function deleteModalInstances() {
@@ -82,101 +190,9 @@ function deleteInstances() {
             else {
                 $.notify("Unable to Terminate Instance", "error");
             }
-            $('#deleteConformation').modal('hide');
+            $('#deleteMulConformation').modal('hide');
         }
 
     });
 }
 
-function ListInstanceData() {
-
-    $('#loading').show();
-    var submit = {
-        submethod: SelectedResourceVar,
-        method: "ListResources",
-        account: account
-    }
-    console.log(submit);
-
-    $.ajax({
-        url: 'https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/ec2resource/listservices',
-        headers: {"Authorization": token},
-        type: 'post',
-        dataType: 'json',
-        contentType: 'application/json',
-        crossDomain: true,
-        data: JSON.stringify(submit),
-        success: function (respdata) {
-            console.log(respdata)
-            $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
-            $('#table').dataTable().fnDestroy();
-            table = $('#table').DataTable({
-                data: respdata.data,
-                serverside: true,
-                order: [],
-                'rowCallback': function (row, data, iDisplayIndex) {
-                    var check = '<input type="checkbox" id="checkboxclick" name="id[]" class="checkboxclick checkboxes" data_instance_id="' + data.InstanceId + '" data_region="' + data.Region + '">';
-                    $('td:eq(0)', row).html(check);
-
-                },
-
-                'columnDefs': [
-                    {"className": "dt-center", "defaultContent": "-", "targets": "_all"},
-                    {
-                        'targets': [0],
-                        'searchable': false,
-                        'orderable': false,
-                        'data': null,
-                    },
-                    {
-                        'targets': [1],
-                        'orderable': true,
-                        'data': 'Tags.0.Value'
-                    },
-                    {
-                        'targets': [2],
-                        'orderable': true,
-                        'data': 'InstanceId',
-                    },
-                    {
-                        'targets': [3],
-                        'orderable': true,
-                        'data': 'InstanceType'
-                    },
-                    {
-                        'targets': [4],
-                        'orderable': true,
-                        'data': 'LaunchTime'
-                    },
-                    {
-                        'targets': [5],
-                        'orderable': true,
-                        'data': 'State.Name'
-                    },
-                    {
-                        'targets': [6],
-                        'orderable': true,
-                        'data': 'BlockDeviceMappings.0.Ebs.VolumeId'
-                    },
-                    {
-                        'targets': [7],
-                        'orderable': true,
-                        'data': 'RegionName'
-                    }
-                ],
-
-                'select': {
-                    'style': 'multi'
-                },
-
-
-            });
-            $('#loading').hide();
-
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            $('#loading').hide();
-            $.notify("Unable to Load", "error");
-        }
-    });
-}

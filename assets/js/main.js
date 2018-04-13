@@ -44,10 +44,18 @@ $( window ).on( "load", function() {
 {
   $('#account > option').eq(0).attr('selected','selected')
 }
- 
+
+if (account == "training" )
+{
+    $('#account > option').eq(1).attr('selected','selected')
+}
 if (account == "training" ) 
 {
-  $('#account > option').eq(1).attr('selected','selected')
+  $('#account > option').eq(2).attr('selected','selected')
+}
+if (account == "exttrain" )
+{
+    $('#account > option').eq(3).attr('selected','selected')
 }
  ////console.log("username : "+JSON.stringify(userPool.getCurrentUser()));
  ////console.log(window.localStorage.username);
@@ -124,7 +132,7 @@ function reloadFunc()
 function stopRequests(SelectedResourceVar)
 {
 
-  if (SelectedResourceVar == "dashboard" || account == "dev" || account == "training") 
+  if (SelectedResourceVar === "dashboard" || account === "dev" || account === "training" || account === "prod" || account === "exttrain")
   {
 
   }
