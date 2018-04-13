@@ -154,6 +154,7 @@ function sendget()
 		$.ajax({
 		url: ' https://grv9dj23ok.execute-api.ap-southeast-1.amazonaws.com/IAM/iam',
 		type: 'POST',
+            headers: {"Authorization": token},
 		crossDomain: true,
 		contentType: 'application/json',
 		dataType: 'json',
