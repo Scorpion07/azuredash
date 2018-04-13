@@ -1,6 +1,14 @@
 var ajaxrequests = [];
+var count = 0;
 
+function loader(){
+    if(count === 12){
+        $("#loading").hide();
+        $("#loading").css("style", "display: none;");
+    }
+}
 function showDashboard() {
+
     var account = window.localStorage.getItem("account");
     var currentTime = new Date();
     var snapshot = {
@@ -59,7 +67,8 @@ function showDashboard() {
         account: account
     }
     $("#loading").show();
-    $("#loading").css("style", "display:block");
+    $("#loading").css("style", "display: block");
+
     ajaxrequests.push(
         $.ajax({
             url: 'https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/count',
@@ -71,6 +80,8 @@ function showDashboard() {
             data: JSON.stringify(elbs),
             success: function (result) {
                 console.log(result);
+                count += 1
+                loader();
                 $("#elb").text(result.elbs);
                 if (currentTime.getHours() < 12 || currentTime.getHours() > 17) {
                     if (result.elbs == "0" || result.elbs == 0) {
@@ -85,12 +96,11 @@ function showDashboard() {
                     $("#elbD").removeClass("text-danger");
 
                 }
-                $("#loading").hide();
-                $("#loading").css("style", "display: none;");
+                //$("#loading").hide();
+                //$("#loading").css("style", "display: none;");
             }
         }));
-    $("#loading").show();
-    $("#loading").css("style", "display: block");
+
     ajaxrequests.push(
         $.ajax({
             url: 'https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/count',
@@ -101,6 +111,8 @@ function showDashboard() {
             data: JSON.stringify(snapshot),
             success: function (result) {
                 console.log(result);
+                count += 1
+                loader();
                 $("#Snapshots").text(result.Snapshots);
                 $("#volumes").text(result.Volumes);
                 console.log("time : " + currentTime.getHours());
@@ -125,12 +137,11 @@ function showDashboard() {
                     $("#volumesD").removeClass("text-danger");
 
                 }
-                $("#loading").hide();
-                $("#loading").css("style", "display: none;");
+                //$("#loading").hide();
+                //$("#loading").css("style", "display: none;");
             }
         }));
-    $("#loading").show();
-    $("#loading").css("style", "display: block");
+
     ajaxrequests.push(
         $.ajax({
             url: 'https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/count',
@@ -141,6 +152,8 @@ function showDashboard() {
             data: JSON.stringify(instances),
             success: function (result) {
                 console.log(result);
+                count += 1
+                loader();
                 var right = "<img src='assets/images/right.png' style='width: 15px;'>"
                 var stop = "<img src='assets/images/red.png' style='width: 16px;'>"
                 $("#InstancesRunning").html(right + " " + result.InstancesRunning);
@@ -157,13 +170,12 @@ function showDashboard() {
                 else {
                     $("#InstanceD").removeClass("text-danger");
                 }
-                $("#loading").hide();
-                $("#loading").css("style", "display: none;");
+                //$("#loading").hide();
+                //$("#loading").css("style", "display: none;");
 
             }
         }));
-    $("#loading").show();
-    $("#loading").css("style", "display:block");
+
     ajaxrequests.push(
         $.ajax({
             url: 'https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/count',
@@ -173,6 +185,8 @@ function showDashboard() {
             contentType: 'application/json',
             data: JSON.stringify(nat),
             success: function (result) {
+                count += 1
+                loader();
                 console.log(result);
                 var right = "<img src='assets/images/right.png' style='width: 15px;'>"
                 var stop = "<img src='assets/images/red.png' style='width: 16px;'>"
@@ -206,12 +220,11 @@ function showDashboard() {
                     $("#vpcD").removeClass("text-danger");
                     $("#vpnD").removeClass("text-danger");
                 }
-                $("#loading").hide();
-                $("#loading").css("style", "display: none;");
+                //$("#loading").hide();
+                //$("#loading").css("style", "display: none;");
             }
         }));
-    $("#loading").show();
-    $("#loading").css("style", "display:block");
+
     ajaxrequests.push(
         $.ajax({
             url: 'https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/count',
@@ -221,7 +234,8 @@ function showDashboard() {
             contentType: 'application/json',
             data: JSON.stringify(eip),
             success: function (result) {
-
+                count += 1
+                loader();
                 console.log(result);
                 $("#eip").text(result.ElasticIPs);
                 $("#eni").text(result.NetworkInterfaces);
@@ -244,13 +258,12 @@ function showDashboard() {
                     $("#eniD").removeClass("text-danger");
 
                 }
-                $("#loading").hide();
-                $("#loading").css("style", "display: none;");
+                //$("#loading").hide();
+                //$("#loading").css("style", "display: none;");
 
             }
         }));
-    $("#loading").show();
-    $("#loading").css("style", "display:block");
+
     ajaxrequests.push(
         $.ajax({
             url: 'https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/count',
@@ -260,6 +273,8 @@ function showDashboard() {
             contentType: 'application/json',
             data: JSON.stringify(rds),
             success: function (result) {
+                count += 1
+                loader();
                 console.log(result);
                 var c = parseInt(result.DBClusters) + parseInt(result.DBInstances);
                 $("#DBInstances").text(c);
@@ -284,12 +299,10 @@ function showDashboard() {
                     $("#dbinstancecluster").removeClass("text-danger");
 
                 }
-                $("#loading").hide();
-                $("#loading").css("style", "display: none;");
+                //$("#loading").hide();
+                //$("#loading").css("style", "display: none;");
             }
         }));
-    $("#loading").show();
-    $("#loading").css("style", "display:block");
     ajaxrequests.push(
         $.ajax({
             url: 'https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/count',
@@ -299,6 +312,8 @@ function showDashboard() {
             contentType: 'application/json',
             data: JSON.stringify(lambda),
             success: function (result) {
+                count += 1
+                loader();
                 console.log(result);
                 $("#lambda").text(result.LambdaCount);
 
@@ -314,12 +329,10 @@ function showDashboard() {
                 else {
                     $("#lambdaD").removeClass("text-danger");
                 }
-                $("#loading").hide();
-                $("#loading").css("style", "display: none;");
+                //$("#loading").hide();
+                //$("#loading").css("style", "display: none;");
             }
         }));
-    $("#loading").show();
-    $("#loading").css("style", "display:block");
     ajaxrequests.push(
         $.ajax({
             url: 'https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/count',
@@ -329,6 +342,8 @@ function showDashboard() {
             contentType: 'application/json',
             data: JSON.stringify(cf_stack),
             success: function (result) {
+                count += 1
+                loader();
                 console.log(result);
                 $("#stack").text(result.StackCount);
 
@@ -343,12 +358,10 @@ function showDashboard() {
                 else {
                     $("#stackD").removeClass("text-danger");
                 }
-                $("#loading").hide();
-                $("#loading").css("style", "display: none;");
+                //$("#loading").hide();
+                //$("#loading").css("style", "display: none;");
             }
         }));
-    $("#loading").show();
-    $("#loading").css("style", "display:block");
     ajaxrequests.push(
         $.ajax({
             url: 'https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/count',
@@ -358,6 +371,8 @@ function showDashboard() {
             contentType: 'application/json',
             data: JSON.stringify(sagemaker),
             success: function (result) {
+                count += 1
+                loader();
                 console.log(result);
                 $("#noteint").text(result.NotebookInstances);
                 $("#end").text(result.Endpoint);
@@ -399,12 +414,11 @@ function showDashboard() {
                     $("#stackD").removeClass("text-danger");
 
                 }
-                $("#loading").hide();
-                $("#loading").css("style", "display: none;");
+                //$("#loading").hide();
+               // $("#loading").css("style", "display: none;");
             }
         }));
-    $("#loading").show();
-    $("#loading").css("style", "display:block");
+
     ajaxrequests.push(
         $.ajax({
             url: 'https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/count',
@@ -414,6 +428,8 @@ function showDashboard() {
             contentType: 'application/json',
             data: JSON.stringify(redshift),
             success: function (result) {
+                count += 1
+                loader();
                 console.log(result);
                 $("#red_clust").text(result.RedshiftCluster);
                 $("#red_snapshots").text(result.RedshiftSnapshot);
@@ -434,8 +450,8 @@ function showDashboard() {
                     $("#redshift_cluster").removeClass("text-danger");
                     $("#redsnapshot").removeClass("text-danger");
                 }
-                $("#loading").hide();
-                $("#loading").css("style", "display: none;");
+                //$("#loading").hide();
+               // $("#loading").css("style", "display: none;");
             }
         }));
 
@@ -451,6 +467,8 @@ function showDashboard() {
             contentType: 'application/json',
             data: JSON.stringify(route53),
             success: function (result) {
+                count += 1
+                loader();
                 console.log(result);
                 $("#hostedzone").text(result.hostzone);
                 if (currentTime.getHours() < 12 || currentTime.getHours() > 17) {
@@ -466,14 +484,17 @@ function showDashboard() {
                     $("#route53").removeClass("text-danger");
 
                 }
-                $("#loading").hide();
-                $("#loading").css("style", "display: none;");
+                //$("#loading").hide();
+               // $("#loading").css("style", "display: none;");
             }
         }));
     CostofResources();
+    //$("#loading").hide();
 }
 
 function CostofResources() {
+    count += 1
+    loader();
     var date;
     var currentTime = new Date();
     var year = currentTime.getFullYear().toString();
