@@ -71,7 +71,7 @@ function showDashboard() {
 
     ajaxrequests.push(
         $.ajax({
-            url: 'https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/count',
+            url: _config.api.invokeUrl+'/billing/services',
             type: 'post',
             headers: {"Authorization": token},
 
@@ -103,7 +103,7 @@ function showDashboard() {
 
     ajaxrequests.push(
         $.ajax({
-            url: 'https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/count',
+            url: _config.api.invokeUrl+'/billing/services',
             type: 'post',
             headers: {"Authorization": token},
             dataType: 'json',
@@ -144,7 +144,7 @@ function showDashboard() {
 
     ajaxrequests.push(
         $.ajax({
-            url: 'https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/count',
+            url: _config.api.invokeUrl+'/billing/services',
             type: 'post',
             headers: {"Authorization": token},
             dataType: 'json',
@@ -178,7 +178,7 @@ function showDashboard() {
 
     ajaxrequests.push(
         $.ajax({
-            url: 'https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/count',
+            url: _config.api.invokeUrl+'/billing/services',
             type: 'post',
             headers: {"Authorization": token},
             dataType: 'json',
@@ -227,7 +227,7 @@ function showDashboard() {
 
     ajaxrequests.push(
         $.ajax({
-            url: 'https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/count',
+            url: _config.api.invokeUrl+'/billing/services',
             type: 'post',
             headers: {"Authorization": token},
             dataType: 'json',
@@ -266,7 +266,7 @@ function showDashboard() {
 
     ajaxrequests.push(
         $.ajax({
-            url: 'https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/count',
+            url: _config.api.invokeUrl+'/billing/services',
             type: 'post',
             headers: {"Authorization": token},
             dataType: 'json',
@@ -305,7 +305,7 @@ function showDashboard() {
         }));
     ajaxrequests.push(
         $.ajax({
-            url: 'https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/count',
+            url: _config.api.invokeUrl+'/billing/services',
             type: 'post',
             headers: {"Authorization": token},
             dataType: 'json',
@@ -335,7 +335,7 @@ function showDashboard() {
         }));
     ajaxrequests.push(
         $.ajax({
-            url: 'https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/count',
+            url: _config.api.invokeUrl+'/billing/services',
             type: 'post',
             headers: {"Authorization": token},
             dataType: 'json',
@@ -364,7 +364,7 @@ function showDashboard() {
         }));
     ajaxrequests.push(
         $.ajax({
-            url: 'https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/count',
+            url: _config.api.invokeUrl+'/billing/services',
             type: 'post',
             headers: {"Authorization": token},
             dataType: 'json',
@@ -421,7 +421,7 @@ function showDashboard() {
 
     ajaxrequests.push(
         $.ajax({
-            url: 'https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/count',
+            url: _config.api.invokeUrl+'/billing/services',
             type: 'post',
             headers: {"Authorization": token},
             dataType: 'json',
@@ -459,7 +459,7 @@ function showDashboard() {
     $("#loading").css("style", "display:block");
     ajaxrequests.push(
         $.ajax({
-            url: 'https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/count',
+            url: _config.api.invokeUrl+'/billing/services',
             type: 'post',
             headers: {"Authorization": token},
 

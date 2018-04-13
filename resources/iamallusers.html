@@ -121,7 +121,7 @@ function goFurther(){
 		}
 			$("#loadingMulModal").show();
 			$.ajax({
-				url: _config.api.invokeUrl+'resources/iam',
+				url: _config.api.invokeUrl+'/resources/iam',
 				type: 'post',
                 headers: {"Authorization": token},
 				contentType: 'application/json',
@@ -172,7 +172,7 @@ function sendget()
 	//alert(JSON.stringify(mydata));
 		// $(document).ready(function() {
 		$.ajax({
-		url: ' https://grv9dj23ok.execute-api.ap-southeast-1.amazonaws.com/IAM/iam',
+		url: _config.api.invokeUrl+'/resources/iam',
 		type: 'POST',
             headers: {"Authorization": token},
 		crossDomain: true,

@@ -44,7 +44,7 @@ function ListENIData() {
     console.log(submit);
 
     $.ajax({
-        url: 'https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/ec2resource/listservices',
+        url: _config.api.invokeUrl+'/billing/services',
         headers: {"Authorization": token},
         type: 'post',
         dataType: 'json',
@@ -184,7 +184,7 @@ function deleteENIs() {
     }
 
     $.ajax({
-        url: 'https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/ec2resource/listservices',
+        url: _config.api.invokeUrl+'/billing/services',
         headers: {"Authorization": token},
         type: 'post',
         contentType: 'application/json',
