@@ -1,6 +1,7 @@
 var ajaxrequests = [];
 
 function showDashboard() {
+    var account = window.localStorage.getItem("account");
     var currentTime = new Date();
     var snapshot = {
         method: "getCount",

@@ -77,7 +77,6 @@ $(window).on("load", function () {
 
 
 $(document).on('change', '#account', function () {
-
     window.localStorage.setItem('account', $("#account").val());
     account = window.localStorage.getItem('account');
     console.log(account);
@@ -100,6 +99,7 @@ $(document).on('click', '.SelectedResource', function () {
     else {
         $("#Dashboard").css("display", "none");
         $("#Services").css("display", "block");
+        stopRequests(SelectedResourceVar);
     }
     load_resource_js(SelectedResourceVar);
 });
@@ -119,7 +119,7 @@ $(document).on('click', '#yesModal', function () {
 //////////////////////////////stop dashboard ajax call////////////////////////////
 function stopRequests(SelectedResourceVar) {
     //|| account === "dev" || account === "training" || account === "prod" || account === "exttrain"
-    if (SelectedResourceVar === "dashboard" ) {
+    if (SelectedResourceVar === "dashboard") {
 
     }
     else {
