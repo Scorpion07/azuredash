@@ -80,8 +80,14 @@ $(document).on('change', '#account', function () {
     window.localStorage.setItem('account', $("#account").val());
     account = window.localStorage.getItem('account');
     console.log(account);
-    showDashboard();
-    load_resource_js(SelectedResourceVar);
+    //showDashboard();
+    if($(".SelectedResource").attr("data-resource") == "dashboard"){
+        for (var i = 0; i < ajaxrequests.length; i++)
+                ajaxrequests[i].abort();
+    }
+    console.log($(".SelectedResource").attr("data-resource"));
+    count = 0;
+    load_resource_js($(".SelectedResource").attr("data-resource"));
 });
 
 $(document).on('click', '.SelectedResource', function () {
