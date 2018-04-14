@@ -81,13 +81,13 @@ $(document).on('change', '#account', function () {
     account = window.localStorage.getItem('account');
     console.log(account);
     //showDashboard();
-    if($(".SelectedResource").attr("data-resource") == "dashboard"){
+    if(window.localStorage.getItem('SelectedResourceVar') == "dashboard"){
         for (var i = 0; i < ajaxrequests.length; i++)
                 ajaxrequests[i].abort();
     }
-    console.log($(".SelectedResource").attr("data-resource"));
+    console.log(window.localStorage.getItem('SelectedResourceVar'));
     count = 0;
-    load_resource_js($(".SelectedResource").attr("data-resource"));
+    load_resource_js(window.localStorage.getItem('SelectedResourceVar'));
 });
 
 $(document).on('click', '.SelectedResource', function () {
