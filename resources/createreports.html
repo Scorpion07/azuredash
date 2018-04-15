@@ -92,7 +92,7 @@ function sendget()
         method: "ReportHtmlIAm"
 	};
 		$.ajax({
-		url: ' https://grv9dj23ok.execute-api.ap-southeast-1.amazonaws.com/IAM/iam',
+            url: _config.api.invokeUrl + '/resources/iam',
 		type: 'POST',
             headers: {"Authorization": token},
 		crossDomain: true,
@@ -176,7 +176,7 @@ $(document).on("click",".saveExpiryDate",function() {
 	// console.log(resourcename+" "+expiryValue);
 		$("#loadingMulModal").show();
 			$.ajax({
-				url: 'https://grv9dj23ok.execute-api.ap-southeast-1.amazonaws.com/IAM/iam',
+                url: _config.api.invokeUrl + '/resources/iam',
 				type: 'post',
                 headers: {"Authorization": token},
 				contentType: 'application/json',
