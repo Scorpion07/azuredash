@@ -121,6 +121,10 @@
             checklogin();
             token = window.localStorage.getItem('token');
             $("#loginname").text(currUser.toString().trim());
+
+            $('#nuser').keyup(function () {
+
+            });
             // console.log("username : "+userPool.getCurrentUser());
             // console.log(window.localStorage.username);
             // $('#username').text(window.localStorage.username);
@@ -299,7 +303,7 @@
                                 <div class="form-group">
                                     <label class="col-form-label" for="nuser"><b>Enter the number of Participants :</b></label>
                                     <input type="text" id="nuser" placeholder="Enter the number of Participants"
-                                           class="form-control" size="5">
+                                           pattern="[0-9]" class="form-control" required>
                                     <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                                     -->
                                 </div>
