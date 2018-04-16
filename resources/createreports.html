@@ -89,7 +89,8 @@ function sendget()
 	TrainingName = $("#tname").val();
 	var lamdadata={
 		tname : TrainingName,
-        method: "ReportHtmlIAm"
+        method: "ReportHtmlIAm",
+        account: "prod"
 	};
 		$.ajax({
             url: _config.api.invokeUrl + '/resources/iam',
@@ -171,8 +172,7 @@ $(document).on("click",".saveExpiryDate",function() {
 	var lambdadata = {
 			method : "UpdateHtmlIAm",
 			cdate : createDT,
-        edate: expiryValue,
-        account: "prod"
+        edate: expiryValue
 		}
 	// console.log(resourcename+" "+expiryValue);
 		$("#loadingMulModal").show();
