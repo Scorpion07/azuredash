@@ -38,7 +38,7 @@ function listRoute53Data() {
         account: account
     }
     console.log(submit);
-
+    ajaxrequest_pages.push(
     $.ajax({
         url: _config.api.invokeUrl+'/billing/services',
         headers: {"Authorization": token},
@@ -118,7 +118,7 @@ function listRoute53Data() {
             $('#loading').hide();
             $.notify("Unable to Load", "error");
         }
-    });
+    }));
 }
 
 function deleteModalR53Hostzone() {

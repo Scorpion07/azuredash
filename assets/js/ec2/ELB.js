@@ -40,7 +40,7 @@ function ListELBData() {
         account: account
     }
     console.log(submit);
-
+    ajaxrequest_pages.push(
     $.ajax({
         url: _config.api.invokeUrl+'/billing/services',
         headers: {"Authorization": token},
@@ -126,7 +126,7 @@ function ListELBData() {
             $('#loading').hide();
             $.notify("Unable to Load", "error");
         }
-    });
+    }));
 }
 
 function deleteELBs() {
