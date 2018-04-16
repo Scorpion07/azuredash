@@ -43,6 +43,7 @@ function ListSnapshotData() {
     }
     console.log(submit);
 
+    ajaxrequest_pages.push(
     $.ajax({
         url: _config.api.invokeUrl+'/billing/services',
         headers: {"Authorization": token},
@@ -125,7 +126,7 @@ function ListSnapshotData() {
             $('#loading').hide();
             $.notify("Unable to Load", "error");
         }
-    });
+    }));
 }
 
 function deleteSnaps() {

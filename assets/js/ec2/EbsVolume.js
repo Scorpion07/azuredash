@@ -41,6 +41,7 @@ function ListVolumeData() {
     }
     console.log(submit);
 
+    ajaxrequest_pages.push(
     $.ajax({
         url: _config.api.invokeUrl+'/billing/services',
         headers: {"Authorization": token},
@@ -129,5 +130,5 @@ function ListVolumeData() {
             $('#loading').hide();
             $.notify("Unable to Load", "error");
         }
-    });
+    }));
 }

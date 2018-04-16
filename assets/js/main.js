@@ -7,8 +7,11 @@ var cognitoUser = userPool.getCurrentUser();
 checklogin();
 $.notify.defaults({globalPosition: 'top center'});
 
+var ajaxrequest_pages = [];
+var ajaxreload = [];
 var toBeDeleted = {};
-var SelectedResourceVar = window.localStorage.getItem('SelectedResourceVar');
+//console.log("Global Data :"+$('.SelectedResource').attr("data-resource"));
+var SelectedResourceVar;
 var token = window.localStorage.getItem('token');
 var account = window.localStorage.getItem('account');
 
@@ -42,7 +45,7 @@ $(window).on("load", function () {
         $('#account > option').eq(0).attr('selected', 'selected')
     }
 
-    if (account == "training") {
+    if (account == "prod") {
         $('#account > option').eq(1).attr('selected', 'selected')
     }
     if (account == "training") {
@@ -51,19 +54,30 @@ $(window).on("load", function () {
     if (account == "exttrain") {
         $('#account > option').eq(3).attr('selected', 'selected')
     }
-    ////console.log("username : "+JSON.stringify(userPool.getCurrentUser()));
-    ////console.log(window.localStorage.username);
-    $('#username').text(window.localStorage.username);
-//
-////console.log(account);
 
-    SelectedResourceVar = window.localStorage.getItem('SelectedResourceVar');
+    $('#username').text(window.localStorage.username);
+    if (window.localStorage.getItem('SelectedResourceVar')) {
+        SelectedResourceVar = window.localStorage.getItem('SelectedResourceVar');
+        $("li").removeClass("active");
+        $(".SelectedResource").each(function (data) {
+            if ($(this).attr("data-resource") == SelectedResourceVar) {
+                $(this).closest("li").addClass("active");
+                $(this).closest(".treeview").addClass("active");
+            }
+        });
+    }
+    else {
+        window.localStorage.setItem('SelectedResourceVar', $('.SelectedResource').attr("data-resource"));
+        SelectedResourceVar = window.localStorage.getItem('SelectedResourceVar');
+    }
+
+
+    console.log("on load : " + SelectedResourceVar);
     if (SelectedResourceVar == null || SelectedResourceVar == " ") {
         showDashboard();
     }
     else {
         load_resource_js(SelectedResourceVar);
-        //SelectedResourceVar = window.localStorage.getItem('SelectedResourceVar');
         if (SelectedResourceVar == "dashboard") {
             $("#Dashboard").css("display", "block");
             $("#Services").css("display", "none");
@@ -80,22 +94,27 @@ $(document).on('change', '#account', function () {
     window.localStorage.setItem('account', $("#account").val());
     account = window.localStorage.getItem('account');
     console.log(account);
-    //showDashboard();
-    if(window.localStorage.getItem('SelectedResourceVar') == "dashboard"){
+    SelectedResourceVar = window.localStorage.getItem('SelectedResourceVar');
+    if (SelectedResourceVar == "dashboard") {
         for (var i = 0; i < ajaxrequests.length; i++)
-                ajaxrequests[i].abort();
+            ajaxrequests[i].abort();
     }
+    else{
+        for (var i = 0; i < ajaxrequest_pages.length; i++)
+            ajaxrequest_pages[i].abort();
+    }
+    console.log($('.SelectedResource').attr("data-resource"));
     console.log(window.localStorage.getItem('SelectedResourceVar'));
     count = 0;
-    load_resource_js(window.localStorage.getItem('SelectedResourceVar'));
+    load_resource_js(SelectedResourceVar);
 });
 
 $(document).on('click', '.SelectedResource', function () {
-//alert('check');
     checklogin();
     $("li").removeClass("active");
     $(this).closest("li").addClass("active");
     $(this).closest(".treeview").addClass("active");
+    console.log("Data Resources : " + $(this).attr("data-resource"));
     window.localStorage.setItem('SelectedResourceVar', $(this).attr("data-resource"));
     SelectedResourceVar = window.localStorage.getItem('SelectedResourceVar');
     if (SelectedResourceVar == "dashboard") {
@@ -124,9 +143,10 @@ $(document).on('click', '#yesModal', function () {
 
 //////////////////////////////stop dashboard ajax call////////////////////////////
 function stopRequests(SelectedResourceVar) {
-    //|| account === "dev" || account === "training" || account === "prod" || account === "exttrain"
+    // //|| account === "dev" || account === "training" || account === "prod" || account === "exttrain"
     if (SelectedResourceVar === "dashboard") {
-
+        for (var i = 0; i < ajaxrequest_pages.length; i++)
+            ajaxrequest_pages[i].abort();
     }
     else {
         //console.log("stop");
@@ -138,42 +158,41 @@ function stopRequests(SelectedResourceVar) {
 $(document).on('click', '.select_all', function () {
     $(this).change(function () {
         if ($(this).prop("checked")) {
-            //$('.checkboxclick', table.cells().nodes()).prop('checked', true);
             var rows = table.rows({'search': 'applied'}).nodes();
-            $('.checkboxclick', rows).prop('checked', this.checked);//$(this).prop("checked"));
+            $('.checkboxclick', rows).prop('checked', this.checked);
 
         }
-        else{
+        else {
             var rows = table.rows({'search': 'applied'}).nodes();
-            $('.checkboxclick', rows).prop('checked', false); //$(this).prop("checked"));
+            $('.checkboxclick', rows).prop('checked', false);
         }
     });
 });
 $(document).on('change', '.checkboxclick', function () {
     var flag;
-    if ($(this).prop("checked")){
+    if ($(this).prop("checked")) {
         $(".checkboxes").each(function () {
             if (!$(this).is(":checked")) {
-                flag=false;
+                flag = false;
                 return false;
                 console.log(flag)
             }
-            else{
-                flag=true;
+            else {
+                flag = true;
                 console.log(flag)
             }
         });
     }
-    else{
-        flag=false;
+    else {
+        flag = false;
         console.log(flag)
     }
     console.log(flag);
 
-    if(flag === true){
+    if (flag === true) {
         $(".select_all").prop("checked", true);
     }
-    else{
+    else {
         $(".select_all").prop("checked", false);
     }
 

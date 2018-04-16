@@ -38,7 +38,7 @@ function ListModelsData() {
         account: account
     }
     console.log(submit);
-
+    ajaxrequest_pages.push(
     $.ajax({
         url: _config.api.invokeUrl+'/billing/services',
         headers: {"Authorization": token},
@@ -131,5 +131,5 @@ function ListModelsData() {
             $('#loading').hide();
             $.notify("Unable to Load", "error");
         }
-    });
+    }));
 }

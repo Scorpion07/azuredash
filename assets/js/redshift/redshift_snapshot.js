@@ -39,7 +39,7 @@ function ListRedShiftSnapshotData() {
         account: account
     }
     console.log(submit);
-
+    ajaxrequest_pages.push(
     $.ajax({
         url: _config.api.invokeUrl+'/billing/services',
         headers: {"Authorization": token},
@@ -132,7 +132,7 @@ function ListRedShiftSnapshotData() {
             $('#loading').hide();
             $.notify("Unable to Load", "error");
         }
-    });
+    }));
 }
 
 function deleteModalRSSnapshot() {
