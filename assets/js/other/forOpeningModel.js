@@ -26,6 +26,12 @@ function checkdelete(SelectedResourceVar)
 	{
 		deleteModalLambdaFunctions();
 	}
+	else if (SelectedResourceVar == "dbinstance"){
+        deleteModalDBInstances();
+	}
+    else if (SelectedResourceVar == "dbsnapshot"){
+        deleteModalDBSnaps();
+    }
 	else if  (SelectedResourceVar == "eni")
 	{
 		deleteModalENIs();

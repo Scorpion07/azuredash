@@ -30,6 +30,12 @@ function ModalClickdelete(SelectedResourceVar)
 	{
 		deleteENIs();
 	}
+    else if (SelectedResourceVar == "dbinstance"){
+        deleteDBInstances();
+    }
+    else if (SelectedResourceVar == "dbsnapshot"){
+        deleteDBSnaps();
+    }
 	else if  (SelectedResourceVar == "vpc")
 	{
 		deleteVPCs();
