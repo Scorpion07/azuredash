@@ -198,7 +198,7 @@ function deleteRSCluster() {
         snapshotValueSkip = $("input[name='" + cluster + "']:checked").val();
         //SnapshotNewName = $("#text"+instance).val();
         if (snapshotValueSkip == "yes") {
-            SkipSnapshotValue = "false";
+            SkipSnapshotValue = false;
             SnapshotNewName = $("#text" + cluster).val();
             if ((SnapshotNewName.substring(0, 1) >= 0 && SnapshotNewName.substring(0, 1) <= 9) || SnapshotNewName === "" || SnapshotNewName.substr(-1) === "-" || SnapshotNewName === null) {
                 $.notify("Invalid Snapshot name", "error");
@@ -206,7 +206,7 @@ function deleteRSCluster() {
             }
         }
         else {
-            SkipSnapshotValue = "true";
+            SkipSnapshotValue = true;
             SnapshotNewName = null;
         }
 
