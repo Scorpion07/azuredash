@@ -517,7 +517,7 @@ function CostofResources() {
         date = date.toString();
 
 
-    var getUrl = 'http://cloudthat-cloudbilling.com.s3-website.ap-south-1.amazonaws.com/' + "cost/" + account + "/" + year + "/" + month + "/" + date + '.json';
+    var getUrl = 'http://resources.cloudthat.com.s3-website.ap-south-1.amazonaws.com/' + "cost/" + account + "/" + year + "/" + month + "/" + date + '.json';
     console.log(getUrl);
     $.getJSON(getUrl, function (r) {
         console.log(r);
