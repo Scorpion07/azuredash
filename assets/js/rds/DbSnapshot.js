@@ -126,3 +126,83 @@ function ListDBSnapshotData() {
         }
     });
 }
+
+
+function deleteDBSnaps() {
+    $('.deleteMul').attr('disabled',true);
+    $("#loadingMulModal").show();
+    var snapshot_id = $("#deleteids").val();
+    var region = $("#delete_regions").val();
+
+    var snap_ids_array = (snapshot_id).split(",");
+    var regions_ids_array = (region).split(",");
+
+    var deleteData ={
+        method:"DBSnapshotDelete",
+        account : account,
+        snapshot_id : snap_ids_array,
+        region : regions_ids_array
+    }
+    console.log(JSON.stringify(deleteData));
+    $.ajax({
+        url : "https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/ec2resource/listservices",
+        type: 'post',
+        headers: {"Authorization": token},
+        contentType: 'application/json',
+        dataType: 'json',
+        contentType: 'application/json',
+        crossDomain: true,
+        data: JSON.stringify(deleteData),
+        success: function(result)
+        {
+            $("#loadingMulModal").hide();
+            console.log(result);
+            if(result > 0)
+            {
+                $('#deleteMulConformation').modal('hide');
+                ListDBSnapshotData();
+                $.notify("Deleted successfully.","success");
+            }
+            else
+            {
+                $.notify("Unable to Delete.","error");
+            }
+            $('#deleteMulConformation').modal('hide');
+        }
+    });
+}
+function deleteModalDBSnaps() {
+
+    //$(".btnmultipledelete").addClass("disabled");
+    $("#modal_title").html("<h3>DB Instance Deletion</h3>");
+    $("#delete_heading").text("Are you sure, you want to delete all this DB Instances?");
+    $("#delete_li_show").html(" ");
+    var selectedSnap = [];
+    var selectedRegion = [];
+
+    var region_name;
+    $('.snapshot_id_check').each(function()
+    {
+        if ($(this).is(":checked"))
+        {
+            console.log($(this).closest('tr'));
+            //$this.parent('tr').addClass("selected");
+            region_name = $(this).attr('data-region');
+            selectedSnap.push($(this).val());
+            selectedRegion.push(region_name);
+
+
+        }
+    });
+    console.log(selectedSnap);
+    console.log(selectedRegion);
+
+    $('[name="modal_ids"]').val(selectedSnap);
+    $('[name="modal_regions"]').val(selectedRegion);
+    selectedSnap.forEach( function(snapshot) {
+        var add = '<li><label>"'+snapshot+'"</label></li>';
+        $("#delete_li_show").append(add);
+    });
+    $('.deleteMul').attr('disabled',false);
+    $('#deleteMulConformation').modal('show');
+}
