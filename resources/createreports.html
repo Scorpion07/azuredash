@@ -171,7 +171,8 @@ $(document).on("click",".saveExpiryDate",function() {
 	var lambdadata = {
 			method : "UpdateHtmlIAm",
 			cdate : createDT,
-			edate : expiryValue
+        edate: expiryValue,
+        account: "prod"
 		}
 	// console.log(resourcename+" "+expiryValue);
 		$("#loadingMulModal").show();
