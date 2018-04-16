@@ -76,11 +76,11 @@
                     }
                     //"alwaysShowCalendars": true,
                     // timePicker: true,
-// timePickerIncrement: 30,
+                    // timePickerIncrement: 30,
                 },
                 function (startD, endD) {
                     days = (moment(endD).diff(startD, 'days') + 1).toString();
-// alert("No of days for Training are " + days);
+                    // alert("No of days for Training are " + days);
                     startdate = new Date(startD);
                     var dateS = startdate.getDate();
                     var monthS = startdate.getMonth();
@@ -254,8 +254,9 @@
         <form class="form-inline my-6 my-lg-0 my-sm-0 pull-right">
             <div class="form-group">
                 <div class="dropdown col-md-1 float-md-right">
-                    <a class="btn dropdown-toggle" id="userdetail" onclick="usermenu()" aria-haspopup="true"
-                       aria-expanded="true" data-toggle="dropdown" title="signout" style="margin-right: -27px;"><img
+                    <a class="btn dropdown" id="userdetail" onclick="usermenu()" aria-haspopup="true"
+                       aria-expanded="true" data-toggle="dropdown" title="signout"
+                       style="margin-right: -27px; -webkit-appearance: none;"><img
                             src="../assets/images/profilelogo.png" style="width: 25px;"/>
                     </a>
                     <div class="dropdown-menu" id="hideshowdropdown" aria-labelledby="btnGroupDrop1"
