@@ -141,15 +141,11 @@
                 uname: Iname,
                 upolicy: policyuser,
                 account: acType,
-                // tname : training,
                 tdays: days,
                 expdate: edate,
                 stsdate: sdate,
-                // expdt :
                 method: "CreateHtmlIam"
             };
-            // console.log(lamdadata);
-            //alert(JSON.stringify(mydata));
 
             $.ajax({
                 url: _config.api.invokeUrl+'/resources/iam',
@@ -164,7 +160,6 @@
                     $("#uname").val("");
                     $("#upolicy").val("");
                     $("#cname").val("");
-                    // $("#tname").val("");
                     $("#acType").val("dev");
                     $("#userTable").show();
                     $('#mytable').dataTable().fnDestroy();
@@ -174,7 +169,6 @@
                     //$("#a1").text(training);
                     // $("#mytable").append('#tname').val();
                     $("#mytable").DataTable({
-                        //console.log(getdata);
 
                         data: getdata.finaldata,
 
@@ -209,18 +203,12 @@
                         ]
                     });
                     $("#loading").hide();
-                    //$('#iam_user').val(JSON.parse(JSON.stringify(getdata.User.UserName)));
-                    //	alert(mydata);
-                    //console.log(getdata)
-//success stuff. data here is the response, not your original data
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     alert("error")
                     //error handling stuff
                 }
             });
-            // });
-            //alert("hello");
         }
     </script>
     <head>
@@ -249,7 +237,7 @@
                 <select class="form-control" id="acType">
                     <option value="dev" selected="true">Developer</option>
                     <option value="training">Training</option>
-                    <option value="ost">Training Others</option>
+                    <option value="ext">External</option>
                 </select>
             </div>
         </form>
