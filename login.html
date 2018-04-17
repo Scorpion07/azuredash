@@ -61,6 +61,7 @@ $.notify.defaults({globalPosition: 'top center'} );
                                 alert(err);
                                 return;
                             }
+                            console.log(result[4].getValue());
                             window.localStorage.setItem('email',result[4].getValue());
                         });
 						sessionValid();
