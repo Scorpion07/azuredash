@@ -45,7 +45,10 @@
         var SelectedResourceVar;
         var token = window.localStorage.getItem('token');
         var currUser = window.localStorage.username;
+        var UserEmail = window.localStorage.email;
         console.log("Hello" + currUser);
+        console.log("Hello" + UserEmail);
+
         // if(currUser){
         // 	document.getElementById('loginname').setAttribute('value',currUser);
         // }
@@ -146,7 +149,7 @@
                 expdate: edate,
                 stsdate: sdate,
                 method: "CreateHtmlIam",
-                createdBy: currUser.toString().trim()
+                createdBy: UserEmail.toString().trim()
             };
 
             $.ajax({
