@@ -8,7 +8,7 @@ function loader(){
     }
 }
 function showDashboard() {
-    
+
     var account = window.localStorage.getItem("account");
     var currentTime = new Date();
     var snapshot = {
