@@ -142,10 +142,10 @@
                 account: acType,
                 fname: templateS,
                 rname: regi,
-                cname: companyname,
-                tdays: days,
-                expdate: edate,
-                stsdate: sdate,
+                // cname: companyname,
+                // tdays: days,
+                // expdate: edate,
+                // stsdate: sdate,
                 method: "CreateHtmlCf"
             };
 
@@ -159,15 +159,15 @@
                 data: JSON.stringify(lamdadata),
                 success: function (getdata) {
                     $("#nuser").val("");
-                    $("#uname").val("");
-                    $("#upolicy").val("");
+                    $("#sname").val("");
+                    $("#templatename").val("");
                     $("#cname").val("");
-                    $("#acType").val("dev");
+                    $("#acType").val("training");
                     //console.log(getdata.finaldata["0"].User.UserName);
                     //alert(getdata.finaldata["0"].User.UserName);
                     // $("#mytable").append('<caption style="caption-side: top">'+ training +'</caption>');
                     //$("#a1").text(training);
-                    // $("#mytable").append('#tname').val();
+                    // $("#mytable").append('#tname').val()
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     alert("error")
@@ -221,7 +221,7 @@
                          x-placement="bottom-start"
                          style="position: absolute; will-change: transform; top: 12px; left: -78px; transform: translate3d(0px, 38px, 0px);">
                         <span class="btn btn-disabled" id="loginname"></span><br>
-                        <a href="iam.html" title="IAM"></a><br>
+                        <a href="iam.html" class="btn">Create Users</a><br>
                         <a class="btn" id="signout" onclick="signout();" title="signout" style="margin-right: -27px;">Logout</a>
                     </div>
                 </div>
@@ -242,6 +242,7 @@
                                 <div class="form-group">
                                     <label class="col-form-label" for="templatename"><b>Select a Training</b></label>
                                     <select class="form-control" id="templatename">
+                                        <option selected="true">Select a Training</option>
                                         <option value="Ansible.json">Ansible</option>
                                     </select>
                                 </div>
