@@ -49,19 +49,20 @@ $.notify.defaults({globalPosition: 'top center'} );
                 onSuccess: function (result) {
                     console.log('authentication successful!');
                     if (typeof(Storage) !== "undefined") {
- 				   		// Code for localStorage/localStorage.
  				   		var idtoken=result.getIdToken().getJwtToken();
 						var actoken=result.getAccessToken().getJwtToken();
 						//var reftoken=result.getRefreshToken().getJwtToken();
 						window.localStorage.setItem('token',idtoken);
 						window.localStorage.setItem('actoken',actoken);
-						//window.localStorage.setItem('userdata',JSON.stringify(userData));
-						console.log("idtoken : "+idtoken);
-						console.log("actoken : "+actoken);
 						window.localStorage.setItem('username',$('#username').val())
-						//console.log("reftoken : "+reftoken);
-						console.log("UserData : "+window.localStorage.getItem('userdata'));
 						console.log("Session : "+result.isValid());
+                        cognitoUser.getUserAttributes(function(err, result) {
+                            if (err) {
+                                alert(err);
+                                return;
+                            }
+                            window.localStorage.setItem('email',result[4].getValue());
+                        });
 						sessionValid();
     				}
 					else {
@@ -96,10 +97,10 @@ function sessionValid(){
     		session = window.localStorage;
             var next = getQueryVariable("next");
             if(next){
-                window.location.href = next;
+                //window.location.href = next;
             }
             else{
-                window.location.href = 'index.html';
+                //window.location.href = 'index.html';
             }
     		// window.location.href='demo.html';
     	}
