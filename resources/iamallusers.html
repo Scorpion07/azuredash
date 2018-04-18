@@ -115,7 +115,7 @@ function goFurther(){
             var nameget = $('#deleteuser').val();
             var nameArray = (nameget).split(",");
             var lambdadata = {
-                method : "DeleteHtmlIam",
+                method: "deleteHtmliam",
                 account : acType,
                 uname : nameArray
             }
@@ -164,7 +164,7 @@ function sendget() {
     console.log(acType);
     var lamdadata={
         account : acType,
-        method : "ListHtmlIam"
+        method: "listHtmliam"
     };
     console.log(acType);
     //
