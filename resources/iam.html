@@ -46,7 +46,7 @@
         var token = window.localStorage.getItem('token');
         var currUser = window.localStorage.username;
         var UserEmail = window.localStorage.email;
-
+        var loginId = UserEmail;
         console.log("Hello" + currUser);
         console.log("Hello" + UserEmail);
 
@@ -149,9 +149,8 @@
                 tdays: days,
                 expdate: edate,
                 stsdate: sdate,
-                createdBy: currUser.toString().trim(),
-                method: "CreateHtmlIam",
-
+                createdBy: loginId,
+                method: "CreateHtmlIam"
             };
 
             $.ajax({
@@ -225,7 +224,7 @@
     </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="#"><b>User Creation</b></a>
+    <a class="navbar-brand" href="#"><b>Resources Creation</b></a>
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
             <li>

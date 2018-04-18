@@ -217,7 +217,7 @@ $(document).on("click",".saveExpiryDate",function() {
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<a class="navbar-brand" href="#"><b>Report Generation</b></a>
+		<a class="navbar-brand" href="#"><b>Resources Creation</b></a>
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active" >
@@ -244,10 +244,11 @@ $(document).on("click",".saveExpiryDate",function() {
 			<form class="form-inline my-6 my-lg-0 my-sm-0 pull-right">
 				<div class="form-group">
 					<b><label class="nav-link text-white">Service</label></b>
-					<!-- <select class="form-control" id="main_service"> -->
-					<input type="text" value="IAM" readonly="readonly" class="form-control" size="5"/>
-					<!-- <option value="cf">CloudFormation</option> -->
-					<!-- </select> -->
+					<!--<input type="text" value="IAM" readonly="readonly" class="form-control" size="5"/>-->
+					<select class="form-control" id="main_service" onchange="location = this.value;">
+						<option value="iam" selected="true">IAM</option>
+						<option value="cf.html">CloudFormation</option>
+					</select>
 				</div>
 			</form>
 					<form class="form-inline my-6 my-lg-0 my-sm-0 pull-right">
@@ -334,7 +335,6 @@ $(document).on("click",".saveExpiryDate",function() {
 										</tr> -->
 										<tr>
 											<th>USERNAME</th>
-                                            <th>CREATED BY</th>
 											<th>TRAINING NAME</th>
 											<th>ACCOUNT TYPE</th>
 											<th>CREATED DATE</th>
