@@ -205,9 +205,12 @@
             <div class="form-group">
                 <b><label class="nav-link text-white">Services</label></b>
                 <!-- <select class="form-control" id="main_service"> -->
-                <input type="text" value="CloudFormation" readonly="readonly" class="form-control" size="5"/>
-                <!-- <option value="cf">CloudFormation</option> -->
-                <!-- </select> -->
+                <!--<input type="text" value="CloudFormation" readonly="readonly" class="form-control" size="5"/>-->
+                <select class="form-control" id="main_service" onchange="location = this.value;">
+                    <!--<input type="text" value="IAM" readonly="readonly" class="form-control" size="5"/>-->
+                    <option value="iam.html">IAM</option>
+                    <option value="cf.html" selected="true">CloudFormation</option>
+                </select>
             </div>
         </form>
         <form class="form-inline my-6 my-lg-0 my-sm-0 pull-right">
@@ -222,7 +225,7 @@
                          x-placement="bottom-start"
                          style="position: absolute; will-change: transform; top: 12px; left: -78px; transform: translate3d(0px, 38px, 0px);">
                         <span class="btn btn-disabled" id="loginname"></span><br>
-                        <a href="iam.html" class="btn">Create Users</a><br>
+                        <!--<a href="iam.html" class="btn">Create Users</a><br>-->
                         <a class="btn" id="signout" onclick="signout();" title="signout" style="margin-right: -27px;">Logout</a>
                     </div>
                 </div>

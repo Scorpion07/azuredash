@@ -46,6 +46,7 @@
         var token = window.localStorage.getItem('token');
         var currUser = window.localStorage.username;
         var UserEmail = window.localStorage.email;
+
         console.log("Hello" + currUser);
         console.log("Hello" + UserEmail);
 
@@ -148,8 +149,9 @@
                 tdays: days,
                 expdate: edate,
                 stsdate: sdate,
+                createdBy: UserEmail,
                 method: "CreateHtmlIam",
-                createdBy: UserEmail.toString().trim()
+
             };
 
             $.ajax({
@@ -250,10 +252,11 @@
         <form class="form-inline my-6 my-lg-0 my-sm-0 pull-right">
             <div class="form-group">
                 <b><label class="nav-link text-white">Services</label></b>
-                <!-- <select class="form-control" id="main_service"> -->
-                <input type="text" value="IAM" readonly="readonly" class="form-control" size="5"/>
-                <!-- <option value="cf">CloudFormation</option> -->
-                <!-- </select> -->
+                <select class="form-control" id="main_service" onchange="location = this.value;">
+                    <!--<input type="text" value="IAM" readonly="readonly" class="form-control" size="5"/>-->
+                    <option value="iam.html" selected="true">IAM</option>
+                    <option value="cf.html">CloudFormation</option>
+                </select>
             </div>
         </form>
         <form class="form-inline my-6 my-lg-0 my-sm-0 pull-right">
@@ -266,16 +269,10 @@
                     </a>
                     <div class="dropdown-menu" id="hideshowdropdown" aria-labelledby="btnGroupDrop1"
                          x-placement="bottom-start"
-                         style="position: absolute; will-change: transform; top: 12px; left: -78px; transform: translate3d(0px, 38px, 0px);">
-                        <!-- 						<ul style="list-style-type: none;">
-                                                <li><span class="btn btn-disabled" id="loginname"></span></li><li>
-                                                <a class="btn" id="signout" onclick="signout();" title="signout" style="margin-right: -27px;">Logout
-                                                </a></li>
-
-                         -->
+                         style="position: absolute; will-change: transform; top: 12px; left: -95px; transform: translate3d(0px, 38px, 0px);">
                         <span class="btn btn-disabled" id="loginname"></span><br>
                         <!--<a class="btn" href="cf.html" title="CloudFormation">CloudFormation</a><br>-->
-                        <a href="cf.html" class="btn">CloudFormation</a><br>
+                        <!--<a href="cf.html" class="btn" style="color:#868e96;">CloudFormation</a><br>-->
                         <a class="btn" id="signout" onclick="signout();" title="signout" style="margin-right: -27px;">Logout
                         </a>
                     </div>
