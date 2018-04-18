@@ -92,7 +92,7 @@ function sendget()
         account: "prod"
 	};
 		$.ajax({
-            url: _config.api.invokeUrlres + 'iam',
+            url: _config.api.invokeUrl + '/Resources/iam',
 		type: 'POST',
             headers: {"Authorization": token},
 		crossDomain: true,
@@ -178,12 +178,11 @@ $(document).on("click",".saveExpiryDate",function() {
 	// console.log(resourcename+" "+expiryValue);
 		$("#loadingMulModal").show();
 			$.ajax({
-                url: _config.api.invokeUrlres + 'iam',
+                url: _config.api.invokeUrl + '/Resources/iam',
 				type: 'post',
                 headers: {"Authorization": token},
 				contentType: 'application/json',
 				dataType: 'json',
-				contentType: 'application/json',
 				crossDomain: true,
 				data: JSON.stringify(lambdadata),
 				success:
