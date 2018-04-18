@@ -179,7 +179,7 @@ $(document).on("click",".saveExpiryDate",function() {
 	// console.log(resourcename+" "+expiryValue);
 		$("#loadingMulModal").show();
 			$.ajax({
-                url: _config.api.invokeUrl + '/resources/iam',
+                url: _config.api.invokeUrl + '/Resources/iam',
 				type: 'post',
                 headers: {"Authorization": token},
 				contentType: 'application/json',

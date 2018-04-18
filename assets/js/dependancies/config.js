@@ -6,6 +6,7 @@ window._config = {
 		
     },
     api: {
-        invokeUrl: 'https://resourceapis.cloudthat.com/v1' // e.g. https://rc7nyt4tql.execute-api.us-west-2.amazonaws.com/prod',
+        // invokeUrl: 'https://resourceapis.cloudthat.com/v1' // e.g. https://rc7nyt4tql.execute-api.us-west-2.amazonaws.com/prod',
+        invokeUrl: 'https://gm49v0xuka.execute-api.ap-south-1.amazonaws.com/dev'
     }
 };
