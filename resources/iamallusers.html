@@ -121,7 +121,7 @@ function goFurther(){
             }
             $("#loadingMulModal").show();
             $.ajax({
-                url: _config.api.invokeUrl + '/Resource/iam',
+                url: _config.api.invokeUrlres + 'iam',
                 type: 'post',
                 headers: {"Authorization": token},
                 contentType: 'application/json',
@@ -171,7 +171,7 @@ function sendget() {
     //alert(JSON.stringify(mydata));
     // $(document).ready(function() {
     $.ajax({
-        url: _config.api.invokeUrl + '/Resource/iam',
+        url: _config.api.invokeUrlres + 'iam',
         type: 'POST',
         headers: {"Authorization": token},
         crossDomain: true,
