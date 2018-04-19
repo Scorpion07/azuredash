@@ -59,7 +59,11 @@ function ModalClickdelete(SelectedResourceVar)
 	else if (SelectedResourceVar == "route53"){
 		deleteR53Hostzone();
 	}
-	else
+    else if (SelectedResourceVar == "cloudtrail"){
+        deleteCloudTrail();
+    }
+
+    else
 	{
 
 	}

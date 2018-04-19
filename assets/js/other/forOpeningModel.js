@@ -64,6 +64,9 @@ function checkdelete(SelectedResourceVar)
 	{
 	  	deleteModalR53Hostzone();
 	}
+    else if (SelectedResourceVar == "cloudtrail"){
+        deleteModalCloudTrail();
+    }
 	
 	else
 	{

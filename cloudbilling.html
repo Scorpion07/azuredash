@@ -28,6 +28,8 @@
     <script src="assets/js/dependancies/notify.min.js"></script>
     <script src="//npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
     <script src="assets/js/dependancies/bootstrap.min.js"></script>
+    <script src="assets/js/dependancies/aws-sdk-2.224.1.min.js"></script>
+
     <link rel="stylesheet" href="assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="assets/bower_components/font-awesome/css/font-awesome.min.css">
@@ -139,7 +141,7 @@
                     </li>
                     <li class="treeview">
                         <a href="#" class="select">
-                            <img src='assets/images/ec2.png' > <span>EC2</span>
+                            <img src='assets/images/ec2.png'> <span>EC2</span>
                             <span class="pull-right-container" style="margin: -3px;">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
@@ -161,7 +163,7 @@
                     </li>
                     <li class="treeview">
                         <a href="#" class="select">
-                            <img src='assets/images/rds.png' > <span>RDS</span>
+                            <img src='assets/images/rds.png'> <span>RDS</span>
                             <span class="pull-right-container" style="margin: -3px;">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
@@ -193,7 +195,7 @@
                     </li>
                     <li class="treeview">
                         <a href="#" class="select">
-                            <img src='assets/images/redshift.png' > <span>Redshift</span>
+                            <img src='assets/images/redshift.png'> <span>Redshift</span>
                             <span class="pull-right-container" style="margin: -3px;">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
@@ -217,7 +219,7 @@
                     </li>
                     <li class="treeview">
                         <a href="#" class="select">
-                            <img src='assets/images/sagemaker.png' > <span>SageMaker</span>
+                            <img src='assets/images/sagemaker.png'> <span>SageMaker</span>
                             <span class="pull-right-container" style="margin: -3px;">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
@@ -237,9 +239,15 @@
                     </li>
                     <li>
                         <a href="#" class="SelectedResource select" data-resource="route53">
-                            <img src='assets/images/route53.png' > <span>Route 53</span>
+                            <img src='assets/images/route53.png'> <span>Route 53</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="#" class="SelectedResource select" data-resource="cloudtrail">
+                            <img src='assets/images/cloudtrail.png'> <span>CloudTrail</span>
+                        </a>
+                    </li>
+
                 </ul>
             </b>
         </section>

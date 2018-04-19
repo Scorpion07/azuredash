@@ -93,6 +93,10 @@ function load_resource_js(SelectedResourceVar)
   else if (SelectedResourceVar == "route53"){
     showR53Hostzone();
   }
+  else if (SelectedResourceVar == "cloudtrail"){
+      show_cloudtrail();
+  }
+
   else
   {
 

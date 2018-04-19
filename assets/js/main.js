@@ -14,7 +14,26 @@ var toBeDeleted = {};
 var SelectedResourceVar;
 var token = window.localStorage.getItem('token');
 var account = window.localStorage.getItem('account');
+AWS.config.update({
+    accessKeyId: "AKIAJFMWV3XAYXXAPMRQ",
+    secretAccessKey: "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",
+    region: "ap-south-1"
+});
+var cognitoidentityserviceprovider = new AWS.CognitoIdentityServiceProvider({apiVersion: '2016-04-18'});
+var params = {
+    AuthFlow: "REFRESH_TOKEN_AUTH",
+    ClientId: _config.cognito.userPoolClientId, /* required */
 
+    AuthParameters: {
+        'REFRESH_TOKEN': window.localStorage.reftoken
+    }
+};
+ function check(){
+ cognitoidentityserviceprovider.initiateAuth(params, function(err, data) {
+     if (err) console.log(err, err.stack); // an error occurred
+     else     console.log(data);           // successful response
+ });
+ }
 
 $("#filter").keyup(function () {
     var filter = $(this).val(),
@@ -99,7 +118,7 @@ $(document).on('change', '#account', function () {
         for (var i = 0; i < ajaxrequests.length; i++)
             ajaxrequests[i].abort();
     }
-    else{
+    else {
         for (var i = 0; i < ajaxrequest_pages.length; i++)
             ajaxrequest_pages[i].abort();
     }
