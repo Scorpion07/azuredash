@@ -15,8 +15,8 @@ var SelectedResourceVar;
 var token = window.localStorage.getItem('token');
 var account = window.localStorage.getItem('account');
 AWS.config.update({
-    accessKeyId: "AKIAJFMWV3XAYXXAPMRQ",
-    secretAccessKey: "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",
+    accessKeyId: "",
+    secretAccessKey: "",
     region: "ap-south-1"
 });
 var cognitoidentityserviceprovider = new AWS.CognitoIdentityServiceProvider({apiVersion: '2016-04-18'});
