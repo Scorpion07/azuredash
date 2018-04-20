@@ -40,7 +40,6 @@
     var cognitoUser = userPool.getCurrentUser();
     checklogin();
     $.notify.defaults({globalPosition: 'top center'});
-    var SelectedResourceVar;
     var token = window.localStorage.getItem('token');
     var currUser = window.localStorage.username;
     console.log("User here is " + currUser);
@@ -48,17 +47,17 @@
     $.notify.defaults({globalPosition: 'top center'});
     var acType;
 
-    function goFurther() {
-        var elements = document.getElementsByClassName("checkboxes");
-        for (var i = 0; i < elements.length; i++) {
-            if (elements[i].checked) {
-                $("#userdelete").attr("disabled", false);
-                break;
-            }
-            $("#userdelete").attr("disabled", true);
-        }
-
-    }
+    // function goFurther() {
+    //     var elements = document.getElementsByClassName("checkboxes");
+    //     for (var i = 0; i < elements.length; i++) {
+    //         if (elements[i].checked) {
+    //             $("#userdelete").attr("disabled", false);
+    //             break;
+    //         }
+    //         $("#userdelete").attr("disabled", true);
+    //     }
+    //
+    // }
 
     $(document).ready(function () {
         checklogin();
@@ -73,7 +72,7 @@
             acType = $("#acType").val();
             sendget();
         });
-
+    });
         /*
                 $("#userdelete").on("click", function () {
                     $("#loading").show();
@@ -172,7 +171,7 @@
                         data: getdata.finaldata,
 
                         'rowCallback': function (row, data, iDisplayIndex) {
-                            var check = '<input type="checkbox" id="checkboxclick" onclick="goFurther()" name="id[]" class="checkboxes" username="' + data.UserName + '">';
+                            var check = '<input type="checkbox" id="checkboxclick" onclick="goFurther()" name="id[]" class="checkboxes" username="' + data.StackName + '">';
                             $('td:eq(0)', row).html(check);
                         },
                         "columnDefs": [
@@ -187,12 +186,20 @@
                             },
                             {
                                 "targets": 1,
-                                "data": "UserName"
+                                "data": "StackName"
                             },
                             {
                                 "targets": 2,
-                                "data": "CreateDate"
+                                "data": "CreationTime"
                             },
+                            {
+                                "targets": 3,
+                                "data": "StackStatus"
+                            },
+                            {
+                                "targets": 4,
+                                "data": "RegionName"
+                            }
                         ],
                         select: {
                             style: 'multi'
@@ -213,7 +220,7 @@
                 }
             });
             // });
-            //alert("hello");
+            //alert("hello")
         }
 
     /*$(document).on('click','#selectD',function(){
@@ -231,7 +238,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Pragma" content="no-cache">
-    <title>List IAM Users</title>
+    <title>List Stacks</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -239,13 +246,10 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
             <li>
-                <a href="iam.html" class=" text-white col-md-12">Create Users</a>
+                <a href="cf.html" class=" text-white col-md-12">Create Users</a>
             </li>
             <li class="nav-item active">
-                <a href="iamallusers.html" class=" text-white col-md-12">List Users</a>
-            </li>
-            <li class="nav-item active">
-                <a href="createreports.html" class=" text-white col-md-12">Reports</a>
+                <a href="cflist.html" class=" text-white col-md-12">List Users</a>
             </li>
         </ul>
         <form class="form-inline my-6 my-lg-0 my-sm-0 pull-right">
@@ -263,8 +267,8 @@
                 <b><label class="nav-link text-white">Service</label></b>
                 <!--<input type="text" value="IAM" readonly="readonly" class="form-control" size="5"/>-->
                 <select class="form-control" id="main_service" onchange="location = this.value;">
-                    <option value="iam" selected="true">IAM</option>
-                    <option value="cf.html">CloudFormation</option>
+                    <option value="iam">IAM</option>
+                    <option value="cf.html" selected="true">CloudFormation</option>
                 </select>
             </div>
         </form>
@@ -304,8 +308,10 @@
         <thead>
         <tr>
             <th></th>
-            <th>USERNAME</th>
+            <th>STACK NAME</th>
             <th>CREATED ON</th>
+            <th>STATUS</th>
+            <th>REGION</th>
         </tr>
         </thead>
     </table>

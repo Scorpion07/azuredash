@@ -40,7 +40,6 @@ var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poo
 var cognitoUser = userPool.getCurrentUser();
 checklogin();
 $.notify.defaults( { globalPosition: 'top center'} );
-var SelectedResourceVar;
 var token = window.localStorage.getItem('token');
 var currUser = window.localStorage.username;
 console.log("User here is "+currUser);
