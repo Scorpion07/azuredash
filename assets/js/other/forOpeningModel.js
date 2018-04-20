@@ -56,10 +56,6 @@ function checkdelete(SelectedResourceVar)
 	{
 	  	deleteModalRSSnapshot();
 	}
-	else if  (SelectedResourceVar == "redshift_cluster_snapshot")
-	{
-	  	deleteModalRSSnapshot();
-	}
 	else if  (SelectedResourceVar == "route53")
 	{
 	  	deleteModalR53Hostzone();
@@ -67,7 +63,18 @@ function checkdelete(SelectedResourceVar)
     else if (SelectedResourceVar == "cloudtrail"){
         deleteModalCloudTrail();
     }
-	
+    else if  (SelectedResourceVar == "notebook_instance")
+    {
+        deleteModalSagemakerNotebook();
+    }
+    else if  (SelectedResourceVar == "models")
+    {
+        deleteModalSagemakerModel();
+    }
+    else if  (SelectedResourceVar == "endpoints")
+    {
+        deleteModalSagemakerEndpoint();
+    }
 	else
 	{
 

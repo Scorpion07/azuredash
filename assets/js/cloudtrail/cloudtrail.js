@@ -59,7 +59,7 @@ function ListCloudTrailData() {
 
                     'rowCallback': function (row, data, iDisplayIndex) {
                         if (account !== 'prod') {
-                            var check = '<input type="checkbox" id="checkboxclick" name="id[]" class="checkboxclick checkboxes" data_name = "' + data.Name + '"  data_cloudtrail_arn="' + data.TrailARN + '" data_region="' + data.Region + '">';
+                            var check = '<input type="checkbox" id="checkboxclick" name="id[]" class="checkboxclick checkboxes" data_name = "' + data.Name + '"  data_cloudtrail_arn="' + data.TrailARN + '" data_region="' + data.HomeRegion + '">';
                             $('td:eq(0)', row).html(check);
                         }
                         else {
@@ -125,8 +125,10 @@ function deleteModalCloudTrail() {
         }
     });
     cloudtrail_name.forEach(function (id) {
-        var add = '<li><label>"' + id + '"</label></li>';
-        $("#delete_li_show").append(add);
+
+            var add = '<li><label>"' + id + '"</label></li>';
+            $("#delete_li_show").append(add);
+
     });
     $('.deleteMul').attr('disabled', false);
     $('#deleteMulConformation').modal('show');
@@ -152,11 +154,13 @@ function deleteCloudTrail() {
         }
     });
     console.log(Data);
+
     var submit = {
         method: "cloudtrailDelete",
         account: account,
         data: Data
     }
+    console.log(submit);
     $.ajax({
         url: _config.api.invokeUrl + '/billing/services',
         headers: {"Authorization": token},
@@ -171,7 +175,7 @@ function deleteCloudTrail() {
             $("#loadingModal").hide();
 
             if (respdata > -1) {
-                showRed_Snapshot();
+                show_cloudtrail();
                 $.notify("CloudTrails Deleted Successfully", "success");
             }
             else {

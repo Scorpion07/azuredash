@@ -62,7 +62,18 @@ function ModalClickdelete(SelectedResourceVar)
     else if (SelectedResourceVar == "cloudtrail"){
         deleteCloudTrail();
     }
-
+    else if  (SelectedResourceVar == "notebook_instance")
+    {
+        deleteSagemakerNotebook();
+    }
+    else if  (SelectedResourceVar == "models")
+    {
+        deleteSagemakerModel();
+    }
+    else if  (SelectedResourceVar == "endpoints")
+    {
+        deleteSagemakerEndpoint();
+    }
     else
 	{
 
