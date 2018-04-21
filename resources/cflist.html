@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="../assets/css/cerulean/bootstrap.min.css">
+<link rel="stylesheet" href="../assets/css/jquery.dataTables.min.css">
+<!--<link rel="stylesheet" href="https://cdn.datatables.net/select/1.2.5/css/select.dataTables.min.css"></link>
+<script src="https://cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"></script>-->
+<script src="../assets/js/dependancies/jquery.min.js"></script>
+<!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+<script src="../assets/js/dependancies/jquery.dataTables.min.js"></script>
+<script src="../assets/js/dependancies/notify.min.js"></script>
+<script src="../assets/js/dependancies/tether.min.js"></script>
+<script src="../assets/js/dependancies/bootstrap.min.js"></script>
+<script src="../assets/js/dependancies/config.js"></script>
+<script src="../assets/js/dependancies/aws-cognito-sdk.min.js"></script>
+<script src="../assets/js/dependancies/amazon-cognito-identity.min.js"></script>
+<script type="text/javascript" src="../assets/js/signout.js"></script>
+<script>
+    function refresh() {
+// location.reload();
+        goFurther();
+        sendget();
+    }
+
+    function usermenu() {
+        if ($("#hideshowdropdown").hasClass("show")) {
+            $("#hideshowdropdown").removeClass("show");
+        }
+        else {
+            $("#hideshowdropdown").addClass("show");
+        }
+    }
+</script>
+<script type="text/javascript">
+    //window.onload = sendget();
+    var poolData = {
+        UserPoolId: _config.cognito.userPoolId,
+        ClientId: _config.cognito.userPoolClientId
+    }
+    var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+    var cognitoUser = userPool.getCurrentUser();
+    checklogin();
+    $.notify.defaults({globalPosition: 'top center'});
+    var SelectedResourceVar;
+    var token = window.localStorage.getItem('token');
+    var currUser = window.localStorage.username;
+    console.log("User here is " + currUser);
+
+    $.notify.defaults({globalPosition: 'top center'});
+    var acType;
+
+    function goFurther() {
+        var elements = document.getElementsByClassName("checkboxes");
+        for (var i = 0; i < elements.length; i++) {
+            if (elements[i].checked) {
+                $("#userdelete").attr("disabled", false);
+                break;
+            }
+            $("#userdelete").attr("disabled", true);
+        }
+
+    }
+
+    $(document).ready(function () {
+        checklogin();
+        token = window.localStorage.getItem('token');
+
+        $("#loginname").text(currUser.toString().trim());
+
+        acType = $("#acType").val();
+        sendget();
+        $('#acType').change(function () {
+            //selectedCountry = $("#region_name option:selected").val();
+            acType = $("#acType").val();
+            sendget();
+        });
+
+        /*
+                $("#userdelete").on("click", function () {
+                    $("#loading").show();
+                    $('#unamelist').html("");
+                    var uname = [];
+                    var acType = $("#acType").val();
+                    //$("#loading").show();
+                    $(".checkboxes").each(function () {
+                        if ($(this).is(":checked")) {
+                            //console.log();
+                            //console.log($(this).attr("data_instance_id"));
+                            uname.push($(this).attr("username"));
+                        }
+                    });
+                    $('[name="modal_uname"]').val(uname);
+                    uname.forEach(function (usr) {
+                        var add = '<li><label>"' + usr + '"</label></li>';
+                        $('#unamelist').append(add);
+                    });
+                    $('#deleteMulConformation').modal('show');
+                });
+                $(".deleteMul").on("click", function () {
+                    var nameget = $('#deleteuser').val();
+                    var nameArray = (nameget).split(",");
+                    var lambdadata = {
+                        method: "DeleteHtmlIam",
+                        account: acType,
+                        uname: nameArray
+                    }
+                    $("#loadingMulModal").show();
+                    $.ajax({
+                        url: _config.api.invokeUrl + '/resources/iam',
+                        type: 'post',
+                        headers: {"Authorization": token},
+                        contentType: 'application/json',
+                        dataType: 'json',
+                        crossDomain: true,
+                        data: JSON.stringify(lambdadata),
+                        success:
+                            function (getdata) {
+                                console.log(getdata)
+                                $('#deleteMulConformation').modal('hide');
+                                if (getdata > 0) {
+                                    //alert("User Deleted!")
+                                    $("#loadingMulModal").hide();
+                                    $.notify("User Deleted", "success");
+                                    sendget();
+                                    refresh();
+                                }
+                                else {
+                                    $("#loadingMulModal").hide();
+                                    $.notify("Unable to Delete User", "error");
+                                    //alert("Unable to Delete User!")
+                                }
+
+
+                            },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            //alert(respdata);
+                            $("#loadingMulModal").hide();
+                            $.notify("Unable to Delete", "error");
+                            //$('#loading').css("style","display:none !important");
+                        }
+                    });
+                });
+
+
+            });
+        */
+        function sendget() {
+            $("#loading").show();
+            //acType = $("#acType").val();
+            console.log(acType);
+            var lamdadata = {
+                account: acType,
+                method: "listHtmlcf"
+            };
+            console.log(acType);
+            //
+            //alert(JSON.stringify(mydata));
+            // $(document).ready(function() {
+            $.ajax({
+                url: _config.api.invokeUrl + '/resources/iam',
+                type: 'POST',
+                headers: {"Authorization": token},
+                crossDomain: true,
+                contentType: 'application/json',
+                dataType: 'json',
+                data: JSON.stringify(lamdadata),
+                success: function (getdata) {
+                    //console.log(getdata.finaldata["0"].User.UserName);
+                    //alert(getdata.finaldata["0"].Users["0"].UserId);
+                    $('#mydata').dataTable().fnDestroy();
+                    $("#mydata").DataTable({
+
+                        data: getdata.finaldata,
+
+                        'rowCallback': function (row, data, iDisplayIndex) {
+                            var check = '<input type="checkbox" id="checkboxclick" onclick="goFurther()" name="id[]" class="checkboxes" username="' + data.UserName + '">';
+                            $('td:eq(0)', row).html(check);
+                        },
+                        "columnDefs": [
+                            //{"className": "dt-center","defaultContent": " ","targets": "_all"},
+                            {
+                                "targets": 0,
+                                //"className": 'select-checkbox',
+                                "searchable": false,
+                                "orderable": false,
+                                "defaultContent": " "
+                                //'data':null
+                            },
+                            {
+                                "targets": 1,
+                                "data": "UserName"
+                            },
+                            {
+                                "targets": 2,
+                                "data": "CreateDate"
+                            },
+                        ],
+                        select: {
+                            style: 'multi'
+                            //					selector: 'td:first-child'
+                        },
+                        order: [[0, 'asc']]
+                        // $("#loading").hide();
+                    });
+                    $("#loading").hide();
+                    //$('#iam_user').val(JSON.parse(JSON.stringify(getdata.User.UserName)));
+                    //	alert(mydata);
+                    //console.log(getdata)
+//success stuff. data here is the response, not your original data
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert("error")
+                    //error handling stuff
+                }
+            });
+            // });
+            //alert("hello");
+        }
+
+    /*$(document).on('click','#selectD',function(){
+        $(this).change(function(){
+            //$('#table tbody input[type="checkbox"]').prop('checked',$(".checkboxes").prop('checked'));
+            $('#checkboxclick', table.cells().nodes()).prop('checked',true);
+            var rows = table.rows({ 'search': 'applied' }).nodes();
+            console.log(rows)
+            $('#checkboxclick',rows).prop('checked',this.checked);//$(this).prop("checked"));
+        });
+    });
+    */
+</script>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <title>List IAM Users</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#"><b>Resources Creation</b></a>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li>
+                <a href="iam.html" class=" text-white col-md-12">Create Users</a>
+            </li>
+            <li class="nav-item active">
+                <a href="iamallusers.html" class=" text-white col-md-12">List Users</a>
+            </li>
+            <li class="nav-item active">
+                <a href="createreports.html" class=" text-white col-md-12">Reports</a>
+            </li>
+        </ul>
+        <form class="form-inline my-6 my-lg-0 my-sm-0 pull-right">
+            <div class="form-group">
+                <b><label class="nav-link text-white">Account</label></b>
+                <select class="form-control" id="acType">
+                    <option value="dev" selected="true">Developer</option>
+                    <option value="training">Training</option>
+                    <option value="ext">External</option>
+                </select>
+            </div>
+        </form>
+        <form class="form-inline my-6 my-lg-0 my-sm-0 pull-right">
+            <div class="form-group">
+                <b><label class="nav-link text-white">Service</label></b>
+                <!--<input type="text" value="IAM" readonly="readonly" class="form-control" size="5"/>-->
+                <select class="form-control" id="main_service" onchange="location = this.value;">
+                    <option value="iam" selected="true">IAM</option>
+                    <option value="cf.html">CloudFormation</option>
+                </select>
+            </div>
+        </form>
+        <form class="form-inline my-6 my-lg-0 my-sm-0 pull-right">
+            <div class="form-group">
+                <div class="dropdown col-md-1 float-md-right">
+                    <a class="btn dropdown-toggle" id="userdetail" onclick="usermenu()" aria-haspopup="true"
+                       aria-expanded="true" data-toggle="dropdown" title="signout" style="margin-right: -27px;"><img
+                            src="../assets/images/profilelogo.png" style="width: 25px;"/>
+                    </a>
+                    <div class="dropdown-menu" id="hideshowdropdown" aria-labelledby="btnGroupDrop1"
+                         x-placement="bottom-start"
+                         style="position: absolute; will-change: transform; top: 12px; left: -78px; transform: translate3d(0px, 38px, 0px);">
+
+                        <span class="btn btn-disabled" id="loginname"></span><br>
+                        <a class="btn" id="signout" onclick="signout();" title="signout" style="margin-right: -27px;">Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</nav>
+
+</form id="Tcreation">
+<div class="form-group col-md-12">
+    <button id="userdelete" type="button" onclick="sendget()" class="btn btn-info col-md-1" disabled>Delete</button>
+    <a class="btn refresh" id="refresh" onclick="refresh()" title="Reload"><img
+            src="../assets/images/reload1.png"/></a>
+</div>
+<!-- 	<button id="delete">Delete</button>
+<button onclick="refresh()">Refresh</button> -->
+
+</form>
+<div style="width:600px; padding:3px">
+    <table id="mydata" class="table table-striped table-bordered" cellspacing="0">
+        <thead>
+        <tr>
+            <th></th>
+            <th>USERNAME</th>
+            <th>CREATED ON</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<div class="modal" id="deleteMulConformation">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm User Deletion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure, you want to delete the user ?</p>
+                <input type="hidden" value="" class="modal_uname" id="deleteuser" name="modal_uname"/>
+
+                <div>
+                    <ul id="unamelist">
+                    </ul>
+                </div>
+            </div>
+            <div id="loadingMulModal" style="display: none;background-color: rgb(20, 20, 20);">
+                <p style="position: absolute; top: 40%; left:45%;">
+                    <img src="../assets/images/loader.gif"/>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary deleteMul">Yes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                        onclick="javascript:$('#userdelete').attr('disabled',true)">No
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="loading" style="display: none;background-color: rgb(20, 20, 20);">
+    <p style="position: absolute; top: 40%; left:45%;">
+        <img src="../assets/images/loader.gif"/>
+    </p>
+</div>
+</body>
+</html>

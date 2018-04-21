@@ -88,7 +88,7 @@ function sendget()
 	TrainingName = $("#tname").val();
 	var lamdadata={
 		tname : TrainingName,
-        method: "ReportHtmlIAm",
+        method: "reportHtmliam",
         account: "prod"
 	};
 		$.ajax({
@@ -169,7 +169,7 @@ $(document).on("click",".saveExpiryDate",function() {
 	var createDT = $("#editdate").attr("data-date");
 	var expiryValue = $("#expdt").val();
 	var lambdadata = {
-        method: "UpdateHtmlIAm",
+        method: "updateHtmliam",
         cdate: createDT,
         edate: expiryValue,
         account: "prod"

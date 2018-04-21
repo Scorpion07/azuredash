@@ -47,6 +47,7 @@
         var currUser = window.localStorage.username;
         var UserEmail = window.localStorage.email;
         var loginId = UserEmail;
+        var loginUser = currUser;
         console.log("Hello" + currUser);
         console.log("Hello" + UserEmail);
 
@@ -149,8 +150,9 @@
                 tdays: days,
                 expdate: edate,
                 stsdate: sdate,
-                createdBy: loginId,
-                method: "CreateHtmlIam"
+                createdByEmail: loginId,
+                createdByName: loginUser,
+                method: "createHtmliam"
             };
 
             $.ajax({
