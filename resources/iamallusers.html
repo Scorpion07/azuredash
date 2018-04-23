@@ -120,8 +120,8 @@ function goFurther(){
             }
             $("#loadingMulModal").show();
             $.ajax({
-                // url: _config.api.invokeUrl + '/resources/iam',
-                url: _config.api.invokeUrlR + '/iam',
+                url: _config.api.invokeUrl + '/resources/iam',
+                // url: _config.api.invokeUrlR + '/iam',
                 type: 'post',
                 headers: {"Authorization": token},
                 contentType: 'application/json',
@@ -171,8 +171,8 @@ function sendget() {
     //alert(JSON.stringify(mydata));
     // $(document).ready(function() {
     $.ajax({
-        // url: _config.api.invokeUrl + '/resources/iam',
-        url: _config.api.invokeUrlR + '/iam',
+        url: _config.api.invokeUrl + '/resources/iam',
+        // url: _config.api.invokeUrlR + '/iam',
         type: 'POST',
         headers: {"Authorization": token},
         crossDomain: true,
