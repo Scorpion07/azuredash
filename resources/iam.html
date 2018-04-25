@@ -7,6 +7,7 @@
     <script src="../assets/js/dependancies/config.js"></script>
     <script src="../assets/js/dependancies/aws-cognito-sdk.min.js"></script>
     <script src="../assets/js/dependancies/amazon-cognito-identity.min.js"></script>
+    <script src="../assets/js/dependancies/jquery-1.12.4.js"></script>
     <script src="../assets/js/dependancies/jquery.min.js"></script>
     <script src="../assets/js/dependancies/jquery.dataTables.min.js"></script>
     <script src="../assets/js/dependancies/dataTables.buttons.min.js"></script>
@@ -138,7 +139,7 @@
             Iname = $("#uname").val();
             policyuser = $("#uPolicy").val();
             acType = $("#acType").val();
-            companyname = $("#cname").val()
+            companyname = $("#cname").val();
             // training = $("#tname").val();
             //pot = $("#tdate").val();
             var lamdadata = {
@@ -152,11 +153,12 @@
                 stsdate: sdate,
                 createdByEmail: loginId,
                 createdByName: loginUser,
-                method: "createHtmliam"
+                method: "createIam"
             };
 
             $.ajax({
                 url: _config.api.invokeUrl + '/resources/iam',
+                // url: _config.api.invokeUrlR + '/iam',
                 type: 'POST',
                 headers: {"Authorization": token},
                 crossDomain: true,
@@ -167,7 +169,7 @@
                     $("#nuser").val("");
                     $("#uname").val("");
                     $("#upolicy").val("");
-                    $("#cname").val("");
+
                     $("#acType").val("dev");
                     $("#userTable").show();
                     $('#mytable').dataTable().fnDestroy();
@@ -176,6 +178,7 @@
                     // $("#mytable").append('<caption style="caption-side: top">'+ training +'</caption>');
                     //$("#a1").text(training);
                     // $("#mytable").append('#tname').val();
+
                     $("#mytable").DataTable({
 
                         data: getdata.finaldata,
@@ -202,12 +205,25 @@
                             },
                             {
                                 "targets": [4],
-                                "data": "User.CreateDate"
-                            },
+                                "data": "User.LoginUrl"
+                            }
                         ],
                         dom: 'Bfrtip',
                         buttons: [
-                            'csv', 'excel'
+                            {
+                                extend: 'excel',
+                                // title: exportTitle
+                                filename: function () {
+                                    return companyname + '_' + sdate + '_' + edate;
+                                }
+                            },
+                            {
+                                extend: 'csv',
+                                // title: exportTitle
+                                filename: function () {
+                                    return companyname + '_' + sdate + '_' + edate;
+                                }
+                            }
                         ]
                     });
                     $("#loading").hide();
@@ -217,6 +233,7 @@
                     //error handling stuff
                 }
             });
+            $("#cname").val("");
         }
     </script>
     <head>
@@ -379,7 +396,7 @@
                                     <th style="display: none;">ACCESS KEY</th>
                                     <th style="display: none;">SECERET KEY</th>
                                     <th style="display: none;">PASSWORD</th>
-                                    <th>CREATED ON</th>
+                                    <th>SIGNIN URL</th>
                                 </tr>
                                 </thead>
                             </table>

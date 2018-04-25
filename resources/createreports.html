@@ -1,13 +1,13 @@
 <html>
 <head>
 
-<!-- <link rel="stylesheet" href="assets/css/bootstrap.min.css"/> -->
+    <!-- <link rel="stylesheet" href="assets/css/bootstrap.min.css"/> -->
     <link rel="stylesheet" href="../assets/css/cerulean/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="../assets/css/buttons.dataTables.min.css">
     <link rel="stylesheet" href="../assets/css/daterangepicker.css">
-<!-- <script src="assets/js/bootstrap.min.js"></script>
--->
+    <!-- <script src="assets/js/bootstrap.min.js"></script>
+    -->
     <script src="../assets/js/dependancies/jquery.min.js"></script>
     <script src="../assets/js/dependancies/jquery.dataTables.min.js"></script>
     <script src="../assets/js/dependancies/dataTables.buttons.min.js"></script>
@@ -27,359 +27,366 @@
     <script src="../assets/js/dependancies/amazon-cognito-identity.min.js"></script>
     <script type="text/javascript" src="../assets/js/signout.js"></script>
 
-<script>
-function refresh() {
-	// location.reload();
-    sendget();
-}
-function usermenu()
-{
-		if($("#hideshowdropdown").hasClass("show"))
-		{
-			$("#hideshowdropdown").removeClass("show");
-		}
-		else
-		{
-			$("#hideshowdropdown").addClass("show");
-		}
-}
-</script>
-<script type="text/javascript">
-	var poolData = {
-	UserPoolId : _config.cognito.userPoolId,
-	ClientId: _config.cognito.userPoolClientId
-}
-var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
-var cognitoUser = userPool.getCurrentUser();
-checklogin();
-$.notify.defaults( { globalPosition: 'top center'} );
-var SelectedResourceVar;
-var token = window.localStorage.getItem('token');
-var currUser = window.localStorage.username;
-console.log("User here is "+currUser);
-	var TrainingName;
-function goFurther(){
-	$("#updateuser").show();
-}
-function modelclose(){
-	$("#updateuser").hide();
-}
-			$(document).ready(function() {
-														// 				$("#Tcreation").validate({
-					// 	rules: {
-					// 	nuser: "required",
-					// 	uname: "required",
-					// 	upolicy: "required"
-		// },
-		// messages: {
-					// 	nuser:"Please enter the no of user you want",
-					// 	uname: "Please enter the username",
-					// 	upolicy: "Select a valid policy"
-		// }
-			checklogin();
-			token = window.localStorage.getItem('token');
-			$("#loginname").text(currUser.toString().trim());
-		});
+    <script>
+        function refresh() {
+            // location.reload();
+            sendget();
+        }
 
-function sendget()
-	{
-	$("#loading").show();
-	
-	TrainingName = $("#tname").val();
-	var lamdadata={
-		tname : TrainingName,
-        method: "reportHtmliam",
-        account: "prod"
-	};
-		$.ajax({
-            url: _config.api.invokeUrl + '/resources/iam',
-		type: 'POST',
-            headers: {"Authorization": token},
-		crossDomain: true,
-		contentType: 'application/json',
-		dataType: 'json',
-		data: JSON.stringify(lamdadata),
-		success: function(getdata) {
-			$("#tname").val("Select a Training");
-			$("#userTable").show();
-			$('#mytable').dataTable().fnDestroy();
-			$("#mytable").DataTable({
-				//console.log(getdata);
-				
-				data : getdata.finaldata,
-										'rowCallback': function(row,data,iDisplayIndex){
-                                            var edit = '<a class="btn" style="margin-right: -27px;"id="editdate" onclick="goFurther()" href="#" data-date="' + data.createdDate + '"><img src="../assets/images/edit-icon.png" style="width: 25px;" /></a>';
-								
-								$('td:eq(6)',row).html(edit);
-					},
-				"columnDefs": [
-					{
-						"targets": [ 0 ],
-						"data": "userName"
-					},
-					{
-						"targets": [ 1 ],
-						"data": "trainingName"
-					},
-						{
-						"targets": [ 2 ],
-						"data": "accountType"
-					},
-						{
-						"targets": [ 3 ],
-						"data": "createdDate"
-					},
-						{
-						"targets": [ 4 ],
-						"data": "startDate"
-					},
-						{
-						"targets": [ 5 ],
-						"data":"endDate"
-					},
-					{
-					"targets": [ 6 ],
-					"data": null
-				}
-									// 	{
-									// 	"targets": [ 6 ],
-									// 	"data": "Duration"
-					// },
-				],
-				dom: 'Bfrtip',
-					buttons: [
-							'csv', 'excel'
-				]
-			});
-			$("#loading").hide();
-		//$('#iam_user').val(JSON.parse(JSON.stringify(getdata.User.UserName)));
-							//	alert(mydata);
-	//console.log(getdata)
-//success stuff. data here is the response, not your original data
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-		alert("error")
-		//error handling stuff
-		}
-	});
-	// });
-	//alert("hello");
-}
-$(document).on("click",".saveExpiryDate",function() {
-	var createDT = $("#editdate").attr("data-date");
-	var expiryValue = $("#expdt").val();
-	var lambdadata = {
-        method: "updateHtmliam",
-        cdate: createDT,
-        edate: expiryValue,
-        account: "prod"
+        function usermenu() {
+            if ($("#hideshowdropdown").hasClass("show")) {
+                $("#hideshowdropdown").removeClass("show");
+            }
+            else {
+                $("#hideshowdropdown").addClass("show");
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        var poolData = {
+            UserPoolId: _config.cognito.userPoolId,
+            ClientId: _config.cognito.userPoolClientId
+        }
+        var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+        var cognitoUser = userPool.getCurrentUser();
+        checklogin();
+        $.notify.defaults({globalPosition: 'top center'});
+        var SelectedResourceVar;
+        var token = window.localStorage.getItem('token');
+        var currUser = window.localStorage.username;
+        console.log("User here is " + currUser);
+        var TrainingName;
 
-		}
-	// console.log(resourcename+" "+expiryValue);
-		$("#loadingMulModal").show();
-			$.ajax({
+        function goFurther() {
+            $("#updateuser").show();
+        }
+
+        function modelclose() {
+            $("#updateuser").hide();
+        }
+
+        $(document).ready(function () {
+            // 				$("#Tcreation").validate({
+            // 	rules: {
+            // 	nuser: "required",
+            // 	uname: "required",
+            // 	upolicy: "required"
+            // },
+            // messages: {
+            // 	nuser:"Please enter the no of user you want",
+            // 	uname: "Please enter the username",
+            // 	upolicy: "Select a valid policy"
+            // }
+            checklogin();
+            token = window.localStorage.getItem('token');
+            $("#loginname").text(currUser.toString().trim());
+        });
+
+        function sendget() {
+            $("#loading").show();
+
+            TrainingName = $("#tname").val();
+            var lamdadata = {
+                tname: TrainingName,
+                method: "reportIam",
+                account: "prod"
+            };
+            $.ajax({
                 url: _config.api.invokeUrl + '/resources/iam',
-				type: 'post',
+                // url: _config.api.invokeUrlR + '/iam',
+                type: 'POST',
                 headers: {"Authorization": token},
-				contentType: 'application/json',
-				dataType: 'json',
-				crossDomain: true,
-				data: JSON.stringify(lambdadata),
-				success:
-				function (getdata){
-				console.log(getdata)
-				// $('#updateuser').modal('hide');
-					modelclose();
-					if(getdata == "Successfull")
-					{
-						// modelclose();
-						// $("#loadingMulModal").hide();
-						$.notify("update Successfull","success");
-					}
-					else{
-						// modelclose();
-						// $("#loadingMulModal").hide();
-						$.notify("Unable to update","error");
-						//alert("Unable to Delete User!")
-					}
-				},
-				error:function(xhr, ajaxOptions, thrownError){
-					//alert(respdata);
-					$("#loadingMulModal").hide();
-					$.notify("Unable to Delete","error");
-					//$('#loading').css("style","display:none !important");
-				}
-				});
-});
-</script>
+                crossDomain: true,
+                contentType: 'application/json',
+                dataType: 'json',
+                data: JSON.stringify(lamdadata),
+                success: function (getdata) {
+                    $("#tname").val("Select a Training");
+                    $("#userTable").show();
+                    $('#mytable').dataTable().fnDestroy();
+                    $("#mytable").DataTable({
+                        //console.log(getdata);
+
+                        data: getdata.finaldata,
+                        'rowCallback': function (row, data, iDisplayIndex) {
+                            var edit = '<a class="btn" style="margin-right: -27px;"id="editdate" onclick="goFurther()" href="#" data-date="' + data.createdDate + '"><img src="../assets/images/edit-icon.png" style="width: 25px;" /></a>';
+
+                            $('td:eq(6)', row).html(edit);
+                        },
+                        "columnDefs": [
+                            {
+                                "targets": [0],
+                                "data": "userName"
+                            },
+                            {
+                                "targets": [1],
+                                "data": "trainingName"
+                            },
+                            {
+                                "targets": [2],
+                                "data": "accountType"
+                            },
+                            {
+                                "targets": [3],
+                                "data": "createdDate"
+                            },
+                            {
+                                "targets": [4],
+                                "data": "startDate"
+                            },
+                            {
+                                "targets": [5],
+                                "data": "endDate"
+                            },
+                            {
+                                "targets": [6],
+                                "data": null
+                            }
+                            // 	{
+                            // 	"targets": [ 6 ],
+                            // 	"data": "Duration"
+                            // },
+                        ],
+                        dom: 'Bfrtip',
+                        buttons: [
+                            'csv', 'excel'
+                        ]
+                    });
+                    $("#loading").hide();
+                    //$('#iam_user').val(JSON.parse(JSON.stringify(getdata.User.UserName)));
+                    //	alert(mydata);
+                    //console.log(getdata)
+//success stuff. data here is the response, not your original data
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert("error")
+                    //error handling stuff
+                }
+            });
+            // });
+            //alert("hello");
+        }
+
+        $(document).on("click", ".saveExpiryDate", function () {
+            var createDT = $("#editdate").attr("data-date");
+            var expiryValue = $("#expdt").val();
+            var lambdadata = {
+                method: "updateIam",
+                cdate: createDT,
+                edate: expiryValue,
+                account: "prod"
+
+            }
+            // console.log(resourcename+" "+expiryValue);
+            $("#loadingMulModal").show();
+            $.ajax({
+                url: _config.api.invokeUrl + '/resources/iam',
+                // url: _config.api.invokeUrlR + '/iam',
+                type: 'post',
+                headers: {"Authorization": token},
+                contentType: 'application/json',
+                dataType: 'json',
+                crossDomain: true,
+                data: JSON.stringify(lambdadata),
+                success:
+                    function (getdata) {
+                        console.log(getdata)
+                        // $('#updateuser').modal('hide');
+                        modelclose();
+                        if (getdata == "Successfull") {
+                            // modelclose();
+                            // $("#loadingMulModal").hide();
+                            $.notify("update Successfull", "success");
+                        }
+                        else {
+                            // modelclose();
+                            // $("#loadingMulModal").hide();
+                            $.notify("Unable to update", "error");
+                            //alert("Unable to Delete User!")
+                        }
+                    },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    //alert(respdata);
+                    $("#loadingMulModal").hide();
+                    $.notify("Unable to Delete", "error");
+                    //$('#loading').css("style","display:none !important");
+                }
+            });
+        });
+    </script>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<a class="navbar-brand" href="#"><b>Resources Creation</b></a>
-		<div class="collapse navbar-collapse" id="navbarColor01">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active" >
-                    <a href="iam.html" class=" text-white col-md-12">Create Users</a>
-				</li>
-				<li class="nav-item active" >
-					<a href="iamallusers.html" class=" text-white col-md-12">List Users</a>
-				</li>
-				<li class="nav-item active" >
-					<a href="createreports.html" class=" text-white col-md-12">Reports</a>
-				</li>
-			</ul>
-			<form class="form-inline my-6 my-lg-0 my-sm-0 pull-right">
-				<div class="form-group">
-					<b><label class="nav-link text-white">Account</label></b>
-					<!-- 					<select class="form-control" id="acType">
-						<option value="dev" selected="true">Developer</option>
-						<option value="training">Training</option>
-						<option value="ost">Overseas</option>
-					</select> -->
-					<input type="text" value="ALL" readonly="readonly" class="form-control" size="5"/>
-				</div>
-			</form>
-			<form class="form-inline my-6 my-lg-0 my-sm-0 pull-right">
-				<div class="form-group">
-					<b><label class="nav-link text-white">Service</label></b>
-					<!--<input type="text" value="IAM" readonly="readonly" class="form-control" size="5"/>-->
-					<select class="form-control" id="main_service" onchange="location = this.value;">
-						<option value="iam" selected="true">IAM</option>
-						<option value="cf.html">CloudFormation</option>
-					</select>
-				</div>
-			</form>
-					<form class="form-inline my-6 my-lg-0 my-sm-0 pull-right">
-			<div class="form-group">
-				<div class="dropdown col-md-1 float-md-right">
-                    <a class="btn dropdown-toggle" id="userdetail" onclick="usermenu()" aria-haspopup="true"
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#"><b>Resources Creation</b></a>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a href="iam.html" class=" text-white col-md-12">Create Users</a>
+            </li>
+            <li class="nav-item active">
+                <a href="iamallusers.html" class=" text-white col-md-12">List Users</a>
+            </li>
+            <li class="nav-item active">
+                <a href="createreports.html" class=" text-white col-md-12">Reports</a>
+            </li>
+        </ul>
+        <form class="form-inline my-6 my-lg-0 my-sm-0 pull-right">
+            <div class="form-group">
+                <b><label class="nav-link text-white">Account</label></b>
+                <!-- 					<select class="form-control" id="acType">
+                    <option value="dev" selected="true">Developer</option>
+                    <option value="training">Training</option>
+                    <option value="ost">Overseas</option>
+                </select> -->
+                <input type="text" value="ALL" readonly="readonly" class="form-control" size="5"/>
+            </div>
+        </form>
+        <form class="form-inline my-6 my-lg-0 my-sm-0 pull-right">
+            <div class="form-group">
+                <b><label class="nav-link text-white">Service</label></b>
+                <!--<input type="text" value="IAM" readonly="readonly" class="form-control" size="5"/>-->
+                <select class="form-control" id="main_service" onchange="location = this.value;">
+                    <option value="iam" selected="true">IAM</option>
+                    <option value="cf.html">CloudFormation</option>
+                </select>
+            </div>
+        </form>
+        <form class="form-inline my-6 my-lg-0 my-sm-0 pull-right">
+            <div class="form-group">
+                <div class="dropdown col-md-1 float-md-right">
+                    <a class="btn dropdown" id="userdetail" onclick="usermenu()" aria-haspopup="true"
                        aria-expanded="true" data-toggle="dropdown" title="signout" style="margin-right: -27px;"><img
                             src="../assets/images/profilelogo.png" style="width: 25px;"/>
-					</a>
-					<div class="dropdown-menu" id="hideshowdropdown" aria-labelledby="btnGroupDrop1" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 12px; left: -78px; transform: translate3d(0px, 38px, 0px);">
-<!-- 						<ul style="list-style-type: none;">
-						<li><span class="btn btn-disabled" id="loginname"></span></li><li>
-						<a class="btn" id="signout" onclick="signout();" title="signout" style="margin-right: -27px;">Logout
-						</a></li>
+                    </a>
+                    <div class="dropdown-menu" id="hideshowdropdown" aria-labelledby="btnGroupDrop1"
+                         x-placement="bottom-start"
+                         style="position: absolute; will-change: transform; top: 12px; left: -95px; transform: translate3d(0px, 38px, 0px);">
+                        <!-- 						<ul style="list-style-type: none;">
+                                                <li><span class="btn btn-disabled" id="loginname"></span></li><li>
+                                                <a class="btn" id="signout" onclick="signout();" title="signout" style="margin-right: -27px;">Logout
+                                                </a></li>
 
- -->
- 					<span class="btn btn-disabled" id="loginname"></span><br>
-						<a class="btn" id="signout" onclick="signout();" title="signout" style="margin-right: -27px;">Logout
-						</a>
- 					</div>
-				</div>
-			</div>
-		</form>
+                         -->
+                        <span class="btn btn-disabled" id="loginname"></span><br>
+                        <a class="btn" id="signout" onclick="signout();" title="signout" style="margin-right: -27px;">Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
 
-		</div>
-	</nav>
-	<br>
-	<br>
-	<div class="row">
-		<div class="col-md-12">
-			<table class="col-md-12">
-				<tr class="col-md-12">
-					<td width="20%">
-						<div class="row">
-							<div class="col-md-11 col-md-offset-1">
-								<form id="Tcreation" style="margin-left: 12px;">
-									<div class="form-group">
-										<label class="col-form-label" for="tname"><b>Select a Training</b></label>
-										<select class="form-control" id="tname">
-											<option selected="true">Select a Training</option>
-											<option value="AWS-L2">AWS L2</option>
-											<option value="L3-Intuit-training">Intuit L3</option>
-											<option value="AWS-L3">AWS L3</option>
-										</select>
-									</div>
-									
-									<div class="form-group col-md-12">
-										<button type="button" onclick="sendget()" class="btn btn-info col-md-5" >Submit</button>
-										
-										<a class="btn refresh" id="refresh" onclick="refresh()" title="Reload"><img src="http://cloudthat-cloudbilling.com.s3-website.ap-south-1.amazonaws.com/assets/icons/reload1.png"/></a>
-										
-									</div>
-									<!-- <input type="text" id="nuser" placeholder = "Enter the number of users"></input><br><br>
-										<input type="text" id="uname" placeholder = "Enter the Name"></input><br><br>
-									
-									<select id="acType">
-														<option selected="true"> Select Account</option>
-														<option value ="dev">Developer Account</option>
-														<option value ="training">Training Acoount</option>
-									</select> <br><br>
-									
-									<select id="uPolicy">
-														<option selected="true">Select a Policy</option>
-														<option value="arn:aws:iam::869630519277:policy/AWS_L2">AWS L2</option>
-														<option value="arn:aws:iam::aws:policy/AmazonEC2FullAccess">AWS L3</option>
-									</select> <br><br>
-									
-									<button onclick="sendget()">Submit</button> <t><t><t>
-									<button onclick="refresh()">Refresh</button><br><br> -->
-								</form>
-							</div>
-						</div>
-						
-						
-					</td>
-					<td width="80%">
-						<div class="row" id="userTable"  style="display: none;">
-							<div class="col-md-11">
-								
-								<table id="mytable" class="table table-striped table-bordered" cellspacing="0">
-									<thead>
-										<!-- 										<tr id="a1">
-											
-										</tr> -->
-										<tr>
-											<th>USERNAME</th>
-											<th>TRAINING NAME</th>
-											<th>ACCOUNT TYPE</th>
-											<th>CREATED DATE</th>
-											<th>START DATE</th>
-											<th>EXPIRE DATE</th>
-											<th>Edit</th>
-									</thead>
-								</table>
-							</div>
-						</div>
-					</td>
-				</tr>
-			</table>
-		</div>
-		
-	</div>
-	<div class="modal" id="updateuser">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title">Update ExpiryDate</h5>
-					<button type="button" class="close" onClick="modelclose()" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<label>Expire Date</label>
-					<input id="expdt" type="text" placeholder="dd-mm-yyyy"/>
-					<input type="hidden" name="resourcename">
-				</div>
-				<div id="loadingMulModal" style="display: none;background-color: rgb(20, 20, 20);">
-					<p style="position: absolute; top: 40%; left:45%;">
-						<img src="http://cloudthat-cloudbilling.com.s3-website.ap-south-1.amazonaws.com/assets/images/loader.gif"/>
-					</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary saveExpiryDate">Save changes</button>
-					<button type="button" class="btn btn-secondary" onClick="modelclose()" data-dismiss="modal">Close</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div id="loading" style="display: none;background-color: rgb(20, 20, 20);">
-		<p style="position: absolute; top: 40%; left:45%;">
-            <img src="../assets/images/loader.gif"/>
-		</p>
-	</div>
-	
+    </div>
+</nav>
+<br>
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <table class="col-md-12">
+            <tr class="col-md-12">
+                <td width="20%">
+                    <div class="row">
+                        <div class="col-md-11 col-md-offset-1">
+                            <form id="Tcreation" style="margin-left: 12px;">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="tname"><b>Select a Training</b></label>
+                                    <select class="form-control" id="tname">
+                                        <option selected="true">Select a Training</option>
+                                        <option value="AWS-L2">AWS L2</option>
+                                        <option value="L3-Intuit-training">Intuit L3</option>
+                                        <option value="AWS-L3">AWS L3</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <button type="button" onclick="sendget()" class="btn btn-info col-md-5">Submit
+                                    </button>
+
+                                    <a class="btn refresh" id="refresh" onclick="refresh()" title="Reload"><img
+                                            src="http://cloudthat-cloudbilling.com.s3-website.ap-south-1.amazonaws.com/assets/icons/reload1.png"/></a>
+
+                                </div>
+                                <!-- <input type="text" id="nuser" placeholder = "Enter the number of users"></input><br><br>
+                                    <input type="text" id="uname" placeholder = "Enter the Name"></input><br><br>
+
+                                <select id="acType">
+                                                    <option selected="true"> Select Account</option>
+                                                    <option value ="dev">Developer Account</option>
+                                                    <option value ="training">Training Acoount</option>
+                                </select> <br><br>
+
+                                <select id="uPolicy">
+                                                    <option selected="true">Select a Policy</option>
+                                                    <option value="arn:aws:iam::869630519277:policy/AWS_L2">AWS L2</option>
+                                                    <option value="arn:aws:iam::aws:policy/AmazonEC2FullAccess">AWS L3</option>
+                                </select> <br><br>
+
+                                <button onclick="sendget()">Submit</button> <t><t><t>
+                                <button onclick="refresh()">Refresh</button><br><br> -->
+                            </form>
+                        </div>
+                    </div>
+
+
+                </td>
+                <td width="80%">
+                    <div class="row" id="userTable" style="display: none;">
+                        <div class="col-md-11">
+
+                            <table id="mytable" class="table table-striped table-bordered" cellspacing="0">
+                                <thead>
+                                <!-- 										<tr id="a1">
+
+                                </tr> -->
+                                <tr>
+                                    <th>USERNAME</th>
+                                    <th>TRAINING NAME</th>
+                                    <th>ACCOUNT TYPE</th>
+                                    <th>CREATED DATE</th>
+                                    <th>START DATE</th>
+                                    <th>EXPIRE DATE</th>
+                                    <th>Edit</th>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+<div class="modal" id="updateuser">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update ExpiryDate</h5>
+                <button type="button" class="close" onClick="modelclose()" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label>Expire Date</label>
+                <input id="expdt" type="text" placeholder="dd-mm-yyyy"/>
+                <input type="hidden" name="resourcename">
+            </div>
+            <div id="loadingMulModal" style="display: none;background-color: rgb(20, 20, 20);">
+                <p style="position: absolute; top: 40%; left:45%;">
+                    <img src="http://cloudthat-cloudbilling.com.s3-website.ap-south-1.amazonaws.com/assets/images/loader.gif"/>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary saveExpiryDate">Save changes</button>
+                <button type="button" class="btn btn-secondary" onClick="modelclose()" data-dismiss="modal">Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="loading" style="display: none;background-color: rgb(20, 20, 20);">
+    <p style="position: absolute; top: 40%; left:45%;">
+        <img src="../assets/images/loader.gif"/>
+    </p>
+</div>
+
 </body>
 </html>

@@ -40,7 +40,6 @@ var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poo
 var cognitoUser = userPool.getCurrentUser();
 checklogin();
 $.notify.defaults( { globalPosition: 'top center'} );
-var SelectedResourceVar;
 var token = window.localStorage.getItem('token');
 var currUser = window.localStorage.username;
 console.log("User here is "+currUser);
@@ -115,13 +114,14 @@ function goFurther(){
             var nameget = $('#deleteuser').val();
             var nameArray = (nameget).split(",");
             var lambdadata = {
-                method: "deleteHtmliam",
+                method: "deleteIam",
                 account : acType,
                 uname : nameArray
             }
             $("#loadingMulModal").show();
             $.ajax({
                 url: _config.api.invokeUrl + '/resources/iam',
+                // url: _config.api.invokeUrlR + '/iam',
                 type: 'post',
                 headers: {"Authorization": token},
                 contentType: 'application/json',
@@ -164,7 +164,7 @@ function sendget() {
     console.log(acType);
     var lamdadata={
         account : acType,
-        method: "listHtmliam"
+        method: "listIam"
     };
     console.log(acType);
     //
@@ -172,6 +172,7 @@ function sendget() {
     // $(document).ready(function() {
     $.ajax({
         url: _config.api.invokeUrl + '/resources/iam',
+        // url: _config.api.invokeUrlR + '/iam',
         type: 'POST',
         headers: {"Authorization": token},
         crossDomain: true,
@@ -285,11 +286,13 @@ function sendget() {
 		<form class="form-inline my-6 my-lg-0 my-sm-0 pull-right">
 			<div class="form-group">
 				<div class="dropdown col-md-1 float-md-right">
-					<a class="btn dropdown-toggle" id="userdetail" onclick="usermenu()" aria-haspopup="true"
+					<a class="btn dropdown" id="userdetail" onclick="usermenu()" aria-haspopup="true"
 					   aria-expanded="true" data-toggle="dropdown" title="signout" style="margin-right: -27px;"><img
 							src="../assets/images/profilelogo.png" style="width: 25px;"/>
 					</a>
-					<div class="dropdown-menu" id="hideshowdropdown" aria-labelledby="btnGroupDrop1" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 12px; left: -78px; transform: translate3d(0px, 38px, 0px);">
+					<div class="dropdown-menu" id="hideshowdropdown" aria-labelledby="btnGroupDrop1"
+						 x-placement="bottom-start"
+						 style="position: absolute; will-change: transform; top: 12px; left: -95px; transform: translate3d(0px, 38px, 0px);">
 
 						<span class="btn btn-disabled" id="loginname"></span><br>
 						<a class="btn" id="signout" onclick="signout();" title="signout" style="margin-right: -27px;">Logout
