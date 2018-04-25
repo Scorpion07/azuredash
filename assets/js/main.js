@@ -8,32 +8,33 @@ checklogin();
 $.notify.defaults({globalPosition: 'top center'});
 
 var ajaxrequest_pages = [];
-var ajaxreload = [];
-var toBeDeleted = {};
-//console.log("Global Data :"+$('.SelectedResource').attr("data-resource"));
 var SelectedResourceVar;
 var token = window.localStorage.getItem('token');
-var account = window.localStorage.getItem('account');
-AWS.config.update({
-    accessKeyId: "",
-    secretAccessKey: "",
-    region: "ap-south-1"
-});
-var cognitoidentityserviceprovider = new AWS.CognitoIdentityServiceProvider({apiVersion: '2016-04-18'});
-var params = {
-    AuthFlow: "REFRESH_TOKEN_AUTH",
-    ClientId: _config.cognito.userPoolClientId, /* required */
+var account;
 
-    AuthParameters: {
-        'REFRESH_TOKEN': window.localStorage.reftoken
+setInterval(function () {
+    submit = {
+        account: "dev",
+        method: "refreshtokens",
+        reftoken: window.localStorage.reftoken
     }
-};
- function check(){
- cognitoidentityserviceprovider.initiateAuth(params, function(err, data) {
-     if (err) console.log(err, err.stack); // an error occurred
-     else     console.log(data);           // successful response
- });
- }
+    $.ajax({
+        url: _config.api.invokeUrl + '/billing/services',
+        headers: {"Authorization": token},
+        type: 'post',
+        contentType: 'application/json',
+        dataType: 'json',
+        contentType: 'application/json',
+        crossDomain: true,
+        data: JSON.stringify(submit),
+        success: function (respdata) {
+            console.log(respdata)
+            window.localStorage.setItem('token', respdata['AuthenticationResult']['IdToken']);
+            token = window.localStorage.token;
+        }
+
+    });
+}, 1000 * 60 * 58);
 
 $("#filter").keyup(function () {
     var filter = $(this).val(),
@@ -55,8 +56,17 @@ $("#filter").keyup(function () {
 $(window).on("load", function () {
     document.getElementById("defaultclick").click();
     checklogin();
-    account = window.localStorage.getItem('account');
+
     token = window.localStorage.getItem('token');
+
+    if (window.localStorage.getItem('account')) {
+        account = window.localStorage.getItem('account');
+    }
+    else {
+        window.localStorage.setItem('account', $("#account").val());
+        account = window.localStorage.getItem('account');
+    }
+    console.log(account);
     if (account == null) {
         account = $("#account").val();
     }
