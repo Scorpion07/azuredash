@@ -13,30 +13,30 @@ var SelectedResourceVar;
 var token = window.localStorage.getItem('token');
 var account;
 var session;
-var tokenData = {IdToken : window.localStorage.token,RefreshToken : window.localStorage.reftoken,AccessToken : window.localStorage.actoken};
-setInterval(function () {
-    submit = {
-        account: "dev",
-        method: "refreshtokens",
-        reftoken: window.localStorage.reftoken
-    }
-    $.ajax({
-        url: _config.api.invokeUrl + '/billing/services',
-        headers: {"Authorization": token},
-        type: 'post',
-        contentType: 'application/json',
-        dataType: 'json',
-        contentType: 'application/json',
-        crossDomain: true,
-        data: JSON.stringify(submit),
-        success: function (respdata) {
-            console.log(respdata)
-            window.localStorage.setItem('token', respdata['AuthenticationResult']['IdToken']);
-            token = window.localStorage.token;
-        }
-
-    });
-}, 1000 * 60 * 56);
+// var tokenData = {IdToken : window.localStorage.token,RefreshToken : window.localStorage.reftoken,AccessToken : window.localStorage.actoken};
+// setInterval(function () {
+//     submit = {
+//         account: "dev",
+//         method: "refreshtokens",
+//         reftoken: window.localStorage.reftoken
+//     }
+//     $.ajax({
+//         url: _config.api.invokeUrl + '/billing/services',
+//         headers: {"Authorization": token},
+//         type: 'post',
+//         contentType: 'application/json',
+//         dataType: 'json',
+//         contentType: 'application/json',
+//         crossDomain: true,
+//         data: JSON.stringify(submit),
+//         success: function (respdata) {
+//             console.log(respdata)
+//             window.localStorage.setItem('token', respdata['AuthenticationResult']['IdToken']);
+//             token = window.localStorage.token;
+//         }
+//
+//     });
+// }, 1000 * 60 * 56);
 
 setInterval(function() {
     console.log(SelectedResourceVar);
