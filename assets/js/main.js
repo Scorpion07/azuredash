@@ -14,6 +14,9 @@ var account;
 setInterval(function() {
     console.log(SelectedResourceVar);
     if (SelectedResourceVar == "dashboard"){
+        if(window.localStorage.custexp <= new Date().getTime()){
+            checklogin();
+        }
         showDashboard();
     }
 }, 300000);
