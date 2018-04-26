@@ -1,14 +1,15 @@
 var ajaxrequests = [];
-var count = 0;
+var count;
 
-function loader(){
-    if(count === 12){
+function loader() {
+    if (count === 12) {
         $("#loading").hide();
         $("#loading").css("style", "display: none;");
     }
 }
-function showDashboard() {
 
+function showDashboard() {
+    count = 0;
     var account = window.localStorage.getItem("account");
     var currentTime = new Date();
     var snapshot = {
@@ -71,7 +72,7 @@ function showDashboard() {
 
     ajaxrequests.push(
         $.ajax({
-            url: _config.api.invokeUrl+'/billing/services',
+            url: _config.api.invokeUrl + '/billing/services',
             type: 'post',
             headers: {"Authorization": token},
 
@@ -98,12 +99,18 @@ function showDashboard() {
                 }
                 //$("#loading").hide();
                 //$("#loading").css("style", "display: none;");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                count += 1
+                loader();
+                $.notify("Unable to Load", "error");
             }
+
         }));
 
     ajaxrequests.push(
         $.ajax({
-            url: _config.api.invokeUrl+'/billing/services',
+            url: _config.api.invokeUrl + '/billing/services',
             type: 'post',
             headers: {"Authorization": token},
             dataType: 'json',
@@ -137,14 +144,17 @@ function showDashboard() {
                     $("#volumesD").removeClass("text-danger");
 
                 }
-                //$("#loading").hide();
-                //$("#loading").css("style", "display: none;");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                count += 1
+                loader();
+                $.notify("Unable to Load", "error");
             }
         }));
 
     ajaxrequests.push(
         $.ajax({
-            url: _config.api.invokeUrl+'/billing/services',
+            url: _config.api.invokeUrl + '/billing/services',
             type: 'post',
             headers: {"Authorization": token},
             dataType: 'json',
@@ -170,15 +180,17 @@ function showDashboard() {
                 else {
                     $("#InstanceD").removeClass("text-danger");
                 }
-                //$("#loading").hide();
-                //$("#loading").css("style", "display: none;");
-
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                count += 1
+                loader();
+                $.notify("Unable to Load", "error");
             }
         }));
 
     ajaxrequests.push(
         $.ajax({
-            url: _config.api.invokeUrl+'/billing/services',
+            url: _config.api.invokeUrl + '/billing/services',
             type: 'post',
             headers: {"Authorization": token},
             dataType: 'json',
@@ -220,14 +232,17 @@ function showDashboard() {
                     $("#vpcD").removeClass("text-danger");
                     $("#vpnD").removeClass("text-danger");
                 }
-                //$("#loading").hide();
-                //$("#loading").css("style", "display: none;");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                count += 1
+                loader();
+                $.notify("Unable to Load", "error");
             }
         }));
 
     ajaxrequests.push(
         $.ajax({
-            url: _config.api.invokeUrl+'/billing/services',
+            url: _config.api.invokeUrl + '/billing/services',
             type: 'post',
             headers: {"Authorization": token},
             dataType: 'json',
@@ -258,15 +273,17 @@ function showDashboard() {
                     $("#eniD").removeClass("text-danger");
 
                 }
-                //$("#loading").hide();
-                //$("#loading").css("style", "display: none;");
-
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                count += 1
+                loader();
+                $.notify("Unable to Load", "error");
             }
         }));
 
     ajaxrequests.push(
         $.ajax({
-            url: _config.api.invokeUrl+'/billing/services',
+            url: _config.api.invokeUrl + '/billing/services',
             type: 'post',
             headers: {"Authorization": token},
             dataType: 'json',
@@ -299,13 +316,16 @@ function showDashboard() {
                     $("#dbinstancecluster").removeClass("text-danger");
 
                 }
-                //$("#loading").hide();
-                //$("#loading").css("style", "display: none;");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                count += 1
+                loader();
+                $.notify("Unable to Load", "error");
             }
         }));
     ajaxrequests.push(
         $.ajax({
-            url: _config.api.invokeUrl+'/billing/services',
+            url: _config.api.invokeUrl + '/billing/services',
             type: 'post',
             headers: {"Authorization": token},
             dataType: 'json',
@@ -329,13 +349,16 @@ function showDashboard() {
                 else {
                     $("#lambdaD").removeClass("text-danger");
                 }
-                //$("#loading").hide();
-                //$("#loading").css("style", "display: none;");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                count += 1
+                loader();
+                $.notify("Unable to Load", "error");
             }
         }));
     ajaxrequests.push(
         $.ajax({
-            url: _config.api.invokeUrl+'/billing/services',
+            url: _config.api.invokeUrl + '/billing/services',
             type: 'post',
             headers: {"Authorization": token},
             dataType: 'json',
@@ -358,13 +381,16 @@ function showDashboard() {
                 else {
                     $("#stackD").removeClass("text-danger");
                 }
-                //$("#loading").hide();
-                //$("#loading").css("style", "display: none;");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                count += 1
+                loader();
+                $.notify("Unable to Load", "error");
             }
         }));
     ajaxrequests.push(
         $.ajax({
-            url: _config.api.invokeUrl+'/billing/services',
+            url: _config.api.invokeUrl + '/billing/services',
             type: 'post',
             headers: {"Authorization": token},
             dataType: 'json',
@@ -414,14 +440,17 @@ function showDashboard() {
                     $("#stackD").removeClass("text-danger");
 
                 }
-                //$("#loading").hide();
-               // $("#loading").css("style", "display: none;");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                count += 1
+                loader();
+                $.notify("Unable to Load", "error");
             }
         }));
 
     ajaxrequests.push(
         $.ajax({
-            url: _config.api.invokeUrl+'/billing/services',
+            url: _config.api.invokeUrl + '/billing/services',
             type: 'post',
             headers: {"Authorization": token},
             dataType: 'json',
@@ -450,16 +479,17 @@ function showDashboard() {
                     $("#redshift_cluster").removeClass("text-danger");
                     $("#redsnapshot").removeClass("text-danger");
                 }
-                //$("#loading").hide();
-               // $("#loading").css("style", "display: none;");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                count += 1
+                loader();
+                $.notify("Unable to Load", "error");
             }
         }));
 
-    $("#loading").show();
-    $("#loading").css("style", "display:block");
     ajaxrequests.push(
         $.ajax({
-            url: _config.api.invokeUrl+'/billing/services',
+            url: _config.api.invokeUrl + '/billing/services',
             type: 'post',
             headers: {"Authorization": token},
 
@@ -485,11 +515,15 @@ function showDashboard() {
 
                 }
                 //$("#loading").hide();
-               // $("#loading").css("style", "display: none;");
+                // $("#loading").css("style", "display: none;");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                count += 1
+                loader();
+                $.notify("Unable to Load", "error");
             }
         }));
     CostofResources();
-    //$("#loading").hide();
 }
 
 function CostofResources() {
