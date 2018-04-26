@@ -39,7 +39,7 @@ function sessionValid() {
                         signout();
                     }
                     else{
-                        window.localStorage.setItem('custexp',(new Date().getTime()+3600));
+                        window.localStorage.setItem('custexp',(new Date().getTime()+3600000));
                         console.log('In a refreshtoken : '+session)
                         window.localStorage.setItem('token', session.getIdToken().getJwtToken());
                         window.localStorage.setItem('actoken', session.getAccessToken().getJwtToken());
