@@ -6,37 +6,10 @@ var poolData = {
 var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
 var cognitoUser = userPool.getCurrentUser();
 checklogin();
-$.notify.defaults({globalPosition: 'top center'});
-
 var ajaxrequest_pages = [];
 var SelectedResourceVar;
 var token = window.localStorage.getItem('token');
 var account;
-var session;
-// var tokenData = {IdToken : window.localStorage.token,RefreshToken : window.localStorage.reftoken,AccessToken : window.localStorage.actoken};
-// setInterval(function () {
-//     submit = {
-//         account: "dev",
-//         method: "refreshtokens",
-//         reftoken: window.localStorage.reftoken
-//     }
-//     $.ajax({
-//         url: _config.api.invokeUrl + '/billing/services',
-//         headers: {"Authorization": token},
-//         type: 'post',
-//         contentType: 'application/json',
-//         dataType: 'json',
-//         contentType: 'application/json',
-//         crossDomain: true,
-//         data: JSON.stringify(submit),
-//         success: function (respdata) {
-//             console.log(respdata)
-//             window.localStorage.setItem('token', respdata['AuthenticationResult']['IdToken']);
-//             token = window.localStorage.token;
-//         }
-//
-//     });
-// }, 1000 * 60 * 56);
 
 setInterval(function() {
     console.log(SelectedResourceVar);
@@ -179,15 +152,12 @@ $(document).on('click', '#yesModal', function () {
     ModalClickdelete(SelectedResourceVar);
 });
 
-//////////////////////////////stop dashboard ajax call////////////////////////////
 function stopRequests(SelectedResourceVar) {
-    // //|| account === "dev" || account === "training" || account === "prod" || account === "exttrain"
     if (SelectedResourceVar === "dashboard") {
         for (var i = 0; i < ajaxrequest_pages.length; i++)
             ajaxrequest_pages[i].abort();
     }
     else {
-        //console.log("stop");
         for (var i = 0; i < ajaxrequests.length; i++)
             ajaxrequests[i].abort();
     }

@@ -40,91 +40,89 @@ function ListInstanceData() {
     }
     console.log(submit);
     ajaxrequest_pages.push(
-    $.ajax({
-        url: _config.api.invokeUrl+'/billing/services',
-        headers: {"Authorization": token},
-        type: 'post',
-        dataType: 'json',
-        contentType: 'application/json',
-        crossDomain: true,
-        data: JSON.stringify(submit),
-        success: function (respdata) {
-            console.log(respdata)
-            $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
-            $('#table').dataTable().fnDestroy();
-            table = $('#table').DataTable({
-                data: respdata.data,
-                serverside: true,
-                order: [],
-                'rowCallback': function (row, data, iDisplayIndex) {
-                    if (account !== 'prod') {
-                        var check = '<input type="checkbox" id="checkboxclick" name="id[]" class="checkboxclick checkboxes" data_instance_id="' + data.InstanceId + '" data_region="' + data.Region + '">';
-                        $('td:eq(0)', row).html(check);
-                    }
-                    else {
-                        $('td:eq(0)', row).html(count += 1);
-                    }
-                },
+        $.ajax({
+            url: _config.api.invokeUrl + '/billing/services',
+            headers: {"Authorization": token},
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            crossDomain: true,
+            data: JSON.stringify(submit),
+            success: function (respdata) {
+                console.log(respdata)
+                $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
+                $('#table').dataTable().fnDestroy();
+                table = $('#table').DataTable({
+                    data: respdata.data,
+                    serverside: true,
+                    order: [],
+                    'rowCallback': function (row, data, iDisplayIndex) {
+                        if (account !== 'prod') {
+                            var check = '<input type="checkbox" id="checkboxclick" name="id[]" class="checkboxclick checkboxes" data_instance_id="' + data.InstanceId + '" data_region="' + data.Region + '">';
+                            $('td:eq(0)', row).html(check);
+                        }
+                        else {
+                            $('td:eq(0)', row).html(count += 1);
+                        }
+                    },
 
-                'columnDefs': [
-                    {"className": "dt-center", "defaultContent": "-", "targets": "_all"},
-                    {
-                        'targets': [0],
-                        'searchable': false,
-                        'orderable': false,
-                        'data': null,
-                    },
-                    {
-                        'targets': [1],
-                        'orderable': true,
-                        'data': 'Tags.0.Value'
-                    },
-                    {
-                        'targets': [2],
-                        'orderable': true,
-                        'data': 'InstanceId',
-                    },
-                    {
-                        'targets': [3],
-                        'orderable': true,
-                        'data': 'InstanceType'
-                    },
-                    {
-                        'targets': [4],
-                        'orderable': true,
-                        'data': 'LaunchTime'
-                    },
-                    {
-                        'targets': [5],
-                        'orderable': true,
-                        'data': 'State.Name'
-                    },
-                    {
-                        'targets': [6],
-                        'orderable': true,
-                        'data': 'BlockDeviceMappings.0.Ebs.VolumeId'
-                    },
-                    {
-                        'targets': [7],
-                        'orderable': true,
-                        'data': 'RegionName'
-                    }
-                ],
+                    'columnDefs': [
+                        {"className": "dt-center", "defaultContent": "-", "targets": "_all"},
+                        {
+                            'targets': [0],
+                            'searchable': false,
+                            'orderable': false,
+                            'data': null,
+                        },
+                        {
+                            'targets': [1],
+                            'orderable': true,
+                            'data': 'Tags.0.Value'
+                        },
+                        {
+                            'targets': [2],
+                            'orderable': true,
+                            'data': 'InstanceId',
+                        },
+                        {
+                            'targets': [3],
+                            'orderable': true,
+                            'data': 'InstanceType'
+                        },
+                        {
+                            'targets': [4],
+                            'orderable': true,
+                            'data': 'LaunchTime'
+                        },
+                        {
+                            'targets': [5],
+                            'orderable': true,
+                            'data': 'State.Name'
+                        },
+                        {
+                            'targets': [6],
+                            'orderable': true,
+                            'data': 'BlockDeviceMappings.0.Ebs.VolumeId'
+                        },
+                        {
+                            'targets': [7],
+                            'orderable': true,
+                            'data': 'RegionName'
+                        }
+                    ],
 
-                'select': {
-                    'style': 'multi'
-                },
+                    'select': {
+                        'style': 'multi'
+                    },
+                });
+                $('#loading').hide();
 
-
-            });
-            $('#loading').hide();
-
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            $('#loading').hide();
-            $.notify("Unable to Load", "error");
-        }
-    }));
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                $('#loading').hide();
+                $.notify("Unable to Load", "error");
+            }
+        }));
 }
 
 function deleteModalInstances() {
@@ -172,7 +170,7 @@ function deleteInstances() {
         instanceids: instanceid
     }
     $.ajax({
-        url: _config.api.invokeUrl+'/billing/services',
+        url: _config.api.invokeUrl + '/billing/services',
         headers: {"Authorization": token},
         type: 'post',
         contentType: 'application/json',
