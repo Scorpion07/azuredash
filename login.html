@@ -67,6 +67,8 @@
                                 window.localStorage.setItem('actoken', actoken);
                                 window.localStorage.setItem('reftoken', reftoken);
                                 window.localStorage.setItem('username', $('#username').val())
+                                window.localStorage.setItem('exp',result['idToken']['payload']['exp']);
+                                window.localStorage.setItem('exptime',((result['idToken']['payload']['exp'])+(new Date().getTime())));
                                 console.log("Session : " + result.isValid());
                                 cognitoUser.getUserAttributes(function (err, result) {
                                     if (err) {

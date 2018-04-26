@@ -2,6 +2,7 @@ var poolData = {
     UserPoolId: _config.cognito.userPoolId,
     ClientId: _config.cognito.userPoolClientId
 }
+
 var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
 var cognitoUser = userPool.getCurrentUser();
 checklogin();
@@ -11,7 +12,8 @@ var ajaxrequest_pages = [];
 var SelectedResourceVar;
 var token = window.localStorage.getItem('token');
 var account;
-
+var session;
+var tokenData = {IdToken : window.localStorage.token,RefreshToken : window.localStorage.reftoken,AccessToken : window.localStorage.actoken};
 setInterval(function () {
     submit = {
         account: "dev",
@@ -34,7 +36,14 @@ setInterval(function () {
         }
 
     });
-}, 1000 * 60 * 58);
+}, 1000 * 60 * 56);
+
+setInterval(function() {
+    console.log(SelectedResourceVar);
+    if (SelectedResourceVar == "dashboard"){
+        showDashboard();
+    }
+}, 300000);
 
 $("#filter").keyup(function () {
     var filter = $(this).val(),
