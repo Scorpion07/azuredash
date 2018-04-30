@@ -1,6 +1,8 @@
 <html>
 <head>
     <link rel="stylesheet" href="../assets/css/cerulean/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/TimeCircles.css">
+    <!--<link rel="stylesheet" href="../assets/css/cerulean/TimeCircles.css">-->
     <!--<link rel="stylesheet" href="../assets/css/jquery.dataTables.min.css">-->
     <!--<link rel="stylesheet" href="../assets/css/buttons.dataTables.min.css">-->
     <link rel="stylesheet" href="../assets/css/daterangepicker.css">
@@ -9,6 +11,8 @@
     <script src="../assets/js/dependancies/amazon-cognito-identity.min.js"></script>
     <script src="../assets/js/dependancies/jquery.min.js"></script>
     <script src="../assets/js/dependancies/jquery.dataTables.min.js"></script>
+    <script src="../assets/js/dependancies/TimeCircles.js"></script>
+
     <!--<script src="../assets/js/dependancies/dataTables.buttons.min.js"></script>-->
     <!--<script src="../assets/js/dependancies/jszip.min.js"></script>-->
     <!--<script src="../assets/js/dependancies/pdfmake.min.js"></script>-->
@@ -126,50 +130,50 @@
             // $('#username').text(window.localStorage.username);
         });
 
-        function check_create(templateName, noUser) {
-            for (var i = 1; i <= noUser; i++) {
-                stackToCheck = tmeplateName + "-" + (i)
-                var lambdaData = {
-                    "account": $("#acType").val(),
-                    "method": "discribeHtmlCf",
-                    "stname": stackToCheck
-                }
-                $.ajax({
-                    url: _config.api.invokeUrl + '/resources/iam',
-                    // url: _config.api.invokeUrlR + '/iam',
-                    type: 'POST',
-                    headers: {"Authorization": token},
-                    crossDomain: true,
-                    contentType: 'application/json',
-                    dataType: 'json',
-                    data: JSON.stringify(lamdadata),
-                    success: function (getdata) {
-                        if (getdata == "Successfull") {
-
-                        }
-                        else {
-                            $.notify("Fail to Launch Stacks", "error");
-                        }
-
-                        //console.log(getdata.finaldata["0"].User.UserName);
-                        //alert(getdata.finaldata["0"].User.UserName);
-                        // $("#mytable").append('<caption style="caption-side: top">'+ training +'</caption>');
-                        //$("#a1").text(training);
-                        // $("#mytable").append('#tname').val()
-                    },
-                    error: function (xhr, ajaxOptions, thrownError) {
-                        alert("error")
-                        //error handling stuff
-                    }
-                });
-
-
-            }
-
-        }
+        // function check_create(templateName, noUser) {
+        //     for (var i = 1; i <= noUser; i++) {
+        //         stackToCheck = tmeplateName + "-" + (i)
+        //         var lambdaData = {
+        //             "account": $("#acType").val(),
+        //             "method": "discribeHtmlCf",
+        //             "stname": stackToCheck
+        //         }
+        //         $.ajax({
+        //             // url: _config.api.invokeUrl + '/resources/iam',
+        //             url: _config.api.invokeUrlR + '/iam',
+        //             type: 'POST',
+        //             headers: {"Authorization": token},
+        //             crossDomain: true,
+        //             contentType: 'application/json',
+        //             dataType: 'json',
+        //             data: JSON.stringify(lamdadata),
+        //             success: function (getdata) {
+        //                 if (getdata == "Successfull") {
+        //
+        //                 }
+        //                 else {
+        //                     $.notify("Fail to Launch Stacks", "error");
+        //                 }
+        //
+        //                 //console.log(getdata.finaldata["0"].User.UserName);
+        //                 //alert(getdata.finaldata["0"].User.UserName);
+        //                 // $("#mytable").append('<caption style="caption-side: top">'+ training +'</caption>');
+        //                 //$("#a1").text(training);
+        //                 // $("#mytable").append('#tname').val()
+        //             },
+        //             error: function (xhr, ajaxOptions, thrownError) {
+        //                 alert("error")
+        //                 //error handling stuff
+        //             }
+        //         });
+        //
+        //
+        //     }
+        //
+        // }
 
         function sendget() {
-            // $("#loading").show();
+            $("#loading").show();
             nouser = $("#nuser").val();
             Stname = $("#sname").val();
             templateS = $("#templatename").val();
@@ -209,10 +213,52 @@
                     $("#regionname").val("Select a Regions");
                     if (getdata == "Successfull") {
                         $.notify("Stack Creations In Progress", "success");
-                        check_create(templateS, nouser);
+                        // check_create(templateS, nouser);
+                        $("#loading").hide();
+
+                        $(".coundown").TimeCircles({
+                            count_past_zero: false,
+                            "bg_width": 0.2,
+                            "fg_width": 0.08333333333333333,
+                            time: {
+                                Days: {show: false},
+                                Hours: {show: false},
+                                Minutes: {show: true},
+                                Seconds: {show: true}
+                            }
+                        }).addListener(countdownComplete);
+
+                        function countdownComplete(unit, value, total) {
+                            if (total <= 0) {
+                                $(this).fadeOut('slow').replaceWith("<h2 id='test'>Time's Up!</h2>");
+                                $("#messagetimer").hide();
+
+                            }
+                        }
                     }
                     else {
                         $.notify("Fail to Launch Stacks", "error");
+                        $("#loading").hide();
+                        // $("#messagetimer").show();
+                        // $(".coundown").TimeCircles({
+                        //     count_past_zero: false,
+                        //     "bg_width": 0.2,
+                        //     "fg_width": 0.08333333333333333,
+                        //     time: {
+                        //         Days: {show:false},
+                        //         Hours: {show:false},
+                        //         Minutes: {show:true},
+                        //         Seconds: {show:true}
+                        //     }}).addListener(countdownComplete);
+                        //
+                        // function countdownComplete(unit, value, total) {
+                        //     if (total <= 0) {
+                        //         $(this).fadeOut('slow').replaceWith("<h2 id='test'>Time's Up!</h2>");
+                        //         $("#messagetimer").hide();
+                        //
+                        //     }
+                        // }
+
                     }
 
                     //console.log(getdata.finaldata["0"].User.UserName);
@@ -238,6 +284,9 @@
     <a class="navbar-brand" href="#"><b>Resources Creation</b></a>
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
+            <li>
+                <a href="home.html" class=" text-white col-md-12">Home</a>
+            </li>
             <li>
                 <a href="cf.html" class=" text-white col-md-12">Create Stacks</a>
             </li>
@@ -301,8 +350,8 @@
                                     <label class="col-form-label" for="templatename"><b>Select a Training</b></label>
                                     <select class="form-control" id="templatename">
                                         <option selected="true">Select a Training</option>
-                                        <option value="Ansible">Ansible</option>
-                                        <option value="Custom">Custom</option>
+                                        <option value="ansible">Ansible</option>
+                                        <option value="singletest">Custom</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -344,7 +393,12 @@
                         </div>
                     </div>
                 </td>
-                <td width="75%"></td>
+                <td width="75%">
+                    <center>
+                        <div id="messagetimer" style="display: none"><h2>Please wait Stacks are Being Created</h2></div>
+                        <div class="coundown" data-timer="120" style="width: 50%"></div>
+                    </center>
+                </td>
             </tr>
         </table>
     </div>

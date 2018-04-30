@@ -47,17 +47,17 @@
     $.notify.defaults({globalPosition: 'top center'});
     var acType;
 
-    // function goFurther() {
-    //     var elements = document.getElementsByClassName("checkboxes");
-    //     for (var i = 0; i < elements.length; i++) {
-    //         if (elements[i].checked) {
-    //             $("#userdelete").attr("disabled", false);
-    //             break;
-    //         }
-    //         $("#userdelete").attr("disabled", true);
-    //     }
-    //
-    // }
+    function goFurther() {
+        var elements = document.getElementsByClassName("checkboxes");
+        for (var i = 0; i < elements.length; i++) {
+            if (elements[i].checked) {
+                $("#stackdelete").attr("disabled", false);
+                break;
+            }
+            $("#stackdelete").attr("disabled", true);
+        }
+
+    }
 
     $(document).ready(function () {
         checklogin();
@@ -72,157 +72,177 @@
             acType = $("#acType").val();
             sendget();
         });
-    });
-        /*
-                $("#userdelete").on("click", function () {
-                    $("#loading").show();
-                    $('#unamelist').html("");
-                    var uname = [];
-                    var acType = $("#acType").val();
-                    //$("#loading").show();
-                    $(".checkboxes").each(function () {
-                        if ($(this).is(":checked")) {
-                            //console.log();
-                            //console.log($(this).attr("data_instance_id"));
-                            uname.push($(this).attr("username"));
-                        }
-                    });
-                    $('[name="modal_uname"]').val(uname);
-                    uname.forEach(function (usr) {
-                        var add = '<li><label>"' + usr + '"</label></li>';
-                        $('#unamelist').append(add);
-                    });
-                    $('#deleteMulConformation').modal('show');
-                });
-                $(".deleteMul").on("click", function () {
-                    var nameget = $('#deleteuser').val();
-                    var nameArray = (nameget).split(",");
-                    var lambdadata = {
-                        method: "DeleteHtmlIam",
-                        account: acType,
-                        uname: nameArray
-                    }
-                    $("#loadingMulModal").show();
-                    $.ajax({
-                        url: _config.api.invokeUrl + '/resources/iam',
-                        type: 'post',
-                        headers: {"Authorization": token},
-                        contentType: 'application/json',
-                        dataType: 'json',
-                        crossDomain: true,
-                        data: JSON.stringify(lambdadata),
-                        success:
-                            function (getdata) {
-                                console.log(getdata)
-                                $('#deleteMulConformation').modal('hide');
-                                if (getdata > 0) {
-                                    //alert("User Deleted!")
-                                    $("#loadingMulModal").hide();
-                                    $.notify("User Deleted", "success");
-                                    sendget();
-                                    refresh();
-                                }
-                                else {
-                                    $("#loadingMulModal").hide();
-                                    $.notify("Unable to Delete User", "error");
-                                    //alert("Unable to Delete User!")
-                                }
 
 
-                            },
-                        error: function (xhr, ajaxOptions, thrownError) {
-                            //alert(respdata);
-                            $("#loadingMulModal").hide();
-                            $.notify("Unable to Delete", "error");
-                            //$('#loading').css("style","display:none !important");
-                        }
-                    });
-                });
-
-
+        $("#stackdelete").on("click", function () {
+            // $("#loading").show();
+            $('#snamelist').html("");
+            var sname = [];
+            var acType = $("#acType").val();
+            //$("#loading").show();
+            $(".checkboxes").each(function () {
+                if ($(this).is(":checked")) {
+                    //console.log();
+                    //console.log($(this).attr("data_instance_id"));
+                    sname.push($(this).attr("stackname"));
+                }
             });
-        */
-        function sendget() {
-            $("#loading").show();
-            //acType = $("#acType").val();
-            console.log(acType);
-            var lamdadata = {
+            sname.forEach(function (usr) {
+                var add = '<li><label>"' + usr + '"</label></li>';
+                $('#snamelist').append(add);
+            });
+            $('#deleteMulConformation').modal('show');
+        });
+        $(".deleteMul").on("click", function () {
+            var nameget = $('#deletestack').val();
+            var nameArray = (nameget).split(",");
+
+            var data = {};
+            $(".checkboxes").each(function () {
+                if ($(this).is(":checked")) {
+                    var value = $(this).attr("stackname");
+
+                    var id = $(this).attr("stackregion");
+                    if (!(id in data)) {
+                        data[id] = [];
+                        data[id].push(value);
+                    }
+                    else {
+                        data[id].push(value);
+                    }
+                }
+            });
+            console.log("print data.....................");
+            console.log(data);
+            console.log("end data.....................");
+
+
+            var lambdadata = {
+                method: "cfDelete",
                 account: acType,
-                method: "listCf"
-            };
-            console.log(acType);
-            //
-            //alert(JSON.stringify(mydata));
-            // $(document).ready(function() {
+                stname: data
+            }
+            $("#loadingMulModal").show();
             $.ajax({
                 url: _config.api.invokeUrl + '/resources/iam',
                 // url: _config.api.invokeUrlR + '/iam',
-                type: 'POST',
+                type: 'post',
                 headers: {"Authorization": token},
-                crossDomain: true,
                 contentType: 'application/json',
                 dataType: 'json',
-                data: JSON.stringify(lamdadata),
-                success: function (getdata) {
-                    //console.log(getdata.finaldata["0"].User.UserName);
-                    //alert(getdata.finaldata["0"].Users["0"].UserId);
-                    $('#mydata').dataTable().fnDestroy();
-                    $("#mydata").DataTable({
+                crossDomain: true,
+                data: JSON.stringify(lambdadata),
+                success:
+                    function (getdata) {
+                        console.log(getdata)
+                        $('#deleteMulConformation').modal('hide');
+                        if (getdata > 0) {
+                            //alert("User Deleted!")
+                            $("#loadingMulModal").hide();
+                            $.notify("Stack Deletion in Progress", "success");
+                            $("#loading").show();
+                            sendget();
+                            refresh();
+                        }
+                        else {
+                            $("#loadingMulModal").hide();
+                            $.notify("Unable to Perform Stack Deletion", "error");
+                            //alert("Unable to Delete User!")
+                        }
 
-                        data: getdata.finaldata,
 
-                        'rowCallback': function (row, data, iDisplayIndex) {
-                            var check = '<input type="checkbox" id="checkboxclick" onclick="goFurther()" name="id[]" class="checkboxes" username="' + data.StackName + '">';
-                            $('td:eq(0)', row).html(check);
-                        },
-                        "columnDefs": [
-                            //{"className": "dt-center","defaultContent": " ","targets": "_all"},
-                            {
-                                "targets": 0,
-                                //"className": 'select-checkbox',
-                                "searchable": false,
-                                "orderable": false,
-                                "defaultContent": " "
-                                //'data':null
-                            },
-                            {
-                                "targets": 1,
-                                "data": "StackName"
-                            },
-                            {
-                                "targets": 2,
-                                "data": "CreationTime"
-                            },
-                            {
-                                "targets": 3,
-                                "data": "StackStatus"
-                            },
-                            {
-                                "targets": 4,
-                                "data": "RegionName"
-                            }
-                        ],
-                        select: {
-                            style: 'multi'
-                            //					selector: 'td:first-child'
-                        },
-                        order: [[0, 'asc']]
-                        // $("#loading").hide();
-                    });
-                    $("#loading").hide();
-                    //$('#iam_user').val(JSON.parse(JSON.stringify(getdata.User.UserName)));
-                    //	alert(mydata);
-                    //console.log(getdata)
-//success stuff. data here is the response, not your original data
-                },
+                    },
                 error: function (xhr, ajaxOptions, thrownError) {
-                    alert("error")
-                    //error handling stuff
+                    //alert(respdata);
+                    $("#loadingMulModal").hide();
+                    $.notify("Unable to Delete", "error");
+                    //$('#loading').css("style","display:none !important");
                 }
             });
-            // });
-            //alert("hello")
-        }
+        });
+    });
+
+    function sendget() {
+        $("#loading").show();
+        //acType = $("#acType").val();
+        console.log(acType);
+        var lamdadata = {
+            account: acType,
+            method: "listCf"
+        };
+        console.log(acType);
+        //
+        //alert(JSON.stringify(mydata));
+        // $(document).ready(function() {
+        $.ajax({
+            url: _config.api.invokeUrl + '/resources/iam',
+            // url: _config.api.invokeUrlR + '/iam',
+            type: 'POST',
+            headers: {"Authorization": token},
+            crossDomain: true,
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify(lamdadata),
+            success: function (getdata) {
+                //console.log(getdata.finaldata["0"].User.UserName);
+                //alert(getdata.finaldata["0"].Users["0"].UserId);
+                $('#mydata').dataTable().fnDestroy();
+                $("#mydata").DataTable({
+
+                    data: getdata.finaldata,
+
+                    'rowCallback': function (row, data, iDisplayIndex) {
+                        var check = '<input type="checkbox" id="checkboxclick" onclick="goFurther()" name="id[]" class="checkboxes" stackname="' + data.StackName + '" stackregion="' + data.Region + '">';
+                        $('td:eq(0)', row).html(check);
+                    },
+                    "columnDefs": [
+                        //{"className": "dt-center","defaultContent": " ","targets": "_all"},
+                        {
+                            "targets": 0,
+                            //"className": 'select-checkbox',
+                            "searchable": false,
+                            "orderable": false,
+                            "defaultContent": " "
+                            //'data':null
+                        },
+                        {
+                            "targets": 1,
+                            "data": "StackName"
+                        },
+                        {
+                            "targets": 2,
+                            "data": "CreationTime"
+                        },
+                        {
+                            "targets": 3,
+                            "data": "StackStatus"
+                        },
+                        {
+                            "targets": 4,
+                            "data": "RegionName"
+                        }
+                    ],
+                    select: {
+                        style: 'multi'
+                        //					selector: 'td:first-child'
+                    },
+                    order: [[0, 'asc']]
+                    // $("#loading").hide();
+                });
+                $("#loading").hide();
+                //$('#iam_user').val(JSON.parse(JSON.stringify(getdata.User.UserName)));
+                //	alert(mydata);
+                //console.log(getdata)
+//success stuff. data here is the response, not your original data
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert("error")
+                //error handling stuff
+            }
+        });
+        // });
+        //alert("hello")
+    }
 
     /*$(document).on('click','#selectD',function(){
         $(this).change(function(){
@@ -247,6 +267,9 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
             <li>
+                <a href="home.html" class=" text-white col-md-12">Home</a>
+            </li>
+            <li>
                 <a href="cf.html" class=" text-white col-md-12">Create Stacks</a>
             </li>
             <li class="nav-item active">
@@ -257,8 +280,8 @@
             <div class="form-group">
                 <b><label class="nav-link text-white">Account</label></b>
                 <select class="form-control" id="acType">
-                    <option value="dev" selected="true">Developer</option>
-                    <option value="training">Training</option>
+                    <option value="dev">Developer</option>
+                    <option value="training" selected="true">Training</option>
                     <option value="ext">External</option>
                 </select>
             </div>
@@ -268,7 +291,7 @@
                 <b><label class="nav-link text-white">Service</label></b>
                 <!--<input type="text" value="IAM" readonly="readonly" class="form-control" size="5"/>-->
                 <select class="form-control" id="main_service" onchange="location = this.value;">
-                    <option value="iam">IAM</option>
+                    <option value="iam.html">IAM</option>
                     <option value="cf.html" selected="true">CloudFormation</option>
                 </select>
             </div>
@@ -296,7 +319,7 @@
 
 </form id="Tcreation">
 <div class="form-group col-md-12">
-    <button id="userdelete" type="button" onclick="sendget()" class="btn btn-info col-md-1" disabled>Delete</button>
+    <button id="stackdelete" type="button" class="btn btn-info col-md-1" disabled>Delete</button>
     <a class="btn refresh" id="refresh" onclick="refresh()" title="Reload"><img
             src="../assets/images/reload1.png"/></a>
 </div>
@@ -321,17 +344,17 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Confirm User Deletion</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title">Confirm Stack Deletion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                        onclick="javascript:$('#stackdelete').attr('disabled',false)">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>Are you sure, you want to delete the user ?</p>
-                <input type="hidden" value="" class="modal_uname" id="deleteuser" name="modal_uname"/>
-
+                <p>Are you sure, you want to delete the following stack ?</p>
+                <input type="hidden" value="" class="modal_sname" id="deletestack" name="modal_sname"/>
                 <div>
-                    <ul id="unamelist">
+                    <ul id="snamelist">
                     </ul>
                 </div>
             </div>
@@ -341,9 +364,11 @@
                 </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary deleteMul">Yes</button>
+                <button type="button" class="btn btn-primary deleteMul"
+                        onclick="javascript:$('#userdelete').attr('disabled',true)">Yes
+                </button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                        onclick="javascript:$('#userdelete').attr('disabled',true)">No
+                        onclick="javascript:$('#stackdelete').attr('disabled',false)">No
                 </button>
             </div>
         </div>
