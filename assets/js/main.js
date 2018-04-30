@@ -2,19 +2,24 @@ var poolData = {
     UserPoolId: _config.cognito.userPoolId,
     ClientId: _config.cognito.userPoolClientId
 }
+
 var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
 var cognitoUser = userPool.getCurrentUser();
 checklogin();
-$.notify.defaults({globalPosition: 'top center'});
-
 var ajaxrequest_pages = [];
-var ajaxreload = [];
-var toBeDeleted = {};
-//console.log("Global Data :"+$('.SelectedResource').attr("data-resource"));
 var SelectedResourceVar;
 var token = window.localStorage.getItem('token');
-var account = window.localStorage.getItem('account');
+var account;
 
+setInterval(function() {
+    console.log(SelectedResourceVar);
+    if (SelectedResourceVar == "dashboard"){
+        if(window.localStorage.custexp <= new Date().getTime()){
+            checklogin();
+        }
+        showDashboard();
+    }
+}, 300000);
 
 $("#filter").keyup(function () {
     var filter = $(this).val(),
@@ -36,8 +41,17 @@ $("#filter").keyup(function () {
 $(window).on("load", function () {
     document.getElementById("defaultclick").click();
     checklogin();
-    account = window.localStorage.getItem('account');
+
     token = window.localStorage.getItem('token');
+
+    if (window.localStorage.getItem('account')) {
+        account = window.localStorage.getItem('account');
+    }
+    else {
+        window.localStorage.setItem('account', $("#account").val());
+        account = window.localStorage.getItem('account');
+    }
+    console.log(account);
     if (account == null) {
         account = $("#account").val();
     }
@@ -99,7 +113,7 @@ $(document).on('change', '#account', function () {
         for (var i = 0; i < ajaxrequests.length; i++)
             ajaxrequests[i].abort();
     }
-    else{
+    else {
         for (var i = 0; i < ajaxrequest_pages.length; i++)
             ajaxrequest_pages[i].abort();
     }
@@ -141,15 +155,12 @@ $(document).on('click', '#yesModal', function () {
     ModalClickdelete(SelectedResourceVar);
 });
 
-//////////////////////////////stop dashboard ajax call////////////////////////////
 function stopRequests(SelectedResourceVar) {
-    // //|| account === "dev" || account === "training" || account === "prod" || account === "exttrain"
     if (SelectedResourceVar === "dashboard") {
         for (var i = 0; i < ajaxrequest_pages.length; i++)
             ajaxrequest_pages[i].abort();
     }
     else {
-        //console.log("stop");
         for (var i = 0; i < ajaxrequests.length; i++)
             ajaxrequests[i].abort();
     }

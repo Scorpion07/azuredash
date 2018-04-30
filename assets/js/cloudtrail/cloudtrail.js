@@ -1,8 +1,7 @@
-function showEc2Instances() {
-    //
+function show_cloudtrail() {
     $(".tableDisplay").html(" ");
-    $("#main_title").html("Amazon Elastic Compute Cloud (EC2)");
-    $("#tableHeading").html("EC2 Instances");
+    $("#main_title").html("Amazon CloudTrail");
+    $("#tableHeading").html("Amazon CloudTrails");
 
     var addTable = '<table id="table" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info" style="width: 100%;"><thead id="tablehead"></thead><tfoot id="tablebody"></tfoot></table>';
     $(".tableDisplay").append(addTable);
@@ -12,29 +11,30 @@ function showEc2Instances() {
     var token = window.localStorage.getItem('token');
     if (account !== 'prod') {
         $("#btnmultipledelete").show();
-        $("#btnmultipledelete").html('<i class="glyphicon glyphicon-trash"></i> Terminate Selected');
+        $("#btnmultipledelete").html('<i class="glyphicon glyphicon-trash"></i> Delete Selected');
     }
     else {
         $("#btnmultipledelete").hide();
     }
+
     $("#tablehead").html("");
     $("#tablebody").html("");
     if (account !== 'prod') {
-        $("#tablehead").append('<tr><th><input name="select_all" class="select_all" type="checkbox"></th><th>Tag</th><th>Instance ID</th><th>Instance Type</th><th>Launch Time</th><th>Instance State</th><th>Volume ID</th><th>Region</th>');
-        $("#tablebody").append('<tr><th></th><th>Tag</th><th>Instance ID</th><th>Instance Type</th><th>Launch Time</th><th>Instance State</th><th>Volume ID</th><th>Region</th>');
+        $("#tablehead").append('<tr><th><input name="select_all" class="select_all" type="checkbox"></th><th>Name</th><th>S3Bucket Name</th><th>Home Region</th><th>Region</th></tr>');
+        $("#tablebody").append('<tr><th></th><th>Name</th><th>S3Bucket Name</th><th>Home Region</th><th>Region</th></tr>');
     }
     else {
-        $("#tablehead").append('<tr><th>No.</th><th>Tag</th><th>Instance ID</th><th>Instance Type</th><th>Launch Time</th><th>Instance State</th><th>Volume ID</th><th>Region</th>');
-        $("#tablebody").append('<tr><th></th><th>Tag</th><th>Instance ID</th><th>Instance Type</th><th>Launch Time</th><th>Instance State</th><th>Volume ID</th><th>Region</th>');
+        $("#tablehead").append('<tr><th>No.</th><th>Name</th><th>S3Bucket Name</th><th>HomeRegion</th><th>Region</th></tr>');
+        $("#tablebody").append('<tr><th></th><th>Name</th><th>S3Bucket Name</th><th>Home Region</th><th>Region</th></tr>');
     }
-    ListInstanceData();
+    ListCloudTrailData();
 }
 
-function ListInstanceData() {
+function ListCloudTrailData() {
     var count = 0;
     $('#loading').show();
     var submit = {
-        submethod: SelectedResourceVar,
+        submethod: "cloudtrail",
         method: "ListResources",
         account: account
     }
@@ -49,21 +49,23 @@ function ListInstanceData() {
             crossDomain: true,
             data: JSON.stringify(submit),
             success: function (respdata) {
-                console.log(respdata)
+                console.log(respdata);
                 $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
                 $('#table').dataTable().fnDestroy();
                 table = $('#table').DataTable({
                     data: respdata.data,
                     serverside: true,
                     order: [],
+
                     'rowCallback': function (row, data, iDisplayIndex) {
                         if (account !== 'prod') {
-                            var check = '<input type="checkbox" id="checkboxclick" name="id[]" class="checkboxclick checkboxes" data_instance_id="' + data.InstanceId + '" data_region="' + data.Region + '">';
+                            var check = '<input type="checkbox" id="checkboxclick" name="id[]" class="checkboxclick checkboxes" data_name = "' + data.Name + '"  data_cloudtrail_arn="' + data.TrailARN + '" data_region="' + data.HomeRegion + '">';
                             $('td:eq(0)', row).html(check);
                         }
                         else {
                             $('td:eq(0)', row).html(count += 1);
                         }
+
                     },
 
                     'columnDefs': [
@@ -77,43 +79,30 @@ function ListInstanceData() {
                         {
                             'targets': [1],
                             'orderable': true,
-                            'data': 'Tags.0.Value'
+                            'data': 'Name'
                         },
                         {
                             'targets': [2],
                             'orderable': true,
-                            'data': 'InstanceId',
+                            'data': 'S3BucketName',
                         },
                         {
                             'targets': [3],
                             'orderable': true,
-                            'data': 'InstanceType'
+                            'data': 'HomeRegion'
                         },
                         {
                             'targets': [4],
                             'orderable': true,
-                            'data': 'LaunchTime'
-                        },
-                        {
-                            'targets': [5],
-                            'orderable': true,
-                            'data': 'State.Name'
-                        },
-                        {
-                            'targets': [6],
-                            'orderable': true,
-                            'data': 'BlockDeviceMappings.0.Ebs.VolumeId'
-                        },
-                        {
-                            'targets': [7],
-                            'orderable': true,
                             'data': 'RegionName'
                         }
+
                     ],
 
                     'select': {
                         'style': 'multi'
-                    },
+                    }
+
                 });
                 $('#loading').hide();
 
@@ -125,50 +114,53 @@ function ListInstanceData() {
         }));
 }
 
-function deleteModalInstances() {
-
-    $("#modal_title").html("<h3>Instance Termination</h3>");
-    $("#delete_heading").text("Are you sure, you want to delete all this instances ?");
+function deleteModalCloudTrail() {
+    $("#modal_title").html("<h3>CloudTrails Deletion </h3>");
+    $("#delete_heading").text("Are you sure, you want to delete all this CloudTrails ?");
     $("#delete_li_show").html(" ");
-    var instanceid_list = [];
-    var region_list = [];
-    $('#instance_id').text("");
+    var cloudtrail_name = [];
     $(".checkboxes").each(function () {
         if ($(this).is(":checked")) {
-            instanceid_list.push($(this).attr("data_instance_id"));
-            region_list.push($(this).attr("data_region"));
+            cloudtrail_name.push($(this).attr("data_name"));
         }
     });
-    instanceid_list.forEach(function (id) {
-        var add = '<li><label>"' + id + '"</label></li>';
-        $("#delete_li_show").append(add);
+    cloudtrail_name.forEach(function (id) {
+
+            var add = '<li><label>"' + id + '"</label></li>';
+            $("#delete_li_show").append(add);
+
     });
     $('.deleteMul').attr('disabled', false);
     $('#deleteMulConformation').modal('show');
-
 }
 
-function deleteInstances() {
+function deleteCloudTrail() {
     $('.deleteMul').attr('disabled', true);
     $("#loadingModal").show();
-    var instanceid = [];
-    var region = [];
+    var Data = {};
     $(".checkboxes").each(function () {
         if ($(this).is(":checked")) {
-            //console.log();
-            console.log($(this).attr("data_instance_id"));
-            console.log(($(this).attr("data_region")))
-            instanceid.push($(this).attr("data_instance_id"));
-            region.push(($(this).attr("data_region")));
+            var value = $(this).attr("data_cloudtrail_arn")
+
+            var id = $(this).attr("data_region");
+            if (!(id in Data)) {
+                Data[id] = [];
+                Data[id].push(value);
+                ;
+            }
+            else {
+                Data[id].push(value);
+            }
         }
     });
-    console.log(region);
+    console.log(Data);
+
     var submit = {
-        region: region,
-        method: "instanceDelete",
+        method: "cloudtrailDelete",
         account: account,
-        instanceids: instanceid
+        data: Data
     }
+    console.log(submit);
     $.ajax({
         url: _config.api.invokeUrl + '/billing/services',
         headers: {"Authorization": token},
@@ -182,16 +174,15 @@ function deleteInstances() {
             console.log(respdata)
             $("#loadingModal").hide();
 
-            if (respdata == "0") {
-                ListInstanceData();
-                $.notify("Instance Terminated Successfully", "success");
+            if (respdata > -1) {
+                show_cloudtrail();
+                $.notify("CloudTrails Deleted Successfully", "success");
             }
             else {
-                $.notify("Unable to Terminate Instance", "error");
+                $.notify("Unable to Delete CloudTrails", "error");
             }
-            $('#deleteMulConformation').modal('hide');
+            $('#deleteConformation').modal('hide');
         }
 
     });
 }
-

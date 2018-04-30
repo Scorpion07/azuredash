@@ -54,34 +54,13 @@ function ListNotebookInstancesData() {
                 data: respdata.data,
                 serverside: true,
                 order: [],
-                "language": {
-                    "lengthMenu": 'Display <select>' +
-                    '<option value="50" selected>50</option>' +
-                    '<option value="100">100</option>' +
-                    '<option value="200">200</option>' +
-                    '<option value="500">500</option>' +
-                    '<option value="-1">All</option>' +
-                    '</select> records'
-                },
-                "dom": '<"top"fli>t<"bottom"ip><"clear">',
-                "pageLength": 50,
                 'rowCallback': function (row, data, iDisplayIndex) {
                     if (account !== 'prod') {
-                        var check = '<div class="row"><div class="col-md-4 col-md-offset-3"><div class="checkbox"><input type="checkbox" name="id_check[]" class="id_check checkboxclick" data-region="' + data.Region + '" value="' + "data.FunctionName" + '" ></div></div></div>';
+                        var check = '<input type="checkbox" id="checkboxclick" name="id[]" class="checkboxclick checkboxes" data_name = "' + data.NotebookInstanceName + '"  data_region="' + data.Region + '">';
                         $('td:eq(0)', row).html(check);
-
-                        if (parseInt(data.MemorySize) > 128) {
-                            //console.log("yes")
-                            $(row).addClass('danger');
-                        }
                     }
                     else {
                         $('td:eq(0)', row).html(count += 1);
-                        if (parseInt(data.MemorySize) > 128) {
-                            //console.log("yes")
-                            $(row).addClass('danger');
-                        }
-
                     }
                 },
                 'columnDefs': [
@@ -146,84 +125,79 @@ function ListNotebookInstancesData() {
     }));
 }
 
-// ////opening a modal
-// function deleteModalLambdaFunctions() {
-// 	$("#modal_title").html("<h3>Lambda Function Deletion</h3>");
-// 	$("#delete_heading").text("Are you sure, you want to delete lambda functions ?");
-// 	$("#delete_li_show").html(" ");
+function deleteModalSagemakerNotebook() {
+    $("#modal_title").html("<h3>CloudTrails Deletion </h3>");
+    $("#delete_heading").text("Are you sure, you want to delete all this Notebook Instances?");
+    $("#delete_li_show").html(" ");
+    var notebook_name = [];
+    $(".checkboxes").each(function () {
+        if ($(this).is(":checked")) {
+            notebook_name.push($(this).attr("data_name"));
+        }
+    });
+    notebook_name.forEach(function (id) {
 
-//   var selectedLambda = [];
-//   var selectedRegion = [];
-//   var region_name;
-//       $('.id_check').each(function() 
-//     {
+        var add = '<li><label>"' + id + '"</label></li>';
+        $("#delete_li_show").append(add);
 
-//         if ($(this).is(":checked")) 
-//         {
-//           selectedLambda.push($(this).val());      
-//         } 
-//     });
-//   	selectedLambda.forEach( function(id) { 
-// 		var add = '<li><label>"'+id+'"</label></li>';
-// 	    $("#delete_li_show").append(add);
-// 	});
-// 	$('.deleteMul').attr('disabled',false);
-// 	$('#deleteMulConformation').modal('show');
+    });
+    $('.deleteMul').attr('disabled', false);
+    $('#deleteMulConformation').modal('show');
+}
 
-// }	
-// function deleteLambdaFunctions() {
-//        $('.deleteMul').attr('disabled',true);
-//        $("#loadingMulModal").show();
+function deleteSagemakerNotebook() {
+    $('.deleteMul').attr('disabled', true);
+    $("#loadingModal").show();
+    var Data = {};
+    $(".checkboxes").each(function () {
+        if ($(this).is(":checked")) {
+            var value = $(this).attr("data_name")
 
-// 		$('.id_check').each(function() 
-//     	{
-// 	        if ($(this).is(":checked")) 
-// 	        {
-// 	          var region_name = $(this).attr('data-region');      
+            var id = $(this).attr("data_region");
+            if (!(id in Data)) {
+                Data[id] = [];
+                Data[id].push(value);
+                ;
+            }
+            else {
+                Data[id].push(value);
+            }
+        }
+    });
+    console.log(Data);
 
-// 	          if (!(region_name in toBeDeleted)){
-// 	          	toBeDeleted[region_name] = [];
-// 	          	toBeDeleted[region_name].push($(this).val());
-// 	          }
-// 	          else{
-// 	          	toBeDeleted[region_name].push($(this).val());
-// 	          }        
-// 	        } 
-// 	    });
-// 		var deleteData ={
-// 		  method:"lambdaFunctionDelete",
-// 		  account : account,
-// 		  region : toBeDeleted,
-// 		}
-// 		console.log(JSON.stringify(deleteData));
-// 		$.ajax({
-// 		url : "https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/ec2resource/listservices",
-// 		type: 'post',
-// 		headers: {"Authorization": token},
-// 		contentType: 'application/json',
-// 		dataType: 'json',
-// 		contentType: 'application/json',
-// 		crossDomain: true,
-// 		data: JSON.stringify(deleteData),
-//       	success: function(result)
-// 			{
-// 				toBeDeleted = {};
-// 				$(".checkboxclick").prop("checked",false);
-// 				$(".select_all").prop("checked",false);
-// 				$("#loadingMulModal").hide();
-// 				console.log(result);
-// 				if(result > 0 )
-// 				{
-// 					ListNotebookInstancesData();
-// 					$.notify("Deleted successfully.","success"); 
-// 				}
-// 				else
-// 				{
-// 					$.notify("Unable to Delete.","error"); 
-// 				}
+    var submit = {
+        method: "sgNotebookDelete",
+        account: account,
+        data: Data
+    }
+    console.log(submit);
+    $.ajax({
+        url: _config.api.invokeUrl + '/billing/services',
+        headers: {"Authorization": token},
+        type: 'post',
+        contentType: 'application/json',
+        dataType: 'json',
+        contentType: 'application/json',
+        crossDomain: true,
+        data: JSON.stringify(submit),
+        success: function (respdata) {
+            console.log(respdata)
+            $("#loadingModal").hide();
 
-// 				$('#deleteMulConformation').modal('hide');
-// 			}
-//     	});
-//   	}
-//    
+            if (respdata == 1) {
+                showNotebookInstances();
+                $.notify("SageMaker Notebook Instances Deleted Successfully", "success");
+            }
+            else if(respdata == 0){
+                showNotebookInstances();
+                $.notify("SageMaker Notebook Instances Deleted Successfully", "error");
+            }
+            else {
+                $.notify("Unable to Delete SageMaker Notebook Instances", "error");
+            }
+            $('#deleteConformation').modal('hide');
+        }
+
+    });
+}

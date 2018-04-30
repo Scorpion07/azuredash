@@ -62,26 +62,7 @@ function load_resource_js(SelectedResourceVar)
   {
     showStack();
   }
-  else if  (SelectedResourceVar == "notebook_instance")
-  {
-    showNotebookInstances();
-  }
-  else if  (SelectedResourceVar == "jobs")
-  {
-    showSagemakerJobs();
-  }
-  else if  (SelectedResourceVar == "models")
-  {
-    showSagemakerModels();
-  }
-  else if  (SelectedResourceVar == "endpoints")
-  {
-    showSagemakerEndpoints();
-  }
-  else if  (SelectedResourceVar == "endpointconfigs")
-  {
-    showSagemakerEndpointConfigs();
-  }
+
   else if  (SelectedResourceVar == "redshift_cluster")
   {
     showRed_Cluster();
@@ -92,6 +73,29 @@ function load_resource_js(SelectedResourceVar)
   }
   else if (SelectedResourceVar == "route53"){
     showR53Hostzone();
+  }
+  else if (SelectedResourceVar == "cloudtrail"){
+      show_cloudtrail();
+  }
+  else if  (SelectedResourceVar == "notebook_instance")
+  {
+      showNotebookInstances();
+  }
+  else if  (SelectedResourceVar == "jobs")
+  {
+      showSagemakerJobs();
+  }
+  else if  (SelectedResourceVar == "models")
+  {
+      showSagemakerModels();
+  }
+  else if  (SelectedResourceVar == "endpoints")
+  {
+      showSagemakerEndpoints();
+  }
+  else if  (SelectedResourceVar == "endpointconfigs")
+  {
+      showSagemakerEndpointConfigs();
   }
   else
   {

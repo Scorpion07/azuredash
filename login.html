@@ -62,10 +62,14 @@
                             if (typeof(Storage) !== "undefined") {
                                 var idtoken = result.getIdToken().getJwtToken();
                                 var actoken = result.getAccessToken().getJwtToken();
-                                //var reftoken=result.getRefreshToken().getJwtToken();
+                                var reftoken=result.getRefreshToken().getToken();
                                 window.localStorage.setItem('token', idtoken);
                                 window.localStorage.setItem('actoken', actoken);
-                                window.localStorage.setItem('username', $('#username').val())
+                                window.localStorage.setItem('reftoken', reftoken);
+                                window.localStorage.setItem('username', $('#username').val());
+                                window.localStorage.setItem('exp',result['idToken']['payload']['exp']);
+                                window.localStorage.setItem('custexp',(new Date().getTime()+3600000))
+                                window.localStorage.setItem('exptime',((result['idToken']['payload']['exp'])+(new Date().getTime())));
                                 console.log("Session : " + result.isValid());
                                 cognitoUser.getUserAttributes(function (err, result) {
                                     if (err) {

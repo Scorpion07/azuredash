@@ -19,12 +19,12 @@ function showSagemakerEndpoints() {
     $("#tablehead").html("");
     $("#tablebody").html("");
     if (account !== 'prod') {
-        $("#tablehead").append('<tr><th><input name="select_all" class="select_all" type="checkbox"></th><th>Name</th><th>ARN</th><th>Creation time</th><th>Status</th><th>Last updated</th><th>Region</th></tr>');
-        $("#tablebody").append('<tr><th></th><th>Name</th><th>ARN</th><th>Creation time</th><th>Status</th><th>Last updated</th><th>Region</th></tr>');
+        $("#tablehead").append('<tr><th><input name="select_all" class="select_all" type="checkbox"></th><th>Endpoint Name</th><th>ARN</th><th>Creation time</th><th>Status</th><th>Last updated</th><th>Region</th></tr>');
+        $("#tablebody").append('<tr><th></th><th>Endpoint Name</th><th>ARN</th><th>Creation time</th><th>Status</th><th>Last updated</th><th>Region</th></tr>');
     }
     else {
-        $("#tablehead").append('<tr><th>No.</th><th>Name</th><th>ARN</th><th>Creation time</th><th>Status</th><th>Last updated</th><th>Region</th></tr>');
-        $("#tablebody").append('<tr><th></th><th>Name</th><th>ARN</th><th>Creation time</th><th>Status</th><th>Last updated</th><th>Region</th></tr>');
+        $("#tablehead").append('<tr><th>No.</th><th>Endpoint Name</th><th>ARN</th><th>Creation time</th><th>Status</th><th>Last updated</th><th>Region</th></tr>');
+        $("#tablebody").append('<tr><th></th><th>Endpoint Name</th><th>ARN</th><th>Creation time</th><th>Status</th><th>Last updated</th><th>Region</th></tr>');
     }
     ListEndpointsData();
 }
@@ -54,32 +54,13 @@ function ListEndpointsData() {
                 data: respdata.data,
                 serverside: true,
                 order: [],
-                "language": {
-                    "lengthMenu": 'Display <select>' +
-                    '<option value="50" selected>50</option>' +
-                    '<option value="100">100</option>' +
-                    '<option value="200">200</option>' +
-                    '<option value="500">500</option>' +
-                    '<option value="-1">All</option>' +
-                    '</select> records'
-                },
-                "dom": '<"top"fli>t<"bottom"ip><"clear">',
-                "pageLength": 50,
                 'rowCallback': function (row, data, iDisplayIndex) {
                     if (account !== 'prod') {
-                        var check = '<div class="row"><div class="col-md-4 col-md-offset-3"><div class="checkbox"><input type="checkbox" name="id_check[]" class="id_check checkboxclick" data-region="' + data.Region + '" value="' + "data.FunctionName" + '" ></div></div></div>';
+                        var check = '<input type="checkbox" id="checkboxclick" name="id[]" class="checkboxclick checkboxes" data_name = "' + data.EndpointName + '"  data_region="' + data.Region + '">';
                         $('td:eq(0)', row).html(check);
-                        if (parseInt(data.MemorySize) > 128) {
-                            //console.log("yes")
-                            $(row).addClass('danger');
-                        }
                     }
                     else {
                         $('td:eq(0)', row).html(count += 1);
-                        if (parseInt(data.MemorySize) > 128) {
-                            //console.log("yes")
-                            $(row).addClass('danger');
-                        }
                     }
                 },
                 'columnDefs': [
@@ -141,4 +122,77 @@ function ListEndpointsData() {
             $.notify("Unable to Load", "error");
         }
     }));
+}
+
+function deleteModalSagemakerEndpoint() {
+    $("#modal_title").html("<h3>CloudTrails Deletion </h3>");
+    $("#delete_heading").text("Are you sure, you want to delete all this SageMaker Endpoints?");
+    $("#delete_li_show").html(" ");
+    var endpoint_name = [];
+    $(".checkboxes").each(function () {
+        if ($(this).is(":checked")) {
+            endpoint_name.push($(this).attr("data_name"));
+        }
+    });
+    endpoint_name.forEach(function (id) {
+
+        var add = '<li><label>"' + id + '"</label></li>';
+        $("#delete_li_show").append(add);
+
+    });
+    $('.deleteMul').attr('disabled', false);
+    $('#deleteMulConformation').modal('show');
+}
+
+function deleteSagemakerEndpoint() {
+    $('.deleteMul').attr('disabled', true);
+    $("#loadingModal").show();
+    var Data = {};
+    $(".checkboxes").each(function () {
+        if ($(this).is(":checked")) {
+            var value = $(this).attr("data_name")
+
+            var id = $(this).attr("data_region");
+            if (!(id in Data)) {
+                Data[id] = [];
+                Data[id].push(value);
+                ;
+            }
+            else {
+                Data[id].push(value);
+            }
+        }
+    });
+    console.log(Data);
+
+    var submit = {
+        method: "sgEndpointDelete",
+        account: account,
+        data: Data
+    }
+    console.log(submit);
+    $.ajax({
+        url: _config.api.invokeUrl + '/billing/services',
+        headers: {"Authorization": token},
+        type: 'post',
+        contentType: 'application/json',
+        dataType: 'json',
+        contentType: 'application/json',
+        crossDomain: true,
+        data: JSON.stringify(submit),
+        success: function (respdata) {
+            console.log(respdata)
+            $("#loadingModal").hide();
+
+            if (respdata > -1) {
+                showSagemakerEndpoints();
+                $.notify("SageMaker Endpoints Deleted Successfully", "success");
+            }
+            else {
+                $.notify("Unable to Delete SageMaker Endpoints", "error");
+            }
+            $('#deleteConformation').modal('hide');
+        }
+
+    });
 }
