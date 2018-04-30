@@ -72,10 +72,12 @@
                                 window.localStorage.setItem('exptime',((result['idToken']['payload']['exp'])+(new Date().getTime())));
                                 console.log("Session : " + result.isValid());
                                 cognitoUser.getUserAttributes(function (err, result) {
+
                                     if (err) {
                                         alert(err);
                                         return;
                                     }
+                                    console.log(result)
                                     for (var i = 0; i < result.length; i++) {
                                         var email = result[4]['Value'];
                                         console.log(email);
