@@ -20,12 +20,12 @@ function show_cloudtrail() {
     $("#tablehead").html("");
     $("#tablebody").html("");
     if (account !== 'prod') {
-        $("#tablehead").append('<tr><th><input name="select_all" class="select_all" type="checkbox"></th><th>Name</th><th>S3Bucket Name</th><th>Home Region</th><th>Region</th></tr>');
-        $("#tablebody").append('<tr><th></th><th>Name</th><th>S3Bucket Name</th><th>Home Region</th><th>Region</th></tr>');
+        $("#tablehead").append('<tr><th><input name="select_all" class="select_all" type="checkbox"></th><th>Name</th><th>S3Bucket Name</th><th>Configure Region</th><th>Monitor Region</th></tr>');
+        $("#tablebody").append('<tr><th></th><th>Name</th><th>S3Bucket Name</th><th>Configure Region</th><th>Monitor Region</th></tr>');
     }
     else {
-        $("#tablehead").append('<tr><th>No.</th><th>Name</th><th>S3Bucket Name</th><th>HomeRegion</th><th>Region</th></tr>');
-        $("#tablebody").append('<tr><th></th><th>Name</th><th>S3Bucket Name</th><th>Home Region</th><th>Region</th></tr>');
+        $("#tablehead").append('<tr><th>No.</th><th>Name</th><th>S3Bucket Name</th><th>Configure Region</th><th>Monitor Region</th></tr>');
+        $("#tablebody").append('<tr><th></th><th>Name</th><th>S3Bucket Name</th><th>Configure Region</th><th>Monitor Region</th></tr>');
     }
     ListCloudTrailData();
 }
@@ -94,7 +94,7 @@ function ListCloudTrailData() {
                         {
                             'targets': [4],
                             'orderable': true,
-                            'data': 'RegionName'
+                            'data': 'Region'
                         }
 
                     ],
