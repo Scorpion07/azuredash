@@ -1,0 +1,425 @@
+<html>
+<head>
+    <link rel="stylesheet" href="../../assets/css/cerulean/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/TimeCircles.css">
+    <!--<link rel="stylesheet" href="../../assets/css/cerulean/TimeCircles.css">-->
+    <!--<link rel="stylesheet" href="../../assets/css/jquery.dataTables.min.css">-->
+    <!--<link rel="stylesheet" href="../../assets/css/buttons.dataTables.min.css">-->
+    <link rel="stylesheet" href="../../assets/css/daterangepicker.css">
+    <script src="../../assets/js/dependancies/config.js"></script>
+    <script src="../../assets/js/dependancies/aws-cognito-sdk.min.js"></script>
+    <script src="../../assets/js/dependancies/amazon-cognito-identity.min.js"></script>
+    <script src="../../assets/js/dependancies/jquery.min.js"></script>
+    <script src="../../assets/js/dependancies/jquery.dataTables.min.js"></script>
+    <script src="../../assets/js/dependancies/TimeCircles.js"></script>
+
+    <!--<script src="../../assets/js/dependancies/dataTables.buttons.min.js"></script>-->
+    <!--<script src="../../assets/js/dependancies/jszip.min.js"></script>-->
+    <!--<script src="../../assets/js/dependancies/pdfmake.min.js"></script>-->
+    <!--<script src="../../assets/js/dependancies/vfs_fonts.js"></script>-->
+    <!--<script src="../../assets/js/dependancies/buttons.html5.min.js"></script>-->
+    <!--<script src="../../assets/js/dependancies/buttons.print.min.js"></script>-->
+    <script src="../../assets/js/dependancies/notify.min.js"></script>
+    <script type="text/javascript" src="../../assets/js/dependancies/moment.min.js"></script>
+    <script type="text/javascript" src="../../assets/js/dependancies/daterangepicker.js"></script>
+    <script type="text/javascript" src="../../assets/js/signout.js"></script>
+    <script>
+        function refresh() {
+            location.reload();
+        }
+
+        function usermenu() {
+            if ($("#hideshowdropdown").hasClass("show")) {
+                $("#hideshowdropdown").removeClass("show");
+            }
+            else {
+                $("#hideshowdropdown").addClass("show");
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        var poolData = {
+            UserPoolId: _config.cognito.userPoolId,
+            ClientId: _config.cognito.userPoolClientId
+        }
+        var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+        var cognitoUser = userPool.getCurrentUser();
+        checklogin();
+        $.notify.defaults({globalPosition: 'top center'});
+        var SelectedResourceVar;
+        var token = window.localStorage.getItem('token');
+        var currUser = window.localStorage.username;
+        console.log("Hello" + currUser);
+        // if(currUser){
+        // 	document.getElementById('loginname').setAttribute('value',currUser);
+        // }
+        // document.getElementsById('loginname').Value = logname;
+        var nouser;
+        var Stname;
+        var acType;
+        var days;
+        var startD;
+        var endD;
+        var expiredate;
+        var edate;
+        var sdate;
+        var companyname;
+        var regi;
+        var templateS;
+        $(function () {
+            $('[data-filter-type="date-range"]').daterangepicker({
+                    "autoUpdateInput": true,
+                    "autoApply": true,
+                    "drops": "up",
+                    locale: {
+                        format: 'DD/MM/YYYY'
+                    }
+                    //"alwaysShowCalendars": true,
+                    // timePicker: true,
+                    // timePickerIncrement: 30,
+                },
+                function (startD, endD) {
+                    days = (moment(endD).diff(startD, 'days') + 1).toString();
+                    // alert("No of days for Training are " + days);
+                    startdate = new Date(startD);
+                    var dateS = startdate.getDate();
+                    var monthS = startdate.getMonth();
+                    var yearS = startdate.getFullYear();
+
+                    function startd(n) {
+                        return n < 10 ? '0' + n : n
+                    }
+
+                    sdate = startd(dateS) + "-" + startd(monthS + 1) + "-" + yearS;
+                    // alert("This is Only startDATE"+ sdate);
+                    expiredate = new Date(endD);
+                    var dateE = expiredate.getDate();
+                    var monthE = expiredate.getMonth();
+                    var yearE = expiredate.getFullYear();
+
+                    function pad(n) {
+                        return n < 10 ? '0' + n : n
+                    }
+
+                    edate = pad(dateE) + "-" + pad(monthE + 1) + "-" + yearE;
+                    // alert("This is Only endDATE"+ edate);
+                    // edate = expiredate.toLocaleString().toString();
+                    // alert("Starting Date is " +sdate+ " Last Date of Training is " + edate);
+                });
+
+            $('#tdate').on('apply.daterangepicker', function (ev, picker) {
+                DateTimetotaldates = $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+                // startD =  $(this).val(picker.startDate.format('DD/MMM/YYYY'));
+                // endD =  $(this).val(picker.endDate.format('DD/MMM/YYYY'));
+            });
+
+
+        });
+
+        $(document).ready(function () {
+
+            checklogin();
+            token = window.localStorage.getItem('token');
+            $("#loginname").text(currUser.toString().trim());
+
+            $('#nuser').keyup(function () {
+
+            });
+            // console.log("username : "+userPool.getCurrentUser());
+            // console.log(window.localStorage.username);
+            // $('#username').text(window.localStorage.username);
+        });
+
+        // function check_create(templateName, noUser) {
+        //     for (var i = 1; i <= noUser; i++) {
+        //         stackToCheck = tmeplateName + "-" + (i)
+        //         var lambdaData = {
+        //             "account": $("#acType").val(),
+        //             "method": "discribeHtmlCf",
+        //             "stname": stackToCheck
+        //         }
+        //         $.ajax({
+        //             // url: _config.api.invokeUrl + '/resources/iam',
+        //             url: _config.api.invokeUrlR + '/iam',
+        //             type: 'POST',
+        //             headers: {"Authorization": token},
+        //             crossDomain: true,
+        //             contentType: 'application/json',
+        //             dataType: 'json',
+        //             data: JSON.stringify(lamdadata),
+        //             success: function (getdata) {
+        //                 if (getdata == "Successfull") {
+        //
+        //                 }
+        //                 else {
+        //                     $.notify("Fail to Launch Stacks", "error");
+        //                 }
+        //
+        //                 //console.log(getdata.finaldata["0"].User.UserName);
+        //                 //alert(getdata.finaldata["0"].User.UserName);
+        //                 // $("#mytable").append('<caption style="caption-side: top">'+ training +'</caption>');
+        //                 //$("#a1").text(training);
+        //                 // $("#mytable").append('#tname').val()
+        //             },
+        //             error: function (xhr, ajaxOptions, thrownError) {
+        //                 alert("error")
+        //                 //error handling stuff
+        //             }
+        //         });
+        //
+        //
+        //     }
+        //
+        // }
+
+        function sendget() {
+            $("#loading").show();
+            nouser = $("#nuser").val();
+            Stname = $("#sname").val();
+            templateS = $("#templatename").val();
+            acType = $("#acType").val();
+            companyname = $("#cname").val();
+            regi = $("#regionname").val();
+            // training = $("#tname").val();
+            //pot = $("#tdate").val();
+            var lamdadata = {
+                nuser: nouser,
+                sname: Stname,
+                account: acType,
+                fname: templateS,
+                rname: regi,
+                // cname: companyname,
+                // tdays: days,
+                // expdate: edate,
+                // stsdate: sdate,
+                method: "createCf"
+            };
+
+            $.ajax({
+                url: _config.api.invokeUrl + '/resources/iam',
+                // url: _config.api.invokeUrlR + '/iam',
+                type: 'POST',
+                headers: {"Authorization": token},
+                crossDomain: true,
+                contentType: 'application/json',
+                dataType: 'json',
+                data: JSON.stringify(lamdadata),
+                success: function (getdata) {
+                    $("#nuser").val("");
+                    $("#sname").val("");
+                    $("#templatename").val("Select a Training");
+                    $("#cname").val("");
+                    $("#acType").val("training");
+                    $("#regionname").val("Select a Regions");
+                    if (getdata == "Successfull") {
+                        $.notify("Stack Creations In Progress", "success");
+                        // check_create(templateS, nouser);
+                        $("#loading").hide();
+                        $("#messagetimer").show();
+                        $(".coundown").TimeCircles({
+                            count_past_zero: false,
+                            "bg_width": 0.2,
+                            "fg_width": 0.08333333333333333,
+                            time: {
+                                Days: {show: false},
+                                Hours: {show: false},
+                                Minutes: {show: true},
+                                Seconds: {show: true}
+                            }
+                        }).addListener(countdownComplete);
+
+                        function countdownComplete(unit, value, total) {
+                            if (total <= 0) {
+                                $(this).fadeOut('slow').replaceWith("<h2 id='test'>Time's Up!</h2>");
+                                $("#messagetimer").hide();
+
+                            }
+                        }
+                    }
+                    else {
+                        $.notify("Fail to Launch Stacks", "error");
+                        $("#loading").hide();
+                        // $("#messagetimer").show();
+                        // $(".coundown").TimeCircles({
+                        //     count_past_zero: false,
+                        //     "bg_width": 0.2,
+                        //     "fg_width": 0.08333333333333333,
+                        //     time: {
+                        //         Days: {show:false},
+                        //         Hours: {show:false},
+                        //         Minutes: {show:true},
+                        //         Seconds: {show:true}
+                        //     }}).addListener(countdownComplete);
+                        //
+                        // function countdownComplete(unit, value, total) {
+                        //     if (total <= 0) {
+                        //         $(this).fadeOut('slow').replaceWith("<h2 id='test'>Time's Up!</h2>");
+                        //         $("#messagetimer").hide();
+                        //
+                        //     }
+                        // }
+
+                    }
+
+                    //console.log(getdata.finaldata["0"].User.UserName);
+                    //alert(getdata.finaldata["0"].User.UserName);
+                    // $("#mytable").append('<caption style="caption-side: top">'+ training +'</caption>');
+                    //$("#a1").text(training);
+                    // $("#mytable").append('#tname').val()
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert("error")
+                    //error handling stuff
+                }
+            });
+        }
+    </script>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Pragma" content="no-cache">
+        <title>CloudFormation</title>
+    </head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#"><b>Resources Creation</b></a>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li>
+                <a href="index.html" class=" text-white col-md-12">Home</a>
+            </li>
+            <li>
+                <a href="index.html" class=" text-white col-md-12">Create Stacks</a>
+            </li>
+            <li class="nav-item active">
+                <a href="cflist.html" class=" text-white col-md-12">List Stacks</a>
+            </li>
+
+        </ul>
+        <form class="form-inline my-6 my-lg-0 my-sm-0 pull-right">
+            <div class="form-group">
+                <b><label class="nav-link text-white">Account</label></b>
+                <select class="form-control" id="acType">
+                    <option value="dev">Developer</option>
+                    <option value="training" selected="true">Training</option>
+                    <option value="ext">External</option>
+                </select>
+            </div>
+        </form>
+        <form class="form-inline my-6 my-lg-0 my-sm-0 pull-right">
+            <div class="form-group">
+                <b><label class="nav-link text-white">Services</label></b>
+                <!-- <select class="form-control" id="main_service"> -->
+                <!--<input type="text" value="IAM" readonly="readonly" class="form-control" size="5"/>-->
+                <select class="form-control" id="main_service" onchange="location = this.value;">
+                    <option value="iam.html">IAM</option>
+                    <option value="cf.html" selected="true">CloudFormation</option>
+                </select>
+            </div>
+        </form>
+        <form class="form-inline my-6 my-lg-0 my-sm-0 pull-right">
+            <div class="form-group">
+                <div class="dropdown col-md-1 float-md-right">
+                    <a class="btn dropdown" id="userdetail" onclick="usermenu()" aria-haspopup="true"
+                       aria-expanded="true" data-toggle="dropdown" title="signout"
+                       style="margin-right: -27px; -webkit-appearance: none;"><img
+                            src="../../assets/images/profilelogo.png" style="width: 25px;"/>
+                    </a>
+                    <div class="dropdown-menu" id="hideshowdropdown" aria-labelledby="btnGroupDrop1"
+                         x-placement="bottom-start"
+                         style="position: absolute; will-change: transform; top: 12px; left: -95px; transform: translate3d(0px, 38px, 0px);">
+                        <span class="btn btn-disabled" id="loginname"></span><br>
+                        <!--<a href="index.html" class="btn">Create Users</a><br>-->
+                        <a class="btn" id="signout" onclick="signout();" title="signout" style="margin-right: -27px;">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</nav>
+<br>
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <table class="col-md-12">
+            <tr class="col-md-12">
+                <td width="25%">
+                    <div class="row">
+                        <div class="col-md-11 col-md-offset-1">
+                            <form id="Tcreation" style="margin-left: 12px;">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="templatename"><b>Select a Training</b></label>
+                                    <select class="form-control" id="templatename">
+                                        <option selected="true">Select a Training</option>
+                                        <option value="ansible">Ansible</option>
+                                        <option value="customdevops">Custom DevOps</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label" for="nuser"><b>Enter the number of Participants :</b></label>
+                                    <input type="text" id="nuser" placeholder="Enter the number of Participants"
+                                           pattern="[0-9]" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label" for="sname"><b>Enter the Stack Name :</b></label>
+                                    <input type="text" id="sname" placeholder="Enter the Stack Name"
+                                           class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label" for="cname"><b>Enter the Company Name :</b></label>
+                                    <input type="text" id="cname" placeholder="Enter the Company Name"
+                                           class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label" for="regionname"><b>Enter the Regions:</b></label>
+                                    <select class="form-control" id="regionname">
+                                        <option selected="true">Select a Regions</option>
+                                        <option value="us-east-1">N. Virginia</option>
+                                        <option value="us-east-2">Ohio</option>
+                                        <option value="us-west-1">N. California</option>
+                                        <option value="us-west-2">Oregon</option>
+                                        <option value="ap-south-1">Mumbai</option>
+                                        <option value="ap-northeast-2">Seoul</option>
+                                        <option value="ap-southeast-1">Singapore</option>
+                                        <option value="ap-southeast-2">Sydney</option>
+                                        <option value="ap-northeast-1">Tokyo</option>
+                                        <option value="ca-central-1">Canada</option>
+                                        <option value="eu-central-1">Frankfurt</option>
+                                        <option value="eu-west-1">Ireland</option>
+                                        <option value="eu-west-2">London</option>
+                                        <option value="sa-east-1">São Paulo</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label" for="tdate"><b>Training Duration :</b></label>
+                                    <input type="text" id="tdate" data-toggle="daterangepicker"
+                                           data-filter-type="date-range" class="form-control">
+                                    <!-- <input type="text" id="edate" placeholder = "Training End" class="form-control"> -->
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <button type="button" onclick="sendget()" class="btn btn-info col-md-4">Submit
+                                    </button>
+
+                                    <a class="btn refresh" id="refresh" onclick="refresh()" title="Reload"><img
+                                            src="../../assets/images/reload1.png"/></a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+                <td width="75%">
+                    <center>
+                        <div id="messagetimer" style="display: none"><h2>Please wait Stacks are Being Created</h2></div>
+                        <div class="coundown" data-timer="120" style="width: 50%"></div>
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div id="loading" style="display: none;background-color: rgb(20, 20, 20);">
+    <p style="position: absolute; top: 40%; left:45%;">
+        <img src="../../assets/images/loader.gif"/>
+    </p>
+</div>
+</body>
+</html>
