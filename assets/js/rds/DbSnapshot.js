@@ -1,5 +1,5 @@
 function showDBSnaps() {
-    //
+
     $(".tableDisplay").html(" ");
     $("#main_title").html("Amazon Relational Database Service (RDS)");
     $("#tableHeading").html("DB Snapshots");
