@@ -21,7 +21,7 @@ function showLineChart() {
     var exttrainCostData = []
     var trainCostData = []
 
-
+    var count = 0;
     for (var i=2;i<date+1;i++){
         var num = i;
         var val;
@@ -29,14 +29,16 @@ function showLineChart() {
             tempdate = "0" + i.toString();
         else
             tempdate = i.toString();
+        console.log("Inside for loop : "+(count++))
         var getUrlDev = 'http://resources.cloudthat.com/' + "cost/dev/" + year + "/" + month + "/" + tempdate + '.json';
         $.getJSON(getUrlDev).then(function (data) {
             console.log(data.totalAccount)
             console.log(num);
             val = parseFloat(data.totalAccount).toFixed(2)
             console.log("val : "+val)
-            console.log("type val : "+typeof(val))
-            devCostData.push({label:num,y:val})
+            console.log("type val : "+typeof(number(val)))
+            console.log("Inside json fun : "+(count++))
+            devCostData.push({label:num,y:numner(val)})
         });
 
         // var getUrlProd = 'http://resources.cloudthat.com/' + "cost/prod/" + year + "/" + month + "/" + tempdate + '.json';
