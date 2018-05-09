@@ -180,8 +180,8 @@
             // console.log(resourcename+" "+expiryValue);
             $("#loadingMulModal").show();
             $.ajax({
-                // url: _config.api.invokeUrl + '/resources/iam',
-                url: _config.api.invokeUrlR + '/iam',
+                url: _config.api.invokeUrl + '/resources/iam',
+                // url: _config.api.invokeUrlR + '/iam',
                 type: 'post',
                 headers: {"Authorization": token},
                 contentType: 'application/json',
