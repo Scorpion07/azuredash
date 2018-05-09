@@ -36,8 +36,9 @@ function showLineChart() {
             console.log(r.totalAccount)
             val = parseFloat(r.totalAccount).toFixed(2)
             console.log("val"+val)
+            devCostData.push({label:num,y:val})
         });
-        devCostData.push({label:num,y:val})
+
         // var getUrlProd = 'http://resources.cloudthat.com/' + "cost/prod/" + year + "/" + month + "/" + tempdate + '.json';
         // $.getJSON(getUrlProd, function (r) {
         //     prodCostData.push({label:num,y:parseFloat(r.totalAccount).toFixed(2)})
