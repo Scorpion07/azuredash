@@ -52,6 +52,11 @@ function showLineChart() {
 
 
     console.log(devCostData)
+    console.log(prodCostData)
+    console.log(exttrainCostData)
+    console.log(trainCostData)
+
+
     var chart = new CanvasJS.Chart("chartContainer", {
         animationEnabled: true,
         theme: "light2",
