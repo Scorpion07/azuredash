@@ -2,7 +2,7 @@ var ajaxrequests = [];
 var count;
 
 function loader() {
-    if (count === 12) {
+    if (count === 11) {
         $("#loading").hide();
         $("#loading").css("style", "display: none;");
     }
@@ -84,7 +84,7 @@ function showDashboard() {
                 count += 1
                 loader();
                 $("#elb").text(result.elbs);
-                if (currentTime.getHours() < 12 || currentTime.getHours() > 17) {
+                if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
                     if (result.elbs == "0" || result.elbs == 0) {
                         $("#elbD").removeClass("text-danger");
                     }
@@ -97,8 +97,6 @@ function showDashboard() {
                     $("#elbD").removeClass("text-danger");
 
                 }
-                //$("#loading").hide();
-                //$("#loading").css("style", "display: none;");
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
@@ -123,7 +121,7 @@ function showDashboard() {
                 $("#Snapshots").text(result.Snapshots);
                 $("#volumes").text(result.Volumes);
                 console.log("time : " + currentTime.getHours());
-                if (currentTime.getHours() < 12 || currentTime.getHours() > 17) {
+                if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
                     console.log("sadADas" + currentTime.getHours());
                     if (result.Snapshots == "0" || result.Snapshots == 0) {
                         $("#SnapshotsD").removeClass("text-danger");
@@ -168,7 +166,7 @@ function showDashboard() {
                 var stop = "<img src='assets/images/red.png' style='width: 16px;'>"
                 $("#InstancesRunning").html(right + " " + result.InstancesRunning);
                 $("#InstancesStop").html(stop + "  " + result.InstancesStop);
-                if (currentTime.getHours() < 12 || currentTime.getHours() > 17) {
+                if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
 
                     if (result.InstancesRunning == "0" || result.InstancesRunning == 0) {
                         $("#InstanceD").removeClass("text-danger");
@@ -206,7 +204,7 @@ function showDashboard() {
                 $("#natStop").html(stop + "  " + result.failednatgateway);
                 $("#vpn").text(result.vpnconnection);
                 $("#vpc").text(result.vpc);
-                if (currentTime.getHours() < 12 || currentTime.getHours() > 17) {
+                if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
 
                     if (result.availablenatgateway == "0" || result.availablenatgateway == 0) {
                         $("#natD").removeClass("text-danger");
@@ -254,7 +252,7 @@ function showDashboard() {
                 console.log(result);
                 $("#eip").text(result.ElasticIPs);
                 $("#eni").text(result.NetworkInterfaces);
-                if (currentTime.getHours() < 12 || currentTime.getHours() > 17) {
+                if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
                     if (result.ElasticIPs == "0" || result.ElasticIPs == 0) {
                         $("#eipD").removeClass("text-danger");
                     }
@@ -296,7 +294,7 @@ function showDashboard() {
                 var c = parseInt(result.DBClusters) + parseInt(result.DBInstances);
                 $("#DBInstances").text(c);
                 $("#DBSnapshots").text(result.DBSnapshots);
-                if (currentTime.getHours() < 12 || currentTime.getHours() > 17) {
+                if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
                     if (c == "0" || c == 0) {
                         $("#dbinstancecluster").removeClass("text-danger");
                     }
@@ -337,7 +335,7 @@ function showDashboard() {
                 console.log(result);
                 $("#lambda").text(result.LambdaCount);
 
-                if (currentTime.getHours() < 12 || currentTime.getHours() > 17) {
+                if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
                     if (result.LambdaCount == "0" || result.LambdaCount == 0) {
                         $("#lambdaD").removeClass("text-danger");
                     }
@@ -367,10 +365,10 @@ function showDashboard() {
             success: function (result) {
                 count += 1
                 loader();
-                console.log(result);
+                console.log("stack"+result);
                 $("#stack").text(result.StackCount);
 
-                if (currentTime.getHours() < 12 || currentTime.getHours() > 17) {
+                if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
                     if (result.StackCount == "0" || result.StackCount == 0) {
                         $("#stackD").removeClass("text-danger");
                     }
@@ -406,7 +404,7 @@ function showDashboard() {
                 $("#model").text(result.Model);
                 $("#endconfig").text(result.EndpointConfig);
 
-                if (currentTime.getHours() < 12 || currentTime.getHours() > 17) {
+                if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
                     if (result.NotebookInstances == "0" || result.NotebookInstances == 0)
                         $("#InstanceSagemaker").removeClass("text-danger");
                     else
@@ -463,7 +461,7 @@ function showDashboard() {
                 $("#red_clust").text(result.RedshiftCluster);
                 $("#red_snapshots").text(result.RedshiftSnapshot);
 
-                if (currentTime.getHours() < 12 || currentTime.getHours() > 17) {
+                if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
                     if (result.RedshiftCluster == "0" || result.RedshiftCluster == 0)
                         $("#redshift_cluster").removeClass("text-danger");
                     else
@@ -501,7 +499,7 @@ function showDashboard() {
                 loader();
                 console.log(result);
                 $("#hostedzone").text(result.hostzone);
-                if (currentTime.getHours() < 12 || currentTime.getHours() > 17) {
+                if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
                     if (result.hostzone == "0" || result.hostzone == 0) {
                         $("#route53").removeClass("text-danger");
                     }

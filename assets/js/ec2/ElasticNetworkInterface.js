@@ -20,8 +20,6 @@ function showENIs() {
 
     $("#tablehead").html("");
     $("#tablebody").html("");
-    $("#tablehead").append('<tr><th><input name="select_all" class="select_all" type="checkbox"></th><th>Network Interface ID</th><th>Instance ID</th><th>Status</th><th>Description</th><th>Public IP</th><th>VPC ID</th><th>Private IP</th><th>Interface Type</th><th>Region</th></tr>');
-    $("#tablebody").append('<tr><th></th><th>Network Interface ID</th><th>Instance ID</th><th>Status</th><th>Description</th><th>Public IP</th><th>VPC ID</th><th>Private IP</th><th>Interface Type</th><th>Region</th></tr>');
     if (account !== 'prod') {
         $("#tablehead").append('<tr><th><input name="select_all" class="select_all" type="checkbox"></th><th>Network Interface ID</th><th>Instance ID</th><th>Status</th><th>Description</th><th>Public IP</th><th>VPC ID</th><th>Private IP</th><th>Interface Type</th><th>Region</th></tr>');
         $("#tablebody").append('<tr><th></th><th>Network Interface ID</th><th>Instance ID</th><th>Status</th><th>Description</th><th>Public IP</th><th>VPC ID</th><th>Private IP</th><th>Interface Type</th><th>Region</th></tr>');
