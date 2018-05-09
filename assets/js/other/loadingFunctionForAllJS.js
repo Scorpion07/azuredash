@@ -74,6 +74,9 @@ function load_resource_js(SelectedResourceVar) {
     else if (SelectedResourceVar == "endpointconfigs") {
         showSagemakerEndpointConfigs();
     }
+    else if (SelectedResourceVar == "linechart"){
+        showLineChart();
+    }
     else {
 
     }

@@ -616,7 +616,7 @@ a:focus {
 .sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {
   display: block !important;
   position: absolute;
-  width: 180px;
+  width: 240px;
   left: 50px;
 }
 .sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu > li:hover > a > span {
@@ -637,7 +637,6 @@ a:focus {
   display: none;
 }
 .sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {
-  top: 44px;
   margin-left: 0;
 }
 .sidebar-expanded-on-hover .main-footer,

@@ -30,6 +30,7 @@
     <script src="//npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
     <script src="assets/js/dependancies/bootstrap.min.js"></script>
     <script src="assets/js/dependancies/aws-sdk-2.224.1.min.js"></script>
+    <script src="assets/js/dependancies/canvasjs.min.js"></script>
 
     <link rel="stylesheet" href="assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
@@ -41,6 +42,7 @@
     <script src="assets/js/dependancies/aws-cognito-sdk.min.js"></script>
     <script src="assets/js/dependancies/amazon-cognito-identity.min.js"></script>
     <link rel="stylesheet" href="assets/css/custom.css">
+
 </head>
 <body class="skin-blue sidebar-mini sidebar-open" style="height: auto; min-height: 100%;">
 <div class="wrapper" style="height: auto; min-height: 100%;">
@@ -62,48 +64,68 @@
             <!-- Navbar Right Menu -->
             <div class="navbar-custom-menu">
                 <div class="nav navbar-nav">
-                    <div>
-
-                    </div>
-                    <div style=" float: none;display: inline-block;"><!-- <li></li> -->
-                        <div class="form-group" style="margin-right: 66px;">
-                            <div class="form-group" style="font-size: 18px;">
-                                <label class="nav-link text-white">
-                                    <div id="totalOtherCost" class="col align-self-start">
-
-                                    </div>
-                                </label>
+                    <div class="row" style="margin-right: 10%;">
+                        <div class="col-lg-1" style="margin-right: 33px; margin-top: 2%; ">
+                            <img src="assets/images/ct_image.png" height="20px" style="margin-top: 10%;"/>
+                        </div>
+                        <div class="col-lg-4" style=" float: none;display: inline-block;"><!-- <li></li> -->
+                            <div class="form-group" style="margin-bottom:unset;margin-top: 2%;">
+                                <div class="form-group" style="margin-bottom:unset;font-size: 18px;">
+                                    <label class="nav-link text-white">
+                                        <div id="totalOtherCost" class="col align-self-start">
+                                            Cost of Other services : $ 12.83
+                                        </div>
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-                    </div><!--  <ul> -->
-                    <div style=" float: none;display: inline-block;"><!-- <li></li> -->
-                        <div class="form-group" style="margin-right: 66px;">
-                            <div class="form-group" style="font-size: 18px;">
-                                <label class="nav-link text-white">
-                                    <div id="totalAccountCost" class="col align-self-end">
-                                    </div>
-                                </label>
+                        </div><!--  <ul> -->
+                        <div class="col-lg-4" style=" float: none;display: inline-block;"><!-- <li></li> -->
+                            <div class="form-group" style="margin-bottom:unset;margin-top: 2%;">
+                                <div class="form-group" style="margin-bottom:unset;font-size: 18px;">
+                                    <label class="nav-link text-white">
+                                        <div id="totalAccountCost" class="col align-self-end">
+                                            Cost of Other services : $ 12.83
+                                        </div>
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-                    </div><!--  <ul> -->
-                    <div style=" float: none;display: inline-block;"><!-- <li></li> -->
-                        <div class="form-group" style="margin-right: 66px;">
-                            <select class="form-control" id="account"
-                                    style="font-size: 16px;width: 170px;height: 36px;">
-                                <option value="dev">Developer</option>
-                                <option value="prod">Production</option>
-                                <option value="training">Training</option>
-                                <option value="exttrain">External Training</option>
-                            </select>
-                        </div>
+                        </div><!--  <ul> -->
+                        <div class="col-lg-1" style=" float: none;display: inline-block;"><!-- <li></li> -->
+                            <table style="background: none;">
+                                <tr>
+                                    <td>
+                                        <div class="form-group"
+                                             style="margin-right: 22px;margin-top: 2%;margin-bottom: 0px;">
+                                            <select class="form-control" id="account"
+                                                    style="font-size: 16px;width: 170px;height: 36px;">
+                                                <option value="dev">Developer</option>
+                                                <option value="prod">Production</option>
+                                                <option value="training">Training</option>
+                                                <option value="exttrain">External Training</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>  <!-- <li></li> -->
+                                            <!-- <a href="#" data-toggle="control-sidebar" style="float: right;margin-top: -32px;padding-right: 20px;"><i class="fa fa-gears"></i></a> -->
+                                            <!--<a class="btn" id="signout" onclick="signout();" title="signout"-->
+                                            <!--style="float: right;margin-top: -44px;  padding-right: 17px; ">-->
+                                            <!--<input type="image" src="assets/icons/logout.png" alt="Submit" width="25"></a>-->
 
-                        <div>  <!-- <li></li> -->
-                            <!-- <a href="#" data-toggle="control-sidebar" style="float: right;margin-top: -32px;padding-right: 20px;"><i class="fa fa-gears"></i></a> -->
-                            <a class="btn" id="signout" onclick="signout();" title="signout"
-                               style="float: right;margin-top: -44px;  padding-right: 17px;">
-                                <input type="image" src="assets/icons/logout.png" alt="Submit" width="25"></a>
+                                            <button type="button" class="btn btn-default btn-sm" id="signout" onclick="signout();"
+                                                    style="float:right; color:#20629b; font-size:15px">
+                                                <span class="glyphicon glyphicon-log-out"></span> Log out
+                                            </button>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+
                         </div>
                     </div>
+
                 </div>
             </div>
         </nav>
@@ -140,17 +162,24 @@
                     <li class="header">AWS Services</li>
                     <li class="active">
                         <a href="#" class="SelectedResource select" data-resource="dashboard">
-                            <i class="fa fa-th"></i> <span>Dashboard</span>
+                            <i class="fa fa-th"></i> <span style="width:229px;">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="SelectedResource select" data-resource="linechart">
+                            <img src='assets/images/chart.png' style="margin-left: -2px"> <span style="width:229px;">Line Chart</span>
                         </a>
                     </li>
                     <li class="treeview">
                         <a href="#" class="select">
-                            <img src='assets/images/ec2.png'> <span>EC2</span>
-                            <span class="pull-right-container" style="margin: -3px;">
+                            <img src='assets/images/ec2.png'> <span style="width:229px;">EC2
+                                 <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
+                        </span>
+
                         </a>
-                        <ul id="myUL" class="treeview-menu" style="display: none;">
+                        <ul id="myUL" class="treeview-menu" style="display: none;top:unset;width: 229px">
                             <li><a href="#" class="SelectedResource" data-resource="ec2_instance"><i
                                     class="fa fa-circle-o"></i>EC2 Instances</a></li>
                             <li><a href="#" class="SelectedResource" data-resource="ebs_volume"><i
@@ -167,12 +196,12 @@
                     </li>
                     <li class="treeview">
                         <a href="#" class="select">
-                            <img src='assets/images/rds.png'> <span>RDS</span>
+                            <img src='assets/images/rds.png'> <span style="width:229px;">RDS
                             <span class="pull-right-container" style="margin: -3px;">
             <i class="fa fa-angle-left pull-right"></i>
-          </span>
+          </span></span>
                         </a>
-                        <ul class="treeview-menu">
+                        <ul class="treeview-menu" style="display: none;top:unset;width: 229px">
                             <li><a href="#" class="SelectedResource" data-resource="dbinstance"><i
                                     class="fa fa-circle-o"></i>DB Instances</a></li>
                             <li><a href="#" class="SelectedResource" data-resource="dbcluster"><i
@@ -183,12 +212,12 @@
                     </li>
                     <li class="treeview">
                         <a href="#" class="select">
-                            <img src='assets/images/vpc.png '> <span>VPC</span>
+                            <img src='assets/images/vpc.png '> <span style="width:229px;">VPC
                             <span class="pull-right-container" style="margin: -3px;">
             <i class="fa fa-angle-left pull-right"></i>
-          </span>
+          </span></span>
                         </a>
-                        <ul class="treeview-menu">
+                        <ul class="treeview-menu" style="display: none;top:unset;width: 229px">
                             <li><a href="#" class="SelectedResource" data-resource="vpc"><i class="fa fa-circle-o"></i>VPCs</a>
                             </li>
                             <li><a href="#" class="SelectedResource" data-resource="vpn"><i class="fa fa-circle-o"></i>VPN
@@ -199,12 +228,12 @@
                     </li>
                     <li class="treeview">
                         <a href="#" class="select">
-                            <img src='assets/images/redshift.png'> <span>Redshift</span>
+                            <img src='assets/images/redshift.png'> <span style="width:229px;">Redshift
                             <span class="pull-right-container" style="margin: -3px;">
             <i class="fa fa-angle-left pull-right"></i>
-          </span>
+          </span></span>
                         </a>
-                        <ul class="treeview-menu">
+                        <ul class="treeview-menu" style="display: none;top:unset;width: 229px">
                             <li><a href="#" class="SelectedResource" data-resource="redshift_cluster"><i
                                     class="fa fa-circle-o"></i>Redshift Clusters</a></li>
                             <li><a href="#" class="SelectedResource" data-resource="redshift_cluster_snapshot"><i
@@ -213,22 +242,22 @@
                     </li>
                     <li>
                         <a href="#" class="SelectedResource select" data-resource="lambda">
-                            <img src='assets/images/lambda.png'> <span>Lambda Functions</span>
+                            <img src='assets/images/lambda.png'> <span style="width:229px;">Lambda Functions</span>
                         </a>
                     </li>
                     <li>
                         <a href="#" class="SelectedResource select" data-resource="stack">
-                            <img src='assets/images/stack.png'> <span>CloudFormation Stacks</span>
+                            <img src='assets/images/stack.png'> <span style="width:229px;">CloudFormation Stacks</span>
                         </a>
                     </li>
                     <li class="treeview">
                         <a href="#" class="select">
-                            <img src='assets/images/sagemaker.png'> <span>SageMaker</span>
+                            <img src='assets/images/sagemaker.png'> <span style="width:229px;">SageMaker
                             <span class="pull-right-container" style="margin: -3px;">
             <i class="fa fa-angle-left pull-right"></i>
-          </span>
+          </span></span>
                         </a>
-                        <ul class="treeview-menu">
+                        <ul class="treeview-menu" style="display: none;top:unset;width: 229px">
                             <li><a href="#" class="SelectedResource" data-resource="notebook_instance"><i
                                     class="fa fa-circle-o"></i>Notebook Instances</a></li>
                             <li><a href="#" class="SelectedResource" data-resource="jobs"><i class="fa fa-circle-o"></i>Jobs</a>
@@ -243,12 +272,12 @@
                     </li>
                     <li>
                         <a href="#" class="SelectedResource select" data-resource="route53">
-                            <img src='assets/images/route53.png'> <span>Route 53</span>
+                            <img src='assets/images/route53.png'> <span style="width:229px;">Route 53</span>
                         </a>
                     </li>
                     <li>
                         <a href="#" class="SelectedResource select" data-resource="cloudtrail">
-                            <img src='assets/images/cloudtrail.png'> <span>CloudTrail</span>
+                            <img src='assets/images/cloudtrail.png'> <span style="width:229px;">CloudTrail</span>
                         </a>
                     </li>
 
@@ -560,7 +589,7 @@
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Dashboard</li>
+                    <li class="active">AWS Service</li>
                 </ol>
             </section>
             <section class="content">
@@ -568,12 +597,12 @@
                     <div class="col-md-9">
 
                     </div>
-                    <div class="col-md-2 pull-left">
+                    <div class="col-md-2 pull-left" style="display: block">
                         <a class="btn btn-danger pull-right" id="btnmultipledelete"
                            class="disable disabled btnmultipledelete" title="Delete selected"></a>
                     </div>
 
-                    <div class="col-md-1 pull-right" style="margin: -9px;">
+                    <div class="col-md-1 pull-right" style="margin: -9px; display: block">
                         <a class="btn refresh" id="refresh" onclick="reloadFunc()" title="Reload"><img
                                 src="assets/icons/reload1.png" class="img-circle"/></a>
                     </div>
@@ -621,10 +650,32 @@
                 </div>
             </section>
         </div>
+        <div id="Chart" style="display: none;">
+            <section class="content-header">
+                <h1>
+                    Line Chart
+                </h1>
 
-        <!-- Main content -->
-
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i>CloudBilling</a></li>
+                    <li class="active">Line Chart</li>
+                </ol>
+            </section>
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div id="chartContainer" ></div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div><p style="color:#20629b; font-size: 20px;">Developer</p></div>
+            </section>
+        </div>
     </div>
+    <!-- Main content -->
+
+
     <div class="modal" id="deleteMulConformation">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -701,6 +752,7 @@
 <script type="text/javascript" src="assets/js/sagemaker/EndpointConfiguration.js"></script>
 <script type="text/javascript" src="assets/js/route53/hostzone.js"></script>
 <script type="text/javascript" src="assets/js/cloudtrail/cloudtrail.js"></script>
+<script type="text/javascript" src="assets/js/linechart.js"></script>
 <script type="text/javascript" src="assets/js/main.js"></script>
 <script type="text/javascript" src="assets/js/other/loadingFunctionForAllJS.js"></script>
 <script type="text/javascript" src="assets/js/other/forOpeningModel.js"></script>
