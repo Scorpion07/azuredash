@@ -184,7 +184,7 @@
             //pot = $("#tdate").val();
             var lamdadata = {
                 nuser: nouser,
-                sname: Stname,
+                sname: companyname + "-stack",
                 account: acType,
                 fname: templateS,
                 rname: regi,
@@ -206,10 +206,8 @@
                 data: JSON.stringify(lamdadata),
                 success: function (getdata) {
                     $("#nuser").val("");
-                    $("#sname").val("");
                     $("#templatename").val("Select a Training");
                     $("#cname").val("");
-                    $("#acType").val("training");
                     $("#regionname").val("Select a Regions");
                     if (getdata == "Successfull") {
                         $.notify("Stack Creations In Progress", "success");
@@ -285,10 +283,10 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
             <li>
-                <a href="index.html" class=" text-white col-md-12">Home</a>
+                <a href="../index.html" class=" text-white col-md-12">Home</a>
             </li>
             <li>
-                <a href="index.html" class=" text-white col-md-12">Create Stacks</a>
+                <a href="../cf" class=" text-white col-md-12">Create Stacks</a>
             </li>
             <li class="nav-item active">
                 <a href="cflist.html" class=" text-white col-md-12">List Stacks</a>
@@ -299,9 +297,9 @@
             <div class="form-group">
                 <b><label class="nav-link text-white">Account</label></b>
                 <select class="form-control" id="acType">
-                    <option value="dev">Developer</option>
-                    <option value="training" selected="true">Training</option>
-                    <option value="ext">External</option>
+                    <!--<option value="dev">Developer</option>-->
+                    <!--<option value="training" >Training</option>-->
+                    <option value="ext" selected="true">External</option>
                 </select>
             </div>
         </form>
@@ -311,8 +309,8 @@
                 <!-- <select class="form-control" id="main_service"> -->
                 <!--<input type="text" value="IAM" readonly="readonly" class="form-control" size="5"/>-->
                 <select class="form-control" id="main_service" onchange="location = this.value;">
-                    <option value="iam.html">IAM</option>
-                    <option value="cf.html" selected="true">CloudFormation</option>
+                    <option value="../iam">IAM</option>
+                    <option value="cf" selected="true">CloudFormation</option>
                 </select>
             </div>
         </form>
@@ -350,7 +348,7 @@
                                     <label class="col-form-label" for="templatename"><b>Select a Training</b></label>
                                     <select class="form-control" id="templatename">
                                         <option selected="true">Select a Training</option>
-                                        <option value="ansible">Ansible</option>
+                                        <!--<option value="ansible">Ansible</option>-->
                                         <option value="customdevops">Custom DevOps</option>
                                     </select>
                                 </div>
@@ -359,11 +357,11 @@
                                     <input type="text" id="nuser" placeholder="Enter the number of Participants"
                                            pattern="[0-9]" class="form-control" required>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-form-label" for="sname"><b>Enter the Stack Name :</b></label>
-                                    <input type="text" id="sname" placeholder="Enter the Stack Name"
-                                           class="form-control">
-                                </div>
+                                <!--<div class="form-group">-->
+                                <!--<label class="col-form-label" for="sname"><b>Enter the Stack Name :</b></label>-->
+                                <!--<input type="text" id="sname" placeholder="Enter the Stack Name"-->
+                                <!--class="form-control">-->
+                                <!--</div>-->
                                 <div class="form-group">
                                     <label class="col-form-label" for="cname"><b>Enter the Company Name :</b></label>
                                     <input type="text" id="cname" placeholder="Enter the Company Name"
@@ -373,20 +371,20 @@
                                     <label class="col-form-label" for="regionname"><b>Enter the Regions:</b></label>
                                     <select class="form-control" id="regionname">
                                         <option selected="true">Select a Regions</option>
-                                        <option value="us-east-1">N. Virginia</option>
-                                        <option value="us-east-2">Ohio</option>
-                                        <option value="us-west-1">N. California</option>
-                                        <option value="us-west-2">Oregon</option>
+                                        <!--<option value="us-east-1">N. Virginia</option>-->
+                                        <!--<option value="us-east-2">Ohio</option>-->
+                                        <!--<option value="us-west-1">N. California</option>-->
+                                        <!--<option value="us-west-2">Oregon</option>-->
                                         <option value="ap-south-1">Mumbai</option>
-                                        <option value="ap-northeast-2">Seoul</option>
-                                        <option value="ap-southeast-1">Singapore</option>
-                                        <option value="ap-southeast-2">Sydney</option>
-                                        <option value="ap-northeast-1">Tokyo</option>
-                                        <option value="ca-central-1">Canada</option>
-                                        <option value="eu-central-1">Frankfurt</option>
-                                        <option value="eu-west-1">Ireland</option>
-                                        <option value="eu-west-2">London</option>
-                                        <option value="sa-east-1">São Paulo</option>
+                                        <!--<option value="ap-northeast-2">Seoul</option>-->
+                                        <!--<option value="ap-southeast-1">Singapore</option>-->
+                                        <!--<option value="ap-southeast-2">Sydney</option>-->
+                                        <!--<option value="ap-northeast-1">Tokyo</option>-->
+                                        <!--<option value="ca-central-1">Canada</option>-->
+                                        <!--<option value="eu-central-1">Frankfurt</option>-->
+                                        <!--<option value="eu-west-1">Ireland</option>-->
+                                        <!--<option value="eu-west-2">London</option>-->
+                                        <!--<option value="sa-east-1">São Paulo</option>-->
                                     </select>
                                 </div>
                                 <div class="form-group">
