@@ -124,8 +124,8 @@
             }
             $("#loadingMulModal").show();
             $.ajax({
-                url: _config.api.invokeUrl + '/resources/iam',
-                // url: _config.api.invokeUrlR + '/iam',
+                // url: _config.api.invokeUrl + '/resources/iam',
+                url: _config.api.invokeUrlR + '/iam',
                 type: 'post',
                 headers: {"Authorization": token},
                 contentType: 'application/json',
@@ -175,8 +175,8 @@
         //alert(JSON.stringify(mydata));
         // $(document).ready(function() {
         $.ajax({
-            url: _config.api.invokeUrl + '/resources/iam',
-            // url: _config.api.invokeUrlR + '/iam',
+            // url: _config.api.invokeUrl + '/resources/iam',
+            url: _config.api.invokeUrlR + '/iam',
             type: 'POST',
             headers: {"Authorization": token},
             crossDomain: true,
@@ -267,7 +267,7 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
             <li>
-                <a href="home.html" class=" text-white col-md-12">Home</a>
+                <a href="index.html" class=" text-white col-md-12">Home</a>
             </li>
             <li>
                 <a href="cf.html" class=" text-white col-md-12">Create Stacks</a>

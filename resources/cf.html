@@ -196,8 +196,8 @@
             };
 
             $.ajax({
-                url: _config.api.invokeUrl + '/resources/iam',
-                // url: _config.api.invokeUrlR + '/iam',
+                // url: _config.api.invokeUrl + '/resources/iam',
+                url: _config.api.invokeUrlR + '/iam',
                 type: 'POST',
                 headers: {"Authorization": token},
                 crossDomain: true,
@@ -215,7 +215,7 @@
                         $.notify("Stack Creations In Progress", "success");
                         // check_create(templateS, nouser);
                         $("#loading").hide();
-
+                        $("#messagetimer").show();
                         $(".coundown").TimeCircles({
                             count_past_zero: false,
                             "bg_width": 0.2,
@@ -285,7 +285,7 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
             <li>
-                <a href="home.html" class=" text-white col-md-12">Home</a>
+                <a href="index.html" class=" text-white col-md-12">Home</a>
             </li>
             <li>
                 <a href="cf.html" class=" text-white col-md-12">Create Stacks</a>
@@ -300,8 +300,8 @@
                 <b><label class="nav-link text-white">Account</label></b>
                 <select class="form-control" id="acType">
                     <option value="dev">Developer</option>
-                    <option value="training" selected="true">Training</option>
-                    <option value="ext">External</option>
+                    <option value="training">Training</option>
+                    <option value="ext" selected="true">External</option>
                 </select>
             </div>
         </form>
@@ -328,7 +328,7 @@
                          x-placement="bottom-start"
                          style="position: absolute; will-change: transform; top: 12px; left: -95px; transform: translate3d(0px, 38px, 0px);">
                         <span class="btn btn-disabled" id="loginname"></span><br>
-                        <!--<a href="iam.html" class="btn">Create Users</a><br>-->
+                        <!--<a href="index.html" class="btn">Create Users</a><br>-->
                         <a class="btn" id="signout" onclick="signout();" title="signout" style="margin-right: -27px;">Logout</a>
                     </div>
                 </div>
@@ -351,7 +351,7 @@
                                     <select class="form-control" id="templatename">
                                         <option selected="true">Select a Training</option>
                                         <option value="ansible">Ansible</option>
-                                        <option value="singletest">Custom</option>
+                                        <option value="customdevops">Custom DevOps</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -373,7 +373,20 @@
                                     <label class="col-form-label" for="regionname"><b>Enter the Regions:</b></label>
                                     <select class="form-control" id="regionname">
                                         <option selected="true">Select a Regions</option>
+                                        <option value="us-east-1">N. Virginia</option>
                                         <option value="us-east-2">Ohio</option>
+                                        <option value="us-west-1">N. California</option>
+                                        <option value="us-west-2">Oregon</option>
+                                        <option value="ap-south-1">Mumbai</option>
+                                        <option value="ap-northeast-2">Seoul</option>
+                                        <option value="ap-southeast-1">Singapore</option>
+                                        <option value="ap-southeast-2">Sydney</option>
+                                        <option value="ap-northeast-1">Tokyo</option>
+                                        <option value="ca-central-1">Canada</option>
+                                        <option value="eu-central-1">Frankfurt</option>
+                                        <option value="eu-west-1">Ireland</option>
+                                        <option value="eu-west-2">London</option>
+                                        <option value="sa-east-1">São Paulo</option>
                                     </select>
                                 </div>
                                 <div class="form-group">

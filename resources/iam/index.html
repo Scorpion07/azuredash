@@ -10,6 +10,7 @@
     <script src="../../assets/js/dependancies/jquery-1.12.4.js"></script>
     <script src="../../assets/js/dependancies/jquery.min.js"></script>
     <script src="../../assets/js/dependancies/jquery.dataTables.min.js"></script>
+    <!--<script src="../../assets/js/dependancies/jquery.form-validator.min.js"></script>-->
     <script src="../../assets/js/dependancies/dataTables.buttons.min.js"></script>
     <script src="../../assets/js/dependancies/jszip.min.js"></script>
     <script src="../../assets/js/dependancies/pdfmake.min.js"></script>
@@ -32,6 +33,31 @@
             else {
                 $("#hideshowdropdown").addClass("show");
             }
+        }
+
+        function dataValidations() {
+            // var numbers = new RegExp(/^[0-9]\\d*$/);
+            // var alphabeticnumeric = new RegExp(/^[a-zA-Z][0-9]\\d*$/);
+            if ($("#uPolicy").selectedIndex == "") {
+                $.notify("Please Select a Training Name", "error");
+                return false;
+            }
+            else if ($("#nuser").val() == "") {
+                $.notify("Please Enter a Valid Number of users", "error");
+                return false;
+            }
+            else if ($("#cname").val() == "") {
+                $.notify("Please Enter a Valid Company Name", "error");
+                return false;
+            }
+            else if ($('#tname').selectedIndex == "") {
+                $.notify("Please Select a valid Training Date", "error");
+                return false;
+            }
+            else {
+                return true;
+            }
+
         }
     </script>
     <script type="text/javascript">
@@ -134,106 +160,106 @@
         });
 
         function sendget() {
-            $("#loading").show();
-            nouser = $("#nuser").val();
-            Iname = $("#uname").val();
-            policyuser = $("#uPolicy").val();
-            acType = $("#acType").val();
-            companyname = $("#cname").val();
-            // training = $("#tname").val();
-            //pot = $("#tdate").val();
-            var lamdadata = {
-                nuser: nouser,
-                cname: companyname,
-                uname: companyname + "-user",
-                upolicy: policyuser,
-                account: acType,
-                tdays: days,
-                expdate: edate,
-                stsdate: sdate,
-                createdByEmail: loginId,
-                createdByName: loginUser,
-                method: "createIam"
-            };
+            if (dataValidations()) {
+                $("#loading").show();
+                nouser = $("#nuser").val();
+                policyuser = $("#uPolicy").val();
+                acType = $("#acType").val();
+                companyname = $("#cname").val();
+                // training = $("#tname").val();
+                //pot = $("#tdate").val();
+                var lamdadata = {
+                    nuser: nouser,
+                    cname: companyname,
+                    uname: companyname + "-user",
+                    upolicy: policyuser,
+                    account: acType,
+                    tdays: days,
+                    expdate: edate,
+                    stsdate: sdate,
+                    // createdByEmail: loginId,
+                    createdByEmail: "arihantb@cloudthat.in",
+                    createdByName: loginUser,
+                    method: "createIam"
+                };
 
-            $.ajax({
-                url: _config.api.invokeUrl + '/resources/iam',
-                // url: _config.api.invokeUrlR + '/iam',
-                type: 'POST',
-                headers: {"Authorization": token},
-                crossDomain: true,
-                contentType: 'application/json',
-                dataType: 'json',
-                data: JSON.stringify(lamdadata),
-                success: function (getdata) {
-                    $("#nuser").val("");
-                    $("#uname").val("");
-                    $("#upolicy").val("");
+                $.ajax({
+                    url: _config.api.invokeUrl + '/resources/iam',
+                    // url: _config.api.invokeUrlR + '/iam',
+                    type: 'POST',
+                    headers: {"Authorization": token},
+                    crossDomain: true,
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    data: JSON.stringify(lamdadata),
+                    success: function (getdata) {
+                        $("#nuser").val("");
+                        $("#upolicy").val("");
+                        $("#cname").val("");
+                        $("#acType").val("dev");
+                        $("#userTable").show();
+                        $('#mytable').dataTable().fnDestroy();
+                        //console.log(getdata.finaldata["0"].User.UserName);
+                        //alert(getdata.finaldata["0"].User.UserName);
+                        // $("#mytable").append('<caption style="caption-side: top">'+ training +'</caption>');
+                        //$("#a1").text(training);
+                        // $("#mytable").append('#tname').val();
 
-                    $("#acType").val("dev");
-                    $("#userTable").show();
-                    $('#mytable').dataTable().fnDestroy();
-                    //console.log(getdata.finaldata["0"].User.UserName);
-                    //alert(getdata.finaldata["0"].User.UserName);
-                    // $("#mytable").append('<caption style="caption-side: top">'+ training +'</caption>');
-                    //$("#a1").text(training);
-                    // $("#mytable").append('#tname').val();
+                        $("#mytable").DataTable({
 
-                    $("#mytable").DataTable({
+                            data: getdata.finaldata,
 
-                        data: getdata.finaldata,
-
-                        "columnDefs": [
-                            {
-                                "targets": [0],
-                                "data": "User.UserName"
-                            },
-                            {
-                                "targets": [1],
-                                "visible": false,
-                                "data": "User.AccessKeyId"
-                            },
-                            {
-                                "targets": [2],
-                                "visible": false,
-                                "data": "User.SecretAccessKey"
-                            },
-                            {
-                                "targets": [3],
-                                "visible": false,
-                                "data": "User.UPassword"
-                            },
-                            {
-                                "targets": [4],
-                                "data": "User.LoginUrl"
-                            }
-                        ],
-                        dom: 'Bfrtip',
-                        buttons: [
-                            {
-                                extend: 'excel',
-                                // title: exportTitle
-                                filename: function () {
-                                    return companyname + '_' + sdate + '_' + edate;
+                            "columnDefs": [
+                                {
+                                    "targets": [0],
+                                    "data": "User.UserName"
+                                },
+                                {
+                                    "targets": [1],
+                                    "visible": false,
+                                    "data": "User.AccessKeyId"
+                                },
+                                {
+                                    "targets": [2],
+                                    "visible": false,
+                                    "data": "User.SecretAccessKey"
+                                },
+                                {
+                                    "targets": [3],
+                                    "visible": false,
+                                    "data": "User.UPassword"
+                                },
+                                {
+                                    "targets": [4],
+                                    "data": "User.LoginUrl"
                                 }
-                            },
-                            {
-                                extend: 'csv',
-                                // title: exportTitle
-                                filename: function () {
-                                    return companyname + '_' + sdate + '_' + edate;
+                            ],
+                            dom: 'Bfrtip',
+                            buttons: [
+                                {
+                                    extend: 'excel',
+                                    // title: exportTitle
+                                    filename: function () {
+                                        return companyname + '_' + sdate + '_' + edate;
+                                    }
+                                },
+                                {
+                                    extend: 'csv',
+                                    // title: exportTitle
+                                    filename: function () {
+                                        return companyname + '_' + sdate + '_' + edate;
+                                    }
                                 }
-                            }
-                        ]
-                    });
-                    $("#loading").hide();
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    alert("error")
-                    //error handling stuff
-                }
-            });
-            $("#cname").val("");
+                            ]
+                        });
+                        $("#loading").hide();
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert("error")
+                        //error handling stuff
+                    }
+                });
+            }
         }
     </script>
     <head>
@@ -247,16 +273,16 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
             <li>
-                <a href="index.html" class=" text-white col-md-12">Home</a>
+                <a href="../index.html" class=" text-white col-md-12">Home</a>
             </li>
             <li>
-                <a href="index.html" class=" text-white col-md-12">Create Users</a>
+                <a href="../iam" class=" text-white col-md-12">Create Users</a>
             </li>
             <li class="nav-item active">
                 <a href="iamallusers.html" class=" text-white col-md-12">List Users</a>
             </li>
             <li class="nav-item active">
-                <a href="createreports.html" class=" text-white col-md-12">Reports</a>
+                <a href="../createreports.html" class=" text-white col-md-12">Reports</a>
             </li>
             </li>
         </ul>
@@ -275,8 +301,8 @@
                 <b><label class="nav-link text-white">Services</label></b>
                 <select class="form-control" id="main_service" onchange="location = this.value;">
                     <!--<input type="text" value="IAM" readonly="readonly" class="form-control" size="5"/>-->
-                    <option value="iam.html" selected="true">IAM</option>
-                    <option value="cf.html">CloudFormation</option>
+                    <option value="../iam" selected="true">IAM</option>
+                    <option value="../cf">CloudFormation</option>
                 </select>
             </div>
         </form>
@@ -324,7 +350,7 @@
                                 <div class="form-group">
                                     <label class="col-form-label" for="nuser"><b>Enter the number of Participants :</b></label>
                                     <input type="text" id="nuser" placeholder="Enter the number of Participants"
-                                           pattern="[0-9]" class="form-control" required>
+                                           class="form-control">
                                     <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                                     -->
                                 </div>
