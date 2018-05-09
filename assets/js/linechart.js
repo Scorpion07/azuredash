@@ -23,13 +23,18 @@ function showLineChart() {
 
 
     for (var i=2;i<date+1;i++){
+        console.log(i);
+        console.log(typeof(i));
         if (i < 10)
             tempdate = "0" + i.toString();
         else
             tempdate = i.toString();
         var getUrlDev = 'http://resources.cloudthat.com/' + "cost/dev/" + year + "/" + month + "/" + tempdate + '.json';
         $.getJSON(getUrlDev, function (r) {
-            devCostData.push({label:i,y:parseFloat(r.totalAccount).toFixed(2)})
+            console.log(r.totalAccount)
+            var val = parseFloat(r.totalAccount).toFixed(2)
+            console.log("val"+val)
+            devCostData.push({label:i,y:val})
         });
         var getUrlProd = 'http://resources.cloudthat.com/' + "cost/prod/" + year + "/" + month + "/" + tempdate + '.json';
         $.getJSON(getUrlProd, function (r) {
