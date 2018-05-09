@@ -95,10 +95,17 @@ $(window).on("load", function () {
         if (SelectedResourceVar == "dashboard") {
             $("#Dashboard").css("display", "block");
             $("#Services").css("display", "none");
+            $("#Chart").css("display","none");
+        }
+        else if(SelectedResourceVar == "linechart"){
+            $("#Dashboard").css("display", "none");
+            $("#Services").css("display", "none");
+            $("#Chart").css("display","block");
         }
         else {
             $("#Dashboard").css("display", "none");
             $("#Services").css("display", "block");
+            $("#Chart").css("display","none");
         }
     }
 });
@@ -131,13 +138,22 @@ $(document).on('click', '.SelectedResource', function () {
     console.log("Data Resources : " + $(this).attr("data-resource"));
     window.localStorage.setItem('SelectedResourceVar', $(this).attr("data-resource"));
     SelectedResourceVar = window.localStorage.getItem('SelectedResourceVar');
+
     if (SelectedResourceVar == "dashboard") {
         $("#Dashboard").css("display", "block");
         $("#Services").css("display", "none");
+        $("#Chart").css("display","none");
+    }
+    else if(SelectedResourceVar == "linechart"){
+        $("#Dashboard").css("display", "none");
+        $("#Services").css("display", "none");
+        $("#Chart").css("display","block");
+        stopRequests(SelectedResourceVar);
     }
     else {
         $("#Dashboard").css("display", "none");
         $("#Services").css("display", "block");
+        $("#Chart").css("display","none");
         stopRequests(SelectedResourceVar);
     }
     load_resource_js(SelectedResourceVar);
