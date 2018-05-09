@@ -23,8 +23,6 @@ function showLineChart() {
 
 
     for (var i=2;i<date+1;i++){
-        console.log(i);
-        console.log(typeof(i));
         var num = i;
         var val;
         if (i < 10)
@@ -32,10 +30,12 @@ function showLineChart() {
         else
             tempdate = i.toString();
         var getUrlDev = 'http://resources.cloudthat.com/' + "cost/dev/" + year + "/" + month + "/" + tempdate + '.json';
-        $.getJSON(getUrlDev, function (r) {
-            console.log(r.totalAccount)
-            val = parseFloat(r.totalAccount).toFixed(2)
-            console.log("val"+val)
+        $.getJSON(getUrlDev).then(function (data) {
+            console.log(data.totalAccount)
+            console.log(num);
+            val = parseFloat(data.totalAccount).toFixed(2)
+            console.log("val : "+val)
+            console.log("type val : "+typeof(val))
             devCostData.push({label:num,y:val})
         });
 
