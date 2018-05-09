@@ -25,6 +25,8 @@ function showLineChart() {
     for (var i=2;i<date+1;i++){
         console.log(i);
         console.log(typeof(i));
+        var num = i;
+        var val;
         if (i < 10)
             tempdate = "0" + i.toString();
         else
@@ -32,22 +34,22 @@ function showLineChart() {
         var getUrlDev = 'http://resources.cloudthat.com/' + "cost/dev/" + year + "/" + month + "/" + tempdate + '.json';
         $.getJSON(getUrlDev, function (r) {
             console.log(r.totalAccount)
-            var val = parseFloat(r.totalAccount).toFixed(2)
+            val = parseFloat(r.totalAccount).toFixed(2)
             console.log("val"+val)
-            devCostData.push({label:i,y:val})
         });
-        var getUrlProd = 'http://resources.cloudthat.com/' + "cost/prod/" + year + "/" + month + "/" + tempdate + '.json';
-        $.getJSON(getUrlProd, function (r) {
-            prodCostData.push({label:i,y:parseFloat(r.totalAccount).toFixed(2)})
-        });
-        var getUrlExttrain = 'http://resources.cloudthat.com/' + "cost/exttrain/" + year + "/" + month + "/" + tempdate + '.json';
-        $.getJSON(getUrlExttrain, function (r) {
-            exttrainCostData.push({label:i,y:parseFloat(r.totalAccount).toFixed(2)})
-        });
-        var getUrlTrain = 'http://resources.cloudthat.com/' + "cost/training/" + year + "/" + month + "/" + tempdate + '.json';
-        $.getJSON(getUrlTrain, function (r) {
-            trainCostData.push({label:i,y:parseFloat(r.totalAccount).toFixed(2)})
-        });
+        devCostData.push({label:num,y:val})
+        // var getUrlProd = 'http://resources.cloudthat.com/' + "cost/prod/" + year + "/" + month + "/" + tempdate + '.json';
+        // $.getJSON(getUrlProd, function (r) {
+        //     prodCostData.push({label:num,y:parseFloat(r.totalAccount).toFixed(2)})
+        // });
+        // var getUrlExttrain = 'http://resources.cloudthat.com/' + "cost/exttrain/" + year + "/" + month + "/" + tempdate + '.json';
+        // $.getJSON(getUrlExttrain, function (r) {
+        //     exttrainCostData.push({label:num,y:parseFloat(r.totalAccount).toFixed(2)})
+        // });
+        // var getUrlTrain = 'http://resources.cloudthat.com/' + "cost/training/" + year + "/" + month + "/" + tempdate + '.json';
+        // $.getJSON(getUrlTrain, function (r) {
+        //     trainCostData.push({label:num,y:parseFloat(r.totalAccount).toFixed(2)})
+        // });
     }
 
 
