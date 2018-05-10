@@ -36,7 +36,7 @@ function showLineChart() {
             console.log("val : "+val)
             console.log("type val : "+typeof(Number(val)))
             console.log("Inside json fun : "+(count++))
-            devCostData.push({y:number(val)})
+            devCostData.push({y:Number(val)})
         });
         // devCostData.push({label:i,y:Number(val)})
 
