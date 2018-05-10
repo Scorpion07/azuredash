@@ -29,7 +29,8 @@ function showLineChart() {
             axisLabelFontSizePixels: 15,
             axisLabelPadding: 20,
             axisLabelFontFamily: 'Cambria',
-            color: "#000000"
+            color: "#000000",
+            weight:"bold"
 
         },
         xaxis: {
@@ -46,7 +47,8 @@ function showLineChart() {
             axisLabelFontSizePixels: 15,
             axisLabelPadding: 20,
             axisLabelFontFamily: 'Cambria',
-            color: "#000000"
+            color: "#000000",
+            weight:"bold"
         },
         legend: {
             noColumns: 0,
