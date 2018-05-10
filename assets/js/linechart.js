@@ -108,7 +108,7 @@ function getDataSet() {
                 contentType: 'application/json',
                 async: false,
                 success: function (data) {
-                    console.log(data.totalAccount)
+                    console.log(data)
                     devCostData.push([i-1,Number(parseFloat(data.totalAccount).toFixed(2))])
                     console.log("Success Dev: "+i);
                 },
@@ -122,6 +122,7 @@ function getDataSet() {
                 contentType: 'application/json',
                 async: false,
                 success: function (data) {
+                    console.log(data)
                     prodCostData.push([i-1,Number(parseFloat(data.totalAccount).toFixed(2))])
                     console.log("Success prod : "+i);
                 },
@@ -135,6 +136,7 @@ function getDataSet() {
                 contentType: 'application/json',
                 async: false,
                 success: function (data) {
+                    console.log(data)
                     exttrainCostData.push([i-1,Number(parseFloat(data.totalAccount).toFixed(2))])
                     console.log("Success exttrain : "+i);
                 },
@@ -148,6 +150,7 @@ function getDataSet() {
                 contentType: 'application/json',
                 async: false,
                 success: function (data) {
+                    console.log(data)
                     trainCostData.push([i-1,Number(parseFloat(data.totalAccount).toFixed(2))])
                     console.log("Success train : "+i);
                 },
