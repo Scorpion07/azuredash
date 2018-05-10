@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="assets/bower_components/jvectormap/jquery-jvectormap.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="assets/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="assets/bower_components/bootstrap/dist/css/chart.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
     folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="assets/dist/css/skins/_all-skins.min.css">
@@ -30,7 +31,13 @@
     <script src="//npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
     <script src="assets/js/dependancies/bootstrap.min.js"></script>
     <script src="assets/js/dependancies/aws-sdk-2.224.1.min.js"></script>
-    <script src="assets/js/dependancies/canvasjs.min.js"></script>
+    <script src="assets/bower_components/flot/jquery.flot.js"></script>
+    <script src="assets/bower_components/flot/jquery.flot.axislabels.js"></script>
+    <script src="assets/bower_components/flot/jquery.flot.symbol.js"></script>
+    <script src="assets/bower_components/flot/jquery.flot.categories.js"></script>
+    <script src="assets/bower_components/flot/jquery.flot.pie.js"></script>
+    <script src="assets/bower_components/flot/jquery.flot.resize.js"></script>
+
 
     <link rel="stylesheet" href="assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
@@ -665,11 +672,11 @@
                 <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
-                        <div id="chartContainer" ></div>
+                        <div id="line-chart" style="height: 600px; width: 900px"></div>
                     </div>
                     <div class="col-md-1"></div>
                 </div>
-                <div><p style="color:#20629b; font-size: 20px;">Developer</p></div>
+
             </section>
         </div>
     </div>
