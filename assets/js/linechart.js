@@ -131,15 +131,20 @@ function getDataSet() {
     }
 
     console.log("Upper Splice Loop");
-    if(count === ((date-1) * 4)){
-        for (var i=0;i<date-1;i++){
-            console.log(date);
-            devCostData[i].splice(0,0,i);
-            prodCostData[i].splice(0,0,i);
-            exttrainCostData[i].splice(0,0,i);
-            trainCostData[i].splice(0,0,i);
+    var flag = true;
+    while(flag){
+        if(count === ((date-1) * 4)){
+            for (var i=0;i<date-1;i++){
+                console.log(date);
+                devCostData[i].splice(0,0,i);
+                prodCostData[i].splice(0,0,i);
+                exttrainCostData[i].splice(0,0,i);
+                trainCostData[i].splice(0,0,i);
+            }
+            flag = false;
         }
     }
+
 
     console.log(devCostData)
     console.log(prodCostData)
