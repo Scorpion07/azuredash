@@ -1,4 +1,3 @@
-
 function showLineChart() {
     var dataset = getDataSet();
     var month = getMonth();
@@ -6,24 +5,24 @@ function showLineChart() {
 
     $.plot($('#line-chart'), dataset, {
         series: {
-            lines: { show: true },
+            lines: {show: true},
             points: {
                 radius: 3,
                 show: true,
                 fill: true
             },
         },
-        yaxis : {
+        yaxis: {
             show: true,
-            tickSize:25,
+            tickSize: 25,
             axisLabel: "Cost $",
             axisLabelUseCanvas: true,
             axisLabelFontSizePixels: 15,
             axisLabelPadding: 3
 
         },
-        xaxis : {
-            ticks:tick,
+        xaxis: {
+            ticks: tick,
             show: true,
             axisLabel: month.toString(),
             axisLabelUseCanvas: true,
@@ -39,9 +38,10 @@ function showLineChart() {
             hoverable: true,
             borderWidth: 2,
             borderColor: "#633200",
-            backgroundColor: { colors: ["#ffffff", "#EDF5FF"] }
+            backgroundColor: {colors: ["#ffffff", "#EDF5FF"]}
         },
     });
+
     //Initialize tooltip on hover
     function showTooltip(x, y, contents, z) {
         $('<div id="flot-tooltip">' + contents + '</div>').css({
@@ -62,7 +62,7 @@ function showLineChart() {
                 var x = item.datapoint[0],
                     y = item.datapoint[1];
                 z = item.series.color;
-                showTooltip(item.pageX-135, item.pageY-30,"<b>" + item.series.label + "</b><br /> Date : " + x + " <br/>Amount : " + y + " $",z);
+                showTooltip(item.pageX - 135, item.pageY - 30, "<b>" + item.series.label + "</b><br /> Date : " + x + " <br/>Amount : " + y + " $", z);
             }
         } else {
             $("#flot-tooltip").remove();
@@ -74,7 +74,7 @@ function showLineChart() {
 
 function getDataSet() {
     var currentTime = new Date();
-    var date =currentTime.getDate();
+    var date = currentTime.getDate();
     var year = currentTime.getFullYear().toString();
     var month = currentTime.getMonth() + 1;
 
@@ -96,94 +96,152 @@ function getDataSet() {
     var count = 0;
     console.log("Upper JSON Loop");
 
-    for (var i=2;i<date+1;i++){
-        console.log("In a loop : "+i);
-       if (i < 10)
+    for (var i = 2; i < date + 1; i++) {
+        console.log("In a loop : " + i);
+        if (i < 10)
             tempdate = "0" + i.toString();
         else
             tempdate = i.toString();
-
-        var getUrlDev = 'http://resources.cloudthat.com/' + "cost/dev/" + year + "/" + month + "/" + tempdate + '.json';
-        $.getJSON(getUrlDev).then(function (data) {
-            console.log("In a Json URL dev "+data.totalAccount);
-            devCostData.push([Number(parseFloat(data.totalAccount).toFixed(2))])
-            console.log("count"+(++count));
-        });
-        var getUrlProd = 'http://resources.cloudthat.com/' + "cost/prod/" + year + "/" + month + "/" + tempdate + '.json';
-        $.getJSON(getUrlProd).then(function (data) {
-            console.log("In a Json URL prod "+data.totalAccount);
-            prodCostData.push([Number(parseFloat(data.totalAccount).toFixed(2))])
-            console.log("count"+(++count));
-        });
-        var getUrlExttrain = 'http://resources.cloudthat.com/' + "cost/exttrain/" + year + "/" + month + "/" + tempdate + '.json';
-        $.getJSON(getUrlExttrain).then(function (data) {
-            console.log("In a Json URL ext train "+data.totalAccount);
-            exttrainCostData.push([Number(parseFloat(data.totalAccount).toFixed(2))])
-            console.log("count"+(++count));
-        });
-        var getUrlTrain = 'http://resources.cloudthat.com/' + "cost/training/" + year + "/" + month + "/" + tempdate + '.json';
-        $.getJSON(getUrlTrain).then(function (data) {
-            console.log("In a Json URL train "+data.totalAccount);
-            trainCostData.push([Number(parseFloat(data.totalAccount).toFixed(2))])
-            console.log("count"+(++count));
-        });
-        console.log("Inside json loop end : "+devCostData);
+        ajaxrequests.push(
+            $.ajax({
+                url: 'http://resources.cloudthat.com/' + "cost/dev/" + year + "/" + month + "/" + tempdate + '.json',
+                contentType: 'application/json',
+                async: false,
+                success: function (data) {
+                    devCostData.push([Number(parseFloat(data.totalAccount).toFixed(2))])
+                    console.log("Success Dev: "+i);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    $.notify("Unable to Load", "error");
+                }
+            }));
+        ajaxrequests.push(
+            $.ajax({
+                url: 'http://resources.cloudthat.com/' + "cost/prod/" + year + "/" + month + "/" + tempdate + '.json',
+                contentType: 'application/json',
+                async: false,
+                success: function (data) {
+                    prodCostData.push([Number(parseFloat(data.totalAccount).toFixed(2))])
+                    console.log("Success prod : "+i);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    $.notify("Unable to Load", "error");
+                }
+            }));
+        ajaxrequests.push(
+            $.ajax({
+                url: 'http://resources.cloudthat.com/' + "cost/exttrain/" + year + "/" + month + "/" + tempdate + '.json',
+                contentType: 'application/json',
+                async: false,
+                success: function (data) {
+                    exttrainCostData.push([Number(parseFloat(data.totalAccount).toFixed(2))])
+                    console.log("Success exttrain : "+i);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    $.notify("Unable to Load", "error");
+                }
+            }));
+        ajaxrequests.push(
+            $.ajax({
+                url: 'http://resources.cloudthat.com/' + "cost/training/" + year + "/" + month + "/" + tempdate + '.json',
+                contentType: 'application/json',
+                async: false,
+                success: function (data) {
+                    trainCostData.push([Number(parseFloat(data.totalAccount).toFixed(2))])
+                    console.log("Success train : "+i);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    $.notify("Unable to Load", "error");
+                }
+            }));
+        // var getUrlDev = 'http://resources.cloudthat.com/' + "cost/dev/" + year + "/" + month + "/" + tempdate + '.json';
+        // $.getJSON(getUrlDev).then(function (data) {
+        //     console.log("In a Json URL dev " + data.totalAccount);
+        //     devCostData.push([Number(parseFloat(data.totalAccount).toFixed(2))])
+        //     console.log("count" + (++count));
+        // });
+        // var getUrlProd = 'http://resources.cloudthat.com/' + "cost/prod/" + year + "/" + month + "/" + tempdate + '.json';
+        // $.getJSON(getUrlProd).then(function (data) {
+        //     console.log("In a Json URL prod " + data.totalAccount);
+        //     prodCostData.push([Number(parseFloat(data.totalAccount).toFixed(2))])
+        //     console.log("count" + (++count));
+        // });
+        // var getUrlExttrain = 'http://resources.cloudthat.com/' + "cost/exttrain/" + year + "/" + month + "/" + tempdate + '.json';
+        // $.getJSON(getUrlExttrain).then(function (data) {
+        //     console.log("In a Json URL ext train " + data.totalAccount);
+        //     exttrainCostData.push([Number(parseFloat(data.totalAccount).toFixed(2))])
+        //     console.log("count" + (++count));
+        // });
+        // var getUrlTrain = 'http://resources.cloudthat.com/' + "cost/training/" + year + "/" + month + "/" + tempdate + '.json';
+        // $.getJSON(getUrlTrain).then(function (data) {
+        //     console.log("In a Json URL train " + data.totalAccount);
+        //     trainCostData.push([Number(parseFloat(data.totalAccount).toFixed(2))])
+        //     console.log("count" + (++count));
+        // });
+        console.log("Inside json loop end : " + devCostData);
     }
 
     console.log("Upper Splice Loop");
-    var flag = true;
-    while(flag){
-        if(count === ((date-1) * 4)){
-            for (var i=0;i<date-1;i++){
-                console.log(date);
-                devCostData[i].splice(0,0,i);
-                prodCostData[i].splice(0,0,i);
-                exttrainCostData[i].splice(0,0,i);
-                trainCostData[i].splice(0,0,i);
-            }
-            flag = false;
-        }
+    for (var i = 0; i < date - 1; i++) {
+        console.log(date);
+        devCostData[i].splice(0, 0, i);
+        prodCostData[i].splice(0, 0, i);
+        exttrainCostData[i].splice(0, 0, i);
+        trainCostData[i].splice(0, 0, i);
     }
-
-
-    console.log(devCostData)
-    console.log(prodCostData)
-    console.log(exttrainCostData)
-    console.log(trainCostData)
-
-
-    return  [
-        { label: "Developer", data: devCostData, points: { symbol: "triangle",fillColor: "#20629b" }, color: '#20629b'} ,
-        { label: "Production", data: prodCostData, points: { symbol: "square",fillColor: "#ff9d0a" }, color: '#ff9d0a'} ,
-        { label: "External Training", data: exttrainCostData, points: { symbol: "diamond",fillColor: "#ed0b0b" }, color: '#ed0b0b'},
-        { label: "Training", data: trainCostData, points: { symbol: "circle",fillColor: "#73ff08" }, color: '#73ff08'} ,
+    return [
+        {
+            label: "Developer",
+            data: devCostData,
+            points: {symbol: "triangle", fillColor: "#20629b"},
+            color: '#20629b'
+        },
+        {
+            label: "Production",
+            data: prodCostData,
+            points: {symbol: "square", fillColor: "#ff9d0a"},
+            color: '#ff9d0a'
+        },
+        {
+            label: "External Training",
+            data: exttrainCostData,
+            points: {symbol: "diamond", fillColor: "#ed0b0b"},
+            color: '#ed0b0b'
+        },
+        {
+            label: "Training",
+            data: trainCostData,
+            points: {symbol: "circle", fillColor: "#73ff08"},
+            color: '#73ff08'
+        },
     ];
+
 }
 
 function getMonth() {
     var currentTime = new Date();
     var month = currentTime.getMonth();
-    if(month === 0)
+    if (month === 0)
         return "January";
-    else if(month === 1)
+    else if (month === 1)
         return "February"
-    else if(month === 2)
+    else if (month === 2)
         return "March"
-    else if(month === 3)
+    else if (month === 3)
         return "April"
-    else if(month === 4)
+    else if (month === 4)
         return "May"
-    else if(month === 5)
+    else if (month === 5)
         return "June"
-    else if(month === 6)
+    else if (month === 6)
         return "july"
-    else if(month === 7)
+    else if (month === 7)
         return "August"
-    else if(month === 8)
+    else if (month === 8)
         return "September"
-    else if(month === 9)
+    else if (month === 9)
         return "octomber"
-    else if(month === 10)
+    else if (month === 10)
         return "Novemnber"
     else
         return "December"
@@ -191,10 +249,10 @@ function getMonth() {
 
 function getTick() {
     var currentTime = new Date();
-    var date =currentTime.getDate();
+    var date = currentTime.getDate();
     var tick = []
-    for (var i=0;i<date;i++){
-        tick.push([i,(i+1).toString()])
+    for (var i = 0; i < date; i++) {
+        tick.push([i, (i + 1).toString()])
     }
     return tick;
 }
