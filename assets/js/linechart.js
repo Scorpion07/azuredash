@@ -108,7 +108,8 @@ function getDataSet() {
                 contentType: 'application/json',
                 async: false,
                 success: function (data) {
-                    devCostData.push([Number(parseFloat(data.totalAccount).toFixed(2))])
+                    console.log(data.totalAccount)
+                    devCostData.push([i-1,Number(parseFloat(data.totalAccount).toFixed(2))])
                     console.log("Success Dev: "+i);
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
@@ -121,7 +122,7 @@ function getDataSet() {
                 contentType: 'application/json',
                 async: false,
                 success: function (data) {
-                    prodCostData.push([Number(parseFloat(data.totalAccount).toFixed(2))])
+                    prodCostData.push([i-1,Number(parseFloat(data.totalAccount).toFixed(2))])
                     console.log("Success prod : "+i);
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
@@ -134,7 +135,7 @@ function getDataSet() {
                 contentType: 'application/json',
                 async: false,
                 success: function (data) {
-                    exttrainCostData.push([Number(parseFloat(data.totalAccount).toFixed(2))])
+                    exttrainCostData.push([i-1,Number(parseFloat(data.totalAccount).toFixed(2))])
                     console.log("Success exttrain : "+i);
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
@@ -147,48 +148,29 @@ function getDataSet() {
                 contentType: 'application/json',
                 async: false,
                 success: function (data) {
-                    trainCostData.push([Number(parseFloat(data.totalAccount).toFixed(2))])
+                    trainCostData.push([i-1,Number(parseFloat(data.totalAccount).toFixed(2))])
                     console.log("Success train : "+i);
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $.notify("Unable to Load", "error");
                 }
             }));
-        // var getUrlDev = 'http://resources.cloudthat.com/' + "cost/dev/" + year + "/" + month + "/" + tempdate + '.json';
-        // $.getJSON(getUrlDev).then(function (data) {
-        //     console.log("In a Json URL dev " + data.totalAccount);
-        //     devCostData.push([Number(parseFloat(data.totalAccount).toFixed(2))])
-        //     console.log("count" + (++count));
-        // });
-        // var getUrlProd = 'http://resources.cloudthat.com/' + "cost/prod/" + year + "/" + month + "/" + tempdate + '.json';
-        // $.getJSON(getUrlProd).then(function (data) {
-        //     console.log("In a Json URL prod " + data.totalAccount);
-        //     prodCostData.push([Number(parseFloat(data.totalAccount).toFixed(2))])
-        //     console.log("count" + (++count));
-        // });
-        // var getUrlExttrain = 'http://resources.cloudthat.com/' + "cost/exttrain/" + year + "/" + month + "/" + tempdate + '.json';
-        // $.getJSON(getUrlExttrain).then(function (data) {
-        //     console.log("In a Json URL ext train " + data.totalAccount);
-        //     exttrainCostData.push([Number(parseFloat(data.totalAccount).toFixed(2))])
-        //     console.log("count" + (++count));
-        // });
-        // var getUrlTrain = 'http://resources.cloudthat.com/' + "cost/training/" + year + "/" + month + "/" + tempdate + '.json';
-        // $.getJSON(getUrlTrain).then(function (data) {
-        //     console.log("In a Json URL train " + data.totalAccount);
-        //     trainCostData.push([Number(parseFloat(data.totalAccount).toFixed(2))])
-        //     console.log("count" + (++count));
-        // });
+
         console.log("Inside json loop end : " + devCostData);
     }
 
     console.log("Upper Splice Loop");
-    for (var i = 0; i < date - 1; i++) {
-        console.log(date);
-        devCostData[i].splice(0, 0, i);
-        prodCostData[i].splice(0, 0, i);
-        exttrainCostData[i].splice(0, 0, i);
-        trainCostData[i].splice(0, 0, i);
-    }
+    // for (var i = 0; i < date - 1; i++) {
+    //     console.log(date);
+    //     devCostData[i].splice(0, 0, i);
+    //     prodCostData[i].splice(0, 0, i);
+    //     exttrainCostData[i].splice(0, 0, i);
+    //     trainCostData[i].splice(0, 0, i);
+    // }
+    console.log(devCostData)
+    console.log(prodCostData)
+    console.log(exttrainCostData)
+    console.log(trainCostData)
     return [
         {
             label: "Developer",
