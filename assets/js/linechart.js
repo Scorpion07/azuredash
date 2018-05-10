@@ -103,6 +103,7 @@ function getDataSet() {
         var getUrlDev = 'http://resources.cloudthat.com/' + "cost/dev/" + year + "/" + month + "/" + tempdate + '.json';
         $.getJSON(getUrlDev).then(function (data) {
             devCostData.push([Number(parseFloat(data.totalAccount).toFixed(2))])
+            console.log(devCostData);
         });
         var getUrlProd = 'http://resources.cloudthat.com/' + "cost/prod/" + year + "/" + month + "/" + tempdate + '.json';
         $.getJSON(getUrlProd).then(function (data) {
@@ -118,6 +119,10 @@ function getDataSet() {
             trainCostData.push([Number(parseFloat(data.totalAccount).toFixed(2))])
         });
     }
+    console.log(devCostData)
+    console.log(prodCostData)
+    console.log(exttrainCostData)
+    console.log(trainCostData)
 
     for (var i=0;i<date;i++){
         devCostData[i].splice(0,0,i);
