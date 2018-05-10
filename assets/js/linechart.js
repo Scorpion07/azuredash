@@ -1,4 +1,7 @@
 function showLineChart() {
+    $("#loading").show();
+    $("#loading").css("style", "display: block");
+
     var dataset = getDataSet();
     var month = getMonth();
     var tick = getTick();
@@ -41,7 +44,8 @@ function showLineChart() {
             backgroundColor: {colors: ["#ffffff", "#EDF5FF"]}
         },
     });
-
+    $("#loading").hide();
+    $("#loading").css("style", "display: none;");
     //Initialize tooltip on hover
     function showTooltip(x, y, contents, z) {
         $('<div id="flot-tooltip">' + contents + '</div>').css({
@@ -62,7 +66,7 @@ function showLineChart() {
                 var x = item.datapoint[0],
                     y = item.datapoint[1];
                 z = item.series.color;
-                showTooltip(item.pageX - 135, item.pageY - 30, "<b>" + item.series.label + "</b><br /> Date : " + x + " <br/>Amount : " + y + " $", z);
+                showTooltip(item.pageX - 135, item.pageY - 30, "<b>" + item.series.label + "</b><br /> Date : " + (x+1) +"/"+ month +" <br/>Amount : " + y + " $", z);
             }
         } else {
             $("#flot-tooltip").remove();
