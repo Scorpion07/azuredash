@@ -204,7 +204,7 @@ function deleteModalDBInstances() {
     var selectedInstance = [];
     var region_name;
 
-    $('.instance_id_check').each(function () {
+    $('.checkboxes').each(function () {
         if ($(this).is(":checked")) {
             console.log($(this).closest('tr'));
             //$this.parent('tr').addClass("selected");

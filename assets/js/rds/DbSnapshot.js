@@ -183,7 +183,7 @@ function deleteModalDBSnaps() {
     var selectedRegion = [];
 
     var region_name;
-    $('.snapshot_id_check').each(function () {
+    $('.checkboxes').each(function () {
         if ($(this).is(":checked")) {
             console.log($(this).closest('tr'));
             //$this.parent('tr').addClass("selected");
