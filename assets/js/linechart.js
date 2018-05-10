@@ -114,7 +114,7 @@ function getDataSet() {
                     // console.log(result)
                     // var result2 = JSON.parse(result);
                     console.log("Result type :" +typeof(data.totalAccount) );
-                    devCostData.push([i-1,Number(parseFloat(result2.totalAccount).toFixed(2))])
+                    devCostData.push([i-1,Number(parseFloat(data.totalAccount).toFixed(2))])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $.notify("Unable to Load", "error");
