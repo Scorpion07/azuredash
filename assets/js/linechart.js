@@ -108,7 +108,7 @@ function getDataSet() {
                 contentType: 'application/json',
                 async: false,
                 success: function (data) {
-                    result = jQuery.parseJSON(data);
+                    var result = jQuery.parseJSON(data);
                     console.log(result)
                     devCostData.push([i-1,Number(parseFloat(result.totalAccount).toFixed(2))])
                 },
@@ -122,7 +122,7 @@ function getDataSet() {
                 contentType: 'application/json',
                 async: false,
                 success: function (data) {
-                    result = jQuery.parseJSON(data);
+                    var result = jQuery.parseJSON(data);
                     prodCostData.push([i-1,Number(parseFloat(result.totalAccount).toFixed(2))])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
@@ -135,7 +135,7 @@ function getDataSet() {
                 contentType: 'application/json',
                 async: false,
                 success: function (data) {
-                    result = jQuery.parseJSON(data);
+                    var result = jQuery.parseJSON(data);
                     exttrainCostData.push([i-1,Number(parseFloat(result.totalAccount).toFixed(2))])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
@@ -148,7 +148,7 @@ function getDataSet() {
                 contentType: 'application/json',
                 async: false,
                 success: function (data) {
-                    result = jQuery.parseJSON(data);
+                    var result = jQuery.parseJSON(data);
                     trainCostData.push([i-1,Number(parseFloat(result.totalAccount).toFixed(2))])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
