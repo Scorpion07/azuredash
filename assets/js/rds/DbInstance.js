@@ -201,7 +201,7 @@ function deleteModalDBInstances() {
     $("#delete_li_show").html(" ");
 
     var selectedRegion = [];
-    var selectedCluster = [];
+    var selectedInstance = [];
     var region_name;
 
     $('.instance_id_check').each(function () {

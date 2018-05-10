@@ -18,7 +18,7 @@ function showLineChart() {
             axisLabel: "Cost $",
             axisLabelUseCanvas: true,
             axisLabelFontSizePixels: 15,
-            axisLabelPadding: 3
+            axisLabelPadding: 15
 
         },
         xaxis: {
@@ -27,7 +27,7 @@ function showLineChart() {
             axisLabel: month.toString(),
             axisLabelUseCanvas: true,
             axisLabelFontSizePixels: 15,
-            axisLabelPadding: 10
+            axisLabelPadding: 20
         },
         legend: {
             noColumns: 0,
@@ -106,15 +106,10 @@ function getDataSet() {
             $.ajax({
                 url: 'http://resources.cloudthat.com/' + "cost/dev/" + year + "/" + month + "/" + tempdate + '.json',
                 contentType: 'application/json',
-                dataType : 'json',
+                dataType: 'json',
                 async: false,
                 success: function (data) {
-                    console.log("Data type :" +typeof(data.totalAccount) );
-                    // var result = JSON.stringify(data);
-                    // console.log(result)
-                    // var result2 = JSON.parse(result);
-                    console.log("Result type :" +typeof(data.totalAccount) );
-                    devCostData.push([i-1,Number(parseFloat(data.totalAccount).toFixed(2))])
+                    devCostData.push([i - 1, Number(parseFloat(data.totalAccount).toFixed(2))])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $.notify("Unable to Load", "error");
@@ -124,10 +119,10 @@ function getDataSet() {
             $.ajax({
                 url: 'http://resources.cloudthat.com/' + "cost/prod/" + year + "/" + month + "/" + tempdate + '.json',
                 contentType: 'application/json',
+                dataType: 'json',
                 async: false,
                 success: function (data) {
-                    var result = JSON.stringify(data);
-                    prodCostData.push([i-1,Number(parseFloat(result.totalAccount).toFixed(2))])
+                    prodCostData.push([i - 1, Number(parseFloat(data.totalAccount).toFixed(2))])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $.notify("Unable to Load", "error");
@@ -137,10 +132,10 @@ function getDataSet() {
             $.ajax({
                 url: 'http://resources.cloudthat.com/' + "cost/exttrain/" + year + "/" + month + "/" + tempdate + '.json',
                 contentType: 'application/json',
+                dataType: 'json',
                 async: false,
                 success: function (data) {
-                    var result = JSON.stringify(data);
-                    exttrainCostData.push([i-1,Number(parseFloat(result.totalAccount).toFixed(2))])
+                    exttrainCostData.push([i - 1, Number(parseFloat(data.totalAccount).toFixed(2))])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $.notify("Unable to Load", "error");
@@ -150,10 +145,10 @@ function getDataSet() {
             $.ajax({
                 url: 'http://resources.cloudthat.com/' + "cost/training/" + year + "/" + month + "/" + tempdate + '.json',
                 contentType: 'application/json',
+                dataType: 'json',
                 async: false,
                 success: function (data) {
-                    var result = JSON.stringify(data);
-                    trainCostData.push([i-1,Number(parseFloat(result.totalAccount).toFixed(2))])
+                    trainCostData.push([i - 1, Number(parseFloat(data.totalAccount).toFixed(2))])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $.notify("Unable to Load", "error");
@@ -162,19 +157,6 @@ function getDataSet() {
 
         console.log("Inside json loop end : " + devCostData);
     }
-
-    console.log("Upper Splice Loop");
-    // for (var i = 0; i < date - 1; i++) {
-    //     console.log(date);
-    //     devCostData[i].splice(0, 0, i);
-    //     prodCostData[i].splice(0, 0, i);
-    //     exttrainCostData[i].splice(0, 0, i);
-    //     trainCostData[i].splice(0, 0, i);
-    // }
-    console.log(devCostData)
-    console.log(prodCostData)
-    console.log(exttrainCostData)
-    console.log(trainCostData)
     return [
         {
             label: "Developer",
