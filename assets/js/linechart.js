@@ -20,13 +20,16 @@ function showLineChart() {
                 size: 15,
                 weight: "bold",
                 family:"cambria",
+                color:"#000000"
             },
             show: true,
             tickSize: 25,
             axisLabel: "Cost $",
             axisLabelUseCanvas: true,
             axisLabelFontSizePixels: 15,
-            axisLabelPadding: 20
+            axisLabelPadding: 20,
+            axisLabelFontFamily: 'Cambria',
+            color: "#000000"
 
         },
         xaxis: {
@@ -34,13 +37,16 @@ function showLineChart() {
                 size: 15,
                 weight: "bold",
                 family:"cambria",
+                color:"#000000"
             },
             ticks: tick,
             show: true,
             axisLabel: month.toString(),
             axisLabelUseCanvas: true,
             axisLabelFontSizePixels: 15,
-            axisLabelPadding: 20
+            axisLabelPadding: 20,
+            axisLabelFontFamily: 'Cambria',
+            color: "#000000"
         },
         legend: {
             noColumns: 0,
