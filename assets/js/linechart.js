@@ -16,21 +16,31 @@ function showLineChart() {
             },
         },
         yaxis: {
+            font: {
+                size: 15,
+                weight: "bold",
+                family:"cambria",
+            },
             show: true,
             tickSize: 25,
             axisLabel: "Cost $",
             axisLabelUseCanvas: true,
             axisLabelFontSizePixels: 15,
-            axisLabelPadding: 25
+            axisLabelPadding: 20
 
         },
         xaxis: {
+            font: {
+                size: 15,
+                weight: "bold",
+                family:"cambria",
+            },
             ticks: tick,
             show: true,
             axisLabel: month.toString(),
             axisLabelUseCanvas: true,
             axisLabelFontSizePixels: 15,
-            axisLabelPadding: 25
+            axisLabelPadding: 20
         },
         legend: {
             noColumns: 0,
