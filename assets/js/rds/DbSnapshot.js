@@ -65,7 +65,7 @@ function ListDBSnapshotData() {
                             else {
                                 var deletecheck = '<div class="row"><div class="col-md-4 col-md-offset-3"><div class="checkbox" id="disabledCheckBox" style="position: absolute;left: 0;right: 0;top: 0;bottom: 0;"><input type="checkbox" name="snapshot_id_check[]" class="snapshot_id_check" title="You Cannot Delete AUTOMATED Snapshots...!" data-region="' + data.Region + '" value="' + data.DBSnapshotIdentifier + '" disabled></div></div></div>';
                             }
-                            $('td:eq(0)', row).html(check);
+                            $('td:eq(0)', row).html(deletecheck);
                         }
                         else {
                             $('td:eq(0)', row).html(count += 1);
