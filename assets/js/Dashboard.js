@@ -29,7 +29,7 @@ function showDashboard() {
     }
     var eip = {
         method: "getCount",
-        service: "eip",
+        service: "netinterface",
         account: account
     }
     var rds = {
