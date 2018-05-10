@@ -32,7 +32,6 @@ function showLineChart() {
         var getUrlDev = 'http://resources.cloudthat.com/' + "cost/dev/" + year + "/" + month + "/" + tempdate + '.json';
         $.getJSON(getUrlDev).then(function (data) {
             console.log(data.totalAccount)
-            console.log(num);
             val = parseFloat(data.totalAccount).toFixed(2)
             console.log("val : "+val)
             console.log("type val : "+typeof(Number(val)))
