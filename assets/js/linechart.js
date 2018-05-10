@@ -125,6 +125,7 @@ function getDataSet() {
     console.log(trainCostData)
 
     for (var i=0;i<date;i++){
+        console.log(date);
         devCostData[i].splice(0,0,i);
         prodCostData[i].splice(0,0,i);
         exttrainCostData[i].splice(0,0,i);
