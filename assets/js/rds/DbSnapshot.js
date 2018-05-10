@@ -59,7 +59,7 @@ function ListDBSnapshotData() {
                 order: [],
                 'rowCallback': function (row, data, iDisplayIndex) {
                     if (account !== 'prod') {
-                        var check = '<input type="checkbox" id="checkboxclick" name="id[]" class="checkboxclick checkboxes" data_instance_id="' + data.InstanceId + '" data_region="' + data.Placement.AvailabilityZone + '">';
+                        var check = '<input type="checkbox" id="checkboxclick" name="id[]" class="checkboxclick checkboxes" data_instance_id="' + data.DBSnapshotIdentifier + '" data_region="' + data.Region + '">';
                         $('td:eq(0)', row).html(check);
                     }
                     else {
