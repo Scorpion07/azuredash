@@ -151,7 +151,7 @@ function deleteDBSnaps() {
     }
     console.log(JSON.stringify(deleteData));
     $.ajax({
-        url: "https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/ec2resource/listservices",
+        url: _config.api.invokeUrl + '/billing/services',
         type: 'post',
         headers: {"Authorization": token},
         contentType: 'application/json',
@@ -176,8 +176,6 @@ function deleteDBSnaps() {
 }
 
 function deleteModalDBSnaps() {
-
-    //$(".btnmultipledelete").addClass("disabled");
     $("#modal_title").html("<h3>DB Instance Deletion</h3>");
     $("#delete_heading").text("Are you sure, you want to delete all this DB Instances?");
     $("#delete_li_show").html(" ");
