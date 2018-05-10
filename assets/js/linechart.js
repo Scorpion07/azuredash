@@ -108,8 +108,10 @@ function getDataSet() {
                 contentType: 'application/json',
                 async: false,
                 success: function (data) {
+                    console.log("Data type :" +typeof(data.totalAccount) );
                     var result = jQuery.parseJSON(JSON.stringify(data));
                     console.log(result)
+                    console.log("Result type :" +typeof(result.totalAccount) );
                     devCostData.push([i-1,Number(parseFloat(result.totalAccount).toFixed(2))])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {

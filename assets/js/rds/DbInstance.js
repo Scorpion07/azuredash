@@ -60,7 +60,7 @@ function ListDBInstancesData() {
 
                     'rowCallback': function (row, data, iDisplayIndex) {
                         if (account !== 'prod') {
-                            var check = '<div class="row"><div class="col-md-4 col-md-offset-3"><div class="checkbox"><input type="checkbox" id="checkboxclick" name="instance_id_check[]" class="checkboxclick instance_id_check ' + data.DBInstanceIdentifier + 'cluster" data-cluster="' + data.DBClusterIdentifier + '" data-region="' + data.Region + '" onchange="onClickCheckHandler()" value="' + data.DBInstanceIdentifier + '"></div></div></div>';
+                            var check = '<div class="row"><div class="col-md-4 col-md-offset-3"><div class="checkbox"><input type="checkbox" id="checkboxclick" name="instance_id_check[]" class="checkboxclick instance_id_check ' + data.DBInstanceIdentifier + 'cluster" data-cluster="' + data.DBClusterIdentifier + '" data-region="' + data.Region + '"  value="' + data.DBInstanceIdentifier + '"></div></div></div>';
                             $('td:eq(0)', row).html(check);
                         }
                         else {
