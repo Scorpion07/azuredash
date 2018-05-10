@@ -108,9 +108,9 @@ function getDataSet() {
                 contentType: 'application/json',
                 async: false,
                 success: function (data) {
-                    console.log(data)
-                    devCostData.push([i-1,Number(parseFloat(data.totalAccount).toFixed(2))])
-                    console.log("Success Dev: "+i);
+                    result = jQuery.parseJSON(data);
+                    console.log(result)
+                    devCostData.push([i-1,Number(parseFloat(result.totalAccount).toFixed(2))])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $.notify("Unable to Load", "error");
@@ -122,9 +122,8 @@ function getDataSet() {
                 contentType: 'application/json',
                 async: false,
                 success: function (data) {
-                    console.log(data)
-                    prodCostData.push([i-1,Number(parseFloat(data.totalAccount).toFixed(2))])
-                    console.log("Success prod : "+i);
+                    result = jQuery.parseJSON(data);
+                    prodCostData.push([i-1,Number(parseFloat(result.totalAccount).toFixed(2))])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $.notify("Unable to Load", "error");
@@ -136,9 +135,8 @@ function getDataSet() {
                 contentType: 'application/json',
                 async: false,
                 success: function (data) {
-                    console.log(data)
-                    exttrainCostData.push([i-1,Number(parseFloat(data.totalAccount).toFixed(2))])
-                    console.log("Success exttrain : "+i);
+                    result = jQuery.parseJSON(data);
+                    exttrainCostData.push([i-1,Number(parseFloat(result.totalAccount).toFixed(2))])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $.notify("Unable to Load", "error");
@@ -150,9 +148,8 @@ function getDataSet() {
                 contentType: 'application/json',
                 async: false,
                 success: function (data) {
-                    console.log(data)
-                    trainCostData.push([i-1,Number(parseFloat(data.totalAccount).toFixed(2))])
-                    console.log("Success train : "+i);
+                    result = jQuery.parseJSON(data);
+                    trainCostData.push([i-1,Number(parseFloat(result.totalAccount).toFixed(2))])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $.notify("Unable to Load", "error");
