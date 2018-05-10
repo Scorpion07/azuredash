@@ -106,13 +106,14 @@ function getDataSet() {
             $.ajax({
                 url: 'http://resources.cloudthat.com/' + "cost/dev/" + year + "/" + month + "/" + tempdate + '.json',
                 contentType: 'application/json',
+                dataType : 'json',
                 async: false,
                 success: function (data) {
                     console.log("Data type :" +typeof(data.totalAccount) );
-                    var result = JSON.stringify(data);
-                    console.log(result)
-                    var result2 = JSON.parse(result);
-                    console.log("Result type :" +typeof(result2.totalAccount) );
+                    // var result = JSON.stringify(data);
+                    // console.log(result)
+                    // var result2 = JSON.parse(result);
+                    console.log("Result type :" +typeof(data.totalAccount) );
                     devCostData.push([i-1,Number(parseFloat(result2.totalAccount).toFixed(2))])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
