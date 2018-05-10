@@ -18,7 +18,7 @@ function showLineChart() {
             axisLabel: "Cost $",
             axisLabelUseCanvas: true,
             axisLabelFontSizePixels: 15,
-            axisLabelPadding: 15
+            axisLabelPadding: 25
 
         },
         xaxis: {
@@ -27,7 +27,7 @@ function showLineChart() {
             axisLabel: month.toString(),
             axisLabelUseCanvas: true,
             axisLabelFontSizePixels: 15,
-            axisLabelPadding: 20
+            axisLabelPadding: 25
         },
         legend: {
             noColumns: 0,
