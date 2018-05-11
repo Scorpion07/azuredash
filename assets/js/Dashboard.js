@@ -101,7 +101,7 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                $.notify("Unable to Load", "error");
+                $.notify({message:"Unable to Load"},{type:"error",placement: {from: "top", align: "center"}} );
             }
 
         }));
@@ -146,7 +146,7 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                $.notify("Unable to Load", "error");
+                $.notify({message:"Unable to Load"},{type:"error",placement: {from: "top", align: "center"}} );
             }
         }));
 
@@ -182,7 +182,7 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                $.notify("Unable to Load", "error");
+                $.notify({message:"Unable to Load"},{type:"error",placement: {from: "top", align: "center"}} );
             }
         }));
 
@@ -234,7 +234,7 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                $.notify("Unable to Load", "error");
+                $.notify({message:"Unable to Load"},{type:"error",placement: {from: "top", align: "center"}} );
             }
         }));
 
@@ -275,7 +275,7 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                $.notify("Unable to Load", "error");
+                $.notify({message:"Unable to Load"},{type:"error",placement: {from: "top", align: "center"}} );
             }
         }));
 
@@ -318,7 +318,7 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                $.notify("Unable to Load", "error");
+                $.notify({message:"Unable to Load"},{type:"error",placement: {from: "top", align: "center"}} );
             }
         }));
     ajaxrequests.push(
@@ -351,7 +351,7 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                $.notify("Unable to Load", "error");
+                $.notify({message:"Unable to Load"},{type:"error",placement: {from: "top", align: "center"}} );
             }
         }));
     ajaxrequests.push(
@@ -383,7 +383,7 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                $.notify("Unable to Load", "error");
+                $.notify({message:"Unable to Load"},{type:"error",placement: {from: "top", align: "center"}} );
             }
         }));
     ajaxrequests.push(
@@ -442,7 +442,7 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                $.notify("Unable to Load", "error");
+                $.notify({message:"Unable to Load"},{type:"error",placement: {from: "top", align: "center"}} );
             }
         }));
 
@@ -481,7 +481,7 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                $.notify("Unable to Load", "error");
+                $.notify({message:"Unable to Load"},{type:"error",placement: {from: "top", align: "center"}} );
             }
         }));
 
@@ -518,7 +518,7 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                $.notify("Unable to Load", "error");
+                $.notify({message:"Unable to Load"},{type:"error",placement: {from: "top", align: "center"},offset: 20,position:null });
             }
         }));
     CostofResources();

@@ -14,7 +14,6 @@
     <script type="text/javascript">
         var userPool;
         alreadylogin();
-        $.notify.defaults({globalPosition: 'top center'})
 
         $(document).ready(function () {
 
@@ -38,7 +37,8 @@
 
             function signin(){
                 if ($('#username').val() == "" || $('#password').val() == "") {
-                    $.notify("please fill up all the textboxes", "error");
+
+                    $.notify({message:"please fill up all the textboxes"},{type:"error",placement: {from: "top", align: "center"},offset: 20,position:null });
                 }
                 else {
                     var authenticationData = {
@@ -95,7 +95,7 @@
 
                         onFailure: function (err) {
                             //alert(err);
-                            $.notify(err, "error");
+                            $.notify({message:err},{type:"error",placement: {from: "top", align: "center"},offset: 20,position:null });
                         }
 
                     });

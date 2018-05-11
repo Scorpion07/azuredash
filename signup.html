@@ -12,7 +12,7 @@
 <script src="assets/js/dependancies/notify.min.js"></script>
 <script type="text/javascript">
     alreadylogin();
-    $.notify.defaults({globalPosition: 'top center'});
+
     $(document).ready(function () {
         var poolData = {
             UserPoolId: _config.cognito.userPoolId,
@@ -26,15 +26,29 @@
             console.log((($('#email').val()).substring(($('#email').val()).lastIndexOf("@") + 1)));
             if ($('#email').val() == "" || $('#password').val() == "" || $('c_#password').val() == "" || $('#mobile').val() == "") {
                 //alert("Error")
-                $.notify("please fill up all the form Details", "error");
+                $.notify({message: "please fill up all the form Details"}, {
+                    type: "error",
+                    placement: {from: "top", align: "center"},
+                    offset: 20,
+                    position: null
+                });
             }
             else if ($('#password').val() !== $('#c_password').val()) {
-                $.notify("password doesn't match", "error");
+                $.notify({message: "password doesn't match"}, {
+                    type: "error",
+                    placement: {from: "top", align: "center"},
+                    offset: 20,
+                    position: null
+                });
             }
 
             else if (((($('#email').val()).substring(($('#email').val()).lastIndexOf("@") + 1)) !== "cloudthat.in") && ((($('#email').val()).substring(($('#email').val()).lastIndexOf("@") + 1)) !== "cloudthat.com")) {
-
-                $.notify("please use cloudthat email address to register", "error");
+                $.notify({message: "please use cloudthat email address to register"}, {
+                    type: "error",
+                    placement: {from: "top", align: "center"},
+                    offset: 20,
+                    position: null
+                });
             }
             else {
 
@@ -60,7 +74,14 @@
                 console.log('attributeList :' + attributeList);
                 userPool.signUp($('#username').val(), $('#password').val(), attributeList, null, function (err, result) {
                     if (err) {
-                        $.notify(err, "error");
+
+                        $.notify({message: err}, {
+                            type: "error",
+                            placement: {from: "top", align: "center"},
+                            offset: 20,
+                            position: null
+                        });
+
                         console.log(err);
                         return;
                     }
@@ -69,19 +90,42 @@
                         cognitoUser = result.user;
                         console.log('user name is ' + cognitoUser.getUsername());
                         $('#verifybutton').click(function () {
-                            $.notify("please check your mail for a code", "success");
+                            $.notify({message: "please check your mail for a code"}, {
+                                type: "success",
+                                placement: {from: "top", align: "center"},
+                                offset: 20,
+                                position: null
+                            });
                             if ($('#code').val() == "") {
-                                $.notify("Please Enter Verification Code", "error");
+
+                                $.notify({message: "Please Enter Verification Code"}, {
+                                    type: "error",
+                                    placement: {from: "top", align: "center"},
+                                    offset: 20,
+                                    position: null
+                                });
                             }
                             else {
                                 cognitoUser.confirmRegistration($('#code').val(), true, function (err, regresult) {
                                     if (err) {
-                                        $.notify(err, "error");
+
+                                        $.notify({message: err}, {
+                                            type: "error",
+                                            placement: {from: "top", align: "center"},
+                                            offset: 20,
+                                            position: null
+                                        });
                                         return;
                                     }
                                     else {
                                         console.log('call regresult : ' + regresult);
-                                        $.notify("Registeration Complete", "success");
+
+                                        $.notify({message: "Registeration Complete"}, {
+                                            type: "success",
+                                            placement: {from: "top", align: "center"},
+                                            offset: 20,
+                                            position: null
+                                        });
                                         window.location.href = 'login.html';
                                     }
                                 });
@@ -217,7 +261,7 @@
 
                     </tr>
                 </table>
-        </div>
+            </div>
         </div>
         <br>
         <hr>
