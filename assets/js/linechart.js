@@ -135,7 +135,7 @@ function getDataSet() {
                 success: function (data) {
                     devCostData.push([i - 1, Number(parseFloat(data.totalAccount).toFixed(2)),parseFloat(data.totalEc2).toFixed(2),
                         parseFloat(data.totalRds).toFixed(2),
-                        (parseFloat(data.totalEc2).toFixed(2)+parseFloat(data.totalRds).toFixed(2))-parseFloat(data.totalAccount).toFixed(2)])
+                        (Number(parseFloat(data.totalEc2).toFixed(2))+Number(parseFloat(data.totalRds).toFixed(2)))-Number(parseFloat(data.totalAccount).toFixed(2))])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $.notify("Unable to Load", "error");
@@ -150,7 +150,7 @@ function getDataSet() {
                 success: function (data) {
                     prodCostData.push([i - 1, Number(parseFloat(data.totalAccount).toFixed(2)),parseFloat(data.totalEc2).toFixed(2),
                         parseFloat(data.totalRds).toFixed(2),
-                        (parseFloat(data.totalEc2).toFixed(2)+parseFloat(data.totalRds).toFixed(2))-parseFloat(data.totalAccount).toFixed(2)])
+                        (Number(parseFloat(data.totalEc2).toFixed(2))+Number(parseFloat(data.totalRds).toFixed(2)))-Number(parseFloat(data.totalAccount).toFixed(2))])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $.notify("Unable to Load", "error");
@@ -165,7 +165,7 @@ function getDataSet() {
                 success: function (data) {
                     exttrainCostData.push([i - 1, Number(parseFloat(data.totalAccount).toFixed(2)),parseFloat(data.totalEc2).toFixed(2),
                         parseFloat(data.totalRds).toFixed(2),
-                        (parseFloat(data.totalEc2).toFixed(2)+parseFloat(data.totalRds).toFixed(2))-parseFloat(data.totalAccount).toFixed(2)])
+                        (Number(parseFloat(data.totalEc2).toFixed(2))+Number(parseFloat(data.totalRds).toFixed(2)))-Number(parseFloat(data.totalAccount).toFixed(2))])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $.notify("Unable to Load", "error");
@@ -180,7 +180,7 @@ function getDataSet() {
                 success: function (data) {
                     trainCostData.push([i - 1, Number(parseFloat(data.totalAccount).toFixed(2)),parseFloat(data.totalEc2).toFixed(2),
                         parseFloat(data.totalRds).toFixed(2),
-                        (parseFloat(data.totalEc2).toFixed(2)+parseFloat(data.totalRds).toFixed(2))-parseFloat(data.totalAccount).toFixed(2)])
+                        (Number(parseFloat(data.totalEc2).toFixed(2))+Number(parseFloat(data.totalRds).toFixed(2)))-Number(parseFloat(data.totalAccount).toFixed(2))])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $.notify("Unable to Load", "error");
