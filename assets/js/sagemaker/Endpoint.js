@@ -119,7 +119,12 @@ function ListEndpointsData() {
         },
         error: function (xhr, ajaxOptions, thrownError) {
             $('#loading').hide();
-            $.notify("Unable to Load", "error");
+            if (ajaxOptions === "abort"){
+                return;
+            }
+            else {
+                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+            }
         }
     }));
 }
@@ -186,12 +191,22 @@ function deleteSagemakerEndpoint() {
 
             if (respdata > -1) {
                 showSagemakerEndpoints();
-                $.notify("SageMaker Endpoints Deleted Successfully", "success");
+                $.notify({message:"SageMaker Endpoints Deleted Successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             else {
-                $.notify("Unable to Delete SageMaker Endpoints", "error");
+                $.notify({message:"Unable to Delete SageMaker Endpoints"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             $('#deleteConformation').modal('hide');
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            $('#deleteConformation').modal('hide');
+            if (ajaxOptions === "abort"){
+                return;
+            }
+            else {
+                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+            }
+
         }
 
     });

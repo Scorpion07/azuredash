@@ -120,7 +120,12 @@ function ListNotebookInstancesData() {
         },
         error: function (xhr, ajaxOptions, thrownError) {
             $('#loading').hide();
-            $.notify("Unable to Load", "error");
+            if (ajaxOptions === "abort"){
+                return;
+            }
+            else {
+                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+            }
         }
     }));
 }
@@ -187,16 +192,26 @@ function deleteSagemakerNotebook() {
 
             if (respdata == 1) {
                 showNotebookInstances();
-                $.notify("SageMaker Notebook Instances Deleted Successfully", "success");
+                $.notify({message:"SageMaker Notebook Instances Deleted Successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             else if(respdata == 0){
                 showNotebookInstances();
-                $.notify("SageMaker Notebook Instances Deleted Successfully", "error");
+                $.notify({message:"SageMaker Notebook Instances Deleted Successfully"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             else {
-                $.notify("Unable to Delete SageMaker Notebook Instances", "error");
+                $.notify({message:"Unable to Delete SageMaker Notebook Instances"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             $('#deleteConformation').modal('hide');
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            $('#deleteConformation').modal('hide');
+            if (ajaxOptions === "abort"){
+                return;
+            }
+            else {
+                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+            }
+
         }
 
     });

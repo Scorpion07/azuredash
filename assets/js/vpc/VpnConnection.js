@@ -117,7 +117,12 @@ function ListVPNData() {
         },
         error: function (xhr, ajaxOptions, thrownError) {
             $('#loading').hide();
-            $.notify("Unable to Load", "error");
+            if (ajaxOptions === "abort"){
+                return;
+            }
+            else {
+                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+            }
         }
     }));
 }
@@ -189,13 +194,24 @@ function deleteVPNs() {
             $("#loadingModal").hide();
 
             if (respdata > 0) {
-                ListVPNData();
-                $.notify("VPN Connection Deleted Successfully", "success");
+                showVPNs();
+                $.notify({message:"VPN Connection Deleted Successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             else {
-                $.notify("Unable to Delete VPN Connection", "error");
+                $.notify({message:"Unable to Delete VPN Connection"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             $('#deleteConformation').modal('hide');
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            $("#loadingModal").hide();
+            $('#deleteConformation').modal('hide');
+            if (ajaxOptions === "abort"){
+                return;
+            }
+            else {
+                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+            }
+
         }
 
     });

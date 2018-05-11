@@ -117,7 +117,12 @@ function ListKinesisDataStream() {
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 $('#loading').hide();
-                $.notify("Unable to Load", "error");
+                if (ajaxOptions === "abort"){
+                    return;
+                }
+                else {
+                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                }
             }
         }));
 }
@@ -185,14 +190,25 @@ function deleteKinesisDataStream() {
 
             if (respdata > 0) {
                 showKinesisDataStream();
-                $.notify("Kinesis Data Stream Deleted Successfully", "success");
+                $.notify({message:"Kinesis Data Stream Deleted Successfully"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             else {
-                $.notify("Unable to Delete Kinesis Data Stream", "error");
+                $.notify({message:"Unable to Delete Kinesis Data Stream"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             $('#deleteConformation').modal('hide');
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            $('#deleteConformation').modal('hide');
+        if (ajaxOptions === "abort"){
+            return;
+        }
+        else {
+            $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
         }
 
-    });
+    }
+
+
+});
 
 }

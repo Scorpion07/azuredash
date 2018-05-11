@@ -130,7 +130,12 @@ function ListLambdaData() {
         },
         error: function (xhr, ajaxOptions, thrownError) {
             $('#loading').hide();
-            $.notify("Unable to Load", "error");
+            if (ajaxOptions === "abort"){
+                return;
+            }
+            else {
+                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+            }
         }
     }));
 }
@@ -193,14 +198,24 @@ function deleteLambdaFunctions() {
             $("#loadingMulModal").hide();
             console.log(result);
             if (result > 0 || parseInt(result.ResponseMetadata.HTTPStatusCode) >= 200 || parseInt(result.ResponseMetadata.HTTPStatusCode) <= 208) {
-                ListLambdaData();
-                $.notify("Deleted successfully.", "success");
+                showLambda();
+                $.notify({message:"Lambda Function Deleted successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             else {
-                $.notify("Unable to Delete.", "error");
+                $.notify({message:"Unable to Delete Lambda Function"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
 
             $('#deleteMulConformation').modal('hide');
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            $('#deleteConformation').modal('hide');
+            if (ajaxOptions === "abort"){
+                return;
+            }
+            else {
+                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+            }
+
         }
     });
 }

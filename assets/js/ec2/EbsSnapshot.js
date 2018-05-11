@@ -124,7 +124,12 @@ function ListSnapshotData() {
         },
         error: function (xhr, ajaxOptions, thrownError) {
             $('#loading').hide();
-            $.notify("Unable to Load", "error");
+            if (ajaxOptions === "abort"){
+                return;
+            }
+            else {
+                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+            }
         }
     }));
 }
@@ -159,15 +164,26 @@ function deleteSnaps() {
             $("#loadingMulModal").hide();
             console.log(result);
             if (result > 0 || result.ResponseMetadata.HTTPStatusCode == 200 || result.ResponseMetadata.HTTPStatusCode == "200") {
-                ListSnapshotData();
-                $.notify("Deleted successfully.", "success");
+                showSnaps();
+                $.notify({message:"EBS Snapshot Deleted successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             else {
-                $.notify("Unable to Delete.", "error");
+                $.notify({message:"Unable to Delete EBS Snapshot"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
 
             $('#deleteMulConformation').modal('hide');
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            $('#deleteMulConformation').modal('hide');
+            if (ajaxOptions === "abort"){
+                return;
+            }
+            else {
+                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+            }
+
         }
+
     });
 }
 

@@ -116,7 +116,12 @@ function listRoute53Data() {
         },
         error: function (xhr, ajaxOptions, thrownError) {
             $('#loading').hide();
-            $.notify("Unable to Load", "error");
+            if (ajaxOptions === "abort"){
+                return;
+            }
+            else {
+                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+            }
         }
     }));
 }
@@ -169,13 +174,23 @@ function deleteR53Hostzone() {
             $("#loadingModal").hide();
 
             if (respdata > -1) {
-                showRed_Snapshot();
-                $.notify("Route53 Hostedzone Deleted Successfully", "success");
+                showR53Hostzone();
+                $.notify({message:"Route53 Hostedzone Deleted Successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             else {
-                $.notify("Unable to Delete Route53 Hostedzone", "error");
+                $.notify({message:"Unable to Delete Route53 Hostedzone"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             $('#deleteConformation').modal('hide');
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            $('#deleteConformation').modal('hide');
+            if (ajaxOptions === "abort"){
+                return;
+            }
+            else {
+                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+            }
+
         }
 
     });

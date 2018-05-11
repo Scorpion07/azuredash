@@ -124,7 +124,12 @@ function ListELBData() {
         },
         error: function (xhr, ajaxOptions, thrownError) {
             $('#loading').hide();
-            $.notify("Unable to Load", "error");
+            if (ajaxOptions === "abort"){
+                return;
+            }
+            else {
+                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+            }
         }
     }));
 }
@@ -158,17 +163,28 @@ function deleteELBs() {
         success: function (result) {
             $(".btnmultipledelete").addClass("disabled");
             $("#loadingMulModal").hide();
+            $('#deleteMulConformation').modal('hide');
             console.log(result);
             if (result > 0) {
-                $('#deleteMulConformation').modal('hide');
-                $('.deleteMul').attr('disabled', false);
-                ListELBData();
-                $.notify("Deleted successfully.", "success");
+                showELBs();
+                $.notify({message:"Elastic Load Balancer Deleted successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             else {
                 $.notify("Unable to Delete.", "error");
+                $.notify({message:"Unable to Delete Elastic Load Balancer"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            $('#deleteMulConformation').modal('hide');
+            if (ajaxOptions === "abort"){
+                return;
+            }
+            else {
+                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+            }
+
         }
+
     });
 }
 

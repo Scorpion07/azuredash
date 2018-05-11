@@ -117,7 +117,12 @@ function ListBSAppData() {
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 $('#loading').hide();
-                $.notify("Unable to Load", "error");
+                if (ajaxOptions === "abort"){
+                    return;
+                }
+                else {
+                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                }
             }
         }));
 }
@@ -185,12 +190,22 @@ function deleteBSApps() {
 
             if (respdata > 0) {
                 showBSApp();
-                $.notify("Elastic Beanstalk Application Deleted Successfully", "success");
+                $.notify({message:"Elastic Beanstalk Application Deleted Successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             else {
-                $.notify("Unable to Delete Elastic Beanstalk Application", "error");
+                $.notify({message:"Unable to Delete Elastic Beanstalk Application"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             $('#deleteConformation').modal('hide');
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            $('#deleteConformation').modal('hide');
+            if (ajaxOptions === "abort"){
+                return;
+            }
+            else {
+                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+            }
+
         }
 
     });

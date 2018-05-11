@@ -132,7 +132,12 @@ function ListENIData() {
         },
         error: function (xhr, ajaxOptions, thrownError) {
             $('#loading').hide();
-            $.notify("Unable to Load", "error");
+            if (ajaxOptions === "abort"){
+                return;
+            }
+            else {
+                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+            }
         }
     }));
 }
@@ -193,21 +198,25 @@ function deleteENIs() {
         success: function (respdata) {
             console.log(respdata)
             $("#loadingModal").hide();
-            $('#deleteConformation').modal('hide');
+            $('#deleteMulConformation').modal('hide');
             if (respdata > -1) {
-                ListENIData();
-                $.notify("Elastic Network Interface Deleted Successfully", "success");
+                showENIs();
+                $.notify({message:"Elastic Network Interface Deleted Successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             else if (respdata === -1) {
-                //alert("Network Interface not Deleted")
-                $.notify("Unable to Delete Elastic Network Interface", "error");
+                $.notify({message:"Unable to Delete Elastic Network Interface"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
-            $('instacelisttable').DataTable().ajax.reload();
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            $("#loadingModal").hide();
-            $('#deleteConformation').modal('hide');
-            $.notify("Some Error Occur !!!", "error");
+            $('#deleteMulConformation').modal('hide');
+            if (ajaxOptions === "abort"){
+                return;
+            }
+            else {
+                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+            }
+
         }
+
     });
 }

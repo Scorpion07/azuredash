@@ -132,7 +132,12 @@ function ListNATData() {
         },
         error: function (xhr, ajaxOptions, thrownError) {
             $('#loading').hide();
-            $.notify("Unable to Load", "error");
+            if (ajaxOptions === "abort"){
+                return;
+            }
+            else {
+                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+            }
         }
     }));
 }
@@ -193,18 +198,25 @@ function deleteNats() {
             $("#loadingModal").hide();
             $('#deleteConformation').modal('hide');
             if (respdata.totalnatg >= 0 || respdata.totaleip >= 0) {
-                ListNATData();
-                $.notify("NAT Gateway and EIPs Deleted Successfully", "success");
+                showNats();
+                $.notify({message:"NAT Gateway and EIPs Deleted Successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             else {
-                $.notify("Unable to Delete Nat Gateway and EIPs", "error");
+                $.notify({message:"Unable to Delete Nat Gateway and EIPs"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
 
         },
         error: function (xhr, ajaxOptions, thrownError) {
             $("#loadingModal").hide();
             $('#deleteConformation').modal('hide');
-            $.notify("Some Error Occur !!!", "error");
+            if (ajaxOptions === "abort"){
+                return;
+            }
+            else {
+                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+            }
+
         }
+
     });
 }
