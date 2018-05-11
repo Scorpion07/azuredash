@@ -74,6 +74,15 @@ function ModalClickdelete(SelectedResourceVar)
     {
         deleteSagemakerEndpoint();
     }
+    else if (SelectedResourceVar == "beanstalk_app"){
+        deleteBSApps();
+    }
+    else if (SelectedResourceVar == "beanstalk_env"){
+        deleteBSEnvs();
+    }
+    else if (SelectedResourceVar == "kinesis_datastream"){
+        deleteKinesisDataStream();
+    }
     else
 	{
 

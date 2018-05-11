@@ -75,6 +75,15 @@ function checkdelete(SelectedResourceVar)
     {
         deleteModalSagemakerEndpoint();
     }
+    else if (SelectedResourceVar == "beanstalk_app"){
+        deleteModalBSApp();
+    }
+    else if (SelectedResourceVar == "beanstalk_env"){
+        deleteModalBSEnvs();
+    }
+    else if (SelectedResourceVar == "kinesis_datastream"){
+        deleteModalKinesisDataStream();
+    }
 	else
 	{
 

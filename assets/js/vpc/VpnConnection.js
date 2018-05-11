@@ -160,7 +160,6 @@ function deleteVPNs() {
             if (!(id in Data)) {
                 Data[id] = [];
                 Data[id].push(value);
-                ;
             }
             else {
                 Data[id].push(value);
