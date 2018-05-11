@@ -138,7 +138,12 @@ function getDataSet() {
                         parseFloat(Number(parseFloat(data.totalAccount).toFixed(2))-(Number(parseFloat(data.totalEc2).toFixed(2))+Number(parseFloat(data.totalRds).toFixed(2)))).toFixed(2)])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
-                    $.notify("Unable to Load", "error");
+                    if (ajaxOptions === "abort"){
+                        return;
+                    }
+                    else {
+                        $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                    }
                 }
             }));
         ajaxrequests.push(
@@ -153,7 +158,12 @@ function getDataSet() {
                         parseFloat(Number(parseFloat(data.totalAccount).toFixed(2))-(Number(parseFloat(data.totalEc2).toFixed(2))+Number(parseFloat(data.totalRds).toFixed(2)))).toFixed(2)])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
-                    $.notify("Unable to Load", "error");
+                    if (ajaxOptions === "abort"){
+                        return;
+                    }
+                    else {
+                        $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                    }
                 }
             }));
         ajaxrequests.push(
@@ -168,7 +178,12 @@ function getDataSet() {
                         parseFloat(Number(parseFloat(data.totalAccount).toFixed(2))-(Number(parseFloat(data.totalEc2).toFixed(2))+Number(parseFloat(data.totalRds).toFixed(2)))).toFixed(2)])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
-                    $.notify("Unable to Load", "error");
+                    if (ajaxOptions === "abort"){
+                        return;
+                    }
+                    else {
+                        $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                    }
                 }
             }));
         ajaxrequests.push(
@@ -183,7 +198,12 @@ function getDataSet() {
                         parseFloat(Number(parseFloat(data.totalAccount).toFixed(2))-(Number(parseFloat(data.totalEc2).toFixed(2))+Number(parseFloat(data.totalRds).toFixed(2)))).toFixed(2)])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
-                    $.notify("Unable to Load", "error");
+                    if (ajaxOptions === "abort"){
+                        return;
+                    }
+                    else {
+                        $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                    }
                 }
             }));
 
