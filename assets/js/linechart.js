@@ -84,7 +84,9 @@ function showLineChart() {
                 var x = item.datapoint[0],
                     y = item.datapoint[1];
                 z = item.series.color;
-                showTooltip(item.pageX - 135, item.pageY - 30, "<b>" + item.series.label + "</b><br /> Date : " + (x+1) +"/"+ month +" <br/>Amount : " + y + " $", z);
+                showTooltip(item.pageX - 135, item.pageY - 30, "<b>" + item.series.label + "</b><br /> Date : " + (x+1) +"/"+ month +" <br/>Amount : " + y + " $" +
+                    "<br/>EC2 : " + item.series.data[item.dataIndex][2] + "$<br/>RDS : "+ item.series.data[item.dataIndex][3]+"$<br/>Other : "+ item.series.data[item.dataIndex][4]
+                    , z);
             }
         } else {
             $("#flot-tooltip").remove();
@@ -131,7 +133,9 @@ function getDataSet() {
                 dataType: 'json',
                 async: false,
                 success: function (data) {
-                    devCostData.push([i - 1, Number(parseFloat(data.totalAccount).toFixed(2))])
+                    devCostData.push([i - 1, Number(parseFloat(data.totalAccount).toFixed(2)),parseFloat(data.totalEc2).toFixed(2),
+                        parseFloat(data.totalRds).toFixed(2),
+                        (parseFloat(data.totalEc2).toFixed(2)+parseFloat(data.totalRds).toFixed(2))-parseFloat(data.totalAccount).toFixed(2)])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $.notify("Unable to Load", "error");
@@ -144,7 +148,9 @@ function getDataSet() {
                 dataType: 'json',
                 async: false,
                 success: function (data) {
-                    prodCostData.push([i - 1, Number(parseFloat(data.totalAccount).toFixed(2))])
+                    prodCostData.push([i - 1, Number(parseFloat(data.totalAccount).toFixed(2)),parseFloat(data.totalEc2).toFixed(2),
+                        parseFloat(data.totalRds).toFixed(2),
+                        (parseFloat(data.totalEc2).toFixed(2)+parseFloat(data.totalRds).toFixed(2))-parseFloat(data.totalAccount).toFixed(2)])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $.notify("Unable to Load", "error");
@@ -157,7 +163,9 @@ function getDataSet() {
                 dataType: 'json',
                 async: false,
                 success: function (data) {
-                    exttrainCostData.push([i - 1, Number(parseFloat(data.totalAccount).toFixed(2))])
+                    exttrainCostData.push([i - 1, Number(parseFloat(data.totalAccount).toFixed(2)),parseFloat(data.totalEc2).toFixed(2),
+                        parseFloat(data.totalRds).toFixed(2),
+                        (parseFloat(data.totalEc2).toFixed(2)+parseFloat(data.totalRds).toFixed(2))-parseFloat(data.totalAccount).toFixed(2)])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $.notify("Unable to Load", "error");
@@ -170,7 +178,9 @@ function getDataSet() {
                 dataType: 'json',
                 async: false,
                 success: function (data) {
-                    trainCostData.push([i - 1, Number(parseFloat(data.totalAccount).toFixed(2))])
+                    trainCostData.push([i - 1, Number(parseFloat(data.totalAccount).toFixed(2)),parseFloat(data.totalEc2).toFixed(2),
+                        parseFloat(data.totalRds).toFixed(2),
+                        (parseFloat(data.totalEc2).toFixed(2)+parseFloat(data.totalRds).toFixed(2))-parseFloat(data.totalAccount).toFixed(2)])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $.notify("Unable to Load", "error");
