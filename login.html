@@ -10,7 +10,8 @@
     <script src="assets/js/dependancies/config.js"></script>
     <script src="assets/js/dependancies/aws-cognito-sdk.min.js"></script>
     <script src="assets/js/dependancies/amazon-cognito-identity.min.js"></script>
-    <script src="assets/js/dependancies/notify.min.js"></script>
+    <script src="assets/js/dependancies/bootstrap-notify.js"></script>
+    <script src="assets/js/dependancies/bootstrap-notify.min.js"></script>
     <script type="text/javascript">
         var userPool;
         alreadylogin();
@@ -38,7 +39,7 @@
             function signin(){
                 if ($('#username').val() == "" || $('#password').val() == "") {
 
-                    $.notify({message:"please fill up all the textboxes"},{type:"error",placement: {from: "top", align: "center"},offset: 20,position:null });
+                    $.notify({icon: 'glyphicon glyphicon-warning-sign',message:"please fill up all the textboxes"},{type:"danger",placement: {from: "top", align: "center"},delay:500,timer: 200 });
                 }
                 else {
                     var authenticationData = {
@@ -95,7 +96,7 @@
 
                         onFailure: function (err) {
                             //alert(err);
-                            $.notify({message:err},{type:"error",placement: {from: "top", align: "center"},offset: 20,position:null });
+                            $.notify({icon: 'glyphicon glyphicon-warning-sign',message:err},{type:"danger",placement: {from: "top", align: "center"},delay:500,timer: 200  });
                         }
 
                     });
