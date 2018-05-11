@@ -85,7 +85,7 @@ function showLineChart() {
                     y = item.datapoint[1];
                 z = item.series.color;
                 showTooltip(item.pageX - 135, item.pageY - 30, "<b>" + item.series.label + "</b><br /> Date : " + (x+1) +"/"+ month +" <br/>Amount : " + y + " $" +
-                    "<br/>EC2 : " + item.series.data[item.dataIndex][2] + "$<br/>RDS : "+ item.series.data[item.dataIndex][3]+"$<br/>Other : "+ item.series.data[item.dataIndex][4]
+                    "<br/>EC2 : " + item.series.data[item.dataIndex][2] + "<br/>RDS : "+ item.series.data[item.dataIndex][3]+"$<br/>Other : "+ item.series.data[item.dataIndex][4]+" $"
                     , z);
             }
         } else {
@@ -199,20 +199,20 @@ function getDataSet() {
         {
             label: "Production",
             data: prodCostData,
-            points: {symbol: "square", fillColor: "#ff9d0a"},
-            color: '#ff9d0a'
+            points: {symbol: "square", fillColor: "#ff8800"},
+            color: '#ff8800'
         },
         {
             label: "External Training",
             data: exttrainCostData,
-            points: {symbol: "diamond", fillColor: "#ed0b0b"},
-            color: '#ed0b0b'
+            points: {symbol: "diamond", fillColor: "#af0000"},
+            color: '#af0000'
         },
         {
             label: "Training",
             data: trainCostData,
-            points: {symbol: "circle", fillColor: "#73ff08"},
-            color: '#73ff08'
+            points: {symbol: "circle", fillColor: "#108e00"},
+            color: '#108e00'
         },
     ];
 
