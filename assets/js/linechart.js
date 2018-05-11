@@ -85,7 +85,7 @@ function showLineChart() {
                     y = item.datapoint[1];
                 z = item.series.color;
                 showTooltip(item.pageX - 135, item.pageY - 30, "<b>" + item.series.label + "</b><br /> Date : " + (x+1) +"/"+ month +" <br/>Amount : " + y + " $" +
-                    "<br/>EC2 : " + item.series.data[item.dataIndex][2] + "<br/>RDS : "+ item.series.data[item.dataIndex][3]+"$<br/>Other : "+ item.series.data[item.dataIndex][4]+" $"
+                    "<br/>EC2 : " + item.series.data[item.dataIndex][2] + " $<br/>RDS : "+ item.series.data[item.dataIndex][3]+" $<br/>Other : "+ item.series.data[item.dataIndex][4]+" $"
                     , z);
             }
         } else {
