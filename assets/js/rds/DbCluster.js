@@ -109,7 +109,12 @@ function ListDBClusterData() {
         error: function (xhr, ajaxOptions, thrownError) {
             //alert(respdata);
             $('#loading').hide();
-            $.notify("Unable to Load", "error");
+            if (ajaxOptions === "abort"){
+                return;
+            }
+            else {
+                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+            }
         }
     }));
 }

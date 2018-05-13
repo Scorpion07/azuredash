@@ -1,7 +1,8 @@
-function show_cloudtrail() {
+function showKinesisDataStream() {
+
     $(".tableDisplay").html(" ");
-    $("#main_title").html("Amazon CloudTrail");
-    $("#tableHeading").html("Amazon CloudTrails");
+    $("#main_title").html("Amazon Kinesis");
+    $("#tableHeading").html("Kinesis Data Stream");
 
     var addTable = '<table id="table" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info" style="width: 100%;"><thead id="tablehead"></thead><tfoot id="tablebody"></tfoot></table>';
     $(".tableDisplay").append(addTable);
@@ -16,25 +17,24 @@ function show_cloudtrail() {
     else {
         $("#btnmultipledelete").hide();
     }
-
     $("#tablehead").html("");
     $("#tablebody").html("");
     if (account !== 'prod') {
-        $("#tablehead").append('<tr><th><input name="select_all" class="select_all" type="checkbox"></th><th>Name</th><th>S3Bucket Name</th><th>Configure Region</th><th>Monitor Region</th></tr>');
-        $("#tablebody").append('<tr><th></th><th>Name</th><th>S3Bucket Name</th><th>Configure Region</th><th>Monitor Region</th></tr>');
+        $("#tablehead").append('<tr><th><input name="select_all" class="select_all" type="checkbox"></th><th>Stream Name</th><th>Stream Status</th><th>Shard Id</th><th>Date Created</th><th>Retention Period Hours</th><th>Region</th></tr>');
+        $("#tablebody").append('<tr><th></th><th>Stream Name</th><th>Stream Status</th><th>Shard Id</th><th>Date Created</th><th>Retention Period Hours</th><th>Region</th></tr>');
     }
     else {
-        $("#tablehead").append('<tr><th>No.</th><th>Name</th><th>S3Bucket Name</th><th>Configure Region</th><th>Monitor Region</th></tr>');
-        $("#tablebody").append('<tr><th></th><th>Name</th><th>S3Bucket Name</th><th>Configure Region</th><th>Monitor Region</th></tr>');
+        $("#tablehead").append('<tr><th>No.</th><th>Stream Name</th><th>Stream Status</th><th>Shard Id</th><th>Date Created</th><th>Retention Period Hours</th><th>Region</th></tr>');
+        $("#tablebody").append('<tr><th></th><th>Stream Name</th><th>Stream Status</th><th>Shard Id</th><th>Date Created</th><th>Retention Period Hours</th><th>Region</th></tr>');
     }
-    ListCloudTrailData();
+    ListKinesisDataStream();
 }
 
-function ListCloudTrailData() {
+function ListKinesisDataStream() {
     var count = 0;
     $('#loading').show();
     var submit = {
-        submethod: "cloudtrail",
+        submethod: SelectedResourceVar,
         method: "ListResources",
         account: account
     }
@@ -59,13 +59,12 @@ function ListCloudTrailData() {
 
                     'rowCallback': function (row, data, iDisplayIndex) {
                         if (account !== 'prod') {
-                            var check = '<input type="checkbox" id="checkboxclick" name="id[]" class="checkboxclick checkboxes" data_name = "' + data.Name + '"  data_cloudtrail_arn="' + data.TrailARN + '" data_region="' + data.HomeRegion + '">';
+                            var check = '<input type="checkbox" id="checkboxclick" name="id[]" class="checkboxclick checkboxes" data_stream_name="' + data.StreamName + '" data_region="' + data.Region + '">';
                             $('td:eq(0)', row).html(check);
                         }
                         else {
                             $('td:eq(0)', row).html(count += 1);
                         }
-
                     },
 
                     'columnDefs': [
@@ -79,24 +78,33 @@ function ListCloudTrailData() {
                         {
                             'targets': [1],
                             'orderable': true,
-                            'data': 'Name'
+                            'data': 'StreamName'
                         },
                         {
                             'targets': [2],
                             'orderable': true,
-                            'data': 'S3BucketName',
+                            'data': 'StreamStatus',
                         },
                         {
                             'targets': [3],
                             'orderable': true,
-                            'data': 'HomeRegion'
+                            'data': 'Shards.0.ShardId'
                         },
                         {
                             'targets': [4],
                             'orderable': true,
-                            'data': 'Region'
+                            'data': 'StreamCreationTimestamp'
+                        },
+                        {
+                            'targets': [5],
+                            'orderable': true,
+                            'data': 'RetentionPeriodHours'
+                        },
+                        {
+                            'targets': [6],
+                            'orderable': true,
+                            'data': 'RegionName'
                         }
-
                     ],
 
                     'select': {
@@ -119,33 +127,35 @@ function ListCloudTrailData() {
         }));
 }
 
-function deleteModalCloudTrail() {
-    $("#modal_title").html("<h3>CloudTrails Deletion </h3>");
-    $("#delete_heading").text("Are you sure, you want to delete all this CloudTrails ?");
+function deleteModalKinesisDataStream() {
+
+    $("#modal_title").html("<h3>Beanstalk Application Deletion </h3>");
+    $("#delete_heading").text("Are you sure, you want to delete all this Kinesis DataStream ?");
     $("#delete_li_show").html(" ");
-    var cloudtrail_name = [];
+    var datastream_list = [];
+    var region_list = [];
     $(".checkboxes").each(function () {
         if ($(this).is(":checked")) {
-            cloudtrail_name.push($(this).attr("data_name"));
+            datastream_list.push($(this).attr("data_stream_name"));
+            region_list.push($(this).attr("data_region"));
         }
     });
-    cloudtrail_name.forEach(function (id) {
-
-            var add = '<li><label>"' + id + '"</label></li>';
-            $("#delete_li_show").append(add);
-
+    datastream_list.forEach(function (id) {
+        var add = '<li><label>"' + id + '"</label></li>';
+        $("#delete_li_show").append(add);
     });
     $('.deleteMul').attr('disabled', false);
     $('#deleteMulConformation').modal('show');
+
 }
 
-function deleteCloudTrail() {
+function deleteKinesisDataStream() {
     $('.deleteMul').attr('disabled', true);
     $("#loadingModal").show();
     var Data = {};
     $(".checkboxes").each(function () {
         if ($(this).is(":checked")) {
-            var value = $(this).attr("data_cloudtrail_arn")
+            var value = $(this).attr("data_stream_name")
 
             var id = $(this).attr("data_region");
             if (!(id in Data)) {
@@ -159,13 +169,12 @@ function deleteCloudTrail() {
         }
     });
     console.log(Data);
-
+    console.log(region);
     var submit = {
-        method: "cloudtrailDelete",
+        method: "deleteKinesisDataStream",
         account: account,
         data: Data
     }
-    console.log(submit);
     $.ajax({
         url: _config.api.invokeUrl + '/billing/services',
         headers: {"Authorization": token},
@@ -179,25 +188,27 @@ function deleteCloudTrail() {
             console.log(respdata)
             $("#loadingModal").hide();
 
-            if (respdata > -1) {
-                show_cloudtrail();
-                $.notify({message:"CloudTrails Deleted Successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+            if (respdata > 0) {
+                showKinesisDataStream();
+                $.notify({message:"Kinesis Data Stream Deleted Successfully"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             else {
-                $.notify({message:"Unable to Delete CloudTrails"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                $.notify({message:"Unable to Delete Kinesis Data Stream"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             $('#deleteConformation').modal('hide');
         },
         error: function (xhr, ajaxOptions, thrownError) {
             $('#deleteConformation').modal('hide');
-            if (ajaxOptions === "abort"){
-                return;
-            }
-            else {
-                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
-            }
-
+        if (ajaxOptions === "abort"){
+            return;
+        }
+        else {
+            $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
         }
 
-    });
+    }
+
+
+});
+
 }

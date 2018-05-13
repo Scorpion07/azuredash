@@ -101,7 +101,14 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                $.notify("Unable to Load", "error");
+
+                if (ajaxOptions === "abort"){
+                    return;
+                }
+                else {
+                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                }
+
             }
 
         }));
@@ -146,7 +153,12 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                $.notify("Unable to Load", "error");
+                if (ajaxOptions === "abort"){
+                    return;
+                }
+                else {
+                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                }
             }
         }));
 
@@ -182,7 +194,12 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                $.notify("Unable to Load", "error");
+                if (ajaxOptions === "abort"){
+                    return;
+                }
+                else {
+                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                }
             }
         }));
 
@@ -234,7 +251,12 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                $.notify("Unable to Load", "error");
+                if (ajaxOptions === "abort"){
+                    return;
+                }
+                else {
+                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                }
             }
         }));
 
@@ -275,7 +297,12 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                $.notify("Unable to Load", "error");
+                if (ajaxOptions === "abort"){
+                    return;
+                }
+                else {
+                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                }
             }
         }));
 
@@ -318,7 +345,12 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                $.notify("Unable to Load", "error");
+                if (ajaxOptions === "abort"){
+                    return;
+                }
+                else {
+                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                }
             }
         }));
     ajaxrequests.push(
@@ -351,7 +383,12 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                $.notify("Unable to Load", "error");
+                if (ajaxOptions === "abort"){
+                    return;
+                }
+                else {
+                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                }
             }
         }));
     ajaxrequests.push(
@@ -383,7 +420,12 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                $.notify("Unable to Load", "error");
+                if (ajaxOptions === "abort"){
+                    return;
+                }
+                else {
+                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                }
             }
         }));
     ajaxrequests.push(
@@ -442,7 +484,12 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                $.notify("Unable to Load", "error");
+                if (ajaxOptions === "abort"){
+                    return;
+                }
+                else {
+                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                }
             }
         }));
 
@@ -481,7 +528,12 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                $.notify("Unable to Load", "error");
+                if (ajaxOptions === "abort"){
+                    return;
+                }
+                else {
+                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                }
             }
         }));
 
@@ -518,7 +570,12 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                $.notify("Unable to Load", "error");
+                if (ajaxOptions === "abort"){
+                    return;
+                }
+                else {
+                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                }
             }
         }));
     CostofResources();

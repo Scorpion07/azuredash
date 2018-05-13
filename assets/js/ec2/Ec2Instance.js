@@ -120,7 +120,12 @@ function ListInstanceData() {
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 $('#loading').hide();
-                $.notify("Unable to Load", "error");
+                if (ajaxOptions === "abort"){
+                    return;
+                }
+                else {
+                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                }
             }
         }));
 }
@@ -183,15 +188,27 @@ function deleteInstances() {
             $("#loadingModal").hide();
 
             if (respdata == "0") {
-                ListInstanceData();
+                showEc2Instances();
                 $.notify("Instance Terminated Successfully", "success");
+                $.notify({message:"Instance Terminated Successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             else {
-                $.notify("Unable to Terminate Instance", "error");
+                $.notify({message:"Unable to Terminate Instance"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             $('#deleteMulConformation').modal('hide');
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            $('#deleteMulConformation').modal('hide');
+            if (ajaxOptions === "abort"){
+            return;
+        }
+        else {
+            $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
         }
 
-    });
+    }
+
+
+});
 }
 

@@ -130,7 +130,12 @@ function ListRedShiftSnapshotData() {
         },
         error: function (xhr, ajaxOptions, thrownError) {
             $('#loading').hide();
-            $.notify("Unable to Load", "error");
+            if (ajaxOptions === "abort"){
+                return;
+            }
+            else {
+                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+            }
         }
     }));
 }
@@ -195,12 +200,22 @@ function deleteRSSnapshot() {
 
             if (respdata > -1) {
                 showRed_Snapshot();
-                $.notify("Redshift Cluster Snapshot Deleted Successfully", "success");
+                $.notify({message:"Redshift Cluster Snapshot Deleted Successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             else {
-                $.notify("Unable to Delete Redshift Cluster Snapshot", "error");
+                $.notify({message:"Unable to Delete Redshift Cluster Snapshot"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             $('#deleteConformation').modal('hide');
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            $('#deleteConformation').modal('hide');
+            if (ajaxOptions === "abort"){
+                return;
+            }
+            else {
+                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+            }
+
         }
 
     });

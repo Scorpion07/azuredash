@@ -128,7 +128,17 @@ function ListDBSnapshotData() {
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 $('#loading').hide();
-                $.notify("Unable to Load", "error");
+                if (ajaxOptions === "abort") {
+                    return;
+                }
+                else {
+                    $.notify({message: "Unable to Load"}, {
+                        type: "danger",
+                        placement: {from: "top", align: "center"},
+                        delay: 500,
+                        timer: 500
+                    });
+                }
             }
         }));
 }
@@ -164,13 +174,37 @@ function deleteDBSnaps() {
             console.log(result);
             if (result > 0) {
                 $('#deleteMulConformation').modal('hide');
-                ListDBSnapshotData();
-                $.notify("Deleted successfully.", "success");
+                showDBSnaps();
+                $.notify({message: "RDS Snapshot Deleted successfully"}, {
+                    type: "success",
+                    placement: {from: "top", align: "center"},
+                    delay: 500,
+                    timer: 500
+                });
             }
             else {
-                $.notify("Unable to Delete.", "error");
+                $.notify({message: "Unable to Delete RDS Snapshot"}, {
+                    type: "danger",
+                    placement: {from: "top", align: "center"},
+                    delay: 500,
+                    timer: 500
+                });
             }
             $('#deleteMulConformation').modal('hide');
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            $('#deleteConformation').modal('hide');
+            if (ajaxOptions === "abort") {
+                return;
+            }
+            else {
+                $.notify({message: "Unable to Load"}, {
+                    type: "danger",
+                    placement: {from: "top", align: "center"},
+                    delay: 500,
+                    timer: 500
+                });
+            }
         }
     });
 }

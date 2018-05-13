@@ -116,7 +116,12 @@ function ListDBInstancesData() {
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 $('#loading').hide();
-                $.notify("Unable to Load", "error");
+                if (ajaxOptions === "abort"){
+                    return;
+                }
+                else {
+                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                }
             }
         }));
 }
@@ -183,13 +188,37 @@ function deleteDBInstances() {
             console.log(result);
             if (result > 0) {
                 $('#deleteMulConformation').modal('hide');
-                ListDBInstancesData();
-                $.notify("Deleted successfully.", "success");
+                showDBInstances();
+                $.notify({message: "RDS Instace Deleted successfully"}, {
+                    type: "success",
+                    placement: {from: "top", align: "center"},
+                    delay: 500,
+                    timer: 500
+                });
             }
             else {
-                $.notify("Unable to Delete.", "error");
+                $.notify({message: "Unable to Delete RDS Instance"}, {
+                    type: "danger",
+                    placement: {from: "top", align: "center"},
+                    delay: 500,
+                    timer: 500
+                });
             }
             $('#deleteMulConformation').modal('hide');
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            $('#deleteConformation').modal('hide');
+            if (ajaxOptions === "abort") {
+                return;
+            }
+            else {
+                $.notify({message: "Unable to Load"}, {
+                    type: "danger",
+                    placement: {from: "top", align: "center"},
+                    delay: 500,
+                    timer: 500
+                });
+            }
         }
     });
 }

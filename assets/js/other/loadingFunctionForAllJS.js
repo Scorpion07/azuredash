@@ -77,6 +77,15 @@ function load_resource_js(SelectedResourceVar) {
     else if (SelectedResourceVar == "linechart"){
         showLineChart();
     }
+    else if (SelectedResourceVar == "beanstalk_app"){
+        showBSApp();
+    }
+    else if (SelectedResourceVar == "beanstalk_env"){
+        showBSEnv();
+    }
+    else if (SelectedResourceVar == "kinesis_datastream"){
+        showKinesisDataStream();
+    }
     else {
 
     }

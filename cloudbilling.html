@@ -27,7 +27,8 @@
     <script src="assets/dist/js/adminlte.min.js"></script>
     <script src="assets/js/dependancies/jquery-1.12.4.js"></script>
     <script src="assets/js/dependancies/jquery.dataTables.min.js"></script>
-    <script src="assets/js/dependancies/notify.min.js"></script>
+    <script src="assets/js/dependancies/bootstrap-notify.js"></script>
+    <script src="assets/js/dependancies/bootstrap-notify.min.js"></script>
     <script src="//npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
     <script src="assets/js/dependancies/bootstrap.min.js"></script>
     <script src="assets/js/dependancies/aws-sdk-2.224.1.min.js"></script>
@@ -119,7 +120,8 @@
                                             <!--style="float: right;margin-top: -44px;  padding-right: 17px; ">-->
                                             <!--<input type="image" src="assets/icons/logout.png" alt="Submit" width="25"></a>-->
 
-                                            <button type="button" class="btn btn-default btn-sm" id="signout" onclick="signout();"
+                                            <button type="button" class="btn btn-default btn-sm" id="signout"
+                                                    onclick="signout();"
                                                     style="float:right; color:#20629b; font-size:15px">
                                                 <span class="glyphicon glyphicon-log-out"></span> Log out
                                             </button>
@@ -174,7 +176,7 @@
                     </li>
                     <li>
                         <a href="#" class="SelectedResource select" data-resource="linechart">
-                            <img src='assets/images/chart.png' style="margin-left: -2px"> <span style="width:229px;">Line Chart</span>
+                            <img src='assets/images/chart.png' style="margin-left: -2px"> <span style="width:229px;">Cost Chart</span>
                         </a>
                     </li>
                     <li class="treeview">
@@ -286,6 +288,33 @@
                         <a href="#" class="SelectedResource select" data-resource="cloudtrail">
                             <img src='assets/images/cloudtrail.png'> <span style="width:229px;">CloudTrail</span>
                         </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="#" class="select">
+                            <img src='assets/images/beanstalk.png'> <span style="width:229px;">Beanstalk
+                            <span class="pull-right-container" style="margin: -3px;">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span></span>
+                        </a>
+                        <ul class="treeview-menu" style="display: none;top:unset;width: 229px">
+                            <li><a href="#" class="SelectedResource" data-resource="beanstalk_app"><i
+                                    class="fa fa-circle-o"></i>Applications</a></li>
+                            <li><a href="#" class="SelectedResource" data-resource="beanstalk_env"><i
+                                    class="fa fa-circle-o"></i>Environment</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#" class="select">
+                            <img src='assets/images/kinesis.png'> <span style="width:229px;">Kinesis
+                            <span class="pull-right-container" style="margin: -3px;">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span></span>
+                        </a>
+                        <ul class="treeview-menu" style="display: none;top:unset;width: 229px">
+                            <li><a href="#" class="SelectedResource" data-resource="kinesis_datastream"><i
+                                    class="fa fa-circle-o"></i>Data Stream</a></li>
+                        </ul>
                     </li>
 
                 </ul>
@@ -665,7 +694,7 @@
 
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i>CloudBilling</a></li>
-                    <li class="active">Line Chart</li>
+                    <li class="active" >Cost Chart</li>
                 </ol>
             </section>
             <section class="content">
@@ -729,13 +758,14 @@
     <!-- /.content-wrapper -->
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-            <b>Version</b> 2.4.0
+            <b>Version</b> 1.1.1
         </div>
-        <strong>Copyright © 2012-2018 <a href="//adminlte.io">CloudThat</a>.</strong> All rights
+        <strong>Copyright © 2018 <a href="//adminlte.io">CloudThat</a>.</strong> All rights
         reserved.
     </footer>
 </div>
 <script type="text/javascript" src="assets/js/signout.js"></script>
+<script type="text/javascript" src="assets/js/linechart.js"></script>
 <script type="text/javascript" src="assets/js/ec2/Ec2Instance.js"></script>
 <script type="text/javascript" src="assets/js/ec2/EbsVolume.js"></script>
 <script type="text/javascript" src="assets/js/ec2/EbsSnapshot.js"></script>
@@ -760,7 +790,9 @@
 <script type="text/javascript" src="assets/js/sagemaker/EndpointConfiguration.js"></script>
 <script type="text/javascript" src="assets/js/route53/hostzone.js"></script>
 <script type="text/javascript" src="assets/js/cloudtrail/cloudtrail.js"></script>
-<script type="text/javascript" src="assets/js/linechart.js"></script>
+<script type="text/javascript" src="assets/js/beanstalk/application.js"></script>
+<script type="text/javascript" src="assets/js/beanstalk/environment.js"></script>
+<script type="text/javascript" src="assets/js/kinesis/datastream.js"></script>
 <script type="text/javascript" src="assets/js/main.js"></script>
 <script type="text/javascript" src="assets/js/other/loadingFunctionForAllJS.js"></script>
 <script type="text/javascript" src="assets/js/other/forOpeningModel.js"></script>

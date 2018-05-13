@@ -84,7 +84,9 @@ function showLineChart() {
                 var x = item.datapoint[0],
                     y = item.datapoint[1];
                 z = item.series.color;
-                showTooltip(item.pageX - 135, item.pageY - 30, "<b>" + item.series.label + "</b><br /> Date : " + (x+1) +"/"+ month +" <br/>Amount : " + y + " $", z);
+                showTooltip(item.pageX - 135, item.pageY - 30, "<b>" + item.series.label + "</b><br /> Date : " + (x+1) +"/"+ month +" <br/>Amount : " + y + " $" +
+                    "<br/>EC2 : " + item.series.data[item.dataIndex][2] + " $<br/>RDS : "+ item.series.data[item.dataIndex][3]+" $<br/>Other : "+ item.series.data[item.dataIndex][4]+" $"
+                    , z);
             }
         } else {
             $("#flot-tooltip").remove();
@@ -131,10 +133,17 @@ function getDataSet() {
                 dataType: 'json',
                 async: false,
                 success: function (data) {
-                    devCostData.push([i - 1, Number(parseFloat(data.totalAccount).toFixed(2))])
+                    devCostData.push([i - 1, Number(parseFloat(data.totalAccount).toFixed(2)),parseFloat(data.totalEc2).toFixed(2),
+                        parseFloat(data.totalRds).toFixed(2),
+                        parseFloat(Number(parseFloat(data.totalAccount).toFixed(2))-(Number(parseFloat(data.totalEc2).toFixed(2))+Number(parseFloat(data.totalRds).toFixed(2)))).toFixed(2)])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
-                    $.notify("Unable to Load", "error");
+                    if (ajaxOptions === "abort"){
+                        return;
+                    }
+                    else {
+                        $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                    }
                 }
             }));
         ajaxrequests.push(
@@ -144,10 +153,17 @@ function getDataSet() {
                 dataType: 'json',
                 async: false,
                 success: function (data) {
-                    prodCostData.push([i - 1, Number(parseFloat(data.totalAccount).toFixed(2))])
+                    prodCostData.push([i - 1, Number(parseFloat(data.totalAccount).toFixed(2)),parseFloat(data.totalEc2).toFixed(2),
+                        parseFloat(data.totalRds).toFixed(2),
+                        parseFloat(Number(parseFloat(data.totalAccount).toFixed(2))-(Number(parseFloat(data.totalEc2).toFixed(2))+Number(parseFloat(data.totalRds).toFixed(2)))).toFixed(2)])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
-                    $.notify("Unable to Load", "error");
+                    if (ajaxOptions === "abort"){
+                        return;
+                    }
+                    else {
+                        $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                    }
                 }
             }));
         ajaxrequests.push(
@@ -157,10 +173,17 @@ function getDataSet() {
                 dataType: 'json',
                 async: false,
                 success: function (data) {
-                    exttrainCostData.push([i - 1, Number(parseFloat(data.totalAccount).toFixed(2))])
+                    exttrainCostData.push([i - 1, Number(parseFloat(data.totalAccount).toFixed(2)),parseFloat(data.totalEc2).toFixed(2),
+                        parseFloat(data.totalRds).toFixed(2),
+                        parseFloat(Number(parseFloat(data.totalAccount).toFixed(2))-(Number(parseFloat(data.totalEc2).toFixed(2))+Number(parseFloat(data.totalRds).toFixed(2)))).toFixed(2)])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
-                    $.notify("Unable to Load", "error");
+                    if (ajaxOptions === "abort"){
+                        return;
+                    }
+                    else {
+                        $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                    }
                 }
             }));
         ajaxrequests.push(
@@ -170,10 +193,17 @@ function getDataSet() {
                 dataType: 'json',
                 async: false,
                 success: function (data) {
-                    trainCostData.push([i - 1, Number(parseFloat(data.totalAccount).toFixed(2))])
+                    trainCostData.push([i - 1, Number(parseFloat(data.totalAccount).toFixed(2)),parseFloat(data.totalEc2).toFixed(2),
+                        parseFloat(data.totalRds).toFixed(2),
+                        parseFloat(Number(parseFloat(data.totalAccount).toFixed(2))-(Number(parseFloat(data.totalEc2).toFixed(2))+Number(parseFloat(data.totalRds).toFixed(2)))).toFixed(2)])
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
-                    $.notify("Unable to Load", "error");
+                    if (ajaxOptions === "abort"){
+                        return;
+                    }
+                    else {
+                        $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                    }
                 }
             }));
 
@@ -189,20 +219,20 @@ function getDataSet() {
         {
             label: "Production",
             data: prodCostData,
-            points: {symbol: "square", fillColor: "#ff9d0a"},
-            color: '#ff9d0a'
+            points: {symbol: "square", fillColor: "#ff8800"},
+            color: '#ff8800'
         },
         {
             label: "External Training",
             data: exttrainCostData,
-            points: {symbol: "diamond", fillColor: "#ed0b0b"},
-            color: '#ed0b0b'
+            points: {symbol: "diamond", fillColor: "#af0000"},
+            color: '#af0000'
         },
         {
             label: "Training",
             data: trainCostData,
-            points: {symbol: "circle", fillColor: "#73ff08"},
-            color: '#73ff08'
+            points: {symbol: "circle", fillColor: "#108e00"},
+            color: '#108e00'
         },
     ];
 

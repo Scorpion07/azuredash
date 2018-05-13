@@ -122,7 +122,12 @@ function ListVPCData() {
         },
         error: function (xhr, ajaxOptions, thrownError) {
             $('#loading').hide();
-            $.notify("Unable to Load", "error");
+            if (ajaxOptions === "abort"){
+                return;
+            }
+            else {
+                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+            }
         }
     }));
 }
@@ -183,18 +188,24 @@ function deleteVPCs() {
             $("#loadingModal").hide();
             $('#deleteConformation').modal('hide');
             if (respdata >= 0) {
-                ListVPCData();
-                $.notify("VPC Deleted Successfully", "success");
+                showVPCs();
+                $.notify({message:"VPC Deleted Successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             else {
-                $.notify("Unable to Delete VPC", "error");
+                $.notify({message:"Unable to Delete VPC"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
 
         },
         error: function (xhr, ajaxOptions, thrownError) {
             $("#loadingModal").hide();
             $('#deleteConformation').modal('hide');
-            $.notify("Some Error Occur !!!", "error");
+            if (ajaxOptions === "abort"){
+                return;
+            }
+            else {
+                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+            }
+
         }
     });
 
