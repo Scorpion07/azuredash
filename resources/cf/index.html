@@ -48,6 +48,7 @@
         var token = window.localStorage.getItem('token');
         var currUser = window.localStorage.username;
         console.log("Hello" + currUser);
+        var loginUser = currUser;
         // if(currUser){
         // 	document.getElementById('loginname').setAttribute('value',currUser);
         // }
@@ -63,7 +64,6 @@
         var regi;
         var templateS;
         var getStack = new Array();
-        var stackname;
         var today = new Date();
         var dd = today.getDate();
         var mm = today.getMonth() + 1; //January is 0!
@@ -146,18 +146,24 @@
             // regionname= regionname;
             removeStack = getStack.splice(0, 1);
             // console.log(getStack);
-            console.log(regi);
-            console.log(acType);
+            // console.log(regi);
+            // console.log(acType);
 
             var lambdadata = {
-                account: acType,
                 region: regi,
+                account: acType,
                 stname: getStack,
+                cname: companyname,
+                expdate: edate,
+                stsdate: sdate,
+                tdays: days,
+                tname: templateS,
+                createdByName: loginUser,
+                createdByEmail: "arihantb@cloudthat.in",
                 method: "describeCf"
             }
             $.ajax({
                 url: _config.api.invokeUrl + '/resources/iam',
-                // url: _config.api.invokeUrlR + '/iam',
                 type: 'POST',
                 headers: {"Authorization": token},
                 crossDomain: true,
@@ -181,6 +187,7 @@
                             {
                                 "targets": [2],
                                 "visible": false,
+                                "defaultContent": " - ",
                                 "data": "Outputs.0.OutputValue"
                             }
                         ],
@@ -213,6 +220,7 @@
         }
 
         function sendget() {
+            $('#mytable').dataTable().fnDestroy();
             $("#loading").show();
             nouser = $("#nuser").val();
             Stname = $("#sname").val();
@@ -229,16 +237,11 @@
                 account: acType,
                 fname: templateS,
                 rname: regi,
-                // cname: companyname,
-                // tdays: days,
-                // expdate: edate,
-                // stsdate: sdate,
                 method: "createCf"
             };
 
             $.ajax({
                 url: _config.api.invokeUrl + '/resources/iam',
-                // url: _config.api.invokeUrlR + '/iam',
                 type: 'POST',
                 headers: {"Authorization": token},
                 crossDomain: true,
@@ -392,7 +395,7 @@
                                         <!--<option value="us-west-2">Oregon</option>-->
                                         <option value="ap-south-1">Mumbai</option>
                                         <!--<option value="ap-northeast-2">Seoul</option>-->
-                                        <option value="ap-southeast-1">Singapore</option>
+                                        <!--<option value="ap-southeast-1">Singapore</option>-->
                                         <!--<option value="ap-southeast-2">Sydney</option>-->
                                         <!--<option value="ap-northeast-1">Tokyo</option>-->
                                         <!--<option value="ca-central-1">Canada</option>-->
@@ -423,7 +426,7 @@
                     <center>
                         <div id="messagetimer" style="display: none"><h2>Please wait Stacks are Being Created and will
                             be ready in</h2></div>
-                        <div class="coundown" data-timer="240" style="width: 50%"></div>
+                        <div class="coundown" data-timer="60" style="width: 50%"></div>
                     </center>
                     <div class="row" id="stackTable" style="display: none;">
                         <div class="col-md-11">
