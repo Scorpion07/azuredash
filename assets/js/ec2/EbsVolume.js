@@ -59,7 +59,7 @@ function ListVolumeData() {
                 order: [],
                 'rowCallback': function (row, data, iDisplayIndex) {
                     if (account !== 'prod') {
-                        var check ='<input type="checkbox" id="checkboxclick" name="id[]" class="checkboxclick checkboxes" data_volume_id="' + data.VolumeId+'" data_region="'+data.AvailabilityZone+'">';
+                        var check ='<input type="checkbox" id="checkboxclick" name="id[]" class="checkboxclick checkboxes" data_volume_id="' + data.VolumeId+'" data_region="'+data.Region+'">';
                         $('td:eq(0)',row).html(check);
                     }
                     else {
@@ -196,7 +196,7 @@ function deleteVolume() {
             console.log(respdata)
             $("#loadingModal").hide();
 
-            if (respdata > "0" || respdata > 0) {
+            if (respdata > 0) {
                 showVolumes();
                 $.notify({message:"Volume Deleted Successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
