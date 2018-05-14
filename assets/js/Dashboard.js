@@ -804,7 +804,7 @@ function CostofResources() {
     else
         month = month.toString();
 
-    if (currentTime.getHours() < 15) {
+    if (currentTime.getHours() < 11) {
         date = currentTime.getDate() - 1;
     }
     else {
