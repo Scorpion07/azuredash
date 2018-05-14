@@ -2,7 +2,7 @@ var ajaxrequests = [];
 var count;
 
 function loader() {
-    if (count === 11) {
+    if (count === 14) {
         $("#loading").hide();
         $("#loading").css("style", "display: none;");
     }
@@ -67,6 +67,21 @@ function showDashboard() {
         service: "route53",
         account: account
     }
+    var cloudtrail = {
+        method: "getCount",
+        service: "cloudtrail",
+        account: account
+    }
+    var beanstalk = {
+        method: "getCount",
+        service: "beanstalk",
+        account: account
+    }
+    var kinesis = {
+        method: "getCount",
+        service: "kinesis",
+        account: account
+    }
     $("#loading").show();
     $("#loading").css("style", "display: block");
 
@@ -102,11 +117,16 @@ function showDashboard() {
                 count += 1
                 loader();
 
-                if (ajaxOptions === "abort"){
+                if (ajaxOptions === "abort") {
                     return;
                 }
                 else {
-                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                    $.notify({message: "Unable to Load"}, {
+                        type: "danger",
+                        placement: {from: "top", align: "center"},
+                        delay: 500,
+                        timer: 500
+                    });
                 }
 
             }
@@ -153,11 +173,16 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                if (ajaxOptions === "abort"){
+                if (ajaxOptions === "abort") {
                     return;
                 }
                 else {
-                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                    $.notify({message: "Unable to Load"}, {
+                        type: "danger",
+                        placement: {from: "top", align: "center"},
+                        delay: 500,
+                        timer: 500
+                    });
                 }
             }
         }));
@@ -194,11 +219,16 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                if (ajaxOptions === "abort"){
+                if (ajaxOptions === "abort") {
                     return;
                 }
                 else {
-                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                    $.notify({message: "Unable to Load"}, {
+                        type: "danger",
+                        placement: {from: "top", align: "center"},
+                        delay: 500,
+                        timer: 500
+                    });
                 }
             }
         }));
@@ -251,11 +281,16 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                if (ajaxOptions === "abort"){
+                if (ajaxOptions === "abort") {
                     return;
                 }
                 else {
-                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                    $.notify({message: "Unable to Load"}, {
+                        type: "danger",
+                        placement: {from: "top", align: "center"},
+                        delay: 500,
+                        timer: 500
+                    });
                 }
             }
         }));
@@ -297,11 +332,16 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                if (ajaxOptions === "abort"){
+                if (ajaxOptions === "abort") {
                     return;
                 }
                 else {
-                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                    $.notify({message: "Unable to Load"}, {
+                        type: "danger",
+                        placement: {from: "top", align: "center"},
+                        delay: 500,
+                        timer: 500
+                    });
                 }
             }
         }));
@@ -345,11 +385,16 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                if (ajaxOptions === "abort"){
+                if (ajaxOptions === "abort") {
                     return;
                 }
                 else {
-                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                    $.notify({message: "Unable to Load"}, {
+                        type: "danger",
+                        placement: {from: "top", align: "center"},
+                        delay: 500,
+                        timer: 500
+                    });
                 }
             }
         }));
@@ -383,11 +428,16 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                if (ajaxOptions === "abort"){
+                if (ajaxOptions === "abort") {
                     return;
                 }
                 else {
-                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                    $.notify({message: "Unable to Load"}, {
+                        type: "danger",
+                        placement: {from: "top", align: "center"},
+                        delay: 500,
+                        timer: 500
+                    });
                 }
             }
         }));
@@ -402,7 +452,7 @@ function showDashboard() {
             success: function (result) {
                 count += 1
                 loader();
-                console.log("stack"+result);
+                console.log("stack" + result);
                 $("#stack").text(result.StackCount);
 
                 if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
@@ -420,11 +470,16 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                if (ajaxOptions === "abort"){
+                if (ajaxOptions === "abort") {
                     return;
                 }
                 else {
-                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                    $.notify({message: "Unable to Load"}, {
+                        type: "danger",
+                        placement: {from: "top", align: "center"},
+                        delay: 500,
+                        timer: 500
+                    });
                 }
             }
         }));
@@ -484,11 +539,16 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                if (ajaxOptions === "abort"){
+                if (ajaxOptions === "abort") {
                     return;
                 }
                 else {
-                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                    $.notify({message: "Unable to Load"}, {
+                        type: "danger",
+                        placement: {from: "top", align: "center"},
+                        delay: 500,
+                        timer: 500
+                    });
                 }
             }
         }));
@@ -528,11 +588,16 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                if (ajaxOptions === "abort"){
+                if (ajaxOptions === "abort") {
                     return;
                 }
                 else {
-                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                    $.notify({message: "Unable to Load"}, {
+                        type: "danger",
+                        placement: {from: "top", align: "center"},
+                        delay: 500,
+                        timer: 500
+                    });
                 }
             }
         }));
@@ -570,14 +635,160 @@ function showDashboard() {
             error: function (xhr, ajaxOptions, thrownError) {
                 count += 1
                 loader();
-                if (ajaxOptions === "abort"){
+                if (ajaxOptions === "abort") {
                     return;
                 }
                 else {
-                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                    $.notify({message: "Unable to Load"}, {
+                        type: "danger",
+                        placement: {from: "top", align: "center"},
+                        delay: 500,
+                        timer: 500
+                    });
                 }
             }
         }));
+
+    ajaxrequests.push(
+        $.ajax({
+            url: _config.api.invokeUrl + '/billing/services',
+            type: 'post',
+            headers: {"Authorization": token},
+            //dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(cloudtrail),
+            success: function (result) {
+                count += 1
+                loader();
+                console.log(result);
+                $("#trails").text(result.cloudtrail);
+                if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
+                    if (result.cloudtrail == "0" || result.cloudtrail == 0) {
+                        $("#trails").removeClass("text-danger");
+                    }
+                    else {
+                        $("#trails").addClass("text-danger");
+
+                    }
+                }
+                else {
+                    $("#trails").removeClass("text-danger");
+
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                count += 1
+                loader();
+                if (ajaxOptions === "abort") {
+                    return;
+                }
+                else {
+                    $.notify({message: "Unable to Load"}, {
+                        type: "danger",
+                        placement: {from: "top", align: "center"},
+                        delay: 500,
+                        timer: 500
+                    });
+                }
+            }
+        }));
+
+    ajaxrequests.push(
+        $.ajax({
+            url: _config.api.invokeUrl + '/billing/services',
+            type: 'post',
+            headers: {"Authorization": token},
+            //dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(beanstalk),
+            success: function (result) {
+                count += 1
+                loader();
+                console.log(result);
+                $("#bs_app").text(result.beanstalkapp);
+                $("#bs_env").text(result.beanstalkenv);
+                if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
+                    if (result.beanstalkapp == "0" || result.beanstalkapp == 0) {
+                        $("#bs_app").removeClass("text-danger");
+                    }
+                    else {
+                        $("#bs_app").addClass("text-danger");
+
+                    }
+                    if (result.beanstalkenv == "0" || result.beanstalkenv == 0) {
+                        $("#bs_env").removeClass("text-danger");
+                    }
+                    else {
+                        $("#bs_env").addClass("text-danger");
+
+                    }
+                }
+                else {
+                    $("#bs_app").removeClass("text-danger");
+                    $("#bs_env").removeClass("text-danger");
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                count += 1
+                loader();
+                if (ajaxOptions === "abort") {
+                    return;
+                }
+                else {
+                    $.notify({message: "Unable to Load"}, {
+                        type: "danger",
+                        placement: {from: "top", align: "center"},
+                        delay: 500,
+                        timer: 500
+                    });
+                }
+            }
+        }));
+
+    ajaxrequests.push(
+        $.ajax({
+            url: _config.api.invokeUrl + '/billing/services',
+            type: 'post',
+            headers: {"Authorization": token},
+            //dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(kinesis),
+            success: function (result) {
+                count += 1
+                loader();
+                console.log(result);
+                $("#datastream").text(result.kinesisdatastream);
+                if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
+                    if (result.kinesisdatastream == "0" || result.kinesisdatastream == 0) {
+                        $("#datastream").removeClass("text-danger");
+                    }
+                    else {
+                        $("#datastream").addClass("text-danger");
+
+                    }
+                }
+                else {
+                    $("#datastream").removeClass("text-danger");
+
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                count += 1
+                loader();
+                if (ajaxOptions === "abort") {
+                    return;
+                }
+                else {
+                    $.notify({message: "Unable to Load"}, {
+                        type: "danger",
+                        placement: {from: "top", align: "center"},
+                        delay: 500,
+                        timer: 500
+                    });
+                }
+            }
+        }));
+
     CostofResources();
 }
 
