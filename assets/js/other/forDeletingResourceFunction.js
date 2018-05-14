@@ -29,10 +29,7 @@ function ModalClickdelete(SelectedResourceVar)
 	{
 		deleteLambdaFunctions();
 	}
-	else if  (SelectedResourceVar == "eni")
-	{
-		deleteENIs();
-	}
+
     else if (SelectedResourceVar == "dbinstance"){
         deleteDBInstances();
     }

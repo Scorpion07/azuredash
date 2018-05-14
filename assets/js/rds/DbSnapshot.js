@@ -60,10 +60,10 @@ function ListDBSnapshotData() {
                     'rowCallback': function (row, data, iDisplayIndex) {
                         if (account !== 'prod') {
                             if (data.SnapshotType == "manual") {
-                                var deletecheck = '<div class="row"><div class="col-md-4 col-md-offset-3"><div class="checkbox"><input type="checkbox" id="checkboxclick" name="snapshot_id_check[]" class="snapshot_id_check checkboxclick " data-region="' + data.Region + '" value="' + data.DBSnapshotIdentifier + '"></div></div></div>';
+                                var deletecheck = '<input type="checkbox" id="checkboxclick" name="snapshot_id_check[]" class="checkboxes checkboxclick " data-region="' + data.Region + '" value="' + data.DBSnapshotIdentifier + '">';
                             }
                             else {
-                                var deletecheck = '<div class="row"><div class="col-md-4 col-md-offset-3"><div class="checkbox" id="disabledCheckBox" style="position: absolute;left: 0;right: 0;top: 0;bottom: 0;"><input type="checkbox" name="snapshot_id_check[]" class="snapshot_id_check" title="You Cannot Delete AUTOMATED Snapshots...!" data-region="' + data.Region + '" value="' + data.DBSnapshotIdentifier + '" disabled></div></div></div>';
+                                var deletecheck = '<input type="checkbox" name="snapshot_id_check[]" class="checkboxes" title="You Cannot Delete AUTOMATED Snapshots...!" data-region="' + data.Region + '" value="' + data.DBSnapshotIdentifier + '" disabled>';
                             }
                             $('td:eq(0)', row).html(deletecheck);
                         }
@@ -147,7 +147,7 @@ function ListDBSnapshotData() {
 function deleteDBSnaps() {
     $('.deleteMul').attr('disabled', true);
     $("#loadingMulModal").show();
-    var snapshot_id = $("#deleteids").val();
+    var snapshot_id = $("#dbintstance_deleteids").val();
     var region = $("#delete_regions").val();
 
     var snap_ids_array = (snapshot_id).split(",");
@@ -172,7 +172,7 @@ function deleteDBSnaps() {
         success: function (result) {
             $("#loadingMulModal").hide();
             console.log(result);
-            if (result > 0) {
+            if (result > -1) {
                 $('#deleteMulConformation').modal('hide');
                 showDBSnaps();
                 $.notify({message: "RDS Snapshot Deleted successfully"}, {

@@ -35,10 +35,6 @@ function checkdelete(SelectedResourceVar)
     else if (SelectedResourceVar == "dbsnapshot"){
         deleteModalDBSnaps();
     }
-	else if  (SelectedResourceVar == "eni")
-	{
-		deleteModalENIs();
-	}
 	else if  (SelectedResourceVar == "vpc")
 	{
 		deleteModalVPCs();
