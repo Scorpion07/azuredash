@@ -225,7 +225,7 @@ function getDataSet() {
         {
             label: "External Training",
             data: exttrainCostData,
-            points: {symbol: "cross", fillColor: "#af0000"},
+            points: {symbol: "cross", fillColor: "#af0000",radius:4},
             color: '#af0000'
         },
         {
