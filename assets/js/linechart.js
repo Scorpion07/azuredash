@@ -107,7 +107,7 @@ function getDataSet() {
     else
         month = month.toString();
 
-    if (currentTime.getHours() < 15) {
+    if (currentTime.getHours() < 11) {
         date = currentTime.getDate() - 1;
     }
     else {
@@ -254,15 +254,15 @@ function getMonth() {
     else if (month === 5)
         return "June"
     else if (month === 6)
-        return "july"
+        return "July"
     else if (month === 7)
         return "August"
     else if (month === 8)
         return "September"
     else if (month === 9)
-        return "octomber"
+        return "October"
     else if (month === 10)
-        return "Novemnber"
+        return "November"
     else
         return "December"
 }
