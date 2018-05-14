@@ -8,7 +8,7 @@ function ModalClickdelete(SelectedResourceVar)
 	}
 	else if (SelectedResourceVar == "ebs_volume")
 	{
-
+        deleteVolume();
 	}
 	else if  (SelectedResourceVar == "ebs_snapshot")
 	{
@@ -22,6 +22,9 @@ function ModalClickdelete(SelectedResourceVar)
 	{
 		deleteELBs();
 	}
+    else if (SelectedResourceVar == "eni") {
+        deleteENIs();
+    }
 	else if  (SelectedResourceVar == "lambda")
 	{
 		deleteLambdaFunctions();

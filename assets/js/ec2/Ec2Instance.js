@@ -187,9 +187,8 @@ function deleteInstances() {
             console.log(respdata)
             $("#loadingModal").hide();
 
-            if (respdata == "0") {
+            if (respdata == "0" || respdata == 0) {
                 showEc2Instances();
-                $.notify("Instance Terminated Successfully", "success");
                 $.notify({message:"Instance Terminated Successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             else {
