@@ -82,15 +82,9 @@
         // 	document.getElementById('loginname').setAttribute('value',currUser);
         // }
         // document.getElementsById('loginname').Value = logname;
-        var Uno;
-        var Iname;
         var policyuser;
         var acType;
-        var lamdadata;
-        var pot;
         var days;
-        var startD;
-        var endD;
         var expiredate;
         var edate;
         var sdate;
@@ -185,7 +179,6 @@
 
                 $.ajax({
                     url: _config.api.invokeUrl + '/resources/iam',
-
                     type: 'POST',
                     headers: {"Authorization": token},
                     crossDomain: true,

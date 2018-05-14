@@ -116,7 +116,6 @@
             console.log(data);
             console.log("end data.....................");
 
-
             var lambdadata = {
                 method: "cfDelete",
                 account: acType,
@@ -125,7 +124,6 @@
             $("#loadingMulModal").show();
             $.ajax({
                 url: _config.api.invokeUrl + '/resources/iam',
-                // url: _config.api.invokeUrlR + '/iam',
                 type: 'post',
                 headers: {"Authorization": token},
                 contentType: 'application/json',
@@ -176,7 +174,6 @@
         // $(document).ready(function() {
         $.ajax({
             url: _config.api.invokeUrl + '/resources/iam',
-            // url: _config.api.invokeUrlR + '/iam',
             type: 'POST',
             headers: {"Authorization": token},
             crossDomain: true,
@@ -186,11 +183,11 @@
             success: function (getdata) {
                 //console.log(getdata.finaldata["0"].User.UserName);
                 //alert(getdata.finaldata["0"].Users["0"].UserId);
+
                 $('#mydata').dataTable().fnDestroy();
                 $("#mydata").DataTable({
 
                     data: getdata.finaldata,
-
                     'rowCallback': function (row, data, iDisplayIndex) {
                         var check = '<input type="checkbox" id="checkboxclick" onclick="goFurther()" name="id[]" class="checkboxes" stackname="' + data.StackName + '" stackregion="' + data.Region + '">';
                         $('td:eq(0)', row).html(check);
