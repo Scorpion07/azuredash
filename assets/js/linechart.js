@@ -120,7 +120,7 @@ function getDataSet() {
     var count = 0;
     console.log("Upper JSON Loop");
 
-    for (var i = 2; i < date + 1; i++) {
+    for (var i = 1; i < date + 1; i++) {
         console.log("In a loop : " + i);
         if (i < 10)
             tempdate = "0" + i.toString();
@@ -225,7 +225,7 @@ function getDataSet() {
         {
             label: "External Training",
             data: exttrainCostData,
-            points: {symbol: "diamond", fillColor: "#af0000"},
+            points: {symbol: "cross", fillColor: "#af0000",radius:4},
             color: '#af0000'
         },
         {
