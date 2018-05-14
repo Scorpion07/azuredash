@@ -42,92 +42,97 @@ function ListEIPData() {
     }
     console.log(submit);
     ajaxrequest_pages.push(
-    $.ajax({
-        url: _config.api.invokeUrl+'/billing/services',
-        headers: {"Authorization": token},
-        type: 'post',
-        dataType: 'json',
-        contentType: 'application/json',
-        crossDomain: true,
-        data: JSON.stringify(submit),
-        success: function (respdata) {
-            $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
-            $('#table').dataTable().fnDestroy();
-            table = $('#table').DataTable({
-                data: respdata.data,
-                serverside: true,
-                order: [],
-                'rowCallback': function (row, data, iDisplayIndex) {
-                    if (account !== 'prod') {
-                        var check = '<div class="row"><div class="col-md-4 col-md-offset-3"><div class="checkbox"><input type="checkbox" name="elasticip_id_check[]" class="checkboxclick elasticip_id_check" data-AllocationId="' + data.AllocationId + '" data-AssociationId="' + data.AssociationId + '" data-region="' + data.Region + '" value="elasticipId"></div></div></div>';
-                        $('td:eq(0)', row).html(check);
-                    }
-                    else {
-                        $('td:eq(0)', row).html(count += 1);
+        $.ajax({
+            url: _config.api.invokeUrl + '/billing/services',
+            headers: {"Authorization": token},
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            crossDomain: true,
+            data: JSON.stringify(submit),
+            success: function (respdata) {
+                $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
+                $('#table').dataTable().fnDestroy();
+                table = $('#table').DataTable({
+                    data: respdata.data,
+                    serverside: true,
+                    order: [],
+                    'rowCallback': function (row, data, iDisplayIndex) {
+                        if (account !== 'prod') {
+                            var check = '<input type="checkbox" name="elasticip_id_check[]" class="checkboxes checkboxclick  elasticip_id_check" data-AllocationId="' + data.AllocationId + '" data-AssociationId="' + data.AssociationId + '" data-region="' + data.Region + '" value="elasticipId">';
+                            $('td:eq(0)', row).html(check);
+                        }
+                        else {
+                            $('td:eq(0)', row).html(count += 1);
+                        }
+
+                    },
+
+                    'columnDefs': [
+                        {"className": "dt-center", "defaultContent": "-", "targets": "_all"},
+                        {
+                            'targets': [0],
+                            'searchable': false,
+                            'orderable': false,
+                            'data': null,
+                        },
+                        {
+                            'targets': [1],
+                            'orderable': true,
+                            'data': 'Tags.0.Value'
+                        },
+                        {
+                            "targets": [2],
+                            "orderable": true,
+                            "className": 'dt-body-center',
+                            "data": 'PublicIp'
+                        },
+                        {
+                            "targets": [3],
+                            "orderable": true,
+                            "className": 'dt-body-center',
+                            "data": 'AllocationId'
+                        },
+                        {
+                            'targets': [4],
+                            'orderable': true,
+                            'data': 'InstanceId'
+                        },
+                        {
+                            'targets': [5],
+                            'orderable': true,
+                            'data': 'PrivateIpAddress'
+                        },
+                        {
+                            'targets': [6],
+                            'orderable': true,
+                            'data': 'RegionName'
+                        }
+                    ],
+
+                    'select': {
+                        'style': 'multi'
                     }
 
-                },
+                });
+                $('#loading').hide();
 
-                'columnDefs': [
-                    {"className": "dt-center", "defaultContent": "-", "targets": "_all"},
-                    {
-                        'targets': [0],
-                        'searchable': false,
-                        'orderable': false,
-                        'data': null,
-                    },
-                    {
-                        'targets': [1],
-                        'orderable': true,
-                        'data': 'Tags.0.Value'
-                    },
-                    {
-                        "targets": [2],
-                        "orderable": true,
-                        "className": 'dt-body-center',
-                        "data": 'PublicIp'
-                    },
-                    {
-                        "targets": [3],
-                        "orderable": true,
-                        "className": 'dt-body-center',
-                        "data": 'AllocationId'
-                    },
-                    {
-                        'targets': [4],
-                        'orderable': true,
-                        'data': 'InstanceId'
-                    },
-                    {
-                        'targets': [5],
-                        'orderable': true,
-                        'data': 'PrivateIpAddress'
-                    },
-                    {
-                        'targets': [6],
-                        'orderable': true,
-                        'data': 'RegionName'
-                    }
-                ],
-
-                'select': {
-                    'style': 'multi'
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                $('#loading').hide();
+                if (ajaxOptions === "abort") {
+                    return;
                 }
-
-            });
-            $('#loading').hide();
-
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            $('#loading').hide();
-            if (ajaxOptions === "abort"){
-                return;
+                else {
+                    $.notify({message: "Unable to Load"}, {
+                        type: "danger",
+                        placement: {from: "top", align: "center"},
+                        delay: 500,
+                        timer: 500
+                    });
+                }
             }
-            else {
-                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
-            }
-        }
-    }));
+        }));
 }
 
 function deleteEIPs() {
@@ -136,15 +141,9 @@ function deleteEIPs() {
     var allo_id = $("#modal_allo_ids").val();
     var regions = $("#delete_regions").val();
     var asso_id = $("#modal_asso_ids").val();
-    console.log(allo_id);
-    console.log(regions);
-    console.log(asso_id);
     var allo_ids_array = $("#modal_allo_ids").val().split(",");
     var asso_ids_array = $("#modal_asso_ids").val().split(",");
     var region_array = $("#delete_regions").val().split(",");
-    console.log(allo_ids_array);
-    console.log(asso_ids_array);
-    console.log(region_array);
     var deleteData = {
         method: "elasticipDelete",
         account: account,
@@ -155,7 +154,7 @@ function deleteEIPs() {
     }
     console.log(JSON.stringify(deleteData));
     $.ajax({
-        url: "https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/ec2resource/listservices",
+        url: _config.api.invokeUrl + '/billing/services',
         type: 'post',
         headers: {"Authorization": token},
         contentType: 'application/json',
@@ -172,20 +171,35 @@ function deleteEIPs() {
 
                 $('.deleteMul').attr('disabled', false);
                 showEIPs()
-                $.notify({message:"Elastic IP Deleted successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                $.notify({message: "Elastic IP Deleted successfully"}, {
+                    type: "success",
+                    placement: {from: "top", align: "center"},
+                    delay: 500,
+                    timer: 500
+                });
             }
             else {
-                $.notify({message:"Unable to Delete Elastic IP"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                $.notify({message: "Unable to Delete Elastic IP"}, {
+                    type: "danger",
+                    placement: {from: "top", align: "center"},
+                    delay: 500,
+                    timer: 500
+                });
             }
             $('#deleteMulConformation').modal('hide');
         },
         error: function (xhr, ajaxOptions, thrownError) {
             $('#deleteMulConformation').modal('hide');
-            if (ajaxOptions === "abort"){
+            if (ajaxOptions === "abort") {
                 return;
             }
             else {
-                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                $.notify({message: "Unable to Load"}, {
+                    type: "danger",
+                    placement: {from: "top", align: "center"},
+                    delay: 500,
+                    timer: 500
+                });
             }
 
         }
@@ -194,8 +208,6 @@ function deleteEIPs() {
 }
 
 function deleteModalEIPs() {
-
-    //$(".btnmultipledelete").addClass("disabled");
     $("#modal_title").html("<h3>Releasing Elastic IPs</h3>");
     $("#delete_heading").text("Are you sure, you want to release all these Elastic IPs ?");
     $("#delete_li_show").html(" ");
@@ -203,18 +215,11 @@ function deleteModalEIPs() {
     var selectedAlloId = [];
     var selectedAssoId = [];
     var selectedRegion = [];
-
-    var region_name;
-    var AllocationIdData;
-    var AssociationIdData;
-    $('.elasticip_id_check').each(function () {
+    $('.checkboxes').each(function () {
         if ($(this).is(":checked")) {
-            region_name = $(this).attr('data-region');
-            AllocationIdData = $(this).attr('data-AllocationId');
-            AssociationIdData = $(this).attr('data-AssociationId');
-            selectedAlloId.push(AllocationIdData);
-            selectedAssoId.push(AssociationIdData);
-            selectedRegion.push(region_name);
+            selectedAlloId.push($(this).attr('data-AllocationId'));
+            selectedAssoId.push($(this).attr('data-AssociationId'));
+            selectedRegion.push($(this).attr('data-region'));
         }
     });
     $('[name="modal_allo_ids"]').val(selectedAlloId);
@@ -226,5 +231,4 @@ function deleteModalEIPs() {
     });
     $('.deleteMul').attr('disabled', false);
     $('#deleteMulConformation').modal('show');
-
-}	
+}

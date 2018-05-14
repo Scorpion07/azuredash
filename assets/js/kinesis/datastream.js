@@ -129,7 +129,7 @@ function ListKinesisDataStream() {
 
 function deleteModalKinesisDataStream() {
 
-    $("#modal_title").html("<h3>Beanstalk Application Deletion </h3>");
+    $("#modal_title").html("<h3>Kinesis Datastream Deletion </h3>");
     $("#delete_heading").text("Are you sure, you want to delete all this Kinesis DataStream ?");
     $("#delete_li_show").html(" ");
     var datastream_list = [];

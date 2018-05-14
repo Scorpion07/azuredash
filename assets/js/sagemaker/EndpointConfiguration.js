@@ -39,102 +39,97 @@ function ListEndpointConfigsData() {
     }
     console.log(submit);
     ajaxrequest_pages.push(
-    $.ajax({
-        url: _config.api.invokeUrl+'/billing/services',
-        headers: {"Authorization": token},
-        type: 'post',
-        dataType: 'json',
-        contentType: 'application/json',
-        crossDomain: true,
-        data: JSON.stringify(submit),
-        success: function (respdata) {
+        $.ajax({
+            url: _config.api.invokeUrl + '/billing/services',
+            headers: {"Authorization": token},
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            crossDomain: true,
+            data: JSON.stringify(submit),
+            success: function (respdata) {
 
-            $('#table').dataTable().fnDestroy();
-            table = $('#table').DataTable({
-                data: respdata.data,
-                serverside: true,
-                order: [],
-                "language": {
-                    "lengthMenu": 'Display <select>' +
-                    '<option value="50" selected>50</option>' +
-                    '<option value="100">100</option>' +
-                    '<option value="200">200</option>' +
-                    '<option value="500">500</option>' +
-                    '<option value="-1">All</option>' +
-                    '</select> records'
-                },
-                "dom": '<"top"fli>t<"bottom"ip><"clear">',
-                "pageLength": 50,
-                'rowCallback': function (row, data, iDisplayIndex) {
-                    if (account !== 'prod') {
-                        var check = '<div class="row"><div class="col-md-4 col-md-offset-3"><div class="checkbox"><input type="checkbox" name="id_check[]" class="id_check checkboxclick" data-region="' + data.Region + '" value="' + "data.FunctionName" + '" ></div></div></div>';
-                        $('td:eq(0)', row).html(check);
-
-                        if (parseInt(data.MemorySize) > 128) {
-                            //console.log("yes")
-                            $(row).addClass('danger');
+                $('#table').dataTable().fnDestroy();
+                table = $('#table').DataTable({
+                    data: respdata.data,
+                    serverside: true,
+                    order: [],
+                    "language": {
+                        "lengthMenu": 'Display <select>' +
+                        '<option value="50" selected>50</option>' +
+                        '<option value="100">100</option>' +
+                        '<option value="200">200</option>' +
+                        '<option value="500">500</option>' +
+                        '<option value="-1">All</option>' +
+                        '</select> records'
+                    },
+                    "dom": '<"top"fli>t<"bottom"ip><"clear">',
+                    "pageLength": 50,
+                    'rowCallback': function (row, data, iDisplayIndex) {
+                        if (account !== 'prod') {
+                            var check = '<input type="checkbox" name="id_check[]" class="checkboxes checkboxclick">';
+                            $('td:eq(0)', row).html(check);
                         }
-                    }
-                    else {
-                        $('td:eq(0)', row).html(count += 1);
-                        if (parseInt(data.MemorySize) > 128) {
-                            //console.log("yes")
-                            $(row).addClass('danger');
+                        else {
+                            $('td:eq(0)', row).html(count += 1);
                         }
+                    },
+                    'columnDefs': [
+                        {"className": "dt-center", "defaultContent": "-", "targets": "_all"},
+                        {
+                            "targets": [0], //first column / numbering column
+                            "orderable": false, //set not orderable
+                            "className": 'dt-body-center',
+                            "data": null
+                        },
+                        {
+                            "targets": [1],
+                            "orderable": true,
+                            "className": 'dt-body-center',
+                            "data": 'EndpointConfigName'
+                            //Tags.0.Value
+                        },
+                        {
+                            "targets": [2],
+                            "orderable": true,
+                            "className": 'dt-body-center',
+                            "data": 'EndpointConfigArn'
+                        },
+                        {
+                            "targets": [3],
+                            "orderable": true,
+                            "className": 'dt-body-center',
+                            "data": 'CreationTime'
+                        },
+                        {
+                            "targets": [4],
+                            "orderable": true,
+                            "className": 'dt-body-center',
+                            "data": "RegionName"
+                        }
+                    ],
 
+                    'select': {
+                        'style': 'multi'
                     }
-                },
-                'columnDefs': [
-                    {"className": "dt-center", "defaultContent": "-", "targets": "_all"},
-                    {
-                        "targets": [0], //first column / numbering column
-                        "orderable": false, //set not orderable
-                        "className": 'dt-body-center',
-                        "data": null
-                    },
-                    {
-                        "targets": [1],
-                        "orderable": true,
-                        "className": 'dt-body-center',
-                        "data": 'EndpointConfigName'
-                        //Tags.0.Value
-                    },
-                    {
-                        "targets": [2],
-                        "orderable": true,
-                        "className": 'dt-body-center',
-                        "data": 'EndpointConfigArn'
-                    },
-                    {
-                        "targets": [3],
-                        "orderable": true,
-                        "className": 'dt-body-center',
-                        "data": 'CreationTime'
-                    },
-                    {
-                        "targets": [4],
-                        "orderable": true,
-                        "className": 'dt-body-center',
-                        "data": "RegionName"
-                    }
-                ],
 
-                'select': {
-                    'style': 'multi'
+                });
+                $('#loading').hide();
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                $('#loading').hide();
+                if (ajaxOptions === "abort") {
+                    return;
                 }
-
-            });
-            $('#loading').hide();
-
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            $('#loading').hide();
-            if (ajaxOptions === "abort"){
-                return;
+                else {
+                    $.notify({message: "Unable to Load"}, {
+                        type: "danger",
+                        placement: {from: "top", align: "center"},
+                        delay: 500,
+                        timer: 500
+                    });
+                }
             }
-            else {
-                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
-            }
-        }
-    }));
+        }));
 }

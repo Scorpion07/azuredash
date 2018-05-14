@@ -41,101 +41,106 @@ function ListRedShiftClusterData() {
     }
     console.log(submit);
     ajaxrequest_pages.push(
-    $.ajax({
-        url: _config.api.invokeUrl+'/billing/services',
-        headers: {"Authorization": token},
-        type: 'post',
-        dataType: 'json',
-        contentType: 'application/json',
-        crossDomain: true,
-        data: JSON.stringify(submit),
-        success: function (respdata) {
-            console.log(respdata);
-            $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
-            $('#table').dataTable().fnDestroy();
-            table = $('#table').DataTable({
-                data: respdata.data,
-                serverside: true,
-                order: [],
+        $.ajax({
+            url: _config.api.invokeUrl + '/billing/services',
+            headers: {"Authorization": token},
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            crossDomain: true,
+            data: JSON.stringify(submit),
+            success: function (respdata) {
+                console.log(respdata);
+                $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
+                $('#table').dataTable().fnDestroy();
+                table = $('#table').DataTable({
+                    data: respdata.data,
+                    serverside: true,
+                    order: [],
 
-                'rowCallback': function (row, data, iDisplayIndex) {
-                    if (account !== 'prod') {
-                        var check = '<input type="checkbox" id="checkboxclick" name="id[]" class="checkboxclick checkboxes cluster' + data.ClusterIdentifier + ' data_cluster_id="' + data.ClusterIdentifier + '" data_region="' + data.Region + '" value="' + data.ClusterIdentifier + '">';
-                        $('td:eq(0)', row).html(check);
-                    }
-                    else {
-                        $('td:eq(0)', row).html(count += 1);
-                    }
-                },
+                    'rowCallback': function (row, data, iDisplayIndex) {
+                        if (account !== 'prod') {
+                            var check = '<input type="checkbox" id="checkboxclick" name="id[]" class="checkboxclick checkboxes cluster' + data.ClusterIdentifier + ' data_cluster_id="' + data.ClusterIdentifier + '" data_region="' + data.Region + '" value="' + data.ClusterIdentifier + '">';
+                            $('td:eq(0)', row).html(check);
+                        }
+                        else {
+                            $('td:eq(0)', row).html(count += 1);
+                        }
+                    },
 
-                'columnDefs': [
-                    {"className": "dt-center", "defaultContent": "-", "targets": "_all"},
-                    {
-                        'targets': [0],
-                        'searchable': false,
-                        'orderable': false,
-                        'data': null,
-                    },
-                    {
-                        'targets': [1],
-                        'orderable': true,
-                        'data': 'ClusterIdentifier'
-                    },
-                    {
-                        'targets': [2],
-                        'orderable': true,
-                        'data': 'ClusterStatus',
-                    },
-                    {
-                        'targets': [3],
-                        'orderable': true,
-                        'data': 'MasterUsername'
-                    },
-                    {
-                        'targets': [4],
-                        'orderable': true,
-                        'data': 'DBName'
-                    },
-                    {
-                        'targets': [5],
-                        'orderable': true,
-                        'data': 'Endpoint.Port'
-                    },
-                    {
-                        'targets': [6],
-                        'orderable': true,
-                        'data': 'ClusterCreateTime'
-                    },
-                    {
-                        'targets': [7],
-                        'orderable': true,
-                        'data': 'VpcId'
-                    },
-                    {
-                        'targets': [8],
-                        'orderable': true,
-                        'data': 'RegionName'
-                    }
-                ],
+                    'columnDefs': [
+                        {"className": "dt-center", "defaultContent": "-", "targets": "_all"},
+                        {
+                            'targets': [0],
+                            'searchable': false,
+                            'orderable': false,
+                            'data': null,
+                        },
+                        {
+                            'targets': [1],
+                            'orderable': true,
+                            'data': 'ClusterIdentifier'
+                        },
+                        {
+                            'targets': [2],
+                            'orderable': true,
+                            'data': 'ClusterStatus',
+                        },
+                        {
+                            'targets': [3],
+                            'orderable': true,
+                            'data': 'MasterUsername'
+                        },
+                        {
+                            'targets': [4],
+                            'orderable': true,
+                            'data': 'DBName'
+                        },
+                        {
+                            'targets': [5],
+                            'orderable': true,
+                            'data': 'Endpoint.Port'
+                        },
+                        {
+                            'targets': [6],
+                            'orderable': true,
+                            'data': 'ClusterCreateTime'
+                        },
+                        {
+                            'targets': [7],
+                            'orderable': true,
+                            'data': 'VpcId'
+                        },
+                        {
+                            'targets': [8],
+                            'orderable': true,
+                            'data': 'RegionName'
+                        }
+                    ],
 
-                'select': {
-                    'style': 'multi'
+                    'select': {
+                        'style': 'multi'
+                    }
+
+                });
+                $('#loading').hide();
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                $('#loading').hide();
+                if (ajaxOptions === "abort") {
+                    return;
                 }
-
-            });
-            $('#loading').hide();
-
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            $('#loading').hide();
-            if (ajaxOptions === "abort"){
-                return;
+                else {
+                    $.notify({message: "Unable to Load"}, {
+                        type: "danger",
+                        placement: {from: "top", align: "center"},
+                        delay: 500,
+                        timer: 500
+                    });
+                }
             }
-            else {
-                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
-            }
-        }
-    }));
+        }));
 }
 
 function deleteModalRSCluster() {
@@ -232,7 +237,7 @@ function deleteRSCluster() {
             cluster: main_array
         }
         $.ajax({
-            url: _config.api.invokeUrl+'/billing/services',
+            url: _config.api.invokeUrl + '/billing/services',
             headers: {"Authorization": token},
             type: 'post',
             contentType: 'application/json',
@@ -246,20 +251,35 @@ function deleteRSCluster() {
 
                 if (respdata > 0) {
                     showRed_Cluster();
-                    $.notify({message:"Redshift Cluster Deleted Successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                    $.notify({message: "Redshift Cluster Deleted Successfully"}, {
+                        type: "success",
+                        placement: {from: "top", align: "center"},
+                        delay: 500,
+                        timer: 500
+                    });
                 }
                 else {
-                    $.notify({message:"Unable to Delete Redshift Cluster"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                    $.notify({message: "Unable to Delete Redshift Cluster"}, {
+                        type: "danger",
+                        placement: {from: "top", align: "center"},
+                        delay: 500,
+                        timer: 500
+                    });
                 }
                 $('#deleteConformation').modal('hide');
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 $('#deleteConformation').modal('hide');
-                if (ajaxOptions === "abort"){
+                if (ajaxOptions === "abort") {
                     return;
                 }
                 else {
-                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                    $.notify({message: "Unable to Load"}, {
+                        type: "danger",
+                        placement: {from: "top", align: "center"},
+                        delay: 500,
+                        timer: 500
+                    });
                 }
 
             }

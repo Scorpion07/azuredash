@@ -40,104 +40,107 @@ function ListLambdaData() {
     }
     console.log(submit);
     ajaxrequest_pages.push(
-    $.ajax({
-        url: _config.api.invokeUrl+'/billing/services',
-        headers: {"Authorization": token},
-        type: 'post',
-        dataType: 'json',
-        contentType: 'application/json',
-        crossDomain: true,
-        data: JSON.stringify(submit),
-        success: function (respdata) {
-            $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
-            $('#table').dataTable().fnDestroy();
-            table = $('#table').DataTable({
-                data: respdata.data,
-                serverside: true,
-                order: [],
-                'rowCallback': function (row, data, iDisplayIndex) {
-                    if (account !== 'prod') {
-                        var check = '<div class="row"><div class="col-md-4 col-md-offset-3"><div class="checkbox"><input type="checkbox" name="id_check[]" class="id_check checkboxclick" data-region="' + data.Region + '" value="' + data.FunctionName + '" onchange="onClickCheckHandler()"></div></div></div>';
-                        $('td:eq(0)', row).html(check);
+        $.ajax({
+            url: _config.api.invokeUrl + '/billing/services',
+            headers: {"Authorization": token},
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            crossDomain: true,
+            data: JSON.stringify(submit),
+            success: function (respdata) {
+                $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
+                $('#table').dataTable().fnDestroy();
+                table = $('#table').DataTable({
+                    data: respdata.data,
+                    serverside: true,
+                    order: [],
+                    'rowCallback': function (row, data, iDisplayIndex) {
+                        if (account !== 'prod') {
+                            var check = '<input type="checkbox" name="id_check[]" class="checkboxes checkboxclick" data_region="' + data.Region + '" data_function_name="' + data.FunctionName + '">';
+                            $('td:eq(0)', row).html(check);
 
-                        if (parseInt(data.MemorySize) > 128) {
-                            //console.log("yes")
-                            $(row).addClass('danger');
+                            if (parseInt(data.MemorySize) > 128) {
+                                $(row).addClass('danger');
+                            }
                         }
-                    }
-                    else {
-                        $('td:eq(0)', row).html(count += 1);
-                        if (parseInt(data.MemorySize) > 128) {
-                            //console.log("yes")
-                            $(row).addClass('danger');
+                        else {
+                            $('td:eq(0)', row).html(count += 1);
+                            if (parseInt(data.MemorySize) > 128) {
+                                $(row).addClass('danger');
+                            }
                         }
-                    }
-                },
-                'columnDefs': [
-                    {"className": "dt-center", "defaultContent": "-", "targets": "_all"},
-                    {
-                        "targets": [0], //first column / numbering column
-                        "orderable": false, //set not orderable
-                        "className": 'dt-body-center',
-                        "data": null
                     },
-                    {
-                        "targets": [1],
-                        "orderable": true,
-                        "className": 'dt-body-center',
-                        "data": 'FunctionName'
-                        //Tags.0.Value
-                    },
-                    {
-                        "targets": [2],
-                        "orderable": true,
-                        "className": 'dt-body-center',
-                        "data": 'Runtime'
-                    },
-                    {
-                        "targets": [3],
-                        "orderable": true,
-                        "className": 'dt-body-center',
-                        "data": 'CodeSize'
-                    },
-                    {
-                        "targets": [4],
-                        "orderable": true,
-                        "className": 'dt-body-center',
-                        "data": 'MemorySize'
-                    },
-                    {
-                        "targets": [5],
-                        "orderable": true,
-                        "className": 'dt-body-center',
-                        "data": 'LastModified'
-                    },
-                    {
-                        "targets": [6],
-                        "orderable": true,
-                        "className": 'dt-body-center',
-                        "data": "RegionName"
-                    }
-                ],
+                    'columnDefs': [
+                        {"className": "dt-center", "defaultContent": "-", "targets": "_all"},
+                        {
+                            "targets": [0], //first column / numbering column
+                            "orderable": false, //set not orderable
+                            "className": 'dt-body-center',
+                            "data": null
+                        },
+                        {
+                            "targets": [1],
+                            "orderable": true,
+                            "className": 'dt-body-center',
+                            "data": 'FunctionName'
+                            //Tags.0.Value
+                        },
+                        {
+                            "targets": [2],
+                            "orderable": true,
+                            "className": 'dt-body-center',
+                            "data": 'Runtime'
+                        },
+                        {
+                            "targets": [3],
+                            "orderable": true,
+                            "className": 'dt-body-center',
+                            "data": 'CodeSize'
+                        },
+                        {
+                            "targets": [4],
+                            "orderable": true,
+                            "className": 'dt-body-center',
+                            "data": 'MemorySize'
+                        },
+                        {
+                            "targets": [5],
+                            "orderable": true,
+                            "className": 'dt-body-center',
+                            "data": 'LastModified'
+                        },
+                        {
+                            "targets": [6],
+                            "orderable": true,
+                            "className": 'dt-body-center',
+                            "data": "RegionName"
+                        }
+                    ],
 
-                'select': {
-                    'style': 'multi'
+                    'select': {
+                        'style': 'multi'
+                    }
+
+                });
+                $('#loading').hide();
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                $('#loading').hide();
+                if (ajaxOptions === "abort") {
+                    return;
                 }
-
-            });
-            $('#loading').hide();
-
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            $('#loading').hide();
-            if (ajaxOptions === "abort"){
-                return;
+                else {
+                    $.notify({message: "Unable to Load"}, {
+                        type: "danger",
+                        placement: {from: "top", align: "center"},
+                        delay: 500,
+                        timer: 500
+                    });
+                }
             }
-            else {
-                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
-            }
-        }
-    }));
+        }));
 }
 
 ////opening a modal
@@ -145,23 +148,14 @@ function deleteModalLambdaFunctions() {
     $("#modal_title").html("<h3>Lambda Function Deletion</h3>");
     $("#delete_heading").text("Are you sure, you want to delete lambda functions ?");
     $("#delete_li_show").html(" ");
-
     var selectedLambda = [];
-    var selectedRegion = [];
-    var region_name;
-    $('.id_check').each(function () {
+    $('.checkboxes').each(function () {
         if ($(this).is(":checked")) {
-            region_name = $(this).attr('data-region');
-            selectedLambda.push($(this).val());
-            selectedRegion.push(region_name);
+            selectedLambda.push($(this).attr('data_function_name'));
         }
     });
-    console.log(selectedLambda);
-    console.log(selectedRegion);
-    $('[name="modal_ids"]').val(selectedLambda);
-    $('[name="modal_regions"]').val(selectedRegion);
-    selectedLambda.forEach(function (id) {
-        var add = '<li><label>"' + id + '"</label></li>';
+    selectedLambda.forEach(function (name) {
+        var add = '<li><label>"' + name + '"</label></li>';
         $("#delete_li_show").append(add);
     });
     $('.deleteMul').attr('disabled', false);
@@ -172,21 +166,30 @@ function deleteModalLambdaFunctions() {
 function deleteLambdaFunctions() {
     $('.deleteMul').attr('disabled', true);
     $("#loadingMulModal").show();
-    var function_name = $("#deleteids").val();
-    var regions = $("#delete_regions").val();
+    var Data = {};
+    $(".checkboxes").each(function () {
+        if ($(this).is(":checked")) {
+            var value = $(this).attr("data_function_name")
 
-    var function_names_array = (function_name).split(",");
-    //console.log(snapshot_ids_array);
-    var region_array = (regions).split(",");
+            var id = $(this).attr("data_region");
+            if (!(id in Data)) {
+                Data[id] = [];
+                Data[id].push(value);
+            }
+            else {
+                Data[id].push(value);
+            }
+        }
+    });
+
+
     var deleteData = {
         method: "lambdaFunctionDelete",
         account: account,
-        region: region_array,
-        snapshot_id: function_names_array
+        region: Data
     }
-    console.log(JSON.stringify(deleteData));
     $.ajax({
-        url: "https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/ec2resource/listservices",
+        url: _config.api.invokeUrl + '/billing/services',
         type: 'post',
         headers: {"Authorization": token},
         contentType: 'application/json',
@@ -199,32 +202,38 @@ function deleteLambdaFunctions() {
             console.log(result);
             if (result > 0 || parseInt(result.ResponseMetadata.HTTPStatusCode) >= 200 || parseInt(result.ResponseMetadata.HTTPStatusCode) <= 208) {
                 showLambda();
-                $.notify({message:"Lambda Function Deleted successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                $.notify({message: "Lambda Function Deleted successfully"}, {
+                    type: "success",
+                    placement: {from: "top", align: "center"},
+                    delay: 500,
+                    timer: 500
+                });
             }
             else {
-                $.notify({message:"Unable to Delete Lambda Function"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                $.notify({message: "Unable to Delete Lambda Function"}, {
+                    type: "danger",
+                    placement: {from: "top", align: "center"},
+                    delay: 500,
+                    timer: 500
+                });
             }
 
             $('#deleteMulConformation').modal('hide');
         },
         error: function (xhr, ajaxOptions, thrownError) {
             $('#deleteConformation').modal('hide');
-            if (ajaxOptions === "abort"){
+            if (ajaxOptions === "abort") {
                 return;
             }
             else {
-                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                $.notify({message: "Unable to Load"}, {
+                    type: "danger",
+                    placement: {from: "top", align: "center"},
+                    delay: 500,
+                    timer: 500
+                });
             }
 
         }
     });
 }
-
-$(".snapshot_id_check").change(function () {
-    if ($(this).prop("checked")) {
-
-    }
-    else {
-        $(".select_all").prop("checked", false);
-    }
-});

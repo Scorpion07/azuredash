@@ -40,104 +40,109 @@ function ListRedShiftSnapshotData() {
     }
     console.log(submit);
     ajaxrequest_pages.push(
-    $.ajax({
-        url: _config.api.invokeUrl+'/billing/services',
-        headers: {"Authorization": token},
-        type: 'post',
-        dataType: 'json',
-        contentType: 'application/json',
-        crossDomain: true,
-        data: JSON.stringify(submit),
-        success: function (respdata) {
-            console.log(respdata);
-            $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
-            $('#table').dataTable().fnDestroy();
-            table = $('#table').DataTable({
-                data: respdata.data,
-                serverside: true,
-                order: [],
+        $.ajax({
+            url: _config.api.invokeUrl + '/billing/services',
+            headers: {"Authorization": token},
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            crossDomain: true,
+            data: JSON.stringify(submit),
+            success: function (respdata) {
+                console.log(respdata);
+                $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
+                $('#table').dataTable().fnDestroy();
+                table = $('#table').DataTable({
+                    data: respdata.data,
+                    serverside: true,
+                    order: [],
 
-                'rowCallback': function (row, data, iDisplayIndex) {
-                    if (account !== 'prod') {
-                        var check = '<input type="checkbox" id="checkboxclick" name="id[]" class="checkboxclick checkboxes" data_snapshot_id="' + data.SnapshotIdentifier + '" data_region="' + data.Region + '"data_cluster_id="' + data.ClusterIdentifier + '" >';
-                        $('td:eq(0)', row).html(check);
+                    'rowCallback': function (row, data, iDisplayIndex) {
+                        if (account !== 'prod') {
+                            var check = '<input type="checkbox" id="checkboxclick" name="id[]" class="checkboxclick checkboxes" data_snapshot_id="' + data.SnapshotIdentifier + '" data_region="' + data.Region + '"data_cluster_id="' + data.ClusterIdentifier + '" >';
+                            $('td:eq(0)', row).html(check);
+                        }
+                        else {
+                            $('td:eq(0)', row).html(count += 1);
+                        }
+
+                    },
+
+                    'columnDefs': [
+                        {"className": "dt-center", "defaultContent": "-", "targets": "_all"},
+                        {
+                            'targets': [0],
+                            'searchable': false,
+                            'orderable': false,
+                            'data': null,
+                        },
+                        {
+                            'targets': [1],
+                            'orderable': true,
+                            'data': 'SnapshotIdentifier'
+                        },
+                        {
+                            'targets': [2],
+                            'orderable': true,
+                            'data': 'ClusterIdentifier',
+                        },
+                        {
+                            'targets': [3],
+                            'orderable': true,
+                            'data': 'SnapshotCreateTime'
+                        },
+                        {
+                            'targets': [4],
+                            'orderable': true,
+                            'data': 'Status'
+                        },
+                        {
+                            'targets': [5],
+                            'orderable': true,
+                            'data': 'Port'
+                        },
+                        {
+                            'targets': [6],
+                            'orderable': true,
+                            'data': 'MasterUsername'
+                        },
+                        {
+                            'targets': [7],
+                            'orderable': true,
+                            'data': 'DBName'
+                        },
+                        {
+                            'targets': [8],
+                            'orderable': true,
+                            'data': 'RegionName'
+                        },
+
+
+                    ],
+
+                    'select': {
+                        'style': 'multi'
                     }
-                    else {
-                        $('td:eq(0)', row).html(count += 1);
-                    }
 
-                },
+                });
+                $('#loading').hide();
 
-                'columnDefs': [
-                    {"className": "dt-center", "defaultContent": "-", "targets": "_all"},
-                    {
-                        'targets': [0],
-                        'searchable': false,
-                        'orderable': false,
-                        'data': null,
-                    },
-                    {
-                        'targets': [1],
-                        'orderable': true,
-                        'data': 'SnapshotIdentifier'
-                    },
-                    {
-                        'targets': [2],
-                        'orderable': true,
-                        'data': 'ClusterIdentifier',
-                    },
-                    {
-                        'targets': [3],
-                        'orderable': true,
-                        'data': 'SnapshotCreateTime'
-                    },
-                    {
-                        'targets': [4],
-                        'orderable': true,
-                        'data': 'Status'
-                    },
-                    {
-                        'targets': [5],
-                        'orderable': true,
-                        'data': 'Port'
-                    },
-                    {
-                        'targets': [6],
-                        'orderable': true,
-                        'data': 'MasterUsername'
-                    },
-                    {
-                        'targets': [7],
-                        'orderable': true,
-                        'data': 'DBName'
-                    },
-                    {
-                        'targets': [8],
-                        'orderable': true,
-                        'data': 'RegionName'
-                    },
-
-
-                ],
-
-                'select': {
-                    'style': 'multi'
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                $('#loading').hide();
+                if (ajaxOptions === "abort") {
+                    return;
                 }
-
-            });
-            $('#loading').hide();
-
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            $('#loading').hide();
-            if (ajaxOptions === "abort"){
-                return;
+                else {
+                    $.notify({message: "Unable to Load"}, {
+                        type: "danger",
+                        placement: {from: "top", align: "center"},
+                        delay: 500,
+                        timer: 500
+                    });
+                }
             }
-            else {
-                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
-            }
-        }
-    }));
+        }));
 }
 
 function deleteModalRSSnapshot() {
@@ -186,7 +191,7 @@ function deleteRSSnapshot() {
         data: Data
     }
     $.ajax({
-        url: _config.api.invokeUrl+'/billing/services',
+        url: _config.api.invokeUrl + '/billing/services',
         headers: {"Authorization": token},
         type: 'post',
         contentType: 'application/json',
@@ -200,20 +205,35 @@ function deleteRSSnapshot() {
 
             if (respdata > -1) {
                 showRed_Snapshot();
-                $.notify({message:"Redshift Cluster Snapshot Deleted Successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                $.notify({message: "Redshift Cluster Snapshot Deleted Successfully"}, {
+                    type: "success",
+                    placement: {from: "top", align: "center"},
+                    delay: 500,
+                    timer: 500
+                });
             }
             else {
-                $.notify({message:"Unable to Delete Redshift Cluster Snapshot"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                $.notify({message: "Unable to Delete Redshift Cluster Snapshot"}, {
+                    type: "danger",
+                    placement: {from: "top", align: "center"},
+                    delay: 500,
+                    timer: 500
+                });
             }
             $('#deleteConformation').modal('hide');
         },
         error: function (xhr, ajaxOptions, thrownError) {
             $('#deleteConformation').modal('hide');
-            if (ajaxOptions === "abort"){
+            if (ajaxOptions === "abort") {
                 return;
             }
             else {
-                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                $.notify({message: "Unable to Load"}, {
+                    type: "danger",
+                    placement: {from: "top", align: "center"},
+                    delay: 500,
+                    timer: 500
+                });
             }
 
         }

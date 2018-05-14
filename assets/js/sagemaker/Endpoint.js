@@ -130,7 +130,7 @@ function ListEndpointsData() {
 }
 
 function deleteModalSagemakerEndpoint() {
-    $("#modal_title").html("<h3>CloudTrails Deletion </h3>");
+    $("#modal_title").html("<h3>Sagemaker Endpoint Deletion </h3>");
     $("#delete_heading").text("Are you sure, you want to delete all this SageMaker Endpoints?");
     $("#delete_li_show").html(" ");
     var endpoint_name = [];
