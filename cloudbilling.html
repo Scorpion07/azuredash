@@ -533,6 +533,30 @@
                                 </tr>
                             </table>
                         </div>
+                        <div class="small-box bg border-bottom">
+                            <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;"
+                                   width="100%">
+                                <tr>
+                                    <td colspan="2">
+                                        <h4>CloudTrail Resources
+                                            <div style="display: inline;" id="cloudtrailcost"></div>
+                                        </h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Resources</b></td>
+                                    <!-- <td><b>Cost</b></td> -->
+                                    <td><b>Running</b></td>
+                                </tr>
+                                <tr id="cloudtrail">
+                                    <td>Trails</td>
+                                    <!-- <td id="dbintcost"></td> -->
+                                    <td>
+                                        <h7 class="card-title" id="trails"></h7>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                         <!-- small box -->
 
                     </div>
@@ -610,6 +634,58 @@
                                     <td>Endpoint configuration</td>
                                     <td>
                                         <h7 class="card-title" id="endconfig"></h7>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="small-box bg border-bottom">
+                            <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;"
+                                   width="100%">
+                                <tr>
+                                    <td colspan="2">
+                                        <h4>Elastic Beanstalk Resources
+                                            <div style="display: inline;" id="totalBSCost"></div>
+                                        </h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Resources</b></td>
+                                    <td><b>Running</b></td>
+                                </tr>
+                                <tr id="beanstalk_app">
+                                    <td>Applications</td>
+                                    <td>
+                                        <h7 class="card-title" id="bs_app"></h7>
+                                    </td>
+                                </tr>
+                                <tr id="beastalk_env">
+                                    <td>Environments</td>
+                                    <td>
+                                        <h7 class="card-title" id="bs_env"></h7>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="small-box bg border-bottom">
+                            <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;"
+                                   width="100%">
+                                <tr>
+                                    <td colspan="2">
+                                        <h4>Kinesis Resources
+                                            <div style="display: inline;" id="kinesiscost"></div>
+                                        </h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Resources</b></td>
+                                    <!-- <td><b>Cost</b></td> -->
+                                    <td><b>Running</b></td>
+                                </tr>
+                                <tr id="kinesis">
+                                    <td>Data Stream</td>
+                                    <!-- <td id="dbintcost"></td> -->
+                                    <td>
+                                        <h7 class="card-title" id="datastream"></h7>
                                     </td>
                                 </tr>
                             </table>
