@@ -39,7 +39,7 @@ function ListRedShiftClusterData() {
         method: "ListResources",
         account: account
     }
-    console.log(submit);
+    //console.log(submit);
     ajaxrequest_pages.push(
         $.ajax({
             url: _config.api.invokeUrl + '/billing/services',
@@ -50,7 +50,7 @@ function ListRedShiftClusterData() {
             crossDomain: true,
             data: JSON.stringify(submit),
             success: function (respdata) {
-                console.log(respdata);
+                //console.log(respdata);
                 $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
                 $('#table').dataTable().fnDestroy();
                 table = $('#table').DataTable({
@@ -158,7 +158,7 @@ function deleteModalRSCluster() {
             selectedCluster.push($(this).val());
         }
     });
-    console.log($('[name="modal_cluster_ids"]').val(selectedCluster));
+    //console.log($('[name="modal_cluster_ids"]').val(selectedCluster));
     $('[name="modal_cluster_ids"]').val(selectedCluster);
     $('[name="modal_regions"]').val(region_list);
     i = 0;
@@ -204,7 +204,7 @@ function deleteRSCluster() {
     var cluster;
     var flag = 0;
     cluster_ids_array.forEach(function (cluster) {
-        console.log(cluster);
+        //console.log(cluster);
         snapshotValueSkip = $("input[name='" + cluster + "']:checked").val();
         //SnapshotNewName = $("#text"+instance).val();
         if (snapshotValueSkip == "yes") {
@@ -226,8 +226,8 @@ function deleteRSCluster() {
             snapshotname: SnapshotNewName,
         });
     });
-    //console.log(Data);
-    //console.log(region);
+    ////console.log(Data);
+    ////console.log(region);
     if (flag === 0) {
         $('.deleteMul').attr('disabled', true);
         var submit = {
@@ -246,7 +246,7 @@ function deleteRSCluster() {
             crossDomain: true,
             data: JSON.stringify(submit),
             success: function (respdata) {
-                console.log(respdata)
+                //console.log(respdata)
                 $("#loadingModal").hide();
 
                 if (respdata > 0) {

@@ -37,7 +37,7 @@ function listRoute53Data() {
         method: "listRoute53",
         account: account
     }
-    console.log(submit);
+    //console.log(submit);
     ajaxrequest_pages.push(
     $.ajax({
         url: _config.api.invokeUrl+'/billing/services',
@@ -48,7 +48,7 @@ function listRoute53Data() {
         crossDomain: true,
         data: JSON.stringify(submit),
         success: function (respdata) {
-            console.log(respdata);
+            //console.log(respdata);
             $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
             $('#table').dataTable().fnDestroy();
             table = $('#table').DataTable({
@@ -154,7 +154,7 @@ function deleteR53Hostzone() {
             hostzoneids.push($(this).attr('data_hostzone_id'))
         }
     });
-    console.log(hostzoneids);
+    //console.log(hostzoneids);
     var submit = {
         method: "route53Delete",
         account: account,
@@ -170,7 +170,7 @@ function deleteR53Hostzone() {
         crossDomain: true,
         data: JSON.stringify(submit),
         success: function (respdata) {
-            console.log(respdata)
+            //console.log(respdata)
             $("#loadingModal").hide();
 
             if (respdata > -1) {

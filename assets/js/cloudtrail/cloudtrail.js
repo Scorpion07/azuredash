@@ -38,7 +38,7 @@ function ListCloudTrailData() {
         method: "ListResources",
         account: account
     }
-    console.log(submit);
+    //console.log(submit);
     ajaxrequest_pages.push(
         $.ajax({
             url: _config.api.invokeUrl + '/billing/services',
@@ -49,7 +49,7 @@ function ListCloudTrailData() {
             crossDomain: true,
             data: JSON.stringify(submit),
             success: function (respdata) {
-                console.log(respdata);
+                //console.log(respdata);
                 $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
                 $('#table').dataTable().fnDestroy();
                 table = $('#table').DataTable({
@@ -158,14 +158,14 @@ function deleteCloudTrail() {
             }
         }
     });
-    console.log(Data);
+    //console.log(Data);
 
     var submit = {
         method: "cloudtrailDelete",
         account: account,
         data: Data
     }
-    console.log(submit);
+    //console.log(submit);
     $.ajax({
         url: _config.api.invokeUrl + '/billing/services',
         headers: {"Authorization": token},
@@ -176,7 +176,7 @@ function deleteCloudTrail() {
         crossDomain: true,
         data: JSON.stringify(submit),
         success: function (respdata) {
-            console.log(respdata)
+            //console.log(respdata)
             $("#loadingModal").hide();
 
             if (respdata > -1) {

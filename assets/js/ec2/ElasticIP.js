@@ -40,7 +40,7 @@ function ListEIPData() {
         method: "ListResources",
         account: account
     }
-    console.log(submit);
+    //console.log(submit);
     ajaxrequest_pages.push(
         $.ajax({
             url: _config.api.invokeUrl + '/billing/services',
@@ -152,7 +152,7 @@ function deleteEIPs() {
         allo: allo_ids_array,
         asso: asso_ids_array
     }
-    console.log(JSON.stringify(deleteData));
+    //console.log(JSON.stringify(deleteData));
     $.ajax({
         url: _config.api.invokeUrl + '/billing/services',
         type: 'post',
@@ -166,7 +166,7 @@ function deleteEIPs() {
             $("#select_all").prop("checked", false);
             $(".btnmultipledelete").addClass("disabled");
             $("#loadingMulModal").hide();
-            console.log(result);
+            //console.log(result);
             if (result > 0) {
 
                 $('.deleteMul').attr('disabled', false);

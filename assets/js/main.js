@@ -12,7 +12,7 @@ var token = window.localStorage.getItem('token');
 var account;
 
 setInterval(function() {
-    console.log(SelectedResourceVar);
+    //console.log(SelectedResourceVar);
     if (SelectedResourceVar == "dashboard"){
         if(window.localStorage.custexp <= new Date().getTime()){
             checklogin();
@@ -51,7 +51,7 @@ $(window).on("load", function () {
         window.localStorage.setItem('account', $("#account").val());
         account = window.localStorage.getItem('account');
     }
-    console.log(account);
+    //console.log(account);
     if (account == null) {
         account = $("#account").val();
     }
@@ -86,7 +86,7 @@ $(window).on("load", function () {
     }
 
 
-    console.log("on load : " + SelectedResourceVar);
+    //console.log("on load : " + SelectedResourceVar);
     if (SelectedResourceVar == null || SelectedResourceVar == " ") {
         showDashboard();
     }
@@ -114,7 +114,7 @@ $(window).on("load", function () {
 $(document).on('change', '#account', function () {
     window.localStorage.setItem('account', $("#account").val());
     account = window.localStorage.getItem('account');
-    console.log(account);
+    //console.log(account);
     SelectedResourceVar = window.localStorage.getItem('SelectedResourceVar');
     if (SelectedResourceVar == "dashboard") {
         for (var i = 0; i < ajaxrequests.length; i++)
@@ -124,8 +124,8 @@ $(document).on('change', '#account', function () {
         for (var i = 0; i < ajaxrequest_pages.length; i++)
             ajaxrequest_pages[i].abort();
     }
-    console.log($('.SelectedResource').attr("data-resource"));
-    console.log(window.localStorage.getItem('SelectedResourceVar'));
+    //console.log($('.SelectedResource').attr("data-resource"));
+    //console.log(window.localStorage.getItem('SelectedResourceVar'));
     count = 0;
     load_resource_js(SelectedResourceVar);
 });
@@ -135,7 +135,7 @@ $(document).on('click', '.SelectedResource', function () {
     $("li").removeClass("active");
     $(this).closest("li").addClass("active");
     $(this).closest(".treeview").addClass("active");
-    console.log("Data Resources : " + $(this).attr("data-resource"));
+    //console.log("Data Resources : " + $(this).attr("data-resource"));
     window.localStorage.setItem('SelectedResourceVar', $(this).attr("data-resource"));
     SelectedResourceVar = window.localStorage.getItem('SelectedResourceVar');
 
@@ -202,19 +202,19 @@ $(document).on('change', '.checkboxclick', function () {
             if (!$(this).is(":checked")) {
                 flag = false;
                 return false;
-                console.log(flag)
+                //console.log(flag)
             }
             else {
                 flag = true;
-                console.log(flag)
+                //console.log(flag)
             }
         });
     }
     else {
         flag = false;
-        console.log(flag)
+        //console.log(flag)
     }
-    console.log(flag);
+    //console.log(flag);
 
     if (flag === true) {
         $(".select_all").prop("checked", true);

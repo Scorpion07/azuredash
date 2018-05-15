@@ -38,7 +38,7 @@ function ListKinesisDataStream() {
         method: "ListResources",
         account: account
     }
-    console.log(submit);
+    //console.log(submit);
     ajaxrequest_pages.push(
         $.ajax({
             url: _config.api.invokeUrl + '/billing/services',
@@ -49,7 +49,7 @@ function ListKinesisDataStream() {
             crossDomain: true,
             data: JSON.stringify(submit),
             success: function (respdata) {
-                console.log(respdata);
+                //console.log(respdata);
                 $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
                 $('#table').dataTable().fnDestroy();
                 table = $('#table').DataTable({
@@ -168,8 +168,7 @@ function deleteKinesisDataStream() {
             }
         }
     });
-    console.log(Data);
-    console.log(region);
+    //console.log(Data);
     var submit = {
         method: "deleteKinesisDataStream",
         account: account,
@@ -185,7 +184,7 @@ function deleteKinesisDataStream() {
         crossDomain: true,
         data: JSON.stringify(submit),
         success: function (respdata) {
-            console.log(respdata)
+            //console.log(respdata)
             $("#loadingModal").hide();
 
             if (respdata > 0) {

@@ -39,7 +39,7 @@ function ListVolumeData() {
         method: "ListResources",
         account: account
     }
-    console.log(submit);
+    //console.log(submit);
 
     ajaxrequest_pages.push(
     $.ajax({
@@ -169,14 +169,14 @@ function deleteVolume() {
     var region = [];
     $(".checkboxes").each(function () {
         if ($(this).is(":checked")) {
-            //console.log();
-            console.log($(this).attr("data_volume_id"));
-            console.log(($(this).attr("data_region")))
+            ////console.log();
+            //console.log($(this).attr("data_volume_id"));
+            //console.log(($(this).attr("data_region")))
             volumeid.push($(this).attr("data_volume_id"));
             region.push(($(this).attr("data_region")));
         }
     });
-    console.log(region);
+    //console.log(region);
     var submit = {
         region: region,
         method: "volumeDelete",
@@ -193,7 +193,7 @@ function deleteVolume() {
         crossDomain: true,
         data: JSON.stringify(submit),
         success: function (respdata) {
-            console.log(respdata)
+            //console.log(respdata)
             $("#loadingModal").hide();
 
             if (respdata > 0) {

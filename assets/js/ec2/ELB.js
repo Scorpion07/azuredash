@@ -39,7 +39,7 @@ function ListELBData() {
         method: "ListResources",
         account: account
     }
-    console.log(submit);
+    //console.log(submit);
     ajaxrequest_pages.push(
         $.ajax({
             url: _config.api.invokeUrl + '/billing/services',
@@ -153,7 +153,7 @@ function deleteELBs() {
         region: region_array,
         elb: elb_ids_array
     }
-    console.log(JSON.stringify(deleteData));
+    //console.log(JSON.stringify(deleteData));
     $.ajax({
         url: _config.api.invokeUrl + '/billing/services',
         type: 'post',
@@ -167,7 +167,7 @@ function deleteELBs() {
             $(".btnmultipledelete").addClass("disabled");
             $("#loadingMulModal").hide();
             $('#deleteMulConformation').modal('hide');
-            console.log(result);
+            //console.log(result);
             if (result > 0) {
                 showELBs();
                 $.notify({message: "Elastic Load Balancer Deleted successfully"}, {

@@ -39,7 +39,7 @@ function ListStackData() {
         method: "ListResources",
         account: account
     }
-    console.log(submit);
+    //console.log(submit);
 
     $.ajax({
         url: _config.api.invokeUrl+'/billing/services',

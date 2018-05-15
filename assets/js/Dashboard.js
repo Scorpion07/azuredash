@@ -8,6 +8,32 @@ function loader() {
     }
 }
 
+function error_occured(xhr, ajaxOptions, thrownError){
+    count += 1
+    loader();
+
+    if (ajaxOptions === "abort") {
+        return;
+    }
+    if(xhr["responseJSON"]["message"] == "The incoming token has expired"){
+        $.notify({message: "Token Has Expired hence refreshing"}, {
+            type: "warning",
+            placement: {from: "top", align: "center"},
+            delay: 500,
+            timer: 500
+        });
+        location.reload();
+    }
+    else {
+        $.notify({message: "Unable to Load"}, {
+            type: "danger",
+            placement: {from: "top", align: "center"},
+            delay: 500,
+            timer: 500
+        });
+    }
+}
+
 function showDashboard() {
     count = 0;
     var account = window.localStorage.getItem("account");
@@ -113,24 +139,7 @@ function showDashboard() {
 
                 }
             },
-            error: function (xhr, ajaxOptions, thrownError) {
-                count += 1
-                loader();
-
-                if (ajaxOptions === "abort") {
-                    return;
-                }
-                else {
-                    $.notify({message: "Unable to Load"}, {
-                        type: "danger",
-                        placement: {from: "top", align: "center"},
-                        delay: 500,
-                        timer: 500
-                    });
-                }
-
-            }
-
+            error: function (xhr, ajaxOptions, thrownError){ error_occured(xhr, ajaxOptions, thrownError)}
         }));
 
     ajaxrequests.push(
@@ -170,21 +179,7 @@ function showDashboard() {
 
                 }
             },
-            error: function (xhr, ajaxOptions, thrownError) {
-                count += 1
-                loader();
-                if (ajaxOptions === "abort") {
-                    return;
-                }
-                else {
-                    $.notify({message: "Unable to Load"}, {
-                        type: "danger",
-                        placement: {from: "top", align: "center"},
-                        delay: 500,
-                        timer: 500
-                    });
-                }
-            }
+            error: function (xhr, ajaxOptions, thrownError){ error_occured(xhr, ajaxOptions, thrownError)}
         }));
 
     ajaxrequests.push(
@@ -216,21 +211,7 @@ function showDashboard() {
                     $("#InstanceD").removeClass("text-danger");
                 }
             },
-            error: function (xhr, ajaxOptions, thrownError) {
-                count += 1
-                loader();
-                if (ajaxOptions === "abort") {
-                    return;
-                }
-                else {
-                    $.notify({message: "Unable to Load"}, {
-                        type: "danger",
-                        placement: {from: "top", align: "center"},
-                        delay: 500,
-                        timer: 500
-                    });
-                }
-            }
+            error: function (xhr, ajaxOptions, thrownError){ error_occured(xhr, ajaxOptions, thrownError)}
         }));
 
     ajaxrequests.push(
@@ -278,21 +259,7 @@ function showDashboard() {
                     $("#vpnD").removeClass("text-danger");
                 }
             },
-            error: function (xhr, ajaxOptions, thrownError) {
-                count += 1
-                loader();
-                if (ajaxOptions === "abort") {
-                    return;
-                }
-                else {
-                    $.notify({message: "Unable to Load"}, {
-                        type: "danger",
-                        placement: {from: "top", align: "center"},
-                        delay: 500,
-                        timer: 500
-                    });
-                }
-            }
+            error: function (xhr, ajaxOptions, thrownError){ error_occured(xhr, ajaxOptions, thrownError)}
         }));
 
     ajaxrequests.push(
@@ -329,21 +296,7 @@ function showDashboard() {
 
                 }
             },
-            error: function (xhr, ajaxOptions, thrownError) {
-                count += 1
-                loader();
-                if (ajaxOptions === "abort") {
-                    return;
-                }
-                else {
-                    $.notify({message: "Unable to Load"}, {
-                        type: "danger",
-                        placement: {from: "top", align: "center"},
-                        delay: 500,
-                        timer: 500
-                    });
-                }
-            }
+            error: function (xhr, ajaxOptions, thrownError){ error_occured(xhr, ajaxOptions, thrownError)}
         }));
 
     ajaxrequests.push(
@@ -382,21 +335,7 @@ function showDashboard() {
 
                 }
             },
-            error: function (xhr, ajaxOptions, thrownError) {
-                count += 1
-                loader();
-                if (ajaxOptions === "abort") {
-                    return;
-                }
-                else {
-                    $.notify({message: "Unable to Load"}, {
-                        type: "danger",
-                        placement: {from: "top", align: "center"},
-                        delay: 500,
-                        timer: 500
-                    });
-                }
-            }
+            error: function (xhr, ajaxOptions, thrownError){ error_occured(xhr, ajaxOptions, thrownError)}
         }));
     ajaxrequests.push(
         $.ajax({
@@ -425,21 +364,7 @@ function showDashboard() {
                     $("#lambdaD").removeClass("text-danger");
                 }
             },
-            error: function (xhr, ajaxOptions, thrownError) {
-                count += 1
-                loader();
-                if (ajaxOptions === "abort") {
-                    return;
-                }
-                else {
-                    $.notify({message: "Unable to Load"}, {
-                        type: "danger",
-                        placement: {from: "top", align: "center"},
-                        delay: 500,
-                        timer: 500
-                    });
-                }
-            }
+            error: function (xhr, ajaxOptions, thrownError){ error_occured(xhr, ajaxOptions, thrownError)}
         }));
     ajaxrequests.push(
         $.ajax({
@@ -467,21 +392,7 @@ function showDashboard() {
                     $("#stackD").removeClass("text-danger");
                 }
             },
-            error: function (xhr, ajaxOptions, thrownError) {
-                count += 1
-                loader();
-                if (ajaxOptions === "abort") {
-                    return;
-                }
-                else {
-                    $.notify({message: "Unable to Load"}, {
-                        type: "danger",
-                        placement: {from: "top", align: "center"},
-                        delay: 500,
-                        timer: 500
-                    });
-                }
-            }
+            error: function (xhr, ajaxOptions, thrownError){ error_occured(xhr, ajaxOptions, thrownError)}
         }));
     ajaxrequests.push(
         $.ajax({
@@ -536,21 +447,7 @@ function showDashboard() {
 
                 }
             },
-            error: function (xhr, ajaxOptions, thrownError) {
-                count += 1
-                loader();
-                if (ajaxOptions === "abort") {
-                    return;
-                }
-                else {
-                    $.notify({message: "Unable to Load"}, {
-                        type: "danger",
-                        placement: {from: "top", align: "center"},
-                        delay: 500,
-                        timer: 500
-                    });
-                }
-            }
+            error: function (xhr, ajaxOptions, thrownError){ error_occured(xhr, ajaxOptions, thrownError)}
         }));
 
     ajaxrequests.push(
@@ -585,21 +482,7 @@ function showDashboard() {
                     $("#redsnapshot").removeClass("text-danger");
                 }
             },
-            error: function (xhr, ajaxOptions, thrownError) {
-                count += 1
-                loader();
-                if (ajaxOptions === "abort") {
-                    return;
-                }
-                else {
-                    $.notify({message: "Unable to Load"}, {
-                        type: "danger",
-                        placement: {from: "top", align: "center"},
-                        delay: 500,
-                        timer: 500
-                    });
-                }
-            }
+            error: function (xhr, ajaxOptions, thrownError){ error_occured(xhr, ajaxOptions, thrownError)}
         }));
 
     ajaxrequests.push(
@@ -632,21 +515,7 @@ function showDashboard() {
                 //$("#loading").hide();
                 // $("#loading").css("style", "display: none;");
             },
-            error: function (xhr, ajaxOptions, thrownError) {
-                count += 1
-                loader();
-                if (ajaxOptions === "abort") {
-                    return;
-                }
-                else {
-                    $.notify({message: "Unable to Load"}, {
-                        type: "danger",
-                        placement: {from: "top", align: "center"},
-                        delay: 500,
-                        timer: 500
-                    });
-                }
-            }
+            error: function (xhr, ajaxOptions, thrownError){ error_occured(xhr, ajaxOptions, thrownError)}
         }));
 
     ajaxrequests.push(
@@ -676,21 +545,7 @@ function showDashboard() {
 
                 }
             },
-            error: function (xhr, ajaxOptions, thrownError) {
-                count += 1
-                loader();
-                if (ajaxOptions === "abort") {
-                    return;
-                }
-                else {
-                    $.notify({message: "Unable to Load"}, {
-                        type: "danger",
-                        placement: {from: "top", align: "center"},
-                        delay: 500,
-                        timer: 500
-                    });
-                }
-            }
+            error: function (xhr, ajaxOptions, thrownError){ error_occured(xhr, ajaxOptions, thrownError)}
         }));
 
     ajaxrequests.push(
@@ -728,21 +583,8 @@ function showDashboard() {
                     $("#beastalk_env").removeClass("text-danger");
                 }
             },
-            error: function (xhr, ajaxOptions, thrownError) {
-                count += 1
-                loader();
-                if (ajaxOptions === "abort") {
-                    return;
-                }
-                else {
-                    $.notify({message: "Unable to Load"}, {
-                        type: "danger",
-                        placement: {from: "top", align: "center"},
-                        delay: 500,
-                        timer: 500
-                    });
-                }
-            }
+            error: function (xhr, ajaxOptions, thrownError){ error_occured(xhr, ajaxOptions, thrownError)}
+
         }));
 
     ajaxrequests.push(
@@ -772,21 +614,7 @@ function showDashboard() {
 
                 }
             },
-            error: function (xhr, ajaxOptions, thrownError) {
-                count += 1
-                loader();
-                if (ajaxOptions === "abort") {
-                    return;
-                }
-                else {
-                    $.notify({message: "Unable to Load"}, {
-                        type: "danger",
-                        placement: {from: "top", align: "center"},
-                        delay: 500,
-                        timer: 500
-                    });
-                }
-            }
+            error: function (xhr, ajaxOptions, thrownError){ error_occured(xhr, ajaxOptions, thrownError)}
         }));
 
     CostofResources();

@@ -1,22 +1,22 @@
 function checklogin() {
 
-    console.log(window.localStorage.length)
+    //console.log(window.localStorage.length)
     if (window.localStorage.length === 0) {
         window.location.href = '/login.html';
     }
     else {
-        console.log("Alreay logged in");
+        //console.log("Alreay logged in");
         sessionValid();
     }
 }
 
 function sessionValid() {
     if (cognitoUser === undefined) {
-        console.log("undefined")
+        //console.log("undefined")
         signout();
     }
     else if (cognitoUser === null) {
-        console.log("null")
+        //console.log("null")
         signout();
     }
     else {
@@ -40,7 +40,7 @@ function sessionValid() {
                     }
                     else{
                         window.localStorage.setItem('custexp',(new Date().getTime()+3600000));
-                        console.log('In a refreshtoken : '+session)
+                        //console.log('In a refreshtoken : '+session)
                         window.localStorage.setItem('token', session.getIdToken().getJwtToken());
                         window.localStorage.setItem('actoken', session.getAccessToken().getJwtToken());
                         window.localStorage.setItem('reftoken', session.getRefreshToken().getToken());
@@ -50,11 +50,11 @@ function sessionValid() {
                 });
             }
             else{
-                console.log('session validity: ' + cognitoUser.signInUserSession.isValid());
+                //console.log('session validity: ' + cognitoUser.signInUserSession.isValid());
             }
         }
         else{
-            console.log('session validity: ' + cognitoUser.signInUserSession.isValid());
+            //console.log('session validity: ' + cognitoUser.signInUserSession.isValid());
             window.localStorage.clear();
             window.location.href = '/login.html';
             if (cognitoUser !== null) {
@@ -63,12 +63,12 @@ function sessionValid() {
         }
         // cognitoUser.getSession(function (err, session) {
         //     if (err) {
-        //         console.log(err);
+        //         //console.log(err);
         //         signout();
         //         return;
         //     }
         //     else if (session.isValid()) {
-        //         console.log('session validity: ' + session.isValid());
+        //         //console.log('session validity: ' + session.isValid());
         //         if(window.localStorage.exptime <= new Date().getTime()){
         //             var idToken = new AmazonCognitoIdentity.CognitoIdToken({
         //                 IdToken: window.localStorage.token
@@ -83,7 +83,7 @@ function sessionValid() {
         //          }
         //     }
         //     else {
-        //         console.log('session validity: ' + session.isValid());
+        //         //console.log('session validity: ' + session.isValid());
         //         window.localStorage.clear();
         //         window.location.href = '/login.html';
         //     }
@@ -92,15 +92,15 @@ function sessionValid() {
 }
 
 function signout() {
-    console.log("Data : " + window.localStorage.getItem('token'))
-    console.log("User Name : " + JSON.stringify(userPool.getCurrentUser()));
+    //console.log("Data : " + window.localStorage.getItem('token'))
+    //console.log("User Name : " + JSON.stringify(userPool.getCurrentUser()));
     if (cognitoUser !== null) {
         cognitoUser.signOut();
     }
-    console.log(cognitoUser)
+    //console.log(cognitoUser)
     window.localStorage.clear();
-    console.log("clear : " + window.localStorage.getItem('token'))
+    //console.log("clear : " + window.localStorage.getItem('token'))
     window.location.href = '/';
-    console.log("Signout");
+    //console.log("Signout");
 }
 

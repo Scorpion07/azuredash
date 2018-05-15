@@ -38,7 +38,7 @@ function ListLambdaData() {
         method: "ListResources",
         account: account
     }
-    console.log(submit);
+    //console.log(submit);
     ajaxrequest_pages.push(
         $.ajax({
             url: _config.api.invokeUrl + '/billing/services',
@@ -199,7 +199,7 @@ function deleteLambdaFunctions() {
         data: JSON.stringify(deleteData),
         success: function (result) {
             $("#loadingMulModal").hide();
-            console.log(result);
+            //console.log(result);
             if (result > 0 || parseInt(result.ResponseMetadata.HTTPStatusCode) >= 200 || parseInt(result.ResponseMetadata.HTTPStatusCode) <= 208) {
                 showLambda();
                 $.notify({message: "Lambda Function Deleted successfully"}, {

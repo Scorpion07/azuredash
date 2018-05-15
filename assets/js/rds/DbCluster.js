@@ -39,7 +39,7 @@ function ListDBClusterData() {
         method: "ListResources",
         account: account
     }
-    console.log(submit);
+    //console.log(submit);
     ajaxrequest_pages.push(
     $.ajax({
         url: _config.api.invokeUrl+'/billing/services',
@@ -51,7 +51,7 @@ function ListDBClusterData() {
         data: JSON.stringify(submit),
         success: function (respdata) {
             $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
-            console.log(respdata);
+            //console.log(respdata);
             table = $('#table').DataTable({
                 data: respdata.data,
                 serverside: true,

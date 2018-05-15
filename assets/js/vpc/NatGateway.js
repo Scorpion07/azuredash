@@ -38,7 +38,7 @@ function ListNATData() {
         method: "ListResources",
         account: account
     }
-    console.log(submit);
+    //console.log(submit);
     ajaxrequest_pages.push(
     $.ajax({
         url: _config.api.invokeUrl+'/billing/services',
@@ -49,7 +49,7 @@ function ListNATData() {
         crossDomain: true,
         data: JSON.stringify(submit),
         success: function (respdata) {
-            console.log(respdata);
+            //console.log(respdata);
             $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
             $('#table').dataTable().fnDestroy();
             table = $('#table').DataTable({
@@ -171,13 +171,13 @@ function deleteNats() {
     var region = [];
     $(".checkboxes").each(function () {
         if ($(this).is(":checked")) {
-            console.log($(this).attr("data_natgateway_id"));
+            //console.log($(this).attr("data_natgateway_id"));
             natgatewayid.push($(this).attr("data_natgateway_id"));
             region.push(($(this).attr("data_region")));
         }
     });
-    console.log(region);
-    console.log(natgatewayid);
+    //console.log(region);
+    //console.log(natgatewayid);
     var submit = {
         region: region,
         method: "natgatewayDelete",
@@ -194,7 +194,7 @@ function deleteNats() {
         crossDomain: true,
         data: JSON.stringify(submit),
         success: function (respdata) {
-            console.log(respdata)
+            //console.log(respdata)
             $("#loadingModal").hide();
             $('#deleteConformation').modal('hide');
             if (respdata.totalnatg >= 0 || respdata.totaleip >= 0) {

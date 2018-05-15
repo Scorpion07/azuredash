@@ -39,7 +39,7 @@ function ListDBSnapshotData() {
         method: "ListResources",
         account: account
     }
-    console.log(submit);
+    //console.log(submit);
     ajaxrequest_pages.push(
         $.ajax({
             url: _config.api.invokeUrl + '/billing/services',
@@ -51,7 +51,7 @@ function ListDBSnapshotData() {
             data: JSON.stringify(submit),
             success: function (respdata) {
                 $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
-                console.log(respdata);
+                //console.log(respdata);
                 $('#table').dataTable().fnDestroy();
                 table = $('#table').DataTable({
                     data: respdata.data,
@@ -159,7 +159,7 @@ function deleteDBSnaps() {
         snapshot_id: snap_ids_array,
         region: regions_ids_array
     }
-    console.log(JSON.stringify(deleteData));
+    //console.log(JSON.stringify(deleteData));
     $.ajax({
         url: _config.api.invokeUrl + '/billing/services',
         type: 'post',
@@ -171,7 +171,7 @@ function deleteDBSnaps() {
         data: JSON.stringify(deleteData),
         success: function (result) {
             $("#loadingMulModal").hide();
-            console.log(result);
+            //console.log(result);
             if (result > -1) {
                 $('#deleteMulConformation').modal('hide');
                 showDBSnaps();
@@ -219,7 +219,7 @@ function deleteModalDBSnaps() {
     var region_name;
     $('.checkboxes').each(function () {
         if ($(this).is(":checked")) {
-            console.log($(this).closest('tr'));
+            //console.log($(this).closest('tr'));
             //$this.parent('tr').addClass("selected");
             region_name = $(this).attr('data-region');
             selectedSnap.push($(this).val());
@@ -228,8 +228,8 @@ function deleteModalDBSnaps() {
 
         }
     });
-    console.log(selectedSnap);
-    console.log(selectedRegion);
+    //console.log(selectedSnap);
+    //console.log(selectedRegion);
 
     $('[name="modal_ids"]').val(selectedSnap);
     $('[name="modal_regions"]').val(selectedRegion);

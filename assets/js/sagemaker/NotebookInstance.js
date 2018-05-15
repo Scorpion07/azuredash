@@ -37,7 +37,7 @@ function ListNotebookInstancesData() {
         method: "ListResources",
         account: account
     }
-    console.log(submit);
+    //console.log(submit);
     ajaxrequest_pages.push(
     $.ajax({
         url: _config.api.invokeUrl+'/billing/services',
@@ -169,14 +169,14 @@ function deleteSagemakerNotebook() {
             }
         }
     });
-    console.log(Data);
+    //console.log(Data);
 
     var submit = {
         method: "sgNotebookDelete",
         account: account,
         data: Data
     }
-    console.log(submit);
+    //console.log(submit);
     $.ajax({
         url: _config.api.invokeUrl + '/billing/services',
         headers: {"Authorization": token},
@@ -187,7 +187,7 @@ function deleteSagemakerNotebook() {
         crossDomain: true,
         data: JSON.stringify(submit),
         success: function (respdata) {
-            console.log(respdata)
+            //console.log(respdata)
             $("#loadingModal").hide();
 
             if (respdata == 1) {

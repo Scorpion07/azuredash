@@ -39,7 +39,7 @@ function ListDBInstancesData() {
         method: "ListResources",
         account: account
     }
-    console.log(submit);
+    //console.log(submit);
     ajaxrequest_pages.push(
         $.ajax({
             url: _config.api.invokeUrl + '/billing/services',
@@ -51,7 +51,7 @@ function ListDBInstancesData() {
             data: JSON.stringify(submit),
             success: function (respdata) {
                 $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
-                console.log(respdata);
+                //console.log(respdata);
                 $('#table').dataTable().fnDestroy();
                 table = $('#table').DataTable({
                     data: respdata.data,
@@ -142,7 +142,7 @@ function deleteDBInstances() {
     var SnapshotNewName;
     var cluster;
     instance_ids_array.forEach(function (instance) {
-        console.log(instance);
+        //console.log(instance);
         snapshotValueSkip = $("input[name='" + instance + "']:checked").val();
         //SnapshotNewName = $("#text"+instance).val();
         if (snapshotValueSkip == "yes") {
@@ -164,16 +164,16 @@ function deleteDBInstances() {
         });
 
     });
-    console.log(main_array);
-    console.log("now stringify");
-    console.log(JSON.stringify(main_array));
+    //console.log(main_array);
+    //console.log("now stringify");
+    //console.log(JSON.stringify(main_array));
     var deleteData = {
         method: "DBInstanceDelete",
         account: account,
         instance_id: main_array,
         region: aregions_ids_array
     }
-    console.log(JSON.stringify(deleteData));
+    //console.log(JSON.stringify(deleteData));
     $.ajax({
         url: _config.api.invokeUrl + '/billing/services',
         type: 'post',
@@ -185,7 +185,7 @@ function deleteDBInstances() {
         data: JSON.stringify(deleteData),
         success: function (result) {
             $("#loadingMulModal").hide();
-            console.log(result);
+            //console.log(result);
             if (result > 0) {
                 $('#deleteMulConformation').modal('hide');
                 showDBInstances();
@@ -235,7 +235,7 @@ function deleteModalDBInstances() {
 
     $('.checkboxes').each(function () {
         if ($(this).is(":checked")) {
-            console.log($(this).closest('tr'));
+            //console.log($(this).closest('tr'));
             //$this.parent('tr').addClass("selected");
             region_name = $(this).attr('data-region');
             cluster = $(this).attr('data-cluster');
@@ -245,13 +245,13 @@ function deleteModalDBInstances() {
 
         }
     });
-    console.log(selectedInstance);
-    console.log(selectedRegion);
+    //console.log(selectedInstance);
+    //console.log(selectedRegion);
     $('[name="modal_ids"]').val(selectedInstance);
     $('[name="modal_regions"]').val(selectedRegion);
     i = 0;
     selectedInstance.forEach(function (int) {
-        console.log(i + " " + int)
+        //console.log(i + " " + int)
         var add = '<li><label>Create final snapshot "' + int + '"?</label><div class="custom-control custom-radio"><input type="radio" id="' + int + 'R1" name="' + int + '" value="yes" class="custom-control-input instance_selected_yes"><label class="custom-control-label" for="' + int + 'R1">Yes</label></div><div class="custom-control custom-radio"><input type="radio" id="' + int + 'R2" name="' + int + '" value="No" class="custom-control-input instance_selected_no" checked><label class="custom-control-label" for="' + int + 'R2">No</label></div><div id="I' + int + '"></div></li>';
         i++;
         $("#delete_li_show").append(add);

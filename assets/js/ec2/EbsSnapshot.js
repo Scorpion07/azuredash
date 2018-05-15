@@ -41,7 +41,7 @@ function ListSnapshotData() {
         method: "ListResources",
         account: account
     }
-    console.log(submit);
+    //console.log(submit);
 
     ajaxrequest_pages.push(
         $.ajax({
@@ -161,7 +161,7 @@ function deleteSnaps() {
         account: account,
         region: Data
     }
-    console.log(JSON.stringify(deleteData));
+    //console.log(JSON.stringify(deleteData));
     $.ajax({
         url: _config.api.invokeUrl + '/billing/services',
         type: 'post',
@@ -173,7 +173,7 @@ function deleteSnaps() {
         data: JSON.stringify(deleteData),
         success: function (result) {
             $("#loadingMulModal").hide();
-            console.log(result);
+            //console.log(result);
             if (result > 0 || result.ResponseMetadata.HTTPStatusCode == 200 || result.ResponseMetadata.HTTPStatusCode == "200") {
                 showSnaps();
                 $.notify({message: "EBS Snapshot Deleted successfully"}, {

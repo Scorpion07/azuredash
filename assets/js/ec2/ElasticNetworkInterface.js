@@ -39,7 +39,7 @@ function ListENIData() {
         method: "ListResources",
         account: account
     }
-    console.log(submit);
+    //console.log(submit);
     ajaxrequest_pages.push(
     $.ajax({
         url: _config.api.invokeUrl+'/billing/services',
@@ -51,7 +51,7 @@ function ListENIData() {
         data: JSON.stringify(submit),
         success: function (respdata) {
             $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
-            console.log(respdata);
+            //console.log(respdata);
             $('#table').dataTable().fnDestroy();
             table = $('#table').DataTable({
                 data: respdata.data,
@@ -171,14 +171,14 @@ function deleteENIs() {
     var region = [];
     $(".checkboxes").each(function () {
         if ($(this).is(":checked")) {
-            //console.log();
-            console.log($(this).attr("data_nt_id"));
-            console.log(($(this).attr("data_region")).slice(0, -1));
+            ////console.log();
+            //console.log($(this).attr("data_nt_id"));
+            //console.log(($(this).attr("data_region")).slice(0, -1));
             eniid.push($(this).attr("data_nt_id"));
             region.push(($(this).attr("data_region")).slice(0, -1));
         }
     });
-    console.log(region);
+    //console.log(region);
     var submit = {
         region: region,
         method: "netinterDelete",
@@ -196,7 +196,7 @@ function deleteENIs() {
         crossDomain: true,
         data: JSON.stringify(submit),
         success: function (respdata) {
-            console.log(respdata)
+            //console.log(respdata)
             $("#loadingModal").hide();
             $('#deleteMulConformation').modal('hide');
             if (respdata > -1) {

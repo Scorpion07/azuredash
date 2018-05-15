@@ -118,10 +118,10 @@ function getDataSet() {
     var exttrainCostData = []
     var trainCostData = []
     var count = 0;
-    console.log("Upper JSON Loop");
+    //console.log("Upper JSON Loop");
 
     for (var i = 1; i < date + 1; i++) {
-        console.log("In a loop : " + i);
+        //console.log("In a loop : " + i);
         if (i < 10)
             tempdate = "0" + i.toString();
         else
@@ -207,7 +207,7 @@ function getDataSet() {
                 }
             }));
 
-        console.log("Inside json loop end : " + devCostData);
+        //console.log("Inside json loop end : " + devCostData);
     }
     return [
         {

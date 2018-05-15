@@ -38,98 +38,103 @@ function ListVPCData() {
         method: "ListResources",
         account: account
     }
-    console.log(submit);
+    //console.log(submit);
     ajaxrequest_pages.push(
-    $.ajax({
-        url: _config.api.invokeUrl+'/billing/services',
-        headers: {"Authorization": token},
-        type: 'post',
-        dataType: 'json',
-        contentType: 'application/json',
-        crossDomain: true,
-        data: JSON.stringify(submit),
-        success: function (respdata) {
-            console.log(respdata);
-            $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
-            $('#table').dataTable().fnDestroy();
-            table = $('#table').DataTable({
-                data: respdata.data,
-                serverside: true,
-                order: [],
+        $.ajax({
+            url: _config.api.invokeUrl + '/billing/services',
+            headers: {"Authorization": token},
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            crossDomain: true,
+            data: JSON.stringify(submit),
+            success: function (respdata) {
+                //console.log(respdata);
+                $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
+                $('#table').dataTable().fnDestroy();
+                table = $('#table').DataTable({
+                    data: respdata.data,
+                    serverside: true,
+                    order: [],
 
-                'rowCallback': function (row, data, iDisplayIndex) {
-                    if (account !== 'prod') {
-                        var check = '<input type="checkbox" id="checkboxclick" name="id[]" class="checkboxclick checkboxes" data_vpc_id="' + data.VpcId + '" data_region="' + data.Region + '">';
-                        $('td:eq(0)', row).html(check);
-                    }
-                    else {
-                        $('td:eq(0)', row).html(count += 1);
-                    }
-                },
+                    'rowCallback': function (row, data, iDisplayIndex) {
+                        if (account !== 'prod') {
+                            var check = '<input type="checkbox" id="checkboxclick" name="id[]" class="checkboxclick checkboxes" data_vpc_id="' + data.VpcId + '" data_region="' + data.Region + '">';
+                            $('td:eq(0)', row).html(check);
+                        }
+                        else {
+                            $('td:eq(0)', row).html(count += 1);
+                        }
+                    },
 
-                'columnDefs': [
-                    {"className": "dt-center", "defaultContent": "-", "targets": "_all"},
-                    {
-                        'targets': [0],
-                        'searchable': false,
-                        'orderable': false,
-                        'data': null,
-                    },
-                    {
-                        'targets': [1],
-                        'orderable': true,
-                        'data': 'Tags.0.Value'
-                    },
-                    {
-                        'targets': [2],
-                        'orderable': true,
-                        'data': 'VpcId',
-                    },
-                    {
-                        'targets': [3],
-                        'orderable': true,
-                        'data': 'State'
-                    },
-                    {
-                        'targets': [4],
-                        'orderable': true,
-                        'data': 'IsDefault'
-                    },
-                    {
-                        'targets': [5],
-                        'orderable': true,
-                        'data': 'CidrBlock'
-                    },
-                    {
-                        'targets': [6],
-                        'orderable': true,
-                        'data': 'DhcpOptionsId'
-                    },
-                    {
-                        'targets': [7],
-                        'orderable': true,
-                        'data': 'Region'
-                    }
-                ],
+                    'columnDefs': [
+                        {"className": "dt-center", "defaultContent": "-", "targets": "_all"},
+                        {
+                            'targets': [0],
+                            'searchable': false,
+                            'orderable': false,
+                            'data': null,
+                        },
+                        {
+                            'targets': [1],
+                            'orderable': true,
+                            'data': 'Tags.0.Value'
+                        },
+                        {
+                            'targets': [2],
+                            'orderable': true,
+                            'data': 'VpcId',
+                        },
+                        {
+                            'targets': [3],
+                            'orderable': true,
+                            'data': 'State'
+                        },
+                        {
+                            'targets': [4],
+                            'orderable': true,
+                            'data': 'IsDefault'
+                        },
+                        {
+                            'targets': [5],
+                            'orderable': true,
+                            'data': 'CidrBlock'
+                        },
+                        {
+                            'targets': [6],
+                            'orderable': true,
+                            'data': 'DhcpOptionsId'
+                        },
+                        {
+                            'targets': [7],
+                            'orderable': true,
+                            'data': 'Region'
+                        }
+                    ],
 
-                'select': {
-                    'style': 'multi'
+                    'select': {
+                        'style': 'multi'
+                    }
+
+                });
+                $('#loading').hide();
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                $('#loading').hide();
+                if (ajaxOptions === "abort") {
+                    return;
                 }
-
-            });
-            $('#loading').hide();
-
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            $('#loading').hide();
-            if (ajaxOptions === "abort"){
-                return;
+                else {
+                    $.notify({message: "Unable to Load"}, {
+                        type: "danger",
+                        placement: {from: "top", align: "center"},
+                        delay: 500,
+                        timer: 500
+                    });
+                }
             }
-            else {
-                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
-            }
-        }
-    }));
+        }));
 }
 
 function deleteModalVPCs() {
@@ -161,13 +166,13 @@ function deleteVPCs() {
     var region = [];
     $(".checkboxes").each(function () {
         if ($(this).is(":checked")) {
-            console.log($(this).attr("data_vpc_id"));
+            //console.log($(this).attr("data_vpc_id"));
             vpcid.push($(this).attr("data_vpc_id"));
             region.push(($(this).attr("data_region")));
         }
     });
-    console.log(region);
-    console.log(vpcid);
+    //console.log(region);
+    //console.log(vpcid);
     var submit = {
         region: region,
         method: "vpcDelete",
@@ -175,7 +180,7 @@ function deleteVPCs() {
         vpcids: vpcid
     }
     $.ajax({
-        url: _config.api.invokeUrl+'/billing/services',
+        url: _config.api.invokeUrl + '/billing/services',
         headers: {"Authorization": token},
         type: 'post',
         contentType: 'application/json',
@@ -184,26 +189,41 @@ function deleteVPCs() {
         crossDomain: true,
         data: JSON.stringify(submit),
         success: function (respdata) {
-            console.log(respdata)
+            //console.log(respdata)
             $("#loadingModal").hide();
-            $('#deleteConformation').modal('hide');
+            $('#deleteMulConformation').modal('hide');
             if (respdata >= 0) {
+                $.notify({message: "VPC Deleted Successfully"}, {
+                    type: "success",
+                    placement: {from: "top", align: "center"},
+                    delay: 500,
+                    timer: 500
+                });
                 showVPCs();
-                $.notify({message:"VPC Deleted Successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
             else {
-                $.notify({message:"Unable to Delete VPC"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                $.notify({message: "Unable to Delete VPC"}, {
+                    type: "danger",
+                    placement: {from: "top", align: "center"},
+                    delay: 500,
+                    timer: 500
+                });
             }
 
         },
         error: function (xhr, ajaxOptions, thrownError) {
             $("#loadingModal").hide();
             $('#deleteConformation').modal('hide');
-            if (ajaxOptions === "abort"){
+            if (ajaxOptions === "abort") {
                 return;
             }
             else {
-                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                $.notify({message: "Unable to Load"}, {
+                    type: "danger",
+                    placement: {from: "top", align: "center"},
+                    delay: 500,
+                    timer: 500
+                });
             }
 
         }

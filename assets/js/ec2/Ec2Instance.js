@@ -38,7 +38,7 @@ function ListInstanceData() {
         method: "ListResources",
         account: account
     }
-    console.log(submit);
+    //console.log(submit);
     ajaxrequest_pages.push(
         $.ajax({
             url: _config.api.invokeUrl + '/billing/services',
@@ -49,7 +49,7 @@ function ListInstanceData() {
             crossDomain: true,
             data: JSON.stringify(submit),
             success: function (respdata) {
-                console.log(respdata)
+                //console.log(respdata)
                 $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
                 $('#table').dataTable().fnDestroy();
                 table = $('#table').DataTable({
@@ -160,14 +160,14 @@ function deleteInstances() {
     var region = [];
     $(".checkboxes").each(function () {
         if ($(this).is(":checked")) {
-            //console.log();
-            console.log($(this).attr("data_instance_id"));
-            console.log(($(this).attr("data_region")))
+            ////console.log();
+            //console.log($(this).attr("data_instance_id"));
+            //console.log(($(this).attr("data_region")))
             instanceid.push($(this).attr("data_instance_id"));
             region.push(($(this).attr("data_region")));
         }
     });
-    console.log(region);
+    //console.log(region);
     var submit = {
         region: region,
         method: "instanceDelete",
@@ -184,7 +184,7 @@ function deleteInstances() {
         crossDomain: true,
         data: JSON.stringify(submit),
         success: function (respdata) {
-            console.log(respdata)
+            //console.log(respdata)
             $("#loadingModal").hide();
 
             if (respdata == "0" || respdata == 0) {
