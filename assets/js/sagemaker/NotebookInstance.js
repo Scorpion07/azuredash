@@ -131,7 +131,7 @@ function ListNotebookInstancesData() {
 }
 
 function deleteModalSagemakerNotebook() {
-    $("#modal_title").html("<h3>CloudTrails Deletion </h3>");
+    $("#modal_title").html("<h3>Sagemaker Notebook Instance Deletion </h3>");
     $("#delete_heading").text("Are you sure, you want to delete all this Notebook Instances?");
     $("#delete_li_show").html(" ");
     var notebook_name = [];

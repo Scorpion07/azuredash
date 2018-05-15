@@ -664,15 +664,15 @@ function showDashboard() {
                 $("#trails").text(result.cloudtrail);
                 if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
                     if (result.cloudtrail == "0" || result.cloudtrail == 0) {
-                        $("#trails").removeClass("text-danger");
+                        $("#cloudtrail").removeClass("text-danger");
                     }
                     else {
-                        $("#trails").addClass("text-danger");
+                        $("#cloudtrail").addClass("text-danger");
 
                     }
                 }
                 else {
-                    $("#trails").removeClass("text-danger");
+                    $("#cloudtrail").removeClass("text-danger");
 
                 }
             },
@@ -709,23 +709,23 @@ function showDashboard() {
                 $("#bs_env").text(result.beanstalkenv);
                 if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
                     if (result.beanstalkapp == "0" || result.beanstalkapp == 0) {
-                        $("#bs_app").removeClass("text-danger");
+                        $("#beanstalk_app").removeClass("text-danger");
                     }
                     else {
-                        $("#bs_app").addClass("text-danger");
+                        $("#beanstalk_app").addClass("text-danger");
 
                     }
                     if (result.beanstalkenv == "0" || result.beanstalkenv == 0) {
-                        $("#bs_env").removeClass("text-danger");
+                        $("#beastalk_env").removeClass("text-danger");
                     }
                     else {
-                        $("#bs_env").addClass("text-danger");
+                        $("#beastalk_env").addClass("text-danger");
 
                     }
                 }
                 else {
-                    $("#bs_app").removeClass("text-danger");
-                    $("#bs_env").removeClass("text-danger");
+                    $("#beanstalk_app").removeClass("text-danger");
+                    $("#beastalk_env").removeClass("text-danger");
                 }
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -760,15 +760,15 @@ function showDashboard() {
                 $("#datastream").text(result.kinesisdatastream);
                 if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
                     if (result.kinesisdatastream == "0" || result.kinesisdatastream == 0) {
-                        $("#datastream").removeClass("text-danger");
+                        $("#kinesis_datastream").removeClass("text-danger");
                     }
                     else {
-                        $("#datastream").addClass("text-danger");
+                        $("#kinesis_datastream").addClass("text-danger");
 
                     }
                 }
                 else {
-                    $("#datastream").removeClass("text-danger");
+                    $("#kinesis_datastream").removeClass("text-danger");
 
                 }
             },

@@ -119,7 +119,7 @@ function ListModelsData() {
 }
 
 function deleteModalSagemakerModel() {
-    $("#modal_title").html("<h3>CloudTrails Deletion </h3>");
+    $("#modal_title").html("<h3>Sagemaker Model Deletion </h3>");
     $("#delete_heading").text("Are you sure, you want to delete all this SageMaker Models?");
     $("#delete_li_show").html(" ");
     var model_name = [];

@@ -8,7 +8,7 @@ function checkdelete(SelectedResourceVar)
 	}
 	else if (SelectedResourceVar == "ebs_volume")
 	{
-
+        deleteModalVolume();
 	}
 	else if  (SelectedResourceVar == "ebs_snapshot")
 	{
@@ -22,6 +22,9 @@ function checkdelete(SelectedResourceVar)
 	{
 		deleteModalELBs();
 	}
+    else if (SelectedResourceVar == "eni") {
+        deleteModalENIs();
+    }
 	else if  (SelectedResourceVar == "lambda")
 	{
 		deleteModalLambdaFunctions();
@@ -32,10 +35,6 @@ function checkdelete(SelectedResourceVar)
     else if (SelectedResourceVar == "dbsnapshot"){
         deleteModalDBSnaps();
     }
-	else if  (SelectedResourceVar == "eni")
-	{
-		deleteModalENIs();
-	}
 	else if  (SelectedResourceVar == "vpc")
 	{
 		deleteModalVPCs();

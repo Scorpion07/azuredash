@@ -44,115 +44,126 @@ function ListSnapshotData() {
     console.log(submit);
 
     ajaxrequest_pages.push(
-    $.ajax({
-        url: _config.api.invokeUrl+'/billing/services',
-        headers: {"Authorization": token},
-        type: 'post',
-        dataType: 'json',
-        contentType: 'application/json',
-        crossDomain: true,
-        data: JSON.stringify(submit),
-        success: function (respdata) {
-            $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
-            $('#table').dataTable().fnDestroy();
-            table = $('#table').DataTable({
-                data: respdata.data,
-                serverside: true,
-                order: [],
-                'rowCallback': function (row, data, iDisplayIndex) {
-                    if (account !== 'prod') {
-                        var check = '<div class="row"><div class="col-md-4 col-md-offset-3"><div class="checkbox"><input type="checkbox" name="snapshot_id_check[]" class="checkboxclick snapshot_id_check" data-region="' + data.Region + '" onchange="onClickCheckHandler()" value="' + data.SnapshotId + '"></div></div></div>';
-                        $('td:eq(0)', row).html(check);
-                    }
-                    else {
-                        $('td:eq(0)', row).html(count += 1);
+        $.ajax({
+            url: _config.api.invokeUrl + '/billing/services',
+            headers: {"Authorization": token},
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            crossDomain: true,
+            data: JSON.stringify(submit),
+            success: function (respdata) {
+                $("#totalOfService").html("Total : <b>" + respdata.recordsTotal + "</b>");
+                $('#table').dataTable().fnDestroy();
+                table = $('#table').DataTable({
+                    data: respdata.data,
+                    serverside: true,
+                    order: [],
+                    'rowCallback': function (row, data, iDisplayIndex) {
+                        if (account !== 'prod') {
+                            var check = '<input type="checkbox" name="id[]" class="checkboxclick checkboxes" data_region="' + data.Region + '" data_snapshot_id="' + data.SnapshotId + '">';
+                            $('td:eq(0)', row).html(check);
+                        }
+                        else {
+                            $('td:eq(0)', row).html(count += 1);
+                        }
+
+                    },
+
+                    'columnDefs': [
+                        {"className": "dt-center", "defaultContent": "-", "targets": "_all"},
+                        {
+                            'targets': [0],
+                            'searchable': false,
+                            'orderable': false,
+                            'data': null,
+                        },
+                        {
+                            'targets': [1],
+                            'orderable': true,
+                            'data': 'Tags.0.Value'
+                        },
+                        {
+                            "targets": [2],
+                            "orderable": true,
+                            "searchable": true,
+                            "data": 'SnapshotId'
+                        },
+                        {
+                            "targets": [3],
+                            "orderable": true,
+                            "searchable": true,
+                            "data": 'VolumeId'
+                        },
+                        {
+                            "targets": [4],
+                            "orderable": true,
+                            "searchable": true,
+                            "data": 'VolumeSize'
+                        },
+                        {
+                            "targets": [5],
+                            "orderable": true,
+                            "searchable": true,
+                            "data": 'StartTime'
+                        },
+                        {
+                            'targets': [6],
+                            'orderable': true,
+                            'data': 'RegionName'
+                        }
+                    ],
+
+                    'select': {
+                        'style': 'multi'
                     }
 
-                },
+                });
+                $('#loading').hide();
 
-                'columnDefs': [
-                    {"className": "dt-center", "defaultContent": "-", "targets": "_all"},
-                    {
-                        'targets': [0],
-                        'searchable': false,
-                        'orderable': false,
-                        'data': null,
-                    },
-                    {
-                        'targets': [1],
-                        'orderable': true,
-                        'data': 'Tags.0.Value'
-                    },
-                    {
-                        "targets": [2],
-                        "orderable": true,
-                        "searchable": true,
-                        "data": 'SnapshotId'
-                    },
-                    {
-                        "targets": [3],
-                        "orderable": true,
-                        "searchable": true,
-                        "data": 'VolumeId'
-                    },
-                    {
-                        "targets": [4],
-                        "orderable": true,
-                        "searchable": true,
-                        "data": 'VolumeSize'
-                    },
-                    {
-                        "targets": [5],
-                        "orderable": true,
-                        "searchable": true,
-                        "data": 'StartTime'
-                    },
-                    {
-                        'targets': [6],
-                        'orderable': true,
-                        'data': 'RegionName'
-                    }
-                ],
-
-                'select': {
-                    'style': 'multi'
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                $('#loading').hide();
+                if (ajaxOptions === "abort") {
+                    return;
                 }
-
-            });
-            $('#loading').hide();
-
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            $('#loading').hide();
-            if (ajaxOptions === "abort"){
-                return;
+                else {
+                    $.notify({message: "Unable to Load"}, {
+                        type: "danger",
+                        placement: {from: "top", align: "center"},
+                        delay: 500,
+                        timer: 500
+                    });
+                }
             }
-            else {
-                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
-            }
-        }
-    }));
+        }));
 }
 
 function deleteSnaps() {
     $('.deleteMul').attr('disabled', true);
     $("#loadingMulModal").show();
-    var snapshot_id = $("#deleteids").val();
-    var regions = $("#delete_regions").val();
-
-    var snapshot_ids_array = (snapshot_id).split(",");
-    //console.log(snapshot_ids_array);
-    var region_array = (regions).split(",");
+    var Data = {};
+    $(".checkboxes").each(function () {
+        if ($(this).is(":checked")) {
+            var value = $(this).attr("data_snapshot_id")
+            var id = $(this).attr("data_region");
+            if (!(id in Data)) {
+                Data[id] = [];
+                Data[id].push(value);
+            }
+            else {
+                Data[id].push(value);
+            }
+        }
+    });
     var deleteData = {
         method: "snapshotDelete",
         account: account,
-        delMethod: "multiple",
-        region: region_array,
-        snapshot_id: snapshot_ids_array
+        region: Data
     }
     console.log(JSON.stringify(deleteData));
     $.ajax({
-        url: "https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/ec2resource/listservices",
+        url: _config.api.invokeUrl + '/billing/services',
         type: 'post',
         headers: {"Authorization": token},
         contentType: 'application/json',
@@ -165,21 +176,36 @@ function deleteSnaps() {
             console.log(result);
             if (result > 0 || result.ResponseMetadata.HTTPStatusCode == 200 || result.ResponseMetadata.HTTPStatusCode == "200") {
                 showSnaps();
-                $.notify({message:"EBS Snapshot Deleted successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                $.notify({message: "EBS Snapshot Deleted successfully"}, {
+                    type: "success",
+                    placement: {from: "top", align: "center"},
+                    delay: 500,
+                    timer: 500
+                });
             }
             else {
-                $.notify({message:"Unable to Delete EBS Snapshot"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                $.notify({message: "Unable to Delete EBS Snapshot"}, {
+                    type: "danger",
+                    placement: {from: "top", align: "center"},
+                    delay: 500,
+                    timer: 500
+                });
             }
 
             $('#deleteMulConformation').modal('hide');
         },
         error: function (xhr, ajaxOptions, thrownError) {
             $('#deleteMulConformation').modal('hide');
-            if (ajaxOptions === "abort"){
+            if (ajaxOptions === "abort") {
                 return;
             }
             else {
-                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                $.notify({message: "Unable to Load"}, {
+                    type: "danger",
+                    placement: {from: "top", align: "center"},
+                    delay: 500,
+                    timer: 500
+                });
             }
 
         }
@@ -187,55 +213,26 @@ function deleteSnaps() {
     });
 }
 
-$(".snapshot_id_check").change(function () {
-    if ($(this).prop("checked")) {
-
-    }
-    else {
-        $(".select_all").prop("checked", false);
-    }
-});
-
 function deleteModalSnaps() {
 
     //$(".btnmultipledelete").addClass("disabled");
     $("#modal_title").html("<h3>Snapshots Deletion</h3>");
-    $("#delete_heading").text("Are you sure, you want to delete all this snapshots ?");
+    $("#delete_heading").text("Are you sure, you want to delete all this Snapshots ?");
     $("#delete_li_show").html(" ");
 
-    var selectedSnap = [];
-    var selectedRegion = [];
+    var snapid_list = [];
+    var region_list = [];
 
-    var reqData = {}
-
-
-    var region_name;
-    $('.snapshot_id_check').each(function () {
+    $('.checkboxes').each(function () {
         if ($(this).is(":checked")) {
-            console.log($(this).closest('tr'));
-            //$this.parent('tr').addClass("selected");
-            region_name = $(this).attr('data-region');
-            if (region_name in reqData) {
-                reqData[region_name].push($(this).val());
-            }
-            else {
-                reqData[region_name].insert($(this).val());
-
-            }
-            selectedSnap.push($(this).val());
-            selectedRegion.push(region_name);
+            snapid_list.push($(this).attr("data_snapshot_id"));
+            region_list.push($(this).attr("data_region"));
         }
     });
-    console.log(selectedSnap);
-    console.log(selectedRegion);
-    $('[name="modal_ids"]').val(selectedSnap);
-    $('[name="modal_regions"]').val(selectedRegion);
-    selectedSnap.forEach(function (id) {
+    snapid_list.forEach(function (id) {
         var add = '<li><label>"' + id + '"</label></li>';
         $("#delete_li_show").append(add);
     });
-    console.log(reqData);
     $('.deleteMul').attr('disabled', false);
     $('#deleteMulConformation').modal('show');
-
 }
