@@ -1,1 +1,3 @@
 .idea/*
+assets\js\dependancies\config.js
+assets\js\dependancies\config-dev.js
