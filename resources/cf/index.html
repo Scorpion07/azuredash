@@ -134,20 +134,12 @@
             $('#nuser').keyup(function () {
 
             });
-            // console.log("username : "+userPool.getCurrentUser());
-            // console.log(window.localStorage.username);
-            // $('#username').text(window.localStorage.username);
         });
 
         function describeStack(stackname) {
             $("#loading").show();
-            // console.log(stackname)
             getStack = stackname;
-            // regionname= regionname;
             removeStack = getStack.splice(0, 1);
-            // console.log(getStack);
-            // console.log(regi);
-            // console.log(acType);
 
             var lambdadata = {
                 region: regi,
@@ -164,6 +156,7 @@
             }
             $.ajax({
                 url: _config.api.invokeUrl + '/resources/iam',
+                // url: _config.api.invokeUrlR + '/iam',
                 type: 'POST',
                 headers: {"Authorization": token},
                 crossDomain: true,
@@ -220,15 +213,15 @@
         }
 
         function sendget() {
-            $('#mytable').dataTable().fnDestroy();
             $("#loading").show();
+            $("#stackTable").hide();
+            $('#mytable').dataTable().fnDestroy();
             nouser = $("#nuser").val();
             Stname = $("#sname").val();
             templateS = $("#templatename").val();
             acType = $("#acType").val();
             companyname = $("#cname").val();
             regi = $("#regionname").val();
-            $('#mytable').dataTable().fnDestroy();
             // training = $("#tname").val();
             //pot = $("#tdate").val();
             var lamdadata = {
@@ -242,6 +235,7 @@
 
             $.ajax({
                 url: _config.api.invokeUrl + '/resources/iam',
+                // url: _config.api.invokeUrlR + '/iam',
                 type: 'POST',
                 headers: {"Authorization": token},
                 crossDomain: true,
@@ -249,6 +243,7 @@
                 dataType: 'json',
                 data: JSON.stringify(lamdadata),
                 success: function (getdata) {
+                    $('#mytable').dataTable().fnDestroy();
                     $("#nuser").val("");
                     $("#templatename").val("Select a Training");
                     $("#cname").val("");
@@ -278,12 +273,15 @@
                         }
                     }
                     else {
+                        $('#mytable').dataTable().fnDestroy();
                         $.notify("Fail to Launch Stacks", "error");
                         $("#loading").hide();
                     }
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
+
                     $.notify("error")
+                    $('#mytable').dataTable().fnDestroy();
                     //error handling stuff
                 }
             });
@@ -426,7 +424,7 @@
                     <center>
                         <div id="messagetimer" style="display: none"><h2>Please wait Stacks are Being Created and will
                             be ready in</h2></div>
-                        <div class="coundown" data-timer="60" style="width: 50%"></div>
+                        <div class="coundown" data-timer="240" style="width: 50%"></div>
                     </center>
                     <div class="row" id="stackTable" style="display: none;">
                         <div class="col-md-11">
@@ -436,7 +434,7 @@
                                 <tr>
                                     <th>STACK NAME</th>
                                     <th>CREATION TIME</th>
-                                    <th style="display: none;">Elastic Ip</th>
+                                    <th style="display: none;">OUTPUT</th>
                                 </tr>
                                 </thead>
                             </table>
