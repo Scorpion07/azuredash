@@ -121,7 +121,7 @@ function showDashboard() {
             contentType: 'application/json',
             data: JSON.stringify(elbs),
             success: function (result) {
-                console.log(result);
+                //console.log(result);
                 count += 1
                 loader();
                 $("#elb").text(result.elbs);
@@ -151,14 +151,14 @@ function showDashboard() {
             contentType: 'application/json',
             data: JSON.stringify(snapshot),
             success: function (result) {
-                console.log(result);
+                //console.log(result);
                 count += 1
                 loader();
                 $("#Snapshots").text(result.Snapshots);
                 $("#volumes").text(result.Volumes);
-                console.log("time : " + currentTime.getHours());
+                //console.log("time : " + currentTime.getHours());
                 if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
-                    console.log("sadADas" + currentTime.getHours());
+                    //console.log("sadADas" + currentTime.getHours());
                     if (result.Snapshots == "0" || result.Snapshots == 0) {
                         $("#SnapshotsD").removeClass("text-danger");
                     }
@@ -191,7 +191,7 @@ function showDashboard() {
             contentType: 'application/json',
             data: JSON.stringify(instances),
             success: function (result) {
-                console.log(result);
+                //console.log(result);
                 count += 1
                 loader();
                 var right = "<img src='assets/images/right.png' style='width: 15px;'>"
@@ -225,7 +225,7 @@ function showDashboard() {
             success: function (result) {
                 count += 1
                 loader();
-                console.log(result);
+                //console.log(result);
                 var right = "<img src='assets/images/right.png' style='width: 15px;'>"
                 var stop = "<img src='assets/images/red.png' style='width: 16px;'>"
                 $("#natRunning").html(right + " " + result.availablenatgateway);
@@ -273,7 +273,7 @@ function showDashboard() {
             success: function (result) {
                 count += 1
                 loader();
-                console.log(result);
+                //console.log(result);
                 $("#eip").text(result.ElasticIPs);
                 $("#eni").text(result.NetworkInterfaces);
                 if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
@@ -310,7 +310,7 @@ function showDashboard() {
             success: function (result) {
                 count += 1
                 loader();
-                console.log(result);
+                //console.log(result);
                 var c = parseInt(result.DBClusters) + parseInt(result.DBInstances);
                 $("#DBInstances").text(c);
                 $("#DBSnapshots").text(result.DBSnapshots);
@@ -348,7 +348,7 @@ function showDashboard() {
             success: function (result) {
                 count += 1
                 loader();
-                console.log(result);
+                //console.log(result);
                 $("#lambda").text(result.LambdaCount);
 
                 if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
@@ -377,7 +377,7 @@ function showDashboard() {
             success: function (result) {
                 count += 1
                 loader();
-                console.log("stack" + result);
+                //console.log("stack" + result);
                 $("#stack").text(result.StackCount);
 
                 if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
@@ -405,7 +405,7 @@ function showDashboard() {
             success: function (result) {
                 count += 1
                 loader();
-                console.log(result);
+                //console.log(result);
                 $("#noteint").text(result.NotebookInstances);
                 $("#end").text(result.Endpoint);
                 $("#jobs").text(result.Job);
@@ -461,7 +461,7 @@ function showDashboard() {
             success: function (result) {
                 count += 1
                 loader();
-                console.log(result);
+                //console.log(result);
                 $("#red_clust").text(result.RedshiftCluster);
                 $("#red_snapshots").text(result.RedshiftSnapshot);
 
@@ -497,7 +497,7 @@ function showDashboard() {
             success: function (result) {
                 count += 1
                 loader();
-                console.log(result);
+                //console.log(result);
                 $("#hostedzone").text(result.hostzone);
                 if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
                     if (result.hostzone == "0" || result.hostzone == 0) {
@@ -529,7 +529,7 @@ function showDashboard() {
             success: function (result) {
                 count += 1
                 loader();
-                console.log(result);
+                //console.log(result);
                 $("#trails").text(result.cloudtrail);
                 if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
                     if (result.cloudtrail == "0" || result.cloudtrail == 0) {
@@ -559,7 +559,7 @@ function showDashboard() {
             success: function (result) {
                 count += 1
                 loader();
-                console.log(result);
+                //console.log(result);
                 $("#bs_app").text(result.beanstalkapp);
                 $("#bs_env").text(result.beanstalkenv);
                 if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
@@ -598,7 +598,7 @@ function showDashboard() {
             success: function (result) {
                 count += 1
                 loader();
-                console.log(result);
+                //console.log(result);
                 $("#datastream").text(result.kinesisdatastream);
                 if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
                     if (result.kinesisdatastream == "0" || result.kinesisdatastream == 0) {
@@ -646,9 +646,9 @@ function CostofResources() {
 
 
     var getUrl = 'http://resources.cloudthat.com/' + "cost/" + account + "/" + year + "/" + month + "/" + date + '.json';
-    console.log(getUrl);
+    //console.log(getUrl);
     $.getJSON(getUrl, function (r) {
-        console.log(r);
+        //console.log(r);
         $("#ec2Instancecost").html(" $ " + parseFloat(r.ec2Instance).toFixed(2));
         $("#elbcost").html(" $ " + parseFloat(r.elb).toFixed(2));
         $("#snapcost").html(" $ " + parseFloat(r.snapshot).toFixed(2));
