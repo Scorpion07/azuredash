@@ -34,7 +34,6 @@
                 $("#hideshowdropdown").addClass("show");
             }
         }
-
         function dataValidations() {
             // var numbers = new RegExp(/^[0-9]\\d*$/);
             // var alphabeticnumeric = new RegExp(/^[a-zA-Z][0-9]\\d*$/);
@@ -389,8 +388,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-form-label" for="nuser"><b>Enter the number of Participants :</b></label>
-                                    <input type="text" id="nuser" placeholder="Enter the number of Participants"
-                                           pattern="[0-9]" class="form-control" required>
+                                    <input type="number" min="1" id="nuser"
+                                           placeholder="Enter the number of Participants"
+                                           class="form-control" required>
                                 </div>
                                 <!--<div class="form-group">-->
                                 <!--<label class="col-form-label" for="sname"><b>Enter the Stack Name :</b></label>-->
