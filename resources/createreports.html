@@ -66,17 +66,6 @@
         }
 
         $(document).ready(function () {
-            // 				$("#Tcreation").validate({
-            // 	rules: {
-            // 	nuser: "required",
-            // 	uname: "required",
-            // 	upolicy: "required"
-            // },
-            // messages: {
-            // 	nuser:"Please enter the no of user you want",
-            // 	uname: "Please enter the username",
-            // 	upolicy: "Select a valid policy"
-            // }
             checklogin();
             token = window.localStorage.getItem('token');
             $("#loginname").text(currUser.toString().trim());
@@ -93,6 +82,7 @@
             };
             $.ajax({
                 url: _config.api.invokeUrl + '/resources/iam',
+                // url: _config.api.invokeUrlR + '/iam',
                 type: 'POST',
                 headers: {"Authorization": token},
                 crossDomain: true,
@@ -179,8 +169,8 @@
             // console.log(resourcename+" "+expiryValue);
             $("#loadingMulModal").show();
             $.ajax({
-                // url: _config.api.invokeUrl + '/resources/iam',
-                url: _config.api.invokeUrlR + '/iam',
+                url: _config.api.invokeUrl + '/resources/iam',
+                // url: _config.api.invokeUrlR + '/iam',
                 type: 'post',
                 headers: {"Authorization": token},
                 contentType: 'application/json',
@@ -266,12 +256,6 @@
                     <div class="dropdown-menu" id="hideshowdropdown" aria-labelledby="btnGroupDrop1"
                          x-placement="bottom-start"
                          style="position: absolute; will-change: transform; top: 12px; left: -95px; transform: translate3d(0px, 38px, 0px);">
-                        <!-- 						<ul style="list-style-type: none;">
-                                                <li><span class="btn btn-disabled" id="loginname"></span></li><li>
-                                                <a class="btn" id="signout" onclick="signout();" title="signout" style="margin-right: -27px;">Logout
-                                                </a></li>
-
-                         -->
                         <span class="btn btn-disabled" id="loginname"></span><br>
                         <a class="btn" id="signout" onclick="signout();" title="signout" style="margin-right: -27px;">Logout
                         </a>

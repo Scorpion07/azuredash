@@ -21,6 +21,13 @@
     <script type="text/javascript" src="../../assets/js/dependancies/moment.min.js"></script>
     <script type="text/javascript" src="../../assets/js/dependancies/daterangepicker.js"></script>
     <script type="text/javascript" src="../../assets/js/signout.js"></script>
+    <style>
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
     <script>
         function refresh() {
             location.reload();
@@ -32,6 +39,23 @@
             }
             else {
                 $("#hideshowdropdown").addClass("show");
+            }
+        }
+        function dataValidations() {
+            // var numbers = new RegExp(/^[0-9]\\d*$/);
+            // var alphabeticnumeric = new RegExp(/^[a-zA-Z][0-9]\\d*$/);
+            var trainingV = $("#templatename option:selected");
+            var numberV = document.forms["Screation"]["nuser"].value;
+            var companyV = document.forms["Screation"]["cname"].value;
+            // var dateV = document.forms["Screation"]["tdate"].selectedIndex.value;
+
+
+            if (numberV == "" || companyV == "") {
+                $.notify("Input Required, Fields cant be empty");
+                return false;
+            }
+            else {
+                return true;
             }
         }
     </script>
@@ -134,20 +158,12 @@
             $('#nuser').keyup(function () {
 
             });
-            // console.log("username : "+userPool.getCurrentUser());
-            // console.log(window.localStorage.username);
-            // $('#username').text(window.localStorage.username);
         });
 
         function describeStack(stackname) {
             $("#loading").show();
-            // console.log(stackname)
             getStack = stackname;
-            // regionname= regionname;
             removeStack = getStack.splice(0, 1);
-            // console.log(getStack);
-            // console.log(regi);
-            // console.log(acType);
 
             var lambdadata = {
                 region: regi,
@@ -164,6 +180,7 @@
             }
             $.ajax({
                 url: _config.api.invokeUrl + '/resources/iam',
+                // url: _config.api.invokeUrlR + '/iam',
                 type: 'POST',
                 headers: {"Authorization": token},
                 crossDomain: true,
@@ -220,73 +237,79 @@
         }
 
         function sendget() {
-            $('#mytable').dataTable().fnDestroy();
-            $("#loading").show();
-            nouser = $("#nuser").val();
-            Stname = $("#sname").val();
-            templateS = $("#templatename").val();
-            acType = $("#acType").val();
-            companyname = $("#cname").val();
-            regi = $("#regionname").val();
-            $('#mytable').dataTable().fnDestroy();
-            // training = $("#tname").val();
-            //pot = $("#tdate").val();
-            var lamdadata = {
-                nuser: nouser,
-                sname: companyname + "-stack",
-                account: acType,
-                fname: templateS,
-                rname: regi,
-                method: "createCf"
-            };
+            if (dataValidations()) {
+                $("#loading").show();
+                $('#mytable').dataTable().fnDestroy();
+                $("#stackTable").hide();
+                nouser = $("#nuser").val();
+                Stname = $("#sname").val();
+                templateS = $("#templatename").val();
+                acType = $("#acType").val();
+                companyname = $("#cname").val();
+                regi = $("#regionname").val();
+                // training = $("#tname").val();
+                //pot = $("#tdate").val();
+                var lamdadata = {
+                    nuser: nouser,
+                    sname: companyname + "-stack",
+                    account: acType,
+                    fname: templateS,
+                    rname: regi,
+                    method: "createCf"
+                };
 
-            $.ajax({
-                url: _config.api.invokeUrl + '/resources/iam',
-                type: 'POST',
-                headers: {"Authorization": token},
-                crossDomain: true,
-                contentType: 'application/json',
-                dataType: 'json',
-                data: JSON.stringify(lamdadata),
-                success: function (getdata) {
-                    $("#nuser").val("");
-                    $("#templatename").val("Select a Training");
-                    $("#cname").val("");
-                    $("#regionname").val("Select a Regions");
-                    if (getdata[0] == "success") {
-                        $.notify("Stack Creations In Progress", "success");
-                        // check_create(templateS, nouser);
-                        $("#loading").hide();
-                        $("#messagetimer").show();
-                        $(".coundown").TimeCircles({
-                            count_past_zero: false,
-                            "bg_width": 0.2,
-                            "fg_width": 0.08333333333333333,
-                            time: {
-                                Days: {show: false},
-                                Hours: {show: false},
-                                Minutes: {show: true},
-                                Seconds: {show: true}
-                            }
-                        }).addListener(countdownComplete);
+                $.ajax({
+                    url: _config.api.invokeUrl + '/resources/iam',
+                    // url: _config.api.invokeUrlR + '/iam',
+                    type: 'POST',
+                    headers: {"Authorization": token},
+                    crossDomain: true,
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    data: JSON.stringify(lamdadata),
+                    success: function (getdata) {
+                        $("#nuser").val("");
+                        $("#templatename").val("Select a Training");
+                        $("#cname").val("");
+                        $("#regionname").val("Select a Regions");
+                        if (getdata[0] == "success") {
+                            $.notify("Stack Creations In Progress", "success");
+                            // check_create(templateS, nouser);
+                            $("#loading").hide();
+                            $("#messagetimer").show();
+                            $(".coundown").TimeCircles({
+                                count_past_zero: false,
+                                "bg_width": 0.2,
+                                "fg_width": 0.08333333333333333,
+                                time: {
+                                    Days: {show: false},
+                                    Hours: {show: false},
+                                    Minutes: {show: true},
+                                    Seconds: {show: true}
+                                }
+                            }).addListener(countdownComplete);
 
-                        function countdownComplete(unit, value, total) {
-                            if (total <= 0) {
-                                $(this).fadeOut('slow').replaceWith(describeStack(getdata));
-                                $("#messagetimer").hide();
+                            function countdownComplete(unit, value, total) {
+                                if (total <= 0) {
+                                    $(this).fadeOut('slow').replaceWith(describeStack(getdata));
+                                    $("#messagetimer").hide();
+                                }
                             }
                         }
+                        else {
+                            $('#mytable').dataTable().fnDestroy();
+                            $.notify("Fail to Launch Stacks", "error");
+                            $("#loading").hide();
+                        }
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+
+                        $.notify("error")
+                        $('#mytable').dataTable().fnDestroy();
+                        //error handling stuff
                     }
-                    else {
-                        $.notify("Fail to Launch Stacks", "error");
-                        $("#loading").hide();
-                    }
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    $.notify("error")
-                    //error handling stuff
-                }
-            });
+                });
+            }
         }
     </script>
     <head>
@@ -360,7 +383,7 @@
                 <td width="25%">
                     <div class="row">
                         <div class="col-md-11 col-md-offset-1">
-                            <form id="Tcreation" style="margin-left: 12px;">
+                            <form id="Screation" style="margin-left: 12px;">
                                 <div class="form-group">
                                     <label class="col-form-label" for="templatename"><b>Select a Training</b></label>
                                     <select class="form-control" id="templatename">
@@ -372,8 +395,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-form-label" for="nuser"><b>Enter the number of Participants :</b></label>
-                                    <input type="text" id="nuser" placeholder="Enter the number of Participants"
-                                           pattern="[0-9]" class="form-control" required>
+                                    <input type="number" min="1" id="nuser"
+                                           placeholder="Enter the number of Participants"
+                                           class="form-control">
                                 </div>
                                 <!--<div class="form-group">-->
                                 <!--<label class="col-form-label" for="sname"><b>Enter the Stack Name :</b></label>-->
@@ -426,7 +450,7 @@
                     <center>
                         <div id="messagetimer" style="display: none"><h2>Please wait Stacks are Being Created and will
                             be ready in</h2></div>
-                        <div class="coundown" data-timer="60" style="width: 50%"></div>
+                        <div class="coundown" data-timer="240" style="width: 50%"></div>
                     </center>
                     <div class="row" id="stackTable" style="display: none;">
                         <div class="col-md-11">
@@ -436,7 +460,7 @@
                                 <tr>
                                     <th>STACK NAME</th>
                                     <th>CREATION TIME</th>
-                                    <th style="display: none;">Elastic Ip</th>
+                                    <th style="display: none;">OUTPUT</th>
                                 </tr>
                                 </thead>
                             </table>
