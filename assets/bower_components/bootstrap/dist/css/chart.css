@@ -21,8 +21,8 @@ body {
 #chartbox {
     float: left;
     position: relative;
-    width: 49%;
-    background: #26c6da;
+    width: 98%;
+    background: #20629b;
     padding: 30px;
     margin-right: 2%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -41,7 +41,7 @@ body {
 #chartbox > div {
     float: left;
     width: 100%;
-    height: 150px;
+    height: 100%;
     color: #fff;
 }
 #chartbox > div > canvas {
