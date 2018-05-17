@@ -61,7 +61,7 @@ function showLineChart() {
             hoverable: true,
             borderWidth: 2,
             borderColor: "#c26437",
-            backgroundColor: {colors: ["#f2f2f2", "#808285"]}
+            backgroundColor: {colors: ["#808285", "#f2f2f2"]}
         },
     });
     $("#loading").hide();
