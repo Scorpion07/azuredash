@@ -22,7 +22,7 @@ body {
     float: left;
     position: relative;
     width: 98%;
-    background: #20629b;
+    /*background: #20629b;*/
     padding: 30px;
     margin-right: 2%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -42,25 +42,9 @@ body {
     float: left;
     width: 100%;
     height: 70%;
-    color: #fff;
+    /*color: #fff;*/
 }
 #chartbox > div > canvas {
     width: 100%;
     max-width: 100%;
-}
-#chartbox header {
-    background: #fff;
-    display: block;
-    margin: -30px -30px 30px -30px;
-    padding: 30px 30px;
-}
-#chartbox header h2 {
-    line-height: 1;
-    padding: 0;
-    margin: 0;
-    font-family: "roboto", sans-serif;
-    font-weight: 600;
-    font-size: 20px;
-    color: #556078;
-    -webkit-font-smoothing: antialiased;
 }
