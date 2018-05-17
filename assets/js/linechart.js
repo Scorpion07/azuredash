@@ -1,6 +1,10 @@
 function showLineChart() {
     $("#loading").show();
     $("#loading").css("style", "display: block");
+    $("#totalOtherCost").css("style", "display: none");
+    $("#totalAccountCost").css("style", "display: none");
+
+
 
     var dataset = getDataSet();
     var month = getMonth();
