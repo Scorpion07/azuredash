@@ -1,12 +1,7 @@
 function showLineChart() {
     $("#loading").show();
     $("#loading").css("style", "display: block");
-    $("#totalOtherCost").css("style", "display: none");
-    $("#totalAccountCost").css("style", "display: none");
-    $("#account").css("style", "display: none");
-    document.getElementById("account").setAttribute("style", "display: none");
-    document.getElementById("totalOtherCost").setAttribute("style", "display: none");
-    document.getElementById("totalAccountCost").setAttribute("style", "display: none");
+
 
 
     var dataset = getDataSet();
