@@ -2,8 +2,6 @@ function showLineChart() {
     $("#loading").show();
     $("#loading").css("style", "display: block");
 
-
-
     var dataset = getDataSet();
     var month = getMonth();
     var tick = getTick();

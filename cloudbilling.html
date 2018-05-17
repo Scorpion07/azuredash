@@ -68,7 +68,7 @@
             <a href="#" class="sidebar-toggle" id="defaultclick" data-toggle="push-menu" role="button">
                 <span class="sr-only">Toggle navigation</span>
             </a>
-            <div style="margin-right: 1%; float:right">
+            <div style="margin-right: 1%; float:right" id="advmenu">
                         <table style="background: none;" >
                             <tr>
                                 <td class="text-white" style="width:auto; padding: 5px;"  id="totalOtherCost">
@@ -95,6 +95,22 @@
                                 <td class="text-white" style="width:auto;padding: 5px;" id="totalAccountCost">
                                     Display total cost of Account
                                 </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin-right: 1%; float:right; display:none;" id="smallmenu">
+                        <table style="background: none;" >
+                            <tr>
+                                <td rowspan="2" style="padding: 5px;">
+                                    <button type="button" class="btn btn-default btn-sm" id="signout"
+                                            onclick="signout();"
+                                            style="float:right; color:#20629b; font-size:16.5px;">
+                                        <span class="glyphicon glyphicon-log-out"></span> Log out
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
                             </tr>
                         </table>
                     </div>

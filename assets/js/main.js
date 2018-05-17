@@ -143,30 +143,17 @@ $(document).on('click', '.SelectedResource', function () {
         $("#Dashboard").css("display", "block");
         $("#Services").css("display", "none");
         $("#Chart").css("display","none");
-        $("#totalOtherCost").css("style", "display: block");
-        $("#totalAccountCost").css("style", "display: block");
-        $("#account").css("style", "display: block");
-        // document.getElementById("account").setAttribute("style", "display: block");
-        // document.getElementById("totalOtherCost").setAttribute("style", "display: block");
-        // document.getElementById("totalAccountCost").setAttribute("style", "display: block");
     }
     else if(SelectedResourceVar == "linechart"){
         $("#Dashboard").css("display", "none");
         $("#Services").css("display", "none");
         $("#Chart").css("display","block");
-
-        $("#totalOtherCost").css("style", "display: none");
-        $("#totalAccountCost").css("style", "display: none");
-        $("#account").css("style", "display: none");
         stopRequests(SelectedResourceVar);
     }
     else {
         $("#Dashboard").css("display", "none");
         $("#Services").css("display", "block");
         $("#Chart").css("display","none");
-        $("#totalOtherCost").css("style", "display: block");
-        $("#totalAccountCost").css("style", "display: block");
-        $("#account").css("style", "display: block");
         stopRequests(SelectedResourceVar);
     }
     load_resource_js(SelectedResourceVar);
