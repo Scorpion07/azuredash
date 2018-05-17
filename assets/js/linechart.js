@@ -60,8 +60,8 @@ function showLineChart() {
         grid: {
             hoverable: true,
             borderWidth: 2,
-            borderColor: "#633200",
-            backgroundColor: {colors: ["#ffffff", "#EDF5FF"]}
+            borderColor: "#c26437",
+            backgroundColor: {colors: ["#f2f2f2", "#808285"]}
         },
     });
     $("#loading").hide();
