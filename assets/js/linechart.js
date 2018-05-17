@@ -215,26 +215,26 @@ function getDataSet() {
         {
             label: "Developer",
             data: devCostData,
-            points: {symbol: "triangle", fillColor: "#20629b"},
-            color: '#20629b'
+            points: {symbol: "triangle", fillColor: "#1995ff"},
+            color: '#1995ff'
         },
         {
             label: "Production",
             data: prodCostData,
-            points: {symbol: "square", fillColor: "#ff8800"},
-            color: '#ff8800'
+            points: {symbol: "square", fillColor: "#20629b"},
+            color: '#20629b'
         },
         {
             label: "External Training",
             data: exttrainCostData,
-            points: {symbol: "cross", fillColor: "#af0000",radius:4},
-            color: '#af0000'
+            points: {symbol: "cross", fillColor: "#f15645",radius:4},
+            color: '#f15645'
         },
         {
             label: "Training",
             data: trainCostData,
-            points: {symbol: "circle", fillColor: "#108e00"},
-            color: '#108e00'
+            points: {symbol: "circle", fillColor: "#c26437"},
+            color: '#c26437'
         },
     ];
 
