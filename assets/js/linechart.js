@@ -59,8 +59,8 @@ function showLineChart() {
         },
         grid: {
             hoverable: true,
-            borderWidth: 2,
-            borderColor: "#c26437",
+            borderWidth: 0,
+            borderColor: rgba(0,0,0,0),
             backgroundColor: {colors: ["#808285", "#f2f2f2"]}
         },
     });
