@@ -55,7 +55,7 @@ function showLineChart() {
         legend: {
             noColumns: 0,
             labelBoxBorderColor: "#000000",
-            position: "nw"
+            position: "ne"
         },
         grid: {
             hoverable: true,
