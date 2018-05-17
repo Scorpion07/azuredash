@@ -53,7 +53,7 @@ function showLineChart() {
             position: "bottom"
         },
         legend: {
-            noColumns: 0,
+            noColumns: 4,
             labelBoxBorderColor: "#000000",
             position: "ne"
         },
