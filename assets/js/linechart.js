@@ -59,7 +59,7 @@ function showLineChart() {
         grid: {
             hoverable: true,
             borderWidth: 0,
-            borderColor: rgba(0,0,0,0),
+            // borderColor: rgba(0,0,0,0),
             backgroundColor: {colors: ["#808285", "#f2f2f2"]}
         },
     });
