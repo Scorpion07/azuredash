@@ -233,8 +233,8 @@ function getDataSet() {
         {
             label: "Training",
             data: trainCostData,
-            points: {symbol: "circle", fillColor: "#c26437"},
-            color: '#c26437'
+            points: {symbol: "circle", fillColor: "#009ba7"},
+            color: '#009ba7'
         },
     ];
 
