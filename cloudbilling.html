@@ -1,4 +1,4 @@
-<html style="height: auto; min-height: 100%;">
+<html style="height: auto; min-height: 100%; width: auto; min-width: 100%;">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -52,7 +52,7 @@
     <link rel="stylesheet" href="assets/css/custom.css">
 
 </head>
-<body class="skin-blue sidebar-mini sidebar-open" style="height: auto; min-height: 100%;">
+<body class="skin-blue sidebar-mini sidebar-open" style="height: auto; min-height: 100%; width: auto; min-width: 100%;">
 <div class="wrapper" style="height: auto; min-height: 100%;">
     <header class="main-header">
         <!-- Logo -->
@@ -68,71 +68,100 @@
             <a href="#" class="sidebar-toggle" id="defaultclick" data-toggle="push-menu" role="button">
                 <span class="sr-only">Toggle navigation</span>
             </a>
-
-            <!-- Navbar Right Menu -->
-            <div class="navbar-custom-menu">
-                <div class="nav navbar-nav">
-                    <div class="row" style="margin-right: 10%;">
-                        <div class="col-lg-1" style="margin-right: 33px; margin-top: 1%; ">
-                            <!--<img src="assets/images/ct_image.png" height="20px" style="margin-top: 10%;"/>-->
-                        </div>
-                        <div class="col-lg-4" ><!-- <li></li> -->
-                            <div class="form-group" style="margin-bottom:unset;margin-top: 1%;">
-                                <div class="form-group" style="margin-bottom:unset;font-size: 18px;">
-                                    <label class="nav-link text-white" style="margin-bottom:unset;">
-                                        <div id="totalOtherCost" class="col align-self-start" style="margin-top: 3%;">Cost of Other services : $ 12.8</div>
-                                    </label>
-                                </div>
-                            </div>
-                        </div><!--  <ul> -->
-                        <div class="col-lg-4" ><!-- <li></li> -->
-                            <div class="form-group" style="margin-bottom:unset;margin-top: 1%;">
-                                <div class="form-group" style="margin-bottom:unset;font-size: 18px;">
-                                    <label class="nav-link text-white" style="margin-bottom:unset;">
-                                        <div id="totalAccountCost" class="col align-self-end" style="margin-top: 2.5%;">Cost of Other services : $ 12.83</div>
-                                    </label>
-                                </div>
-                            </div>
-                        </div><!--  <ul> -->
-                        <div class="col-lg-1" style=" float: none;display: inline-block;"><!-- <li></li> -->
-                            <table style="background: none;">
-                                <tr>
-                                    <td>
-                                        <div class="form-group"
-                                             style="margin-right: 22px;margin-top: 3%;margin-bottom: 0px;">
-                                            <select class="form-control" id="account"
-                                                    style="font-size: 16px;width: 170px;height: 36px;">
-                                                <option value="dev">Developer</option>
-                                                <option value="prod">Production</option>
-                                                <option value="training">Training</option>
-                                                <option value="exttrain">External Training</option>
-                                            </select>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>  <!-- <li></li> -->
-                                            <!-- <a href="#" data-toggle="control-sidebar" style="float: right;margin-top: -32px;padding-right: 20px;"><i class="fa fa-gears"></i></a> -->
-                                            <!--<a class="btn" id="signout" onclick="signout();" title="signout"-->
-                                            <!--style="float: right;margin-top: -44px;  padding-right: 17px; ">-->
-                                            <!--<input type="image" src="assets/icons/logout.png" alt="Submit" width="25"></a>-->
-
-                                            <button type="button" class="btn btn-default btn-sm" id="signout"
-                                                    onclick="signout();"
-                                                    style="float:right; color:#20629b; font-size:16.5px; margin-top: 6%; margin-right: 10%">
-                                                <span class="glyphicon glyphicon-log-out"></span> Log out
-                                            </button>
-
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-
-
-                        </div>
+            <div style="margin-right: 1%; float:right">
+                        <table style="background: none;">
+                            <tr>
+                                <td class="text-white" style="width:auto;"  id="totalOtherCost">
+                                    Display Other Cost
+                                </td>
+                                <td rowspan="2">
+                                    <select class="form-control" id="account"
+                                        style="font-size: 16px;width: auto;">
+                                        <option value="dev">Developer</option>
+                                        <option value="prod">Production</option>
+                                        <option value="training">Training</option>
+                                        <option value="exttrain">External Training</option>
+                                    </select>
+                                </td>
+                                <td rowspan="2">
+                                    <button type="button" class="btn btn-default btn-sm" id="signout"
+                                    onclick="signout();"
+                                    style="float:right; color:#20629b; font-size:16.5px;">
+                                    <span class="glyphicon glyphicon-log-out"></span> Log out
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-white" style="width:auto;" id="totalAccountCost">
+                                    Display total cost of Account
+                                </td>
+                            </tr>
+                        </table>
                     </div>
+            <!-- Navbar Right Menu -->
+            <!--<div class="navbar-custom-menu">-->
+                <!--<div class="nav navbar-nav">-->
+                    <!--<div class="row" style="margin-right: 10%;">-->
+                        <!--<div class="col-lg-1" style="margin-right: 33px; margin-top: 1%; ">-->
+                            <!--&lt;!&ndash;<img src="assets/images/ct_image.png" height="20px" style="margin-top: 10%;"/>&ndash;&gt;-->
+                        <!--</div>-->
+                        <!--<div class="col-lg-4" >&lt;!&ndash; <li></li> &ndash;&gt;-->
+                            <!--<div class="form-group" style="margin-bottom:unset;margin-top: 1%;">-->
+                                <!--<div class="form-group" style="margin-bottom:unset;font-size: 18px;">-->
+                                    <!--<label class="nav-link text-white" style="margin-bottom:unset;">-->
+                                        <!--<div id="totalOtherCost" class="col align-self-start" style="margin-top: 3%;">Cost of Other services : $ 12.8</div>-->
+                                    <!--</label>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>&lt;!&ndash;  <ul> &ndash;&gt;-->
+                        <!--<div class="col-lg-4" >&lt;!&ndash; <li></li> &ndash;&gt;-->
+                            <!--<div class="form-group" style="margin-bottom:unset;margin-top: 1%;">-->
+                                <!--<div class="form-group" style="margin-bottom:unset;font-size: 18px;">-->
+                                    <!--<label class="nav-link text-white" style="margin-bottom:unset;">-->
+                                        <!--<div id="totalAccountCost" class="col align-self-end" style="margin-top: 2.5%;">Cost of Other services : $ 12.83</div>-->
+                                    <!--</label>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>&lt;!&ndash;  <ul> &ndash;&gt;-->
+                        <!--<div class="col-lg-1" style=" float: none;display: inline-block;">&lt;!&ndash; <li></li> &ndash;&gt;-->
+                            <!--<table style="background: none;">-->
+                                <!--<tr>-->
+                                    <!--<td>-->
+                                        <!--<div class="form-group"-->
+                                             <!--style="margin-right: 22px;margin-top: 3%;margin-bottom: 0px;">-->
+                                            <!--<select class="form-control" id="account"-->
+                                                    <!--style="font-size: 16px;width: 170px;height: 36px;">-->
+                                                <!--<option value="dev">Developer</option>-->
+                                                <!--<option value="prod">Production</option>-->
+                                                <!--<option value="training">Training</option>-->
+                                                <!--<option value="exttrain">External Training</option>-->
+                                            <!--</select>-->
+                                        <!--</div>-->
+                                    <!--</td>-->
+                                    <!--<td>-->
+                                        <!--<div>  &lt;!&ndash; <li></li> &ndash;&gt;-->
+                                            <!--&lt;!&ndash; <a href="#" data-toggle="control-sidebar" style="float: right;margin-top: -32px;padding-right: 20px;"><i class="fa fa-gears"></i></a> &ndash;&gt;-->
+                                            <!--&lt;!&ndash;<a class="btn" id="signout" onclick="signout();" title="signout"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;style="float: right;margin-top: -44px;  padding-right: 17px; ">&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<input type="image" src="assets/icons/logout.png" alt="Submit" width="25"></a>&ndash;&gt;-->
 
-                </div>
-            </div>
+                                            <!--<button type="button" class="btn btn-default btn-sm" id="signout"-->
+                                                    <!--onclick="signout();"-->
+                                                    <!--style="float:right; color:#20629b; font-size:16.5px; margin-top: 6%; margin-right: 10%">-->
+                                                <!--<span class="glyphicon glyphicon-log-out"></span> Log out-->
+                                            <!--</button>-->
+
+                                        <!--</div>-->
+                                    <!--</td>-->
+                                <!--</tr>-->
+                            <!--</table>-->
+
+
+                        <!--</div>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+            <!--</div>-->
         </nav>
     </header>
     <!-- Left side column. contains the logo and sidebar -->
