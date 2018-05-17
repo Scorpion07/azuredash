@@ -30,7 +30,8 @@ function showLineChart() {
             axisLabelPadding: 20,
             axisLabelFontFamily: 'Cambria',
             axisLabelColour: "#000000",
-            weight:600
+            weight:600,
+            position: "left"
 
         },
         xaxis: {
@@ -48,7 +49,8 @@ function showLineChart() {
             axisLabelPadding: 20,
             axisLabelFontFamily: 'Cambria',
             axisLabelColour: "#000000",
-            weight:600
+            weight:600,
+            position: "bottom"
         },
         legend: {
             noColumns: 0,
