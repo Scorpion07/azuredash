@@ -17,3 +17,50 @@ body {
     font-family: cambria;
     font-size: 15px;
 }
+
+#chartbox {
+    float: left;
+    position: relative;
+    width: 49%;
+    background: #26c6da;
+    padding: 30px;
+    margin-right: 2%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+#chartbox + #chartbox {
+    margin: 0px;
+}
+#chartbox:after {
+    padding-top: 30%;
+    /* 16:9 ratio */
+    display: block;
+    content: '';
+}
+#chartbox > div {
+    float: left;
+    width: 100%;
+    height: 150px;
+    color: #fff;
+}
+#chartbox > div > canvas {
+    width: 100%;
+    max-width: 100%;
+}
+#chartbox header {
+    background: #fff;
+    display: block;
+    margin: -30px -30px 30px -30px;
+    padding: 30px 30px;
+}
+#chartbox header h2 {
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+    font-family: "roboto", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: #556078;
+    -webkit-font-smoothing: antialiased;
+}
