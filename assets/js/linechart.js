@@ -24,8 +24,8 @@ function showLineChart() {
             },
             // margin: 2%,
             show: true,
-            ticks: tick,
-            // tickSize: 25,
+            // ticks: tick,
+            tickSize: 25,
             axisLabel: "Cost(in USD)",
             // axisLabelUseCanvas: true,
             axisLabelFontSizePixels: 15,
@@ -47,7 +47,7 @@ function showLineChart() {
             axisLabel: month.toString(),
             // axisLabelUseCanvas: true,
             axisLabelFontSizePixels: 15,
-            // axisLabelPadding: 20,
+            axisLabelPadding: 20,
             axisLabelFontFamily: 'Cambria',
             axisLabelColour: "#000000",
             // weight:600,
@@ -57,7 +57,7 @@ function showLineChart() {
             // noColumns: 4,
             labelBoxBorderColor: "#000000",
             position: "nw",
-            margin: "2%"
+            // margin: "2%"
         },
         grid: {
             hoverable: true,
