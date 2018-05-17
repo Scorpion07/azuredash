@@ -24,13 +24,12 @@ function showLineChart() {
             },
             show: true,
             tickSize: 25,
-            axisLabel: "Cost $",
-            axisLabelUseCanvas: true,
+            axisLabel: "Cost(in USD)",
+            // axisLabelUseCanvas: true,
             axisLabelFontSizePixels: 15,
-            axisLabelPadding: 20,
+            // axisLabelPadding: 20,
             axisLabelFontFamily: 'Cambria',
             axisLabelColour: "#000000",
-            weight:600,
             position: "left"
 
         },
@@ -44,16 +43,16 @@ function showLineChart() {
             ticks: tick,
             show: true,
             axisLabel: month.toString(),
-            axisLabelUseCanvas: true,
+            // axisLabelUseCanvas: true,
             axisLabelFontSizePixels: 15,
-            axisLabelPadding: 20,
+            // axisLabelPadding: 20,
             axisLabelFontFamily: 'Cambria',
             axisLabelColour: "#000000",
-            weight:600,
+            // weight:600,
             position: "bottom"
         },
         legend: {
-            noColumns: 4,
+            // noColumns: 4,
             labelBoxBorderColor: "#000000",
             position: "ne"
         },
