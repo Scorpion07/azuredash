@@ -22,8 +22,10 @@ function showLineChart() {
                 family:"cambria",
                 color:"#000000"
             },
+            // margin: 2%,
             show: true,
-            tickSize: 25,
+            ticks: tick,
+            // tickSize: 25,
             axisLabel: "Cost(in USD)",
             // axisLabelUseCanvas: true,
             axisLabelFontSizePixels: 15,
@@ -54,7 +56,8 @@ function showLineChart() {
         legend: {
             // noColumns: 4,
             labelBoxBorderColor: "#000000",
-            position: "ne"
+            position: "nw",
+            margin: 2%
         },
         grid: {
             hoverable: true,
