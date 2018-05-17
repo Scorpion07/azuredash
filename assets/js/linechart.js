@@ -57,7 +57,7 @@ function showLineChart() {
             // noColumns: 4,
             labelBoxBorderColor: "#000000",
             position: "nw",
-            margin: 2%
+            margin: "2%"
         },
         grid: {
             hoverable: true,
