@@ -350,8 +350,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-form-label" for="nuser"><b>Enter the number of Participants :</b></label>
-                                    <input type="text" id="nuser" placeholder="Enter the number of Participants"
-                                           class="form-control">
+                                    <input type="number" id="nuser" placeholder="Enter the number of Participants"
+                                           class="form-control" min="1" max="30" required>
                                     <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                                     -->
                                 </div>
@@ -365,9 +365,9 @@
                                 <div class="form-group">
                                     <label class="col-form-label" for="cname"><b>Enter the Company Name :</b></label>
                                     <input type="text" id="cname" placeholder="Enter the Company Name"
-                                           class="form-control">
-                                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                                    -->
+                                           class="form-control" required>
+                                    <small id="companyHelp" class="form-text text-muted">Company Name Only Accepts Alphanumeric Characters, or any of the following: _+=,.@</small>
+
                                 </div>
                                 <!-- <div class="form-group">
                                                     <label class="col-form-label" for="tname"><b>Enter the Training Name :</b></label>
