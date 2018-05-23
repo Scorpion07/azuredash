@@ -172,7 +172,7 @@
                 var lamdadata = {
                     nuser: nouser,
                     cname: companyname,
-                    uname: companyname + "-user",
+                    uname: companyname.replace(/ /g,"") + "-user",
                     upolicy: policyuser,
                     account: acType,
                     tdays: days,
