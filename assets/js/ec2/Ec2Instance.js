@@ -37,7 +37,7 @@ function ListInstanceData() {
         submethod: SelectedResourceVar,
         method: "ListResources",
         account: account
-    }
+    };
     //console.log(submit);
     ajaxrequest_pages.push(
         $.ajax({
@@ -121,7 +121,7 @@ function ListInstanceData() {
             error: function (xhr, ajaxOptions, thrownError) {
                 $('#loading').hide();
                 if (ajaxOptions === "abort"){
-                    return;
+
                 }
                 else {
                     $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
@@ -160,9 +160,6 @@ function deleteInstances() {
     var region = [];
     $(".checkboxes").each(function () {
         if ($(this).is(":checked")) {
-            ////console.log();
-            //console.log($(this).attr("data_instance_id"));
-            //console.log(($(this).attr("data_region")))
             instanceid.push($(this).attr("data_instance_id"));
             region.push(($(this).attr("data_region")));
         }
@@ -173,7 +170,7 @@ function deleteInstances() {
         method: "instanceDelete",
         account: account,
         instanceids: instanceid
-    }
+    };
     $.ajax({
         url: _config.api.invokeUrl + '/billing/services',
         headers: {"Authorization": token},
@@ -199,8 +196,8 @@ function deleteInstances() {
         error: function (xhr, ajaxOptions, thrownError) {
             $('#deleteMulConformation').modal('hide');
             if (ajaxOptions === "abort"){
-            return;
-        }
+
+            }
         else {
             $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
         }

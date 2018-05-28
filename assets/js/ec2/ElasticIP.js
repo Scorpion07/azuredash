@@ -39,7 +39,7 @@ function ListEIPData() {
         submethod: SelectedResourceVar,
         method: "ListResources",
         account: account
-    }
+    };
     //console.log(submit);
     ajaxrequest_pages.push(
         $.ajax({
@@ -121,7 +121,7 @@ function ListEIPData() {
             error: function (xhr, ajaxOptions, thrownError) {
                 $('#loading').hide();
                 if (ajaxOptions === "abort") {
-                    return;
+
                 }
                 else {
                     $.notify({message: "Unable to Load"}, {
@@ -138,20 +138,26 @@ function ListEIPData() {
 function deleteEIPs() {
     $('.deleteMul').attr('disabled', true);
     $("#loadingMulModal").show();
-    var allo_id = $("#modal_allo_ids").val();
-    var regions = $("#delete_regions").val();
-    var asso_id = $("#modal_asso_ids").val();
-    var allo_ids_array = $("#modal_allo_ids").val().split(",");
-    var asso_ids_array = $("#modal_asso_ids").val().split(",");
-    var region_array = $("#delete_regions").val().split(",");
+
+    var allo_ids = [];
+    var asso_ids = [];
+    var regions = [];
+    $(".checkboxes").each(function () {
+        if ($(this).is(":checked")) {
+            allo_ids.push($(this).attr("data-AllocationId"));
+            asso_ids.push($(this).attr("data-AssociationId"));
+            regions.push($(this).attr("data-region"));
+        }
+    });
+
     var deleteData = {
         method: "elasticipDelete",
         account: account,
         delMethod: "multiple",
-        region: region_array,
-        allo: allo_ids_array,
-        asso: asso_ids_array
-    }
+        region: regions,
+        allo: allo_ids,
+        asso: asso_ids
+    };
     //console.log(JSON.stringify(deleteData));
     $.ajax({
         url: _config.api.invokeUrl + '/billing/services',
@@ -170,7 +176,7 @@ function deleteEIPs() {
             if (result > 0) {
 
                 $('.deleteMul').attr('disabled', false);
-                showEIPs()
+                showEIPs();
                 $.notify({message: "Elastic IP Deleted successfully"}, {
                     type: "success",
                     placement: {from: "top", align: "center"},
@@ -191,7 +197,7 @@ function deleteEIPs() {
         error: function (xhr, ajaxOptions, thrownError) {
             $('#deleteMulConformation').modal('hide');
             if (ajaxOptions === "abort") {
-                return;
+
             }
             else {
                 $.notify({message: "Unable to Load"}, {
@@ -213,18 +219,11 @@ function deleteModalEIPs() {
     $("#delete_li_show").html(" ");
 
     var selectedAlloId = [];
-    var selectedAssoId = [];
-    var selectedRegion = [];
     $('.checkboxes').each(function () {
         if ($(this).is(":checked")) {
             selectedAlloId.push($(this).attr('data-AllocationId'));
-            selectedAssoId.push($(this).attr('data-AssociationId'));
-            selectedRegion.push($(this).attr('data-region'));
         }
     });
-    $('[name="modal_allo_ids"]').val(selectedAlloId);
-    $('[name="modal_regions"]').val(selectedRegion);
-    $('[name="modal_asso_ids"]').val(selectedAssoId);
     selectedAlloId.forEach(function (id) {
         var add = '<li><label>"' + id + '"</label></li>';
         $("#delete_li_show").append(add);
