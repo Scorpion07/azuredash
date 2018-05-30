@@ -37,8 +37,9 @@ function ListDBClusterData() {
     var submit = {
         submethod: SelectedResourceVar,
         method: "ListResources",
-        account: account
-    }
+        account: account,
+        username: username
+    };
     //console.log(submit);
     ajaxrequest_pages.push(
     $.ajax({
@@ -110,7 +111,7 @@ function ListDBClusterData() {
             //alert(respdata);
             $('#loading').hide();
             if (ajaxOptions === "abort"){
-                return;
+
             }
             else {
                 $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });

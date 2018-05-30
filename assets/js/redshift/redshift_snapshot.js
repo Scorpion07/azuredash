@@ -36,8 +36,9 @@ function ListRedShiftSnapshotData() {
     var submit = {
         submethod: SelectedResourceVar,
         method: "ListResources",
-        account: account
-    }
+        account: account,
+        username: username
+    };
     //console.log(submit);
     ajaxrequest_pages.push(
         $.ajax({
@@ -131,7 +132,7 @@ function ListRedShiftSnapshotData() {
             error: function (xhr, ajaxOptions, thrownError) {
                 $('#loading').hide();
                 if (ajaxOptions === "abort") {
-                    return;
+
                 }
                 else {
                     $.notify({message: "Unable to Load"}, {
@@ -177,7 +178,6 @@ function deleteRSSnapshot() {
             if (!(id in Data)) {
                 Data[id] = [];
                 Data[id].push(value);
-                ;
             }
             else {
                 Data[id].push(value);
@@ -188,8 +188,9 @@ function deleteRSSnapshot() {
     var submit = {
         method: "redshiftClusterSnapshotDelete",
         account: account,
-        data: Data
-    }
+        data: Data,
+        username: username
+    };
     $.ajax({
         url: _config.api.invokeUrl + '/billing/services',
         headers: {"Authorization": token},
@@ -225,7 +226,7 @@ function deleteRSSnapshot() {
         error: function (xhr, ajaxOptions, thrownError) {
             $('#deleteConformation').modal('hide');
             if (ajaxOptions === "abort") {
-                return;
+
             }
             else {
                 $.notify({message: "Unable to Load"}, {

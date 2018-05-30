@@ -37,8 +37,9 @@ function ListStackData() {
     var submit = {
         submethod: SelectedResourceVar,
         method: "ListResources",
-        account: account
-    }
+        account: account,
+        username: username
+    };
     //console.log(submit);
 
     $.ajax({
@@ -112,7 +113,7 @@ function ListStackData() {
         error: function (xhr, ajaxOptions, thrownError) {
             $('#loading').hide();
             if (ajaxOptions === "abort"){
-                return;
+
             }
             else {
                 $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });

@@ -39,8 +39,9 @@ function ListSnapshotData() {
     var submit = {
         submethod: SelectedResourceVar,
         method: "ListResources",
-        account: account
-    }
+        account: account,
+        username: username
+    };
     //console.log(submit);
 
     ajaxrequest_pages.push(
@@ -125,7 +126,7 @@ function ListSnapshotData() {
             error: function (xhr, ajaxOptions, thrownError) {
                 $('#loading').hide();
                 if (ajaxOptions === "abort") {
-                    return;
+
                 }
                 else {
                     $.notify({message: "Unable to Load"}, {
@@ -145,7 +146,7 @@ function deleteSnaps() {
     var Data = {};
     $(".checkboxes").each(function () {
         if ($(this).is(":checked")) {
-            var value = $(this).attr("data_snapshot_id")
+            var value = $(this).attr("data_snapshot_id");
             var id = $(this).attr("data_region");
             if (!(id in Data)) {
                 Data[id] = [];
@@ -159,8 +160,9 @@ function deleteSnaps() {
     var deleteData = {
         method: "snapshotDelete",
         account: account,
-        region: Data
-    }
+        region: Data,
+        username: username
+    };
     //console.log(JSON.stringify(deleteData));
     $.ajax({
         url: _config.api.invokeUrl + '/billing/services',
@@ -197,7 +199,7 @@ function deleteSnaps() {
         error: function (xhr, ajaxOptions, thrownError) {
             $('#deleteMulConformation').modal('hide');
             if (ajaxOptions === "abort") {
-                return;
+
             }
             else {
                 $.notify({message: "Unable to Load"}, {

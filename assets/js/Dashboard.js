@@ -9,7 +9,7 @@ function loader() {
 }
 
 function error_occured(xhr, ajaxOptions, thrownError){
-    count += 1
+    count += 1;
     loader();
 
     if (ajaxOptions === "abort") {
@@ -41,73 +41,87 @@ function showDashboard() {
     var snapshot = {
         method: "getCount",
         service: "snapshot",
-        account: account
-    }
+        account: account,
+        username: username
+    };
     var elbs = {
         method: "getCount",
         service: "elb",
-        account: account
-    }
+        account: account,
+        username: username
+    };
     var instances = {
         method: "getCount",
         service: "instances",
-        account: account
-    }
+        account: account,
+        username: username
+    };
     var eip = {
         method: "getCount",
         service: "netinterface",
-        account: account
-    }
+        account: account,
+        username: username
+    };
     var rds = {
         method: "getCount",
         service: "rds",
-        account: account
-    }
+        account: account,
+        username: username
+    };
     var nat = {
         method: "getCount",
         service: "vpc",
-        account: account
-    }
+        account: account,
+        username: username
+    };
     var lambda = {
         method: "getCount",
         service: "lambda",
-        account: account
-    }
+        account: account,
+        username: username
+    };
     var cf_stack = {
         method: "getCount",
         service: "cf_stack",
-        account: account
-    }
+        account: account,
+        username: username
+    };
     var sagemaker = {
         method: "getCount",
         service: "sagemaker",
-        account: account
-    }
+        account: account,
+        username: username
+    };
     var redshift = {
         method: "getCount",
         service: "redshift",
-        account: account
-    }
+        account: account,
+        username: username
+    };
     var route53 = {
         method: "getCount",
         service: "route53",
-        account: account
-    }
+        account: account,
+        username: username
+    };
     var cloudtrail = {
         method: "getCount",
         service: "cloudtrail",
-        account: account
-    }
+        account: account,
+        username: username
+    };
     var beanstalk = {
         method: "getCount",
         service: "beanstalk",
-        account: account
-    }
+        account: account,
+        username: username
+    };
     var kinesis = {
         method: "getCount",
         service: "kinesis",
-        account: account
-    }
+        account: account,
+        username: username
+    };
     $("#loading").show();
     $("#loading").css("style", "display: block");
 
@@ -122,7 +136,7 @@ function showDashboard() {
             data: JSON.stringify(elbs),
             success: function (result) {
                 //console.log(result);
-                count += 1
+                count += 1;
                 loader();
                 $("#elb").text(result.elbs);
                 if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
@@ -152,7 +166,7 @@ function showDashboard() {
             data: JSON.stringify(snapshot),
             success: function (result) {
                 //console.log(result);
-                count += 1
+                count += 1;
                 loader();
                 $("#Snapshots").text(result.Snapshots);
                 $("#volumes").text(result.Volumes);
@@ -192,10 +206,10 @@ function showDashboard() {
             data: JSON.stringify(instances),
             success: function (result) {
                 //console.log(result);
-                count += 1
+                count += 1;
                 loader();
-                var right = "<img src='assets/images/right.png' style='width: 15px;'>"
-                var stop = "<img src='assets/images/red.png' style='width: 16px;'>"
+                var right = "<img src='assets/images/right.png' style='width: 15px;'>";
+                var stop = "<img src='assets/images/red.png' style='width: 16px;'>";
                 $("#InstancesRunning").html(right + " " + result.InstancesRunning);
                 $("#InstancesStop").html(stop + "  " + result.InstancesStop);
                 if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
@@ -223,11 +237,11 @@ function showDashboard() {
             contentType: 'application/json',
             data: JSON.stringify(nat),
             success: function (result) {
-                count += 1
+                count += 1;
                 loader();
                 //console.log(result);
-                var right = "<img src='assets/images/right.png' style='width: 15px;'>"
-                var stop = "<img src='assets/images/red.png' style='width: 16px;'>"
+                var right = "<img src='assets/images/right.png' style='width: 15px;'>";
+                var stop = "<img src='assets/images/red.png' style='width: 16px;'>";
                 $("#natRunning").html(right + " " + result.availablenatgateway);
                 $("#natStop").html(stop + "  " + result.failednatgateway);
                 $("#vpn").text(result.vpnconnection);
@@ -271,7 +285,7 @@ function showDashboard() {
             contentType: 'application/json',
             data: JSON.stringify(eip),
             success: function (result) {
-                count += 1
+                count += 1;
                 loader();
                 //console.log(result);
                 $("#eip").text(result.ElasticIPs);
@@ -308,7 +322,7 @@ function showDashboard() {
             contentType: 'application/json',
             data: JSON.stringify(rds),
             success: function (result) {
-                count += 1
+                count += 1;
                 loader();
                 //console.log(result);
                 var c = parseInt(result.DBClusters) + parseInt(result.DBInstances);
@@ -346,7 +360,7 @@ function showDashboard() {
             contentType: 'application/json',
             data: JSON.stringify(lambda),
             success: function (result) {
-                count += 1
+                count += 1;
                 loader();
                 //console.log(result);
                 $("#lambda").text(result.LambdaCount);
@@ -375,7 +389,7 @@ function showDashboard() {
             contentType: 'application/json',
             data: JSON.stringify(cf_stack),
             success: function (result) {
-                count += 1
+                count += 1;
                 loader();
                 //console.log("stack" + result);
                 $("#stack").text(result.StackCount);
@@ -403,7 +417,7 @@ function showDashboard() {
             contentType: 'application/json',
             data: JSON.stringify(sagemaker),
             success: function (result) {
-                count += 1
+                count += 1;
                 loader();
                 //console.log(result);
                 $("#noteint").text(result.NotebookInstances);
@@ -459,7 +473,7 @@ function showDashboard() {
             contentType: 'application/json',
             data: JSON.stringify(redshift),
             success: function (result) {
-                count += 1
+                count += 1;
                 loader();
                 //console.log(result);
                 $("#red_clust").text(result.RedshiftCluster);
@@ -495,7 +509,7 @@ function showDashboard() {
             contentType: 'application/json',
             data: JSON.stringify(route53),
             success: function (result) {
-                count += 1
+                count += 1;
                 loader();
                 //console.log(result);
                 $("#hostedzone").text(result.hostzone);
@@ -527,7 +541,7 @@ function showDashboard() {
             contentType: 'application/json',
             data: JSON.stringify(cloudtrail),
             success: function (result) {
-                count += 1
+                count += 1;
                 loader();
                 //console.log(result);
                 $("#trails").text(result.cloudtrail);
@@ -557,7 +571,7 @@ function showDashboard() {
             contentType: 'application/json',
             data: JSON.stringify(beanstalk),
             success: function (result) {
-                count += 1
+                count += 1;
                 loader();
                 //console.log(result);
                 $("#bs_app").text(result.beanstalkapp);
@@ -596,7 +610,7 @@ function showDashboard() {
             contentType: 'application/json',
             data: JSON.stringify(kinesis),
             success: function (result) {
-                count += 1
+                count += 1;
                 loader();
                 //console.log(result);
                 $("#datastream").text(result.kinesisdatastream);
@@ -621,7 +635,7 @@ function showDashboard() {
 }
 
 function CostofResources() {
-    count += 1
+    count += 1;
     loader();
     var date;
     var currentTime = new Date();

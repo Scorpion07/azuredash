@@ -35,8 +35,9 @@ function listRoute53Data() {
     $('#loading').show();
     var submit = {
         method: "listRoute53",
-        account: account
-    }
+        account: account,
+        username: username
+    };
     //console.log(submit);
     ajaxrequest_pages.push(
     $.ajax({
@@ -117,7 +118,7 @@ function listRoute53Data() {
         error: function (xhr, ajaxOptions, thrownError) {
             $('#loading').hide();
             if (ajaxOptions === "abort"){
-                return;
+
             }
             else {
                 $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
@@ -148,7 +149,7 @@ function deleteModalR53Hostzone() {
 function deleteR53Hostzone() {
     $('.deleteMul').attr('disabled', true);
     $("#loadingModal").show();
-    var hostzoneids = []
+    var hostzoneids = [];
     $(".checkboxes").each(function () {
         if ($(this).is(":checked")) {
             hostzoneids.push($(this).attr('data_hostzone_id'))
@@ -158,8 +159,9 @@ function deleteR53Hostzone() {
     var submit = {
         method: "route53Delete",
         account: account,
-        hostzoneid: hostzoneids
-    }
+        hostzoneid: hostzoneids,
+        username: username
+    };
     $.ajax({
         url: _config.api.invokeUrl+'/billing/services',
         headers: {"Authorization": token},
@@ -185,7 +187,7 @@ function deleteR53Hostzone() {
         error: function (xhr, ajaxOptions, thrownError) {
             $('#deleteConformation').modal('hide');
             if (ajaxOptions === "abort"){
-                return;
+
             }
             else {
                 $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });

@@ -37,8 +37,9 @@ function ListVolumeData() {
     var submit = {
         submethod: SelectedResourceVar,
         method: "ListResources",
-        account: account
-    }
+        account: account,
+        username: username
+    };
     //console.log(submit);
 
     ajaxrequest_pages.push(
@@ -129,7 +130,7 @@ function ListVolumeData() {
         error: function (xhr, ajaxOptions, thrownError) {
             $('#loading').hide();
             if (ajaxOptions === "abort"){
-                return;
+
             }
             else {
                 $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
@@ -181,8 +182,9 @@ function deleteVolume() {
         region: region,
         method: "volumeDelete",
         account: account,
-        volumeids: volumeid
-    }
+        volumeids: volumeid,
+        username: username
+    };
     $.ajax({
         url: _config.api.invokeUrl + '/billing/services',
         headers: {"Authorization": token},
@@ -208,7 +210,7 @@ function deleteVolume() {
         error: function (xhr, ajaxOptions, thrownError) {
             $('#deleteMulConformation').modal('hide');
             if (ajaxOptions === "abort"){
-                return;
+
             }
             else {
                 $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });

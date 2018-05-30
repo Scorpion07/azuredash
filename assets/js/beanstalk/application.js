@@ -36,8 +36,9 @@ function ListBSAppData() {
     var submit = {
         submethod: SelectedResourceVar,
         method: "ListResources",
-        account: account
-    }
+        account: account,
+        username: username
+    };
     //console.log(submit);
     ajaxrequest_pages.push(
         $.ajax({
@@ -118,7 +119,7 @@ function ListBSAppData() {
             error: function (xhr, ajaxOptions, thrownError) {
                 $('#loading').hide();
                 if (ajaxOptions === "abort"){
-                    return;
+
                 }
                 else {
                     $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
@@ -155,7 +156,7 @@ function deleteBSApps() {
     var Data = {};
     $(".checkboxes").each(function () {
         if ($(this).is(":checked")) {
-            var value = $(this).attr("data_app_name")
+            var value = $(this).attr("data_app_name");
 
             var id = $(this).attr("data_region");
             if (!(id in Data)) {
@@ -171,8 +172,9 @@ function deleteBSApps() {
     var submit = {
         method: "deleteBeanstalkApp",
         account: account,
-        data: Data
-    }
+        data: Data,
+        username: username
+    };
     $.ajax({
         url: _config.api.invokeUrl + '/billing/services',
         headers: {"Authorization": token},
@@ -198,7 +200,7 @@ function deleteBSApps() {
         error: function (xhr, ajaxOptions, thrownError) {
             $('#deleteConformation').modal('hide');
             if (ajaxOptions === "abort"){
-                return;
+
             }
             else {
                 $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });

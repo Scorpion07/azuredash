@@ -1,13 +1,14 @@
 var poolData = {
     UserPoolId: _config.cognito.userPoolId,
     ClientId: _config.cognito.userPoolClientId
-}
+};
 
 var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
 var cognitoUser = userPool.getCurrentUser();
 checklogin();
 var ajaxrequest_pages = [];
 var SelectedResourceVar;
+var username = window.localStorage.getItem('username');
 var token = window.localStorage.getItem('token');
 var account;
 

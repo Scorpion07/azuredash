@@ -31,8 +31,9 @@ function ListJobsData() {
     var submit = {
         submethod: SelectedResourceVar,
         method: "ListResources",
-        account: account
-    }
+        account: account,
+        username: username
+    };
     //console.log(submit);
     ajaxrequest_pages.push(
         $.ajax({
@@ -123,7 +124,7 @@ function ListJobsData() {
             error: function (xhr, ajaxOptions, thrownError) {
                 $('#loading').hide();
                 if (ajaxOptions === "abort") {
-                    return;
+
                 }
                 else {
                     $.notify({message: "Unable to Load"}, {

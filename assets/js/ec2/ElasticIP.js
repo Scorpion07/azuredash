@@ -38,7 +38,8 @@ function ListEIPData() {
     var submit = {
         submethod: SelectedResourceVar,
         method: "ListResources",
-        account: account
+        account: account,
+        username: username
     };
     //console.log(submit);
     ajaxrequest_pages.push(
@@ -156,7 +157,8 @@ function deleteEIPs() {
         delMethod: "multiple",
         region: regions,
         allo: allo_ids,
-        asso: asso_ids
+        asso: asso_ids,
+        username: username
     };
     //console.log(JSON.stringify(deleteData));
     $.ajax({

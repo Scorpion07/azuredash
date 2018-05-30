@@ -36,8 +36,9 @@ function ListNATData() {
     var submit = {
         submethod: SelectedResourceVar,
         method: "ListResources",
-        account: account
-    }
+        account: account,
+        username: username
+    };
     //console.log(submit);
     ajaxrequest_pages.push(
     $.ajax({
@@ -133,7 +134,7 @@ function ListNATData() {
         error: function (xhr, ajaxOptions, thrownError) {
             $('#loading').hide();
             if (ajaxOptions === "abort"){
-                return;
+
             }
             else {
                 $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
@@ -182,8 +183,9 @@ function deleteNats() {
         region: region,
         method: "natgatewayDelete",
         account: account,
-        natgatewayids: natgatewayid
-    }
+        natgatewayids: natgatewayid,
+        username: username
+    };
     $.ajax({
         url: _config.api.invokeUrl+'/billing/services',
         headers: {"Authorization": token},
@@ -210,7 +212,7 @@ function deleteNats() {
             $("#loadingModal").hide();
             $('#deleteConformation').modal('hide');
             if (ajaxOptions === "abort"){
-                return;
+
             }
             else {
                 $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });

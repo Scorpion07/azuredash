@@ -36,8 +36,9 @@ function ListVPCData() {
     var submit = {
         submethod: SelectedResourceVar,
         method: "ListResources",
-        account: account
-    }
+        account: account,
+        username: username
+    };
     //console.log(submit);
     ajaxrequest_pages.push(
         $.ajax({
@@ -123,7 +124,7 @@ function ListVPCData() {
             error: function (xhr, ajaxOptions, thrownError) {
                 $('#loading').hide();
                 if (ajaxOptions === "abort") {
-                    return;
+
                 }
                 else {
                     $.notify({message: "Unable to Load"}, {
@@ -177,8 +178,9 @@ function deleteVPCs() {
         region: region,
         method: "vpcDelete",
         account: account,
-        vpcids: vpcid
-    }
+        vpcids: vpcid,
+        username: username
+    };
     $.ajax({
         url: _config.api.invokeUrl + '/billing/services',
         headers: {"Authorization": token},
@@ -215,7 +217,7 @@ function deleteVPCs() {
             $("#loadingModal").hide();
             $('#deleteConformation').modal('hide');
             if (ajaxOptions === "abort") {
-                return;
+
             }
             else {
                 $.notify({message: "Unable to Load"}, {

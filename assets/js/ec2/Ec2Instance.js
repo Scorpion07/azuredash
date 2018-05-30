@@ -36,7 +36,8 @@ function ListInstanceData() {
     var submit = {
         submethod: SelectedResourceVar,
         method: "ListResources",
-        account: account
+        account: account,
+        username: username
     };
     //console.log(submit);
     ajaxrequest_pages.push(
@@ -169,7 +170,8 @@ function deleteInstances() {
         region: region,
         method: "instanceDelete",
         account: account,
-        instanceids: instanceid
+        instanceids: instanceid,
+        username: username
     };
     $.ajax({
         url: _config.api.invokeUrl + '/billing/services',

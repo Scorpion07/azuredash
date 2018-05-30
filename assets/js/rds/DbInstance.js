@@ -37,8 +37,9 @@ function ListDBInstancesData() {
     var submit = {
         submethod: SelectedResourceVar,
         method: "ListResources",
-        account: account
-    }
+        account: account,
+        username: username
+    };
     //console.log(submit);
     ajaxrequest_pages.push(
         $.ajax({
@@ -117,7 +118,7 @@ function ListDBInstancesData() {
             error: function (xhr, ajaxOptions, thrownError) {
                 $('#loading').hide();
                 if (ajaxOptions === "abort"){
-                    return;
+
                 }
                 else {
                     $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
@@ -171,8 +172,9 @@ function deleteDBInstances() {
         method: "DBInstanceDelete",
         account: account,
         instance_id: main_array,
-        region: aregions_ids_array
-    }
+        region: aregions_ids_array,
+        username: username
+    };
     //console.log(JSON.stringify(deleteData));
     $.ajax({
         url: _config.api.invokeUrl + '/billing/services',
@@ -209,7 +211,7 @@ function deleteDBInstances() {
         error: function (xhr, ajaxOptions, thrownError) {
             $('#deleteConformation').modal('hide');
             if (ajaxOptions === "abort") {
-                return;
+
             }
             else {
                 $.notify({message: "Unable to Load"}, {
@@ -256,14 +258,14 @@ function deleteModalDBInstances() {
         i++;
         $("#delete_li_show").append(add);
     });
-    $('#deleteMulConformation').modal({keyboard: false})
-    $('#deleteMulConformation').modal({backdrop: 'static'})
+    $('#deleteMulConformation').modal({keyboard: false});
+    $('#deleteMulConformation').modal({backdrop: 'static'});
     $('#deleteMulConformation').modal('show');
     $(".instance_selected_yes").each(function (index) {
         $(this).on("click", function () {
             var instanceName = $(this).attr("name");
             var id = "I" + instanceName;
-            var textbox = '<input class="form-control form-control-sm" type="text" value="' + instanceName + '" placeholder="Enter Snapshot Name" id="text' + instanceName + '">'
+            var textbox = '<input class="form-control form-control-sm" type="text" value="' + instanceName + '" placeholder="Enter Snapshot Name" id="text' + instanceName + '">';
             $("#" + id).html(textbox);
         });
     });

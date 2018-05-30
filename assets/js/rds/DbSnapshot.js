@@ -37,8 +37,9 @@ function ListDBSnapshotData() {
     var submit = {
         submethod: SelectedResourceVar,
         method: "ListResources",
-        account: account
-    }
+        account: account,
+        username: username
+    };
     //console.log(submit);
     ajaxrequest_pages.push(
         $.ajax({
@@ -129,7 +130,7 @@ function ListDBSnapshotData() {
             error: function (xhr, ajaxOptions, thrownError) {
                 $('#loading').hide();
                 if (ajaxOptions === "abort") {
-                    return;
+
                 }
                 else {
                     $.notify({message: "Unable to Load"}, {
@@ -157,8 +158,9 @@ function deleteDBSnaps() {
         method: "DBSnapshotDelete",
         account: account,
         snapshot_id: snap_ids_array,
-        region: regions_ids_array
-    }
+        region: regions_ids_array,
+        username: username
+    };
     //console.log(JSON.stringify(deleteData));
     $.ajax({
         url: _config.api.invokeUrl + '/billing/services',
@@ -195,7 +197,7 @@ function deleteDBSnaps() {
         error: function (xhr, ajaxOptions, thrownError) {
             $('#deleteConformation').modal('hide');
             if (ajaxOptions === "abort") {
-                return;
+
             }
             else {
                 $.notify({message: "Unable to Load"}, {
