@@ -1,546 +1,200 @@
-<html lang="en-US"><!--<![endif]-->
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>CloudThat</title>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <!--[if IE 9]>
-    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-    <![endif]-->
-    <link rel="pingback" href="//cloudexpertline.com/xmlrpc.php">
-    <link rel="profile" href="//gmpg.org/xfn/11">
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="dns-prefetch" href="//s.w.org">
-    <link rel="alternate" type="application/rss+xml" title="Cloud ExpertLine » Feed"
-          href="//cloudexpertline.com/feed/">
-    <link rel="alternate" type="application/rss+xml" title="Cloud ExpertLine » Comments Feed"
-          href="//cloudexpertline.com/comments/feed/">
-    <script async="" src="//www.google-analytics.com/analytics.js"></script>
-    <script type="text/javascript">
-        window._wpemojiSettings = {
-            "baseUrl": "https:\/\/s.w.org\/images\/core\/emoji\/2\/72x72\/",
-            "ext": ".png",
-            "svgUrl": "https:\/\/s.w.org\/images\/core\/emoji\/2\/svg\/",
-            "svgExt": ".svg",
-            "source": {"concatemoji": "https:\/\/cloudexpertline.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.6"}
-        };
-        !function (a, b, c) {
-            function d(a) {
-                var c, d, e, f, g, h = b.createElement("canvas"), i = h.getContext && h.getContext("2d"),
-                    j = String.fromCharCode;
-                if (!i || !i.fillText) return !1;
-                switch (i.textBaseline = "top", i.font = "600 32px Arial", a) {
-                    case"flag":
-                        return i.fillText(j(55356, 56806, 55356, 56826), 0, 0), !(h.toDataURL().length < 3e3) && (i.clearRect(0, 0, h.width, h.height), i.fillText(j(55356, 57331, 65039, 8205, 55356, 57096), 0, 0), c = h.toDataURL(), i.clearRect(0, 0, h.width, h.height), i.fillText(j(55356, 57331, 55356, 57096), 0, 0), d = h.toDataURL(), c !== d);
-                    case"diversity":
-                        return i.fillText(j(55356, 57221), 0, 0), e = i.getImageData(16, 16, 1, 1).data, f = e[0] + "," + e[1] + "," + e[2] + "," + e[3], i.fillText(j(55356, 57221, 55356, 57343), 0, 0), e = i.getImageData(16, 16, 1, 1).data, g = e[0] + "," + e[1] + "," + e[2] + "," + e[3], f !== g;
-                    case"simple":
-                        return i.fillText(j(55357, 56835), 0, 0), 0 !== i.getImageData(16, 16, 1, 1).data[0];
-                    case"unicode8":
-                        return i.fillText(j(55356, 57135), 0, 0), 0 !== i.getImageData(16, 16, 1, 1).data[0];
-                    case"unicode9":
-                        return i.fillText(j(55358, 56631), 0, 0), 0 !== i.getImageData(16, 16, 1, 1).data[0]
-                }
-                return !1
-            }
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>AWS Cleanup</title>
+	<meta name="description"
+		  content="Cardio is a free one page template made exclusively for Codrops by Luka Cvetinovic"/>
+	<meta name="keywords" content="html template, css, free, one page, gym, fitness, web design"/>
+	<meta name="author" content="Luka Cvetinovic for Codrops"/>
+	<!-- Favicons (created with http://realfavicongenerator.net/)-->
+	<link rel="apple-touch-icon" sizes="57x57" href="assets/index_page/img/favicons/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="assets/index_page/img/favicons/apple-touch-icon-60x60.png">
+	<link rel="icon" type="image/png" href="assets/index_page/img/favicons/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="assets/index_page/img/favicons/favicon-16x16.png" sizes="16x16">
+	<link rel="manifest" href="assets/index_page/img/favicons/manifest.json">
+	<link rel="shortcut icon" href="assets/index_page/img/favicons/favicon.ico">
+	<meta name="msapplication-TileColor" content="#00a8ff">
+	<meta name="msapplication-config" content="assets/index_page/img/favicons/browserconfig.xml">
+	<meta name="theme-color" content="#ffffff">
+	<!-- Normalize -->
+	<link rel="stylesheet" type="text/css" href="assets/index_page/css/normalize.css">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" type="text/css" href="assets/index_page/css/bootstrap.css">
+	<!-- Owl -->
+	<link rel="stylesheet" type="text/css" href="assets/index_page/css/owl.css">
+	<!-- Animate.css -->
+	<link rel="stylesheet" type="text/css" href="assets/index_page/css/animate.css">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" type="text/css" href="assets/index_page/fonts/font-awesome-4.1.0/css/font-awesome.min.css">
+	<!-- Elegant Icons -->
+	<link rel="stylesheet" type="text/css" href="assets/index_page/fonts/eleganticons/et-icons.css">
+	<!-- Main style -->
+	<link rel="stylesheet" type="text/css" href="assets/index_page/css/cardio.css">
+	<style>
+		#a1:hover {
+			color: #FFFFFF;
+		}
 
-            function e(a) {
-                var c = b.createElement("script");
-                c.src = a, c.type = "text/javascript", b.getElementsByTagName("head")[0].appendChild(c)
-            }
+		#a1:active {
+			color: black;
+		}
 
-            var f, g, h, i;
-            for (i = Array("simple", "flag", "unicode8", "diversity", "unicode9"), c.supports = {
-                everything: !0,
-                everythingExceptFlag: !0
-            }, h = 0; h < i.length; h++) c.supports[i[h]] = d(i[h]), c.supports.everything = c.supports.everything && c.supports[i[h]], "flag" !== i[h] && (c.supports.everythingExceptFlag = c.supports.everythingExceptFlag && c.supports[i[h]]);
-            c.supports.everythingExceptFlag = c.supports.everythingExceptFlag && !c.supports.flag, c.DOMReady = !1, c.readyCallback = function () {
-                c.DOMReady = !0
-            }, c.supports.everything || (g = function () {
-                c.readyCallback()
-            }, b.addEventListener ? (b.addEventListener("DOMContentLoaded", g, !1), a.addEventListener("load", g, !1)) : (a.attachEvent("onload", g), b.attachEvent("onreadystatechange", function () {
-                "complete" === b.readyState && c.readyCallback()
-            })), f = c.source || {}, f.concatemoji ? e(f.concatemoji) : f.wpemoji && f.twemoji && (e(f.twemoji), e(f.wpemoji)))
-        }(window, document, window._wpemojiSettings);
-    </script>
-    <script src="//cloudexpertline.com/wp-includes/js/wp-emoji-release.min.js?ver=4.6"
-            type="text/javascript"></script>
-    <style type="text/css">
-        img.wp-smiley,
-        img.emoji {
-            display: inline !important;
-            border: none !important;
-            box-shadow: none !important;
-            box-shadow: none !important;
-            height: 1em !important;
-            width: 1em !important;
-            margin: 0 .07em !important;
-            vertical-align: -0.1em !important;
-            background: none !important;
-            padding: 0 !important;
-        }
-    </style>
-    <link rel="stylesheet" id="advertica-style-css"
-          href="//cloudexpertline.com/wp-content/themes/advertica-lite-child/style.css?ver=4.6" type="text/css"
-          media="all">
-    <link rel="stylesheet" id="advertica-animation-stylesheet-css"
-          href="//cloudexpertline.com/wp-content/themes/advertica-lite/css/skt-animation.css?ver=4.6"
-          type="text/css" media="all">
-    <link rel="stylesheet" id="sktawesome-theme-stylesheet-css"
-          href="//cloudexpertline.com/wp-content/themes/advertica-lite/css/font-awesome.css?ver=4.6"
-          type="text/css" media="all">
-    <link rel="stylesheet" id="sktddsmoothmenu-superfish-stylesheet-css"
-          href="//cloudexpertline.com/wp-content/themes/advertica-lite/css/superfish.css?ver=4.6" type="text/css"
-          media="all">
-    <link rel="stylesheet" id="bootstrap-responsive-theme-stylesheet-css"
-          href="//cloudexpertline.com/wp-content/themes/advertica-lite/css/bootstrap-responsive.css?ver=4.6"
-          type="text/css" media="all">
-    <link rel="stylesheet" id="googleFontsRoboto-css"
-          href="//fonts.googleapis.com/css?family=Roboto+Condensed%3A400%2C400italic%2C300italic%2C300&amp;ver=4.6"
-          type="text/css" media="all">
-    <link rel="stylesheet" id="googleFontsLato-css"
-          href="//fonts.googleapis.com/css?family=Lato%3A400%2C700&amp;ver=4.6" type="text/css" media="all">
-    <link rel="stylesheet" id="cyclone-template-style-dark-css"
-          href="//cloudexpertline.com/wp-content/plugins/cyclone-slider-2/templates/dark/style.css?ver=2.8.2"
-          type="text/css" media="all">
-    <link rel="stylesheet" id="cyclone-template-style-default-css"
-          href="//cloudexpertline.com/wp-content/plugins/cyclone-slider-2/templates/default/style.css?ver=2.8.2"
-          type="text/css" media="all">
-    <link rel="stylesheet" id="cyclone-template-style-standard-css"
-          href="//cloudexpertline.com/wp-content/plugins/cyclone-slider-2/templates/standard/style.css?ver=2.8.2"
-          type="text/css" media="all">
-    <link rel="stylesheet" id="cyclone-template-style-thumbnails-css"
-          href="//cloudexpertline.com/wp-content/plugins/cyclone-slider-2/templates/thumbnails/style.css?ver=2.8.2"
-          type="text/css" media="all">
-    <script type="text/javascript"
-            src="//cloudexpertline.com/wp-includes/js/jquery/jquery.js?ver=1.12.4"></script>
-    <script type="text/javascript"
-            src="//cloudexpertline.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1"></script>
-    <link rel="//api.w.org/" href="//cloudexpertline.com/wp-json/">
-    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="//cloudexpertline.com/xmlrpc.php?rsd">
-    <link rel="wlwmanifest" type="application/wlwmanifest+xml"
-          href="//cloudexpertline.com/wp-includes/wlwmanifest.xml">
-    <meta name="generator" content="WordPress 4.6">
-    <link rel="canonical" href="//cloudexpertline.com/">
-    <link rel="shortlink" href="//cloudexpertline.com/">
-    <link rel="alternate" type="application/json+oembed"
-          href="//cloudexpertline.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcloudexpertline.com%2F">
-    <link rel="alternate" type="text/xml+oembed"
-          href="//cloudexpertline.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcloudexpertline.com%2F&amp;format=xml">
-    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-    <style type="text/css">
-
-
-        /***************** THEME *****************/
-
-        a.skt-featured-icons, .service-icon {
-            background: #20629b;
-        }
-
-        a.skt-featured-icons:after, .service-icon:after {
-            border-top-color: #20629b;
-        }
-
-        a.skt-featured-icons:before, .service-icon:before {
-            border-bottom-color: #20629b;
-        }
-
-        .sticky-post {
-            color: #20629b;
-            /*border-color:*/
-        }
-
-        #footer {
-            border-color: #20629b;
-        }
-
-        .social li a:hover {
-            background: #20629b;
-        }
-
-        .social li a:hover:before {
-            color: #fff;
-        }
-
-        a#backtop, #respond input[type="submit"]:hover, .skt-ctabox div.skt-ctabox-button a:hover, .widget_tag_cloud a:hover, .continue a:hover, blockquote, .skt-quote, #advertica-paginate .advertica-current, #advertica-paginate a:hover, .postformat-gallerydirection-nav li a:hover, #wp-calendar, .comments-template .reply a:hover, #content .contact-left form input[type="submit"]:hover, .skt-parallax-button:hover, .sktmenu-toggle {
-            background-color: #20629b;
-        }
-
-        .skt-ctabox div.skt-ctabox-button a, #portfolio-division-box .readmore, .teammember, .comments-template .reply a, #respond input[type="submit"], .slider-link a, .ske_tab_v ul.ske_tabs li.active, .ske_tab_h ul.ske_tabs li.active, #content .contact-left form input[type="submit"], .filter a, .skt-parallax-button, #advertica-paginate a:hover, #advertica-paginate .advertica-current, #content .contact-left form textarea:focus, #content .contact-left form input[type="text"]:focus, #content .contact-left form input[type="email"]:focus, #content .contact-left form input[type="url"]:focus, #content .contact-left form input[type="tel"]:focus, #content .contact-left form input[type="number"]:focus, #content .contact-left form input[type="range"]:focus, #content .contact-left form input[type="date"]:focus, #content .contact-left form input[type="file"]:focus {
-            border-color: #20629b;
-        }
-
-        .clients-items li a:hover {
-            border-bottom-color: #20629b;
-        }
-
-        a, .ske-footer-container ul li:hover:before, .ske-footer-container ul li:hover > a, .ske_widget ul ul li:hover:before, .ske_widget ul ul li:hover, .ske_widget ul ul li:hover a, .title a, .skepost-meta a:hover, .post-tags a:hover, .entry-title a:hover, .readmore a:hover, #Site-map .sitemap-rows ul li a:hover, .childpages li a, #Site-map .sitemap-rows .title, .ske_widget a, .ske_widget a:hover, #Site-map .sitemap-rows ul li:hover, #footer .third_wrapper a:hover, .ske-title, #content .contact-left form input[type="submit"], .filter a, span.team_name, #respond input[type="submit"], .reply a, a.comment-edit-link, .skt_price_table .price_in_table .value, .teammember strong .team_name, #content .skt-service-page .one_third:hover .service-box-text h3, .ad-service:hover .service-box-text h3, .mid-box-mid .mid-box:hover .iconbox-content h4, .error-txt, .skt-ctabox .skt-ctabox-content h2, .reply a:hover, a.comment-edit-link:hover {
-            color: #20629b;
-            text-decoration: none;
-        }
-
-        .single #content .title, #content .post-heading, .childpages li, .fullwidth-heading, .comment-meta a:hover, #respond .required, #wp-calendar tbody a {
-            color: #20629b;
-        }
-
-        #skenav ul ul li a:hover {
-            background-color: #20629b;
-            color: #fff;
-        }
-
-        *::-moz-selection {
-            background: #20629b;
-            color: #fff;
-        }
-
-        ::selection {
-            background: #20629b;
-            color: #fff;
-        }
-
-        #skenav ul li.current_page_item > a,
-        #skenav ul li.current-menu-ancestor > a,
-        #skenav ul li.current-menu-item > a,
-        #skenav ul li.current-menu-parent > a {
-            background-color: #20629b;
-            color: #fff;
-        }
-
-        .continue a:hover {
-            border-color: #20629b;
-        }
-
-        #searchform input[type="submit"] {
-            background: none repeat scroll 0 0 #20629b;
-        }
-
-        .col-one .box .title, .col-two .box .title, .col-three .box .title, .col-four .box .title {
-            color: #20629b !important;
-        }
-
-        .full-bg-breadimage-fixed {
-        }
-
-        #full-division-box {
-            background-image: url("//cloudexpertline.com/wp-content/uploads/2014/05/aws-img-support.jpg");
-        }
-
-        /***************** PAGINATE *****************/
-        #skenav li a:hover, #skenav .sfHover {
-            background-color: #333333;
-            color: #FFFFFF;
-        }
-
-        #skenav .sfHover a {
-            color: #FFFFFF;
-        }
-
-        #skenav ul ul li {
-            background: none repeat scroll 0 0 #333333;
-            color: #FFFFFF;
-        }
-
-        #skenav .ske-menu #menu-secondary-menu li a:hover, #skenav .ske-menu #menu-secondary-menu .current-menu-item a {
-            color: #71C1F2;
-        }
-
-        .footer-seperator {
-            background-color: rgba(0, 0, 0, .2);
-        }
-
-        #skenav .ske-menu #menu-secondary-menu li .sub-menu li {
-            margin: 0;
-        }
-
-        .bread-title-holder h1.title, .cont_nav_inner span, .bread-title-holder .cont_nav_inner p {
-            color: #20629b;
-        }
-
-        @media only screen and (max-width: 1025px) {
-            #menu-main {
-                display: none;
-            }
-
-            #header .container {
-                width: 97%;
-            }
-
-            .skehead-headernav .logo {
-                margin-bottom: 3px;
-                margin-top: 12px;
-                position: relative;
-            }
-
-            .skehead-headernav.skehead-headernav-shrink .logo {
-                margin-top: 1px;
-                top: 6px;
-            }
-
-        }
-    </style><!-- Google Universal Analytics -->
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-        ga('create', 'UA-31953956-21', 'auto');
-        ga('send', 'pageview');
-
-    </script>
-    <!-- Google Universal Analytics -->
-
-    <script type="text/javascript"
-            src="//web-in21.mxradon.com/t/WebTracker.aspx?p1=25846&amp;p2=Cloud%20ExpertLine%20%7C%20The%20Cloud%20ExpertLine%20is%20a%20premium%20subscription-based%20e-mail%20and%20phone%20service%20to%20have%20an%20Expert%20Cloud%20Architect%20on%20hand%20to%20address%20complex%20cloud%20architecture%20questions%20and%20challenges%2C%20on%20demand.&amp;p3=-1&amp;p4=https%3A%2F%2Fwww.cloudthat.com%2F&amp;p5=1&amp;p6=undefined&amp;p7=&amp;p8="></script>
+	</style>
 </head>
-<body class="home page page-id-24 page-template-default advertica-lite front-page">
-<div id="wrapper" class="skepage">
-    <div id="header" class="skehead-headernav clearfix" style="top: 0px; display: block;">
-        <div class="glow">
-            <div id="skehead">
-                <div class="container" style="width:95%">
-                    <div class="row-fluid">
-                        <!-- #logo -->
-                        <div id="logo" class="span3">
-                            <a href="#" title="Cloud ExpertLine"><img alt="sketch themes"
-                                                                      src="//d3ffutjd2e35ce.cloudfront.net/assets/logo1.png"
-                                                                      width="40%" class="logo"></a>
-                        </div>
-                        <!-- #logo -->
-                        <!-- navigation-->
-                        <div class="top-nav-menu span9">
-                            <div id="skenav" class="ske-menu">
-                                <ul id="menu-main" class="menu sf-js-enabled sf-arrows">
-                                    <li id="menu-item-1"
-                                        class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-24 current_page_item menu-item-361">
-                                        <a href="#">Home</a></li>
-                                    <li id="menu-item-2"
-                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-18"><a
-                                            href="/login.html?next=cloudbilling.html">Cloud Billing</a></li>
-                                    <li id="menu-item-3"
-                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-18"><a
-                                            href="/login.html?next=resources/iam.html">Resource Creation</a></li>
-                                    <li id="menu-item-4"
-                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-349">
-                                        <a href="//cloudexpertline.com/contact-us/">Contact Us</a></li>
-                                    <li id="menu-item-5"
-                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-18"><a
-                                            href="//cloudexpertline.com/about-us/">About Us</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                        <!-- #navigation -->
-                    </div>
-                </div>
-            </div>
-            <!-- #skehead -->
-        </div>
-        <!-- glow -->
-    </div>
-    <!-- #header -->
-    <div class="header-clone" style="height: 0px;"></div>
-    <!-- Contact Text Section -->
-    <div id="full-contact-box" class="skt-section1">
-        <div class="full-contant-box">
-            <div class="row-fluid">
-                <div class="span12 contact_text">
-                    <h2></h2>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- header image section -->
-    <div class="Skt-header-image"><br><br><br>
-        <center>
-            <h1 align="center"> WELCOME TO CLOUDTHAT PORTAL</h1></center>
-        <br><br>
-        <!-- header image -->
-        <!--<div class="advertica-image-post">-->
-        <!--<div tabindex="0" class="cycloneslider cycloneslider-template-standard cycloneslider-width-responsive"-->
-        <!--id="cycloneslider-slider1-1" style="max-width:2000px">-->
-        <!--<div class="cycloneslider-slides cycle-slideshow" data-cycle-allow-wrap="true"-->
-        <!--data-cycle-dynamic-height="off" data-cycle-auto-height="2000:500"-->
-        <!--data-cycle-auto-height-easing="null" data-cycle-auto-height-speed="250" data-cycle-delay="0"-->
-        <!--data-cycle-easing="" data-cycle-fx="fade" data-cycle-hide-non-active="true" data-cycle-log="false"-->
-        <!--data-cycle-next="#cycloneslider-slider1-1 .cycloneslider-next"-->
-        <!--data-cycle-pager="#cycloneslider-slider1-1 .cycloneslider-pager" data-cycle-pause-on-hover="true"-->
-        <!--data-cycle-prev="#cycloneslider-slider1-1 .cycloneslider-prev" data-cycle-slides="> div"-->
-        <!--data-cycle-speed="1000" data-cycle-swipe="false" data-cycle-tile-count="7"-->
-        <!--data-cycle-tile-delay="100" data-cycle-tile-vertical="true" data-cycle-timeout="4000"-->
-        <!--style="height: 337.25px;">-->
-        <!--<div class="cycloneslider-slide cycloneslider-slide-image cycle-slide"-->
-        <!--style="position: absolute; top: 0px; left: 0px; z-index: 97; opacity: 0; display: none;"><img-->
-        <!--src="//cloudexpertline.com/wp-content/uploads/2016/11/banner4-2000x500.jpg" alt=""-->
-        <!--title=""></div>-->
-        <!--<div class="cycloneslider-slide cycloneslider-slide-image cycle-slide"-->
-        <!--style="position: absolute; top: 0px; left: 0px; z-index: 96; display: none; opacity: 0;"><img-->
-        <!--src="//cloudexpertline.com/wp-content/uploads/2016/11/banner3-1-2000x500.jpg" alt=""-->
-        <!--title=""></div>-->
-        <!--<div class="cycloneslider-slide cycloneslider-slide-image cycle-slide cycle-slide-active"-->
-        <!--style="position: absolute; top: 0px; left: 0px; z-index: 100; display: block; opacity: 0.799236;">-->
-        <!--<img src="//cloudexpertline.com/wp-content/uploads/2016/11/banner2-2000x500.jpg" alt=""-->
-        <!--title=""></div>-->
-        <!--<div class="cycloneslider-slide cycloneslider-slide-image cycle-slide"-->
-        <!--style="position: absolute; top: 0px; left: 0px; z-index: 99; display: block; opacity: 0.200764;">-->
-        <!--<img src="//cloudexpertline.com/wp-content/uploads/2016/11/banner1-1-2000x500.jpg" alt=""-->
-        <!--title=""></div>-->
-        <!--</div>-->
-        <!--<div class="cycloneslider-pager"><span class="">•</span><span class="">•</span><span-->
-        <!--class="cycle-pager-active">•</span><span class="">•</span></div>-->
-        <!--<a href="#" class="cycloneslider-prev"> <span class="arrow"></span> </a> <a href="#"-->
-        <!--class="cycloneslider-next">-->
-        <!--<span class="arrow"></span> </a></div>-->
-        <!--</div>-->
-        <!-- end  header image  -->
-    </div>
-    <div id="main" class="clearfix">
 
-
-        <div class="container" style="    margin-left: -226px;">
-            <div class="Plan_section">
-                <div class="skt-awesome-section plan_section_2nd" style="">
-                    <div class="row" style="    margin-left: 0px;">
-                        <div class="col-md-12">
-                            <div class="skt-awesome-title "><a href="login.html?next=cloudbilling.html"
-                                                               class="skt-awesome-title ">CLOUD BILLING</a></div>
-                            <div class="skt-awesome-desp plan_price">
-                                <h3><b>A Dashboard where you can keep track and manage all the resources</b></h3>
-                            </div>
-                            <div class="skt-awesome-desp plan_desc"></div>
-                            <p></p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </DIV>
-        <div class="container" style="    margin-top: -232px;
-    margin-left: 393px;">
-            <div class="Plan_section">
-                <div class="skt-awesome-section plan_section_2nd" style="">
-                    <div class="row" style="    margin-left: 0px;">
-                        <div class="col-md-12">
-                            <div class="skt-awesome-title "><a href="login.html?next=resources/"
-                                                               class="skt-awesome-title ">RESOURCE CREATION</a></div>
-                            <div class="skt-awesome-desp plan_price">
-                                <h3><b>A dashboard where you can create and remove Training resources</b></h3>
-                            </div>
-                            <div class="skt-awesome-desp plan_desc"></div>
-                            <p></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </DIV>
-    </div>
-    <div class="clear"></div>
+<body>
+<div class="preloader">
+	<img src="img/loader.gif" alt="Preloader image">
 </div>
-
-</div>
-<br><br><br><br><br><br><br><br><br>
-<HR>
-
-
-<!-- CLIENTS-LOGO SECTION -->
-<!--<div id="full-client-box" class="skt-section">
+<nav class="navbar">
 	<div class="container">
-		<div class="row-fluid">
-						<ul class="clients-items clearfix">
-				
-				
-				
-				
-							</ul>
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#"><img src="img/logo.png" data-active-url="img/logo-active.png" alt=""></a>
 		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right main-nav">
+				<li><a href="#intro">Home</a></li>
+
+				<li><a href="#Feed back" data-toggle="modal" data-target="#modal2">Feed back</a></li>
+
+				<li><a href="https://www.cloudthat.com" class="btn btn-blue">Sign Up</a></li>
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
 	</div>
-</div>
--->
-<!-- Contact Text Section 
-<div id="full-contact-box" class="skt-section1">
-	<div class="full-contant-box" >
-		<div class="row-fluid">
-			<div class="span12 contact_text">
-				<h2>Call +1 877-355-0124 for Expert Cloud Architects on Demand!</h2>			
+	<!-- /.container-fluid -->
+</nav>
+<header id="intro">
+	<div class="container">
+		<div class="table">
+			<div class="header-text">
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<h3 class="light white">Take care of your AWS Resources</h3>
+						<h1 class="white typed">Now, manage aws resources with just one click.</h1>
+						<br><br><br><br><br><br><br>
+						<a href="https://www.cloudthat.com" class="btn btn-blue">Start Cleanup</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-</div> -->
+</header>
 
-<div class="clearfix"></div>
+<section id="services" class="section section-padded">
+	<div class="container">
+		<div class="row text-center title">
+			<h2>CloudThat Services</h2>
+			<h4 class="light muted">Create/Clean-up your AWS Resources</h4>
+		</div>
+		<div class="row services">
+			<div class="col-md-6">
+				<div class="service">
+					<div class="icon-holder">
+						<h4 class="heading">CLOUD BILLING</h4>
+					</div>
+
+					<a href="login.html?next=cloudbilling.html"><p class="description">A dashboard where<br/>
+						you can keep track and <br/>
+						manage all the AWS resources<br/><br/></p></a>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="service">
+					<div class="icon-holder">
+						<h4 class="heading">RESOURCE CREATION</h4>
+					</div>
+
+					<a href="login.html?next=resources/iam.html"><p class="description">A dashboard where<br/>
+						you can create and remove <br/>
+						your AWS training resources<br/><br/></p></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="cut cut-bottom"></div>
+</section>
+
+<section id="pricing" class="section">
+	<div class="container">
+		<div class="row title text-center">
+			<h2 class="margin-top white">Trainings</h2>
+			<h4 class="light white">Choose your dream course and sign up today!</h4>
+		</div>
+		<div class="row no-margin">
+			<div class="col-md-7 no-padding col-md-offset-5 pricings text-center">
+				<div class="pricing">
+					<div class="box-main active" data-img="img/pricing1.jpg">
+						<h4 class="white">Trainings offered</h4>
+						<a href="https://www.cloudthat.com" class="btn btn-white-fill">Sign Up Now</a>
+						<i class="info-icon icon_question"></i>
+					</div>
+					<div class="box-second active">
+						<ul class="white-list text-left">
+							<li>AWS</li>
+							<li>AZURE</li>
+							<li>BIG DATA</li>
+							<li>OPENSTACK</li>
+							<li>MONGODB</li>
+							</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>
+</section>
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6 text-center-mobile">
+				<h3 class="white">Get started with Free Trial</h3>
+				<a href="#" class="btn btn-blue ripple trial-button">Start Free Trial</a>
+			</div>
+			<div class="row bottom-footer text-center-mobile">
+				<div class="col-sm-8">
+					<p>&copy; Copyright@2012-18,CloudThat Technologies Private Limited</p>
+				</div>
+				<div class="col-sm-4 text-right text-center-mobile">
+					<ul class="social-footer">
+						<li><a href="http://www.facebook.com/pages/Codrops/159107397912"><i class="fa fa-facebook"></i></a>
+						</li>
+						<li><a href="http://www.twitter.com/cloudthat"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="https://plus.google.com/101095823814290637419"><i
+								class="fa fa-google-plus"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+</footer>
+<!-- Holder for mobile navigation -->
+<div class="mobile-nav">
+	<ul>
+	</ul>
+	<a href="#" class="close-link"><i class="arrow_up"></i></a>
 </div>
-<!-- #main -->
-<!--LeadSquared Tracking Code Start-->
-<script type="text/javascript" src="//web-in21.mxradon.com/t/Tracker.js"></script>
-<script type="text/javascript">
-    pidTracker('25846');
-</script>
-<!--LeadSquared Tracking Code End-->
-<!-- #footer -->
-<div id="footer">
-    <div class="container">
-        <div class="row-fluid">
-            <div class="second_wrapper">
-                <div class="clearfix"></div>
-            </div><!-- second_wrapper -->
-        </div>
-    </div>
-
-    <div class="third_wrapper">
-        <div class="container">
-            <div class="row-fluid">
-                <div class="copyright span6 alpha omega"><a href="//cloudexpertline.com/term-of-use/">Terms of
-                    Use</a> |
-                    <a href="//cloudexpertline.com/privacy-policy/">Privacy Policy</a> |
-                    <a href="//cloudexpertline.com/disclaimer/">Disclaimer</a>
-                    <br>
-                    ©
-                    <script>
-                        var today = new Date();
-                        var year = today.getFullYear();
-                        document.write(year);
-                    </script>
-                    2018 CloudThat Technologies. All Rights Reserved.
-                </div>
-
-                <div class="clearfix"></div>
-            </div>
-        </div>
-    </div><!-- third_wrapper -->
-</div>
-<!-- #footer -->
-
-</div>
-<!-- #wrapper -->
-<a href="JavaScript:void(0);" title="Back To Top" id="backtop" style="display: none;"></a>
-<script type="text/javascript"
-        src="//cloudexpertline.com/wp-content/themes/advertica-lite/js/custom.js?ver=1.0"></script>
-<script type="text/javascript" src="//cloudexpertline.com/wp-includes/js/comment-reply.min.js?ver=4.6"></script>
-<script type="text/javascript" src="//cloudexpertline.com/wp-includes/js/hoverIntent.min.js?ver=1.8.1"></script>
-<script type="text/javascript"
-        src="//cloudexpertline.com/wp-content/themes/advertica-lite/js/superfish.js?ver=1"></script>
-<script type="text/javascript"
-        src="//cloudexpertline.com/wp-content/plugins/cyclone-slider-2/libs/cycle2/jquery.cycle2.carousel.min.js?ver=2.8.2"></script>
-<script type="text/javascript"
-        src="//cloudexpertline.com/wp-content/plugins/cyclone-slider-2/libs/cycle2/jquery.cycle2.swipe.min.js?ver=2.8.2"></script>
-<script type="text/javascript"
-        src="//cloudexpertline.com/wp-content/plugins/cyclone-slider-2/libs/cycle2/jquery.cycle2.tile.min.js?ver=2.8.2"></script>
-<script type="text/javascript"
-        src="//cloudexpertline.com/wp-content/plugins/cyclone-slider-2/libs/cycle2/jquery.cycle2.video.min.js?ver=2.8.2"></script>
-<script type="text/javascript"
-        src="//cloudexpertline.com/wp-content/plugins/cyclone-slider-2/templates/dark/script.js?ver=2.8.2"></script>
-<script type="text/javascript"
-        src="//cloudexpertline.com/wp-content/plugins/cyclone-slider-2/templates/thumbnails/script.js?ver=2.8.2"></script>
-<script type="text/javascript"
-        src="//cloudexpertline.com/wp-content/plugins/cyclone-slider-2/js/client.js?ver=2.8.2"></script>
-<script type="text/javascript" src="//cloudexpertline.com/wp-includes/js/wp-embed.min.js?ver=4.6"></script>
-
-
+<!-- Scripts -->
+<script src="assets/index_page/js/jquery-1.11.1.min.js"></script>
+<script src="assets/index_page/js/owl.carousel.min.js"></script>
+<script src="assets/index_page/js/bootstrap.min.js"></script>
+<script src="assets/index_page/js/wow.min.js"></script>
+<script src="assets/index_page/js/typewriter.js"></script>
+<script src="assets/index_page/js/jquery.onepagenav.js"></script>
+<script src="assets/index_page/js/main.js"></script>
 </body>
+
 </html>
