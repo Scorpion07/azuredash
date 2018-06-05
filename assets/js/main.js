@@ -160,6 +160,9 @@ $(document).on('click', '.SelectedResource', function () {
     load_resource_js(SelectedResourceVar);
 });
 
+function homebtn_click(){
+    load_resource_js("dashboard");
+}
 function reloadFunc() {
     load_resource_js(SelectedResourceVar);
 }

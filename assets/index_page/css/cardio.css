@@ -42,7 +42,7 @@ body {
 .preloader div {
     display: none;
     /* Preload the Second Pricing Image */
-    background: url(../img/pricing2.jpg) no-repeat 9999px 9999px;
+    background: url(../img/banner.jpg) no-repeat 9999px 9999px;
     background-position: 9999px 9999px;
 }
 
@@ -213,11 +213,11 @@ nav.navbar-fixed-top .navbar-nav > li > a:not(.btn) {
 }
 
 .btn.btn-blue {
-    background: #00a8ff;
+    background: #20629b;
 }
 
 .btn.btn-blue:hover {
-    background: #31b9ff;
+    background: #808285;
 }
 
 .btn.btn-blue-fill {
@@ -238,7 +238,8 @@ nav.navbar-fixed-top .navbar-nav > li > a:not(.btn) {
 }
 
 .btn.btn-white-fill:hover {
-    color: #00a8ff;
+    color: #20629b;
+    /*color: #00a8ff;*/
     background: #fff;
 }
 
@@ -554,7 +555,7 @@ section {
 /* Pricing */
 
 #pricing {
-    background: #00a8ff url('../img/pricing1.jpg') no-repeat center center;
+    background: #00a8ff url('../img/banner.jpg') no-repeat center center;
     -webkit-background-size: cover;
     background-size: cover;
     -webkit-transition: background-image 0.6s linear 0.3s;
@@ -623,7 +624,7 @@ section {
 }
 
 .pricings .pricing .box-main.active {
-    background: #00a8ff;
+    background: #808285;
     -webkit-transform: translateX(-99%);
     -ms-transform: translateX(-99%);
     transform: translateX(-99%);
@@ -640,7 +641,7 @@ section {
 
 .pricings .pricing .box-second.active {
     opacity: 1;
-    background: #00a8ff;
+    background: #20629b;
 }
 
 .pricings .pricing.active .box-main,
