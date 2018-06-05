@@ -208,8 +208,8 @@ function showDashboard() {
                 //console.log(result);
                 count += 1;
                 loader();
-                var right = "<img src='assets/images/right.png' style='width: 15px;'>";
-                var stop = "<img src='assets/images/red.png' style='width: 16px;'>";
+                var right = "<img src='/assets/images/right.png' style='width: 15px;'>";
+                var stop = "<img src='/assets/images/red.png' style='width: 16px;'>";
                 $("#InstancesRunning").html(right + " " + result.InstancesRunning);
                 $("#InstancesStop").html(stop + "  " + result.InstancesStop);
                 if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
@@ -240,8 +240,8 @@ function showDashboard() {
                 count += 1;
                 loader();
                 //console.log(result);
-                var right = "<img src='assets/images/right.png' style='width: 15px;'>";
-                var stop = "<img src='assets/images/red.png' style='width: 16px;'>";
+                var right = "<img src='/assets/images/right.png' style='width: 15px;'>";
+                var stop = "<img src='/assets/images/red.png' style='width: 16px;'>";
                 $("#natRunning").html(right + " " + result.availablenatgateway);
                 $("#natStop").html(stop + "  " + result.failednatgateway);
                 $("#vpn").text(result.vpnconnection);
