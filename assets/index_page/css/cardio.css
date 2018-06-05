@@ -286,7 +286,7 @@ section {
 }
 
 .section-padded {
-    padding: 100px 0 20px;
+    padding: 35px 0 20px;
 }
 
 .cut-top {
@@ -456,7 +456,7 @@ section {
 }
 
 .services {
-    margin: 40px 0;
+    margin: -45px 0;
 }
 
 .service {
@@ -737,7 +737,7 @@ footer .social-footer li:hover a {
     position: relative;
     left: 0;
     height: auto;
-    padding: 20px 30px;
+    padding: 10px 15px;
     border: 1px;
     border-radius: 0;
     box-shadow: 0;
@@ -792,7 +792,7 @@ footer .social-footer li:hover a {
     position: relative;
     padding: 45px 30px;
     text-align: center;
-    background: url('../img/popup.jpg');
+    background: #20629b;
     box-shadow: none;
     border-radius: 2px;
 }
@@ -1074,7 +1074,7 @@ footer .social-footer li:hover a {
     }
 
     .section {
-        padding: 30px 0;
+        padding: 20px 0;
     }
 }
 

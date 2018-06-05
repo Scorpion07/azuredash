@@ -66,10 +66,10 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right main-nav">
 				<li><a href="#intro">Home</a></li>
-
-				<li><a href="#Feed back" data-toggle="modal" data-target="#modal2">Feed back</a></li>
-
-				<li><a href="https://www.cloudthat.com" class="btn btn-white-fill">Sign Up</a></li>
+				<li><a href="#Feed back" data-toggle="modal" data-target="#modal2">Feedback</a></li>
+				<li><a href="#" data-toggle="modal" data-target="#login_modal" class="btn btn-white-fill">Login</a></li>
+				<li><a href="#" data-toggle="modal" data-target="#signup_modal" class="btn btn-white-fill">Sign Up</a></li>
+				<li id="logout_li" style="display: none;"><a href="#" data-toggle="modal" data-target="#signup_modal" class="btn btn-white-fill">Sign Up</a></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
@@ -85,7 +85,7 @@
 						<h3 class="light white">Take care of your AWS Resources</h3>
 						<h2 class="white typed">Now, manage aws resources with just one click.</h2>
 						<br><br><br><br><br><br><br>
-						<a href="https://www.cloudthat.com" class="btn btn-white-fill">Start Cleanup</a>
+						<a href="#" data-toggle="modal" data-target="#modal11" class="btn btn-white-fill">Start Cleanup</a>
 					</div>
 				</div>
 			</div>
@@ -96,7 +96,7 @@
 <section id="services" class="section section-padded">
 	<div class="container">
 		<div class="row text-center title">
-			<h2>CloudThat Services</h2>
+			<h2>Services Offered</h2>
 			<h4 class="light muted">Create/Clean-up your AWS Resources</h4>
 		</div>
 		<div class="row services">
@@ -148,13 +148,30 @@
 							<li>BIG DATA</li>
 							<li>OPENSTACK</li>
 							<li>MONGODB</li>
-							</ul>
+						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
+
+<div class="modal fade" id="signup_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content modal-popup">
+			<a href="index.html" class="close-link"><i class="icon_close_alt2"></i></a>
+			<h3 class="white">Create Your Account</h3>
+			<form action="" class="popup-form">
+				<input type="text" class="form-control form-white" id="username" placeholder="Enter username">
+				<input type="email" class="form-control form-white" id="email" placeholder="Enter email">
+				<input type="text" class="form-control form-white" id="mobile" placeholder="Enter mobile number">
+				<input type="password" class="form-control form-white" id="password" placeholder="Enter password">
+				<input type="password" class="form-control form-white" id="c_password" placeholder="Conform password">
+				<button type="submit" class="btn btn-submit" onclick="signup_event()">Sign Up</button>
+			</form>
+		</div>
+	</div>
+</div>
 <footer>
 	<div class="container">
 		<div class="row">
@@ -185,6 +202,7 @@
 	</ul>
 	<a href="#" class="close-link"><i class="arrow_up"></i></a>
 </div>
+
 <!-- Scripts -->
 <script src="assets/index_page/js/jquery-1.11.1.min.js"></script>
 <script src="assets/index_page/js/owl.carousel.min.js"></script>
@@ -193,5 +211,13 @@
 <script src="assets/index_page/js/typewriter.js"></script>
 <script src="assets/index_page/js/jquery.onepagenav.js"></script>
 <script src="assets/index_page/js/main.js"></script>
+<script src="assets/js/dependancies/jquery.min.js"></script>
+<script src="assets/js/dependancies/aws-sdk-2.190.0.min.js"></script>
+<script src="assets/js/dependancies/config.js"></script>
+<script src="assets/js/dependancies/aws-cognito-sdk.min.js"></script>
+<script src="assets/js/dependancies/amazon-cognito-identity.min.js"></script>
+<script src="assets/js/dependancies/bootstrap-notify.js"></script>
+<script src="assets/js/dependancies/bootstrap-notify.min.js"></script>
+<script src="assets/js/signup.js"></script>
 </body>
 </html>
