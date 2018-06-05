@@ -43,6 +43,20 @@
 		}
 
 	</style>
+
+	<script src="assets/index_page/js/jquery-1.11.1.min.js"></script>
+	<script src="assets/index_page/js/owl.carousel.min.js"></script>
+	<script src="assets/index_page/js/bootstrap.min.js"></script>
+	<script src="assets/index_page/js/wow.min.js"></script>
+	<script src="assets/index_page/js/typewriter.js"></script>
+	<script src="assets/index_page/js/jquery.onepagenav.js"></script>
+	<script src="assets/index_page/js/main.js"></script>
+	<!--<script src="assets/js/dependancies/jquery.min.js"></script>-->
+	<script src="assets/js/dependancies/config.js"></script>
+	<script src="assets/js/dependancies/aws-cognito-sdk.min.js"></script>
+	<script src="assets/js/dependancies/amazon-cognito-identity.min.js"></script>
+	<script src="assets/js/dependancies/bootstrap-notify.js"></script>
+	<script src="assets/js/dependancies/bootstrap-notify.min.js"></script>
 </head>
 
 <body>
@@ -68,8 +82,8 @@
 				<li><a href="#intro">Home</a></li>
 				<li><a href="#Feed back" data-toggle="modal" data-target="#modal2">Feedback</a></li>
 				<li id="login_li"><a href="#" data-toggle="modal" data-target="#login_modal" class="btn btn-white-fill">Login</a></li>
-				<li id="signup_li"><a href="#" data-toggle="modal" data-target="#signup_modal" class="btn btn-white-fill">Sign Up</a></li>
-				<li id="logout_li"><a href="#" data-toggle="modal" data-target="#signup_modal" class="btn btn-white-fill">Sign Up</a></li>
+				<li id="signup_li"><a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill">Sign Up</a></li>
+				<li id="logout_li"><a href="javascript:signout();" class="btn btn-white-fill">Log Out</a></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
@@ -156,7 +170,7 @@
 	</div>
 </section>
 
-<div class="modal fade" id="signup_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content modal-popup">
 			<a href="index.html" class="close-link"><i class="icon_close_alt2"></i></a>
@@ -204,20 +218,8 @@
 </div>
 
 <!-- Scripts -->
-<script src="assets/index_page/js/jquery-1.11.1.min.js"></script>
-<script src="assets/index_page/js/owl.carousel.min.js"></script>
-<script src="assets/index_page/js/bootstrap.min.js"></script>
-<script src="assets/index_page/js/wow.min.js"></script>
-<script src="assets/index_page/js/typewriter.js"></script>
-<script src="assets/index_page/js/jquery.onepagenav.js"></script>
-<script src="assets/index_page/js/main.js"></script>
-<script src="assets/js/dependancies/jquery.min.js"></script>
-<script src="assets/js/dependancies/aws-sdk-2.190.0.min.js"></script>
-<script src="assets/js/dependancies/config.js"></script>
-<script src="assets/js/dependancies/aws-cognito-sdk.min.js"></script>
-<script src="assets/js/dependancies/amazon-cognito-identity.min.js"></script>
-<script src="assets/js/dependancies/bootstrap-notify.js"></script>
-<script src="assets/js/dependancies/bootstrap-notify.min.js"></script>
+<script src="assets/js/main.js"></script>
 <script src="assets/js/signup.js"></script>
+<script src="assets/js/signout.js"></script>
 </body>
 </html>

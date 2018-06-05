@@ -92,9 +92,9 @@ function sessionValid() {
 }
 
 function signout() {
-    //console.log("Data : " + window.localStorage.getItem('token'))
-    //console.log("User Name : " + JSON.stringify(userPool.getCurrentUser()));
-    if (cognitoUser !== null) {
+    console.log("Data : " + window.localStorage.getItem('token'))
+    console.log("User Name : " + JSON.stringify(userPool.getCurrentUser()));
+    if (!(cognitoUser === null || cognitoUser === undefined)) {
         cognitoUser.signOut();
     }
     //console.log(cognitoUser)

@@ -16,7 +16,7 @@ jQuery(function ($) {
             });
         });
         //show login logout button
-        if (window.localStorage.length === 0) {
+        if (!window.localStorage.length || window.localStorage.length == 0) {
             //show signup / login
             window.localStorage.clear();
             $("#login_li").css("display", "block");
