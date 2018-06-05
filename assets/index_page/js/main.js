@@ -15,7 +15,21 @@ jQuery(function ($) {
                 $('.intro-tables').addClass('animated fadeInUp').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend');
             });
         });
-
+        //show login logout button
+        if (window.localStorage.length === 0) {
+            //show signup / login
+            window.localStorage.clear();
+            $("#login_li").css("display", "block");
+            $("#signup_li").css("display", "block");
+            $("#logout_li").css("display","none");
+        }
+        else {
+            //show logout
+            $("#login_li").css("display", "none");
+            $("#signup_li").css("display", "none");
+            $("#logout_li").css("display","block");
+        }
+        /////
         // Header Init
         if ($(window).height() > $(window).width()) {
             var ratio = $('.parallax').width() / $('.parallax').height();

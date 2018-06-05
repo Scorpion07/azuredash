@@ -96,7 +96,7 @@ function signup_event(){
                                     placement: {from: "top", align: "center"},
                                     delay: 500, timer: 200
                                 });
-                                window.location.href = 'login.html';
+                                window.location.href = 'index.html';
                             }
                         });
                     }
