@@ -245,25 +245,37 @@ $(document).on('change', '.checkboxclick', function () {
 });
 
 function cloudbilling(){
-    console.log("in cloudbilling function")
-    console.log(window.localStorage.UserDetails)
-    if (window.localStorage.UserDetails != "undefined" || window.localStorage.UserDetails != null || window.localStorage.UserDetails.length > 0) {
-        window.location.href = 'billing/';
-
-        console.log("if");
+    if(_config.logLevel === "debug"){
+        console.log("in cloudbilling function")
+        console.log(window.localStorage.UserDetails)
+    }
+    if (window.localStorage.UserDetails != "undefined" && window.localStorage.UserDetails != null && window.localStorage.UserDetails.length > 0) {
+        if(_config.logLevel === "debug")
+            console.log("if");
+        window.location.href = '/billing/';
     }
     else {
+        if(_config.logLevel === "debug")
+            console.log("else")
         $("#login_button").click();
-        console.log("else")
+
     }
 }
 
 function resourceCreation(){
-    if (!(cognitoUser === "" ||cognitoUser === null || cognitoUser === undefined)) {
-        $("#login_button").click();
+    if(_config.logLevel === "debug"){
+        console.log("in ResourceCreation function")
+        console.log(window.localStorage.UserDetails)
     }
-    else
-    {
-        window.location.href = 'resources/iam/';
+    if (window.localStorage.UserDetails != "undefined" && window.localStorage.UserDetails != null && window.localStorage.UserDetails.length > 0) {
+        if(_config.logLevel === "debug")
+            console.log("if");
+        window.location.href = '/resources/';
+    }
+    else {
+        if(_config.logLevel === "debug")
+            console.log("else")
+        $("#login_button").click();
+
     }
 }
