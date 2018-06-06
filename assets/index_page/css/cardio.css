@@ -273,6 +273,7 @@ nav.navbar-fixed-top .navbar-nav > li > a:not(.btn) {
 .container {
     position: relative;
     z-index: 1;
+    width: 85%;
 }
 
 /* Sections */
