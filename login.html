@@ -43,7 +43,7 @@
                 }
                 else {
                     var authenticationData = {
-                        Username: $('#username').val(),
+                         : $('#username').val(),
                         Password: $('#password').val()
                     };
                     console.log("DATA " + authenticationData)
@@ -73,7 +73,6 @@
                                 window.localStorage.setItem('exptime',((result['idToken']['payload']['exp'])+(new Date().getTime())));
                                 console.log("Session : " + result.isValid());
                                 cognitoUser.getUserAttributes(function (err, result) {
-
                                     if (err) {
                                         alert(err);
                                         return;
@@ -93,12 +92,10 @@
                                 alert("Sorry no support of local storage");
                             }
                         },
-
                         onFailure: function (err) {
                             //alert(err);
                             $.notify({icon: 'glyphicon glyphicon-warning-sign',message:err},{type:"danger",placement: {from: "top", align: "center"},delay:500,timer: 200  });
                         }
-
                     });
                 }
             }

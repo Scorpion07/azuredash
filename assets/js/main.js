@@ -1,190 +1,156 @@
+//Initialisations:
+/*
+
+Write About EACH VARIABLE
+ */
+
 var poolData = {
     UserPoolId: _config.cognito.userPoolId,
     ClientId: _config.cognito.userPoolClientId
 };
 
 var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
-var cognitoUser = userPool.getCurrentUser();
-checklogin();
-var ajaxrequest_pages = [];
-var SelectedResourceVar;
-var username = window.localStorage.getItem('username');
-var token = window.localStorage.getItem('token');
-var account;
+var cognitoUser, username, token
 
-setInterval(function() {
-    //console.log(SelectedResourceVar);
-    if (SelectedResourceVar == "dashboard"){
-        if(window.localStorage.custexp <= new Date().getTime()){
-            checklogin();
-        }
-        showDashboard();
-    }
-}, 300000);
+if(_config.logLevel === 'debug')
+    console.log("window.localstorage"+ JSON.stringify(window.localStorage))
 
-$("#filter").keyup(function () {
-    var filter = $(this).val(),
-        count = 0;
-    $("li").each(function () {
-        if (filter == "") {
-            $(this).css("visibility", "visible");
-            $(this).fadeIn();
-        } else if ($(this).text().search(new RegExp(filter, "i")) < 0) {
-            $(this).css("visibility", "hidden");
-            $(this).fadeOut();
-        } else {
-            $(this).css("visibility", "visible");
-            $(this).fadeIn();
-        }
-    });
-});
-
-$(window).on("load", function () {
-    document.getElementById("defaultclick").click();
-    checklogin();
-
+if (window.localStorage.UserDetails != "undefined" && window.localStorage.UserDetails != null && window.localStorage.UserDetails.length > 0) {
+    cognitoUser = userPool.getCurrentUser();
+    username = window.localStorage.getItem('username');
     token = window.localStorage.getItem('token');
+    checklogin();
+}
+else {
+    cognitoUser = "";
+    username = "";
+    token ="";
 
-    if (window.localStorage.getItem('account')) {
-        account = window.localStorage.getItem('account');
+}
+
+
+
+
+//Dependancy Across The Platform
+/*
+Pop Up Notifier /////////
+ */
+
+function pop_notifier(alertType, message, delay = 500) {
+    var ico = "";
+    if ("danger" === alertType) {
+        ico = "fa fa-exclamation-circle";
+    }
+    if ("success" === alertType) {
+        ico = "fa fa-check-circle";
+    }
+    $.notify({icon: ico, message: message}, {
+        type: alertType,
+        z_index: 999999,
+        placement: {from: "top", align: "center"},
+        newest_on_top: true,
+        delay: delay, timer: 200
+    });
+}
+
+/*
+Session Validity
+///TODO: Create Independant Function to renew the Session
+
+ */
+
+
+function sessionValid() {
+    var cognitoUser = userPool.getCurrentUser();
+    if (cognitoUser === undefined) {
+        console.log("undefined")
     }
     else {
-        window.localStorage.setItem('account', $("#account").val());
-        account = window.localStorage.getItem('account');
-    }
-    //console.log(account);
-    if (account == null) {
-        account = $("#account").val();
-    }
-    if (account == "dev") {
-        $('#account > option').eq(0).attr('selected', 'selected')
-    }
-
-    if (account == "prod") {
-        $('#account > option').eq(1).attr('selected', 'selected')
-    }
-    if (account == "training") {
-        $('#account > option').eq(2).attr('selected', 'selected')
-    }
-    if (account == "exttrain") {
-        $('#account > option').eq(3).attr('selected', 'selected')
-    }
-
-    $('#username').text(window.localStorage.username);
-    if (window.localStorage.getItem('SelectedResourceVar')) {
-        SelectedResourceVar = window.localStorage.getItem('SelectedResourceVar');
-        $("li").removeClass("active");
-        $(".SelectedResource").each(function (data) {
-            if ($(this).attr("data-resource") == SelectedResourceVar) {
-                $(this).closest("li").addClass("active");
-                $(this).closest(".treeview").addClass("active");
+        cognitoUser.getSession(function (err, session) {
+            if (err) {
+                alert(err);
+                return;
+            }
+            else if (session.isValid()) {
+                console.log('session validity: ' + session.isValid());
+                session = window.localStorage;
+                var next = getQueryVariable("next");
+                if (next) {
+                    window.location.href = next;
+                }
+                else {
+                    window.location.href = 'index.html';
+                }
+            }
+            else {
+                console.log('session validity: ' + session.isValid());
+                window.localStorage.clear();
             }
         });
     }
-    else {
-        window.localStorage.setItem('SelectedResourceVar', $('.SelectedResource').attr("data-resource"));
-        SelectedResourceVar = window.localStorage.getItem('SelectedResourceVar');
-    }
+}
 
+/*
+Already Login
+ */
 
-    //console.log("on load : " + SelectedResourceVar);
-    if (SelectedResourceVar == null || SelectedResourceVar == " ") {
-        showDashboard();
+function alreadylogin() {
+    if (window.localStorage.length === 0) {
+        window.localStorage.clear();
     }
     else {
-        load_resource_js(SelectedResourceVar);
-        if (SelectedResourceVar == "dashboard") {
-            $("#Dashboard").css("display", "block");
-            $("#Services").css("display", "none");
-            $("#Chart").css("display","none");
-        }
-        else if(SelectedResourceVar == "linechart"){
-            $("#Dashboard").css("display", "none");
-            $("#Services").css("display", "none");
-            $("#Chart").css("display","block");
+        console.log("Session Already Defined");
+        var next = getQueryVariable("next");
+        if (next) {
+            window.location.href = next;
         }
         else {
-            $("#Dashboard").css("display", "none");
-            $("#Services").css("display", "block");
-            $("#Chart").css("display","none");
+            window.location.href = 'index.html';
         }
     }
-});
-
-
-$(document).on('change', '#account', function () {
-    window.localStorage.setItem('account', $("#account").val());
-    account = window.localStorage.getItem('account');
-    //console.log(account);
-    SelectedResourceVar = window.localStorage.getItem('SelectedResourceVar');
-    if (SelectedResourceVar == "dashboard") {
-        for (var i = 0; i < ajaxrequests.length; i++)
-            ajaxrequests[i].abort();
-    }
-    else {
-        for (var i = 0; i < ajaxrequest_pages.length; i++)
-            ajaxrequest_pages[i].abort();
-    }
-    //console.log($('.SelectedResource').attr("data-resource"));
-    //console.log(window.localStorage.getItem('SelectedResourceVar'));
-    count = 0;
-    load_resource_js(SelectedResourceVar);
-});
-
-$(document).on('click', '.SelectedResource', function () {
-    checklogin();
-    $("li").removeClass("active");
-    $(this).closest("li").addClass("active");
-    $(this).closest(".treeview").addClass("active");
-    //console.log("Data Resources : " + $(this).attr("data-resource"));
-    window.localStorage.setItem('SelectedResourceVar', $(this).attr("data-resource"));
-    SelectedResourceVar = window.localStorage.getItem('SelectedResourceVar');
-
-    if (SelectedResourceVar == "dashboard") {
-        $("#Dashboard").css("display", "block");
-        $("#Services").css("display", "none");
-        $("#Chart").css("display","none");
-    }
-    else if(SelectedResourceVar == "linechart"){
-        $("#Dashboard").css("display", "none");
-        $("#Services").css("display", "none");
-        $("#Chart").css("display","block");
-        stopRequests(SelectedResourceVar);
-    }
-    else {
-        $("#Dashboard").css("display", "none");
-        $("#Services").css("display", "block");
-        $("#Chart").css("display","none");
-        stopRequests(SelectedResourceVar);
-    }
-    load_resource_js(SelectedResourceVar);
-});
-
-function homebtn_click(){
-    load_resource_js("dashboard");
-}
-function reloadFunc() {
-    load_resource_js(SelectedResourceVar);
 }
 
-$(document).on('click', '#btnmultipledelete', function () {
-    checkdelete(SelectedResourceVar);
-});
+/*
+Signout
+ */
 
-$(document).on('click', '#yesModal', function () {
-    ModalClickdelete(SelectedResourceVar);
-});
-
-function stopRequests(SelectedResourceVar) {
-    if (SelectedResourceVar === "dashboard") {
-        for (var i = 0; i < ajaxrequest_pages.length; i++)
-            ajaxrequest_pages[i].abort();
+function signout() {
+    if(_config.logLevel != "error")
+        console.log("Data : " + window.localStorage.getItem('token'))
+    if(_config.logLevel === "debug")
+        console.log("User Name : " + JSON.stringify(userPool.getCurrentUser()));
+        console.log(cognitoUser);
+    if (!(cognitoUser === "" ||cognitoUser === null || cognitoUser === undefined)) {
+        cognitoUser.signOut();
     }
-    else {
-        for (var i = 0; i < ajaxrequests.length; i++)
-            ajaxrequests[i].abort();
-    }
+    if(_config.logLevel === "debug")
+        console.log(cognitoUser)
+    window.localStorage.clear();
+    if(_config.logLevel === "debug")
+        console.log("clear : " + window.localStorage.getItem('token'))
+    window.location.href = '/';
+    if(_config.logLevel === "debug")
+        console.log("Signout");
 }
+
+
+/*
+Get Variable From Query String
+ */
+
+
+function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split('=');
+        if (decodeURIComponent(pair[0]) == variable) {
+            return decodeURIComponent(pair[1]);
+        }
+    }
+    console.log('Query variable %s not found', variable);
+}
+
 
 $(document).on('click', '.select_all', function () {
     $(this).change(function () {
@@ -199,6 +165,8 @@ $(document).on('click', '.select_all', function () {
         }
     });
 });
+
+
 $(document).on('change', '.checkboxclick', function () {
     var flag;
     if ($(this).prop("checked")) {
@@ -228,3 +196,27 @@ $(document).on('change', '.checkboxclick', function () {
     }
 
 });
+
+function cloudbilling(){
+    console.log("in cloudbilling function")
+    console.log(window.localStorage.UserDetails)
+    if (window.localStorage.UserDetails != "undefined" || window.localStorage.UserDetails != null || window.localStorage.UserDetails.length > 0) {
+        window.location.href = 'billing/';
+
+        console.log("if");
+    }
+    else {
+        $("#login_button").click();
+        console.log("else")
+    }
+}
+
+function resourceCreation(){
+    if (!(cognitoUser === "" ||cognitoUser === null || cognitoUser === undefined)) {
+        $("#login_button").click();
+    }
+    else
+    {
+        window.location.href = 'resources/iam/';
+    }
+}

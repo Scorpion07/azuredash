@@ -1,15 +1,3 @@
-function checklogin() {
-
-    //console.log(window.localStorage.length)
-    if (window.localStorage.length === 0) {
-        window.location.href = '/login.html';
-    }
-    else {
-        //console.log("Alreay logged in");
-        sessionValid();
-    }
-}
-
 function sessionValid() {
     if (cognitoUser === undefined) {
         //console.log("undefined")
@@ -91,16 +79,15 @@ function sessionValid() {
     }
 }
 
-function signout() {
-    console.log("Data : " + window.localStorage.getItem('token'))
-    console.log("User Name : " + JSON.stringify(userPool.getCurrentUser()));
-    if (!(cognitoUser === null || cognitoUser === undefined)) {
-        cognitoUser.signOut();
+function checklogin() {
+
+    //console.log(window.localStorage.length)
+    if (window.localStorage.length === 0) {
+        window.location.href = '/login.html';
     }
-    //console.log(cognitoUser)
-    window.localStorage.clear();
-    //console.log("clear : " + window.localStorage.getItem('token'))
-    window.location.href = '/';
-    //console.log("Signout");
+    else {
+        //console.log("Alreay logged in");
+        sessionValid();
+    }
 }
 
