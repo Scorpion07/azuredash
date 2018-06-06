@@ -15,18 +15,14 @@ var cognitoUser, username, token
 if(_config.logLevel === 'debug')
     console.log("window.localstorage"+ JSON.stringify(window.localStorage))
 
+
 if (window.localStorage.UserDetails != "undefined" && window.localStorage.UserDetails != null && window.localStorage.UserDetails.length > 0) {
     cognitoUser = userPool.getCurrentUser();
     username = window.localStorage.getItem('username');
     token = window.localStorage.getItem('token');
     checklogin();
 }
-else {
-    cognitoUser = "";
-    username = "";
-    token ="";
 
-}
 
 
 
@@ -61,32 +57,83 @@ Session Validity
 
 
 function sessionValid() {
-    var cognitoUser = userPool.getCurrentUser();
     if (cognitoUser === undefined) {
-        console.log("undefined")
+        //console.log("undefined")
+        signout();
+    }
+    else if (cognitoUser === null) {
+        //console.log("null")
+        signout();
     }
     else {
-        cognitoUser.getSession(function (err, session) {
-            if (err) {
-                alert(err);
-                return;
-            }
-            else if (session.isValid()) {
-                console.log('session validity: ' + session.isValid());
-                session = window.localStorage;
-                var next = getQueryVariable("next");
-                if (next) {
-                    window.location.href = next;
-                }
-                else {
-                    window.location.href = 'index.html';
-                }
-            }
-            else {
-                console.log('session validity: ' + session.isValid());
-                window.localStorage.clear();
-            }
+        var idToken = new AmazonCognitoIdentity.CognitoIdToken({
+            IdToken: window.localStorage.token
         });
+        var accessToken = new AmazonCognitoIdentity.CognitoAccessToken({
+            AccessToken: window.localStorage.actoken
+        });
+        var refreshToken = new AmazonCognitoIdentity.CognitoRefreshToken({
+            RefreshToken: window.localStorage.reftoken
+        });
+
+        var session = new AmazonCognitoIdentity.CognitoUserSession({IdToken : idToken,RefreshToken : refreshToken,AccessToken : accessToken})
+        cognitoUser.signInUserSession = session
+        if(cognitoUser.signInUserSession.isValid()){
+            if(window.localStorage.custexp <= new Date().getTime()){
+                cognitoUser.refreshSession(refreshToken, function(err, session) {
+                    if(err){
+                        signout();
+                    }
+                    else{
+                        window.localStorage.setItem('custexp',(new Date().getTime()+3600000));
+                        //console.log('In a refreshtoken : '+session)
+                        window.localStorage.setItem('token', session.getIdToken().getJwtToken());
+                        window.localStorage.setItem('actoken', session.getAccessToken().getJwtToken());
+                        window.localStorage.setItem('reftoken', session.getRefreshToken().getToken());
+                        window.localStorage.setItem('exp',session['idToken']['payload']['exp']);
+                        window.localStorage.setItem('exptime',((session['idToken']['payload']['exp'])+(new Date().getTime())));
+                    }
+                });
+            }
+            else{
+                //console.log('session validity: ' + cognitoUser.signInUserSession.isValid());
+            }
+        }
+        else{
+            //console.log('session validity: ' + cognitoUser.signInUserSession.isValid());
+            window.localStorage.clear();
+            window.location.href = '/login.html';
+            if (cognitoUser !== null) {
+                cognitoUser.signOut();
+            }
+        }
+        // cognitoUser.getSession(function (err, session) {
+        //     if (err) {
+        //         //console.log(err);
+        //         signout();
+        //         return;
+        //     }
+        //     else if (session.isValid()) {
+        //         //console.log('session validity: ' + session.isValid());
+        //         if(window.localStorage.exptime <= new Date().getTime()){
+        //             var idToken = new AmazonCognitoIdentity.CognitoIdToken({
+        //                 IdToken: window.localStorage.token
+        //             });
+        //             var accessToken = new AmazonCognitoIdentity.CognitoAccessToken({
+        //                 AccessToken: window.localStorage.actoken
+        //             });
+        //             var refreshToken = new AmazonCognitoIdentity.CognitoRefreshToken({
+        //                 RefreshToken: window.localStorage.reftoken
+        //             });
+        //
+        //          }
+        //     }
+        //     else {
+        //         //console.log('session validity: ' + session.isValid());
+        //         window.localStorage.clear();
+        //         window.location.href = '/login.html';
+        //     }
+        // });
     }
 }
 

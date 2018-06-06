@@ -86,6 +86,7 @@ function signin_event() {
                 message = "Welcome "+ result['idToken']['payload']['cognito:username'].toString() +"("+ result["idToken"]["payload"]["email"].toString()+")"
                 console.log(message)
                 pop_notifier("success",message,1000);
+                window.localStorage.setItem("UserDetails",result);
                 if (typeof(Storage) !== "undefined") {
                     var idtoken = result.getIdToken().getJwtToken();
                     var actoken = result.getAccessToken().getJwtToken();
@@ -93,12 +94,14 @@ function signin_event() {
                     window.localStorage.setItem('token', idtoken);
                     window.localStorage.setItem('actoken', actoken);
                     window.localStorage.setItem('reftoken', reftoken);
-                    window.localStorage.setItem('username', result['idToken']['payload']['cognito:username']);
+                    window.localStorage.setItem('username', result["accessToken"]["payload"]["username"]);
                     window.localStorage.setItem('exp', result['idToken']['payload']['exp']);
                     window.localStorage.setItem('custexp', (new Date().getTime() + 3600000))
                     window.localStorage.setItem('exptime', ((result['idToken']['payload']['exp']) + (new Date().getTime())));
                     console.log("Session : " + result.isValid());
-                    window.localStorage.setItem('username', result['idToken']['payload']['emil']);
+                    window.localStorage.setItem('email', result['idToken']['payload']['email']);
+                    if(_config.logLevel === "debug")
+                        console.log(window.localStorage)
                     // window.location.reload();
                     //show logout
                     $("#login_li").css("display", "none");
