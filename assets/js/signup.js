@@ -1,3 +1,21 @@
+$('document').ready(function(){
+    $("#email").focusout(function (e) {
+            var mail = $(this).val();
+            if(_config.logLevel === "debug"){
+                // console.log(mail.includes("cloudthat.in"));
+                console.log($("#email").val());
+            }
+            if (! isCloudThatEmail(mail)) {
+                pop_notifier("info", "This Application Requires ReadOnly Permission of Your AWS Account Permissions to Continue. Please Click on the Info to Know More", 10000);
+                $("#roleARN").show();
+            }
+            else{
+                $("#roleARN").hide();
+            }
+
+    });
+});
+
 function signup_event(){
     var poolData = {
         UserPoolId: _config.cognito.userPoolId,
@@ -15,8 +33,10 @@ function signup_event(){
         // alert("password not matched")
         pop_notifier("danger","password not matched");
     }
-    else if (((($('#email').val()).substring(($('#email').val()).lastIndexOf("@") + 1)) !== "cloudthat.in") && ((($('#email').val()).substring(($('#email').val()).lastIndexOf("@") + 1)) !== "cloudthat.com")) {
-        pop_notifier("danger","Please use CloudThat email address to register",1000);}
+    // else if (!(((($('#email').val()).substring(($('#email').val()).lastIndexOf("@") + 1)) !== "cloudthat.in") && ((($('#email').val()).substring(($('#email').val()).lastIndexOf("@") + 1)) !== "cloudthat.com"))) {
+    //     pop_notifier("danger","Please use CloudThat email address to register",1000);
+    //     $("#roleARN").show();
+    // }
     else {
 
         var attributeList = [];
@@ -32,12 +52,25 @@ function signup_event(){
             Name: 'email',
             Value: $('#email').val()
         };
+
         console.log('Email :' + dataEmail);
         var attributeEmail = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataEmail);
         var attributePhoneNumber = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataPhoneNumber);
         console.log('Attribute Email :' + attributeEmail);
         attributeList.push(attributeEmail);
         attributeList.push(attributePhoneNumber);
+        if (!isCloudThatEmail($('#email').val())){
+            if(_config.logLevel == "debug")
+                console.log($('#ARN').val());
+            var dataRoleARN = {
+                Name:'custom:roleARN',
+                Value: $('#ARN').val()
+            }
+            console.log(dataRoleARN);
+            var attributeRoleARN = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataRoleARN);
+            attributeList.push(attributeRoleARN);
+        }
+
         console.log('attributeList :' + attributeList);
         userPool.signUp($('#username').val(), $('#password').val(), attributeList, null, function (err, result) {
             if (err) {

@@ -279,3 +279,18 @@ function resourceCreation(){
 
     }
 }
+
+function isCloudThatEmail(mail){
+    if (!(mail.includes("cloudthat.in") || mail.includes("cloudthat.com")) && mail != "") {
+        if(_config.logLevel=="debug"){
+            console.log("Not CloudThat Email")
+            console.log(mail);
+        }
+        return false;
+    }
+    else{
+        if(_config.logLevel=="debug")
+            console.log(mail);
+        return true;
+    }
+}

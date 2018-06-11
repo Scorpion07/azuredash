@@ -23,6 +23,7 @@ else {
 var ajaxrequest_pages = [];
 var SelectedResourceVar=null;
 var account=null;
+var roleARN=null;
 
 setInterval(function () {
     //console.log(SelectedResourceVar);
@@ -58,31 +59,36 @@ $(window).on("load", function () {
 
     token = window.localStorage.getItem('token');
 
-    if (window.localStorage.getItem('account')) {
-        account = window.localStorage.getItem('account');
-    }
-    else {
-        window.localStorage.setItem('account', $("#account").val());
-        account = window.localStorage.getItem('account');
-    }
-    //console.log(account);
-    if (account == null) {
-        account = $("#account").val();
-    }
-    if (account == "dev") {
-        $('#account > option').eq(0).attr('selected', 'selected')
-    }
+    if(isCloudThatEmail(window.localStorage.getItem('email'))) {
+        if (window.localStorage.getItem('account')) {
+            account = window.localStorage.getItem('account');
+        }
+        else {
+            window.localStorage.setItem('account', $("#account").val());
+            account = window.localStorage.getItem('account');
+        }
+        //console.log(account);
+        if (account == null) {
+            account = $("#account").val();
+        }
+        if (account == "dev") {
+            $('#account > option').eq(0).attr('selected', 'selected')
+        }
 
-    if (account == "prod") {
-        $('#account > option').eq(1).attr('selected', 'selected')
+        if (account == "prod") {
+            $('#account > option').eq(1).attr('selected', 'selected')
+        }
+        if (account == "training") {
+            $('#account > option').eq(2).attr('selected', 'selected')
+        }
+        if (account == "exttrain") {
+            $('#account > option').eq(3).attr('selected', 'selected')
+        }
     }
-    if (account == "training") {
-        $('#account > option').eq(2).attr('selected', 'selected')
+    else{
+        roleARN = window.localStorage.getItem('roleARN');
+        $('#account').hide();
     }
-    if (account == "exttrain") {
-        $('#account > option').eq(3).attr('selected', 'selected')
-    }
-
     $('#username').text(window.localStorage.username);
     if (window.localStorage.getItem('SelectedResourceVar')) {
         SelectedResourceVar = window.localStorage.getItem('SelectedResourceVar');

@@ -100,6 +100,26 @@ function signin_event() {
                     window.localStorage.setItem('exptime', ((result['idToken']['payload']['exp']) + (new Date().getTime())));
                     console.log("Session : " + result.isValid());
                     window.localStorage.setItem('email', result['idToken']['payload']['email']);
+                    if(!isCloudThatEmail(window.localStorage.getItem('email'))){
+                        cognitoUser.getUserAttributes(function(err, result) {
+                            if (err) {
+                                console.log(err);
+                                pop_notifier("danger",err,1000);
+                                return;
+                            }
+                            for (i = 0; i < result.length; i++) {
+                                let name = result[i].getName();
+                                if(name=="custom:roleARN"){
+                                    if(_config.logLevel === "debug")
+                                        console.log("Found ROLE ARN"+ result[i].getValue());
+                                    window.localStorage.setItem('roleARN',result[i].getValue());
+                                }
+                                // console.log('attribute ' + result[i].getName() + ' has value ' + result[i].getValue());
+                            }
+                            if(_config.logLevel === "debug")
+                                console.log(window.localStorage)
+                        });
+                    }
                     if(_config.logLevel === "debug")
                         console.log(window.localStorage)
                     // window.location.reload();

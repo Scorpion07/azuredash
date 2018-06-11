@@ -16,110 +16,117 @@ function error_occured(xhr, ajaxOptions, thrownError){
         return;
     }
     if(xhr["responseJSON"]["message"] == "The incoming token has expired"){
-        $.notify({message: "Token Has Expired hence refreshing"}, {
-            type: "warning",
-            placement: {from: "top", align: "center"},
-            delay: 500,
-            timer: 500
-        });
+        pop_notifier("warning","Token Has Expired Hence Refreshing the Page");
         location.reload();
     }
     else {
-        $.notify({message: "Unable to Load"}, {
-            type: "danger",
-            placement: {from: "top", align: "center"},
-            delay: 500,
-            timer: 500
-        });
+        pop_notifier("danger","Unable to Load")
     }
 }
 
 function showDashboard() {
     count = 0;
     var account = window.localStorage.getItem("account");
+    var roleARN = window.localStorage.getItem("roleARN");
     var currentTime = new Date();
+
     var snapshot = {
         method: "getCount",
         service: "snapshot",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     var elbs = {
         method: "getCount",
         service: "elb",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     var instances = {
         method: "getCount",
         service: "instances",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     var eip = {
         method: "getCount",
         service: "netinterface",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     var rds = {
         method: "getCount",
         service: "rds",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     var nat = {
         method: "getCount",
         service: "vpc",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     var lambda = {
         method: "getCount",
         service: "lambda",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     var cf_stack = {
         method: "getCount",
         service: "cf_stack",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     var sagemaker = {
         method: "getCount",
         service: "sagemaker",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     var redshift = {
         method: "getCount",
         service: "redshift",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     var route53 = {
         method: "getCount",
         service: "route53",
         account: account,
+        roleARN: roleARN,
         username: username
     };
+
     var cloudtrail = {
         method: "getCount",
         service: "cloudtrail",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     var beanstalk = {
         method: "getCount",
         service: "beanstalk",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     var kinesis = {
         method: "getCount",
         service: "kinesis",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     $("#loading").show();
@@ -695,17 +702,17 @@ function CostofResources() {
             $("#totalOtherCost").html("");
         }
         else{
-            $("#ec2Instancecost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Check your Role ARN</marquee>');
-            $("#elbcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Check your Role ARN</marquee>');
-            $("#snapcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Check your Role ARN</marquee>');
-            $("#volumecost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Check your Role ARN</marquee>');
-            $("#eipcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Check your Role ARN</marquee>');
-            $("#dbintcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Check your Role ARN</marquee>');
-            $("#dbsnapcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Check your Role ARN</marquee>');
-            $("#natcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Check your Role ARN</marquee>');
+            $("#ec2Instancecost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Pro Feature</marquee>');
+            $("#elbcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Pro Feature</marquee>');
+            $("#snapcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Pro Feature</marquee>');
+            $("#volumecost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Pro Feature</marquee>');
+            $("#eipcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Pro Feature</marquee>');
+            $("#dbintcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Pro Feature</marquee>');
+            $("#dbsnapcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Pro Feature</marquee>');
+            $("#natcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Pro Feature</marquee>');
             $("#totalAccountCost").html("");
-            // $("#totalEc2Cost").html(" <b>( $ " + '<marquee behavior="scroll" direction="left" scrollamount="3">Check your Role ARN</marquee>' + " ) </b>");
-            // $("#totalRdsCost").html(" <b>( $ " + '<marquee behavior="scroll" direction="left" scrollamount="3">Check your Role ARN</marquee>' + " ) </b>");
+            // $("#totalEc2Cost").html(" <b>( $ " + '<marquee behavior="scroll" direction="left" scrollamount="3">Pro Feature</marquee>' + " ) </b>");
+            // $("#totalRdsCost").html(" <b>( $ " + '<marquee behavior="scroll" direction="left" scrollamount="3">Pro Feature</marquee>' + " ) </b>");
             $("#totalOtherCost").html("");
         }
     });

@@ -181,8 +181,15 @@
 			<form action="" class="popup-form">
 				<div id="signup_form" style="display: block">
 					<input type="text" class="form-control form-white" id="username" placeholder="Enter username">
-					<input type="email" class="form-control form-white" id="email" placeholder="Enter email">
-					<input type="text" class="form-control form-white" id="mobile" placeholder="Enter mobile number">
+					<input type="email" class="form-control form-white" autocomplete="email" id="email" placeholder="Enter email">
+					<input type="text" class="form-control form-white" autocomplete="tel" id="mobile" placeholder="Enter mobile number">
+					<div class="form-control form-white" style="display: none;" id="roleARN">
+						<label>Please Provide a Read Only Role for your AWS account.
+							<a href="/billing/howto/" target="_blank">
+								<i class="fa fa-cog fa-spin fa-fw" aria-hidden="true" id="roleInfo" style="color: white"> </i>
+							</a>
+						</label>
+						<input type="text" class="form-control"  placeholder="arn:aws:iam::111111111111:role/ReadOnlyRole" id="ARN"></div>
 					<input type="password" class="form-control form-white" id="password" placeholder="Enter password">
 					<input type="password" class="form-control form-white" id="c_password" placeholder="Conform password">
 					<button type="button" class="btn btn-submit" onclick="signup_event()">Sign Up</button>
