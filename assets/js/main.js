@@ -274,7 +274,7 @@ function resourceCreation(){
            window.location.href = '/resources/';
         }
         else {
-            pop_notifier("info","This is a Professional Feature Kindly Contact Us on consulting@cloudthat.com");
+            pop_notifier("info","This is a Professional Feature Kindly Contact Us on consulting@cloudthat.com",10000);
             //Show Inquiry Modal
         }
 
