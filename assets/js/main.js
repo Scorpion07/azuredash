@@ -270,7 +270,14 @@ function resourceCreation(){
     if (window.localStorage.UserDetails != "undefined" && window.localStorage.UserDetails != null && window.localStorage.UserDetails.length > 0) {
         if(_config.logLevel === "debug")
             console.log("if");
-        window.location.href = '/resources/';
+        if(isCloudThatEmail(window.localStorage.email)){
+           window.location.href = '/resources/';
+        }
+        else {
+            pop_notifier("info","This is a Professional Feature Kindly Contact Us on consulting@cloudthat.com");
+            //Show Inquiry Modal
+        }
+
     }
     else {
         if(_config.logLevel === "debug")
