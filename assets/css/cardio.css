@@ -145,7 +145,7 @@ header .typed-cursor {
     font-size: 60px;
     display: inline-block;
     margin: 0 10px;
-    color: #00a8ff;
+    color: #20629b;
     -webkit-animation-name: flash;
     animation-name: flash;
     -webkit-animation-duration: 1s;
@@ -156,7 +156,7 @@ header .typed-cursor {
 
 a {
     text-decoration: none;
-    color: #00a8ff;
+    color: #20629b;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
@@ -173,7 +173,7 @@ nav.navbar {
 }
 
 nav.navbar .navbar-nav li.active a:not(.btn) {
-    color: #00a8ff !important;
+    color: #20629b !important;
 }
 
 nav.navbar-fixed-top {
@@ -186,11 +186,11 @@ nav.navbar-fixed-top {
 }
 
 nav.navbar-fixed-top .navbar-nav > li > a:not(.btn) {
-    color: #bbb;
+    color: #808285;
 }
 
 .icon-bar {
-    background: #bbb;
+    background: #808285;
 }
 
 /* Buttons */
@@ -221,14 +221,14 @@ nav.navbar-fixed-top .navbar-nav > li > a:not(.btn) {
 }
 
 .btn.btn-blue-fill {
-    color: #00a8ff;
-    border-color: #00a8ff;
+    color: #20629b;
+    border-color: #20629b;
     background: transparent;
 }
 
 .btn.btn-blue-fill:hover {
     color: white;
-    background: #00a8ff;
+    background: #20629b;
 }
 
 .btn.btn-white-fill {
@@ -239,7 +239,7 @@ nav.navbar-fixed-top .navbar-nav > li > a:not(.btn) {
 
 .btn.btn-white-fill:hover {
     color: #20629b;
-    /*color: #00a8ff;*/
+    /*color: #20629b;*/
     background: #fff;
 }
 
@@ -250,8 +250,8 @@ nav.navbar-fixed-top .navbar-nav > li > a:not(.btn) {
 }
 
 .btn.btn-gray-fill:hover {
-    border-color: #bbb;
-    background: #bbb;
+    border-color: #808285;
+    background: #808285;
 }
 
 /* Blink Cursor */
@@ -493,7 +493,7 @@ section {
 }
 
 .service:hover {
-    border-color: #00a8ff;
+    border-color: #20629b;
 }
 
 .service:hover .icon-holder {
@@ -556,7 +556,7 @@ section {
 /* Pricing */
 
 #pricing {
-    background: #00a8ff url('../images/banner.jpg') no-repeat center center;
+    background: #20629b url('../images/banner.jpg') no-repeat center center;
     -webkit-background-size: cover;
     background-size: cover;
     -webkit-transition: background-image 0.6s linear 0.3s;
@@ -586,7 +586,7 @@ section {
     width: 50%;
     height: 300px;
     padding: 50px 40px;
-    background: #bbb;
+    background: #808285;
     -webkit-transition: -webkit-transform 0.3s, background-image 0.3s, opacity 0.3s;
     transition: transform 0.3s, background-image 0.3s, opacity 0.3s;
     -webkit-backface-visibility: hidden;
@@ -647,7 +647,7 @@ section {
 
 .pricings .pricing.active .box-main,
 .pricings .pricing .box-second {
-    background: #00a8ff;
+    background: #20629b;
 }
 
 .pricings .pricing .box-main a.btn {
@@ -728,7 +728,7 @@ footer .social-footer li a {
 }
 
 footer .social-footer li:hover a {
-    color: #00a8ff;
+    color: #20629b;
 }
 
 /* Form Control */
@@ -848,12 +848,12 @@ footer .social-footer li:hover a {
 .popup-form .dropdown .dropdown-menu li a {
     width: 100%;
     padding: 15px 30px;
-    color: #00a8ff;
+    color: #20629b;
 }
 
 .popup-form .dropdown .dropdown-menu li:hover a {
     color: #fff;
-    background: #00a8ff;
+    background: #20629b;
 }
 
 /* Checkbox */
@@ -924,7 +924,7 @@ footer .social-footer li:hover a {
 .btn.btn-submit {
     width: 60%;
     margin-top: 30px;
-    color: #00a8ff;
+    color: #20629b;
     border: 2px solid #fff;
     background: #fff;
 }
@@ -932,7 +932,7 @@ footer .social-footer li:hover a {
 .btn.btn-next {
     width: 50%;
     margin-top: 30px;
-    color: #00a8ff;
+    color: #20629b;
     border: 2px solid #fff;
     background: #fff;
 }
@@ -942,7 +942,7 @@ footer .social-footer li:hover a {
 }
 
 .btn.btn-submit:hover {
-    color: #00a8ff;
+    color: #20629b;
     background: #fff;
 }
 
@@ -996,7 +996,7 @@ footer .social-footer li:hover a {
     width: 100%;
     padding: 15px 0;
     color: #fff;
-    background: #00a8ff;
+    background: #20629b;
 }
 
 .row.title {
@@ -1034,11 +1034,11 @@ footer .social-footer li:hover a {
 }
 
 .blue {
-    color: #00a8ff;
+    color: #20629b;
 }
 
 .blue-bg {
-    background: #00a8ff;
+    background: #20629b;
 }
 
 .muted {
@@ -1102,11 +1102,11 @@ footer .social-footer li:hover a {
         width: 100%;
         padding: 50px 50px 0;
         text-align: left;
-        background: #00a8ff;
+        background: #20629b;
     }
 
     .pricings .pricing .box-main.active {
-        background: #00a8ff;
+        background: #20629b;
         -webkit-transform: translateX(0%);
         -ms-transform: translateX(0%);
         transform: translateX(0%);
