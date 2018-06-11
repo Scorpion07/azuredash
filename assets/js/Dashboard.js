@@ -681,31 +681,31 @@ function CostofResources() {
     }).fail(function()
     {
         if(window.localStorage.email.includes("cloudthat")){
-            $("#ec2Instancecost").html('<marquee behavior="scroll" direction="left" scrollamount="1">Error In Cost File</marquee>');
-            $("#elbcost").html('<marquee behavior="scroll" direction="left" scrollamount="1">Error In Cost File</marquee>');
-            $("#snapcost").html('<marquee behavior="scroll" direction="left" scrollamount="1">Error In Cost File</marquee>');
-            $("#volumecost").html('<marquee behavior="scroll" direction="left" scrollamount="1">Error In Cost File</marquee>');
-            $("#eipcost").html('<marquee behavior="scroll" direction="left" scrollamount="1">Error In Cost File</marquee>');
-            $("#dbintcost").html('<marquee behavior="scroll" direction="left" scrollamount="1">Error In Cost File</marquee>');
-            $("#dbsnapcost").html('<marquee behavior="scroll" direction="left" scrollamount="1">Error In Cost File</marquee>');
-            $("#natcost").html('<marquee behavior="scroll" direction="left" scrollamount="1">Error In Cost File</marquee>');
+            $("#ec2Instancecost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Error In Cost File</marquee>');
+            $("#elbcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Error In Cost File</marquee>');
+            $("#snapcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Error In Cost File</marquee>');
+            $("#volumecost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Error In Cost File</marquee>');
+            $("#eipcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Error In Cost File</marquee>');
+            $("#dbintcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Error In Cost File</marquee>');
+            $("#dbsnapcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Error In Cost File</marquee>');
+            $("#natcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Error In Cost File</marquee>');
             $("#totalAccountCost").html("");
-            // $("#totalEc2Cost").html(" <b>( $ " + '<marquee behavior="scroll" direction="left" scrollamount="1">Error In Cost File</marquee>' + " ) </b>");
-            // $("#totalRdsCost").html(" <b>( $ " + '<marquee behavior="scroll" direction="left" scrollamount="1">Error In Cost File</marquee>' + " ) </b>");
+            // $("#totalEc2Cost").html(" <b>( $ " + '<marquee behavior="scroll" direction="left" scrollamount="3">Error In Cost File</marquee>' + " ) </b>");
+            // $("#totalRdsCost").html(" <b>( $ " + '<marquee behavior="scroll" direction="left" scrollamount="3">Error In Cost File</marquee>' + " ) </b>");
             $("#totalOtherCost").html("");
         }
         else{
-            $("#ec2Instancecost").html('<marquee behavior="scroll" direction="left" scrollamount="1">Check your Role ARN</marquee>');
-            $("#elbcost").html('<marquee behavior="scroll" direction="left" scrollamount="1">Check your Role ARN</marquee>');
-            $("#snapcost").html('<marquee behavior="scroll" direction="left" scrollamount="1">Check your Role ARN</marquee>');
-            $("#volumecost").html('<marquee behavior="scroll" direction="left" scrollamount="1">Check your Role ARN</marquee>');
-            $("#eipcost").html('<marquee behavior="scroll" direction="left" scrollamount="1">Check your Role ARN</marquee>');
-            $("#dbintcost").html('<marquee behavior="scroll" direction="left" scrollamount="1">Check your Role ARN</marquee>');
-            $("#dbsnapcost").html('<marquee behavior="scroll" direction="left" scrollamount="1">Check your Role ARN</marquee>');
-            $("#natcost").html('<marquee behavior="scroll" direction="left" scrollamount="1">Check your Role ARN</marquee>');
+            $("#ec2Instancecost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Check your Role ARN</marquee>');
+            $("#elbcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Check your Role ARN</marquee>');
+            $("#snapcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Check your Role ARN</marquee>');
+            $("#volumecost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Check your Role ARN</marquee>');
+            $("#eipcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Check your Role ARN</marquee>');
+            $("#dbintcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Check your Role ARN</marquee>');
+            $("#dbsnapcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Check your Role ARN</marquee>');
+            $("#natcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Check your Role ARN</marquee>');
             $("#totalAccountCost").html("");
-            // $("#totalEc2Cost").html(" <b>( $ " + '<marquee behavior="scroll" direction="left" scrollamount="1">Check your Role ARN</marquee>' + " ) </b>");
-            // $("#totalRdsCost").html(" <b>( $ " + '<marquee behavior="scroll" direction="left" scrollamount="1">Check your Role ARN</marquee>' + " ) </b>");
+            // $("#totalEc2Cost").html(" <b>( $ " + '<marquee behavior="scroll" direction="left" scrollamount="3">Check your Role ARN</marquee>' + " ) </b>");
+            // $("#totalRdsCost").html(" <b>( $ " + '<marquee behavior="scroll" direction="left" scrollamount="3">Check your Role ARN</marquee>' + " ) </b>");
             $("#totalOtherCost").html("");
         }
     });
