@@ -188,7 +188,13 @@ function reloadFunc() {
 }
 
 $(document).on('click', '#btnmultipledelete', function () {
-    checkdelete(SelectedResourceVar);
+    if (!isCloudThatEmail(window.localStorage.getItem('email'))) {
+        $('#btnmultipledelete').addClass("disabled");
+        pop_notifier("info", "This is a Professional Feature Kindly Contact Us on consulting@cloudthat.com", 10000);
+    }
+    else {
+        checkdelete(SelectedResourceVar);
+    }
 });
 
 $(document).on('click', '#yesModal', function () {
