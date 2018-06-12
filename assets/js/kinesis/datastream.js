@@ -37,6 +37,7 @@ function ListKinesisDataStream() {
         submethod: SelectedResourceVar,
         method: "ListResources",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     //console.log(submit);
@@ -173,6 +174,7 @@ function deleteKinesisDataStream() {
         method: "deleteKinesisDataStream",
         account: account,
         data: Data,
+        roleARN: roleARN,
         username: username
     };
     $.ajax({

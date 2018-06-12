@@ -37,6 +37,7 @@ function ListInstanceData() {
         submethod: SelectedResourceVar,
         method: "ListResources",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     //console.log(submit);
@@ -171,6 +172,7 @@ function deleteInstances() {
         method: "instanceDelete",
         account: account,
         instanceids: instanceid,
+        roleARN: roleARN,
         username: username
     };
     $.ajax({

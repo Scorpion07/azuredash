@@ -38,6 +38,7 @@ function ListELBData() {
         submethod: SelectedResourceVar,
         method: "ListResources",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     //console.log(submit);
@@ -153,6 +154,7 @@ function deleteELBs() {
         account: account,
         region: region_array,
         elb: elb_ids_array,
+        roleARN: roleARN,
         username: username
     };
     //console.log(JSON.stringify(deleteData));

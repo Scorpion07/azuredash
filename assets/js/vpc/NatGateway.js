@@ -37,6 +37,7 @@ function ListNATData() {
         submethod: SelectedResourceVar,
         method: "ListResources",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     //console.log(submit);
@@ -184,6 +185,7 @@ function deleteNats() {
         method: "natgatewayDelete",
         account: account,
         natgatewayids: natgatewayid,
+        roleARN: roleARN,
         username: username
     };
     $.ajax({

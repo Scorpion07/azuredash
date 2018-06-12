@@ -37,6 +37,7 @@ function ListBSEnvData() {
         submethod: SelectedResourceVar,
         method: "ListResources",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     //console.log(submit);
@@ -187,6 +188,7 @@ function deleteBSEnvs() {
         method: "deleteBeanstalkEnv",
         account: account,
         data: Data,
+        roleARN: roleARN,
         username: username
     };
     $.ajax({

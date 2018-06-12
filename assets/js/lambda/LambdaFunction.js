@@ -37,6 +37,7 @@ function ListLambdaData() {
         submethod: SelectedResourceVar,
         method: "ListResources",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     //console.log(submit);
@@ -188,6 +189,7 @@ function deleteLambdaFunctions() {
         method: "lambdaFunctionDelete",
         account: account,
         region: Data,
+        roleARN: roleARN,
         username: username
     };
     $.ajax({

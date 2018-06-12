@@ -39,6 +39,7 @@ function ListEIPData() {
         submethod: SelectedResourceVar,
         method: "ListResources",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     //console.log(submit);
@@ -158,6 +159,7 @@ function deleteEIPs() {
         region: regions,
         allo: allo_ids,
         asso: asso_ids,
+        roleARN: roleARN,
         username: username
     };
     //console.log(JSON.stringify(deleteData));

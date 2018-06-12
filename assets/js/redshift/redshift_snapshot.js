@@ -37,6 +37,7 @@ function ListRedShiftSnapshotData() {
         submethod: SelectedResourceVar,
         method: "ListResources",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     //console.log(submit);
@@ -189,6 +190,7 @@ function deleteRSSnapshot() {
         method: "redshiftClusterSnapshotDelete",
         account: account,
         data: Data,
+        roleARN: roleARN,
         username: username
     };
     $.ajax({

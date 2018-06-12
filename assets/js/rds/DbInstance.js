@@ -38,6 +38,7 @@ function ListDBInstancesData() {
         submethod: SelectedResourceVar,
         method: "ListResources",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     //console.log(submit);
@@ -173,6 +174,7 @@ function deleteDBInstances() {
         account: account,
         instance_id: main_array,
         region: aregions_ids_array,
+        roleARN: roleARN,
         username: username
     };
     //console.log(JSON.stringify(deleteData));

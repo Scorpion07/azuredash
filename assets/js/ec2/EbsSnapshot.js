@@ -40,6 +40,7 @@ function ListSnapshotData() {
         submethod: SelectedResourceVar,
         method: "ListResources",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     //console.log(submit);
@@ -161,6 +162,7 @@ function deleteSnaps() {
         method: "snapshotDelete",
         account: account,
         region: Data,
+        roleARN: roleARN,
         username: username
     };
     //console.log(JSON.stringify(deleteData));

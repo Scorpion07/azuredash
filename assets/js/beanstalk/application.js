@@ -36,6 +36,7 @@ function ListBSAppData() {
     var submit = {
         submethod: SelectedResourceVar,
         method: "ListResources",
+        roleARN: roleARN,
         account: account,
         username: username
     };
@@ -173,6 +174,7 @@ function deleteBSApps() {
         method: "deleteBeanstalkApp",
         account: account,
         data: Data,
+        roleARN: roleARN,
         username: username
     };
     $.ajax({

@@ -37,6 +37,7 @@ function ListVPCData() {
         submethod: SelectedResourceVar,
         method: "ListResources",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     //console.log(submit);
@@ -179,6 +180,7 @@ function deleteVPCs() {
         method: "vpcDelete",
         account: account,
         vpcids: vpcid,
+        roleARN: roleARN,
         username: username
     };
     $.ajax({

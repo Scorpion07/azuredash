@@ -38,6 +38,7 @@ function ListDBSnapshotData() {
         submethod: SelectedResourceVar,
         method: "ListResources",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     //console.log(submit);
@@ -159,6 +160,7 @@ function deleteDBSnaps() {
         account: account,
         snapshot_id: snap_ids_array,
         region: regions_ids_array,
+        roleARN: roleARN,
         username: username
     };
     //console.log(JSON.stringify(deleteData));
