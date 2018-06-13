@@ -36,6 +36,7 @@ function ListEndpointsData() {
         submethod: SelectedResourceVar,
         method: "ListResources",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     //console.log(submit);
@@ -174,6 +175,7 @@ function deleteSagemakerEndpoint() {
         method: "sgEndpointDelete",
         account: account,
         data: Data,
+        roleARN: roleARN,
         username: username
     };
     //console.log(submit);

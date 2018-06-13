@@ -36,6 +36,7 @@ function listRoute53Data() {
     var submit = {
         method: "listRoute53",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     //console.log(submit);
@@ -160,6 +161,7 @@ function deleteR53Hostzone() {
         method: "route53Delete",
         account: account,
         hostzoneid: hostzoneids,
+        roleARN: roleARN,
         username: username
     };
     $.ajax({

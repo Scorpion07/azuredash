@@ -36,6 +36,7 @@ function ListNotebookInstancesData() {
         submethod: SelectedResourceVar,
         method: "ListResources",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     //console.log(submit);
@@ -174,6 +175,7 @@ function deleteSagemakerNotebook() {
     var submit = {
         method: "sgNotebookDelete",
         account: account,
+        roleARN: roleARN,
         data: Data,
         username: username
     };

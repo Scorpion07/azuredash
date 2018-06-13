@@ -38,6 +38,7 @@ function ListVolumeData() {
         submethod: SelectedResourceVar,
         method: "ListResources",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     //console.log(submit);
@@ -182,6 +183,7 @@ function deleteVolume() {
         region: region,
         method: "volumeDelete",
         account: account,
+        roleARN: roleARN,
         volumeids: volumeid,
         username: username
     };

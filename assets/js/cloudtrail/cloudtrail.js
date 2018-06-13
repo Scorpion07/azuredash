@@ -37,6 +37,7 @@ function ListCloudTrailData() {
         submethod: "cloudtrail",
         method: "ListResources",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     //console.log(submit);
@@ -164,6 +165,7 @@ function deleteCloudTrail() {
         method: "cloudtrailDelete",
         account: account,
         data: Data,
+        roleARN: roleARN,
         username: username
     };
     //console.log(submit);

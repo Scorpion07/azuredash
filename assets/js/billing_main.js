@@ -118,9 +118,14 @@ $(window).on("load", function () {
             $("#Chart").css("display", "none");
         }
         else if (SelectedResourceVar == "linechart") {
-            $("#Dashboard").css("display", "none");
-            $("#Services").css("display", "none");
-            $("#Chart").css("display", "block");
+            if (!isCloudThatEmail(window.localStorage.getItem('email'))) {
+                pop_notifier("info", "This is a Professional Feature Kindly Contact Us on consulting@cloudthat.com", 10000);
+            }
+            else {
+                $("#Dashboard").css("display", "none");
+                $("#Services").css("display", "none");
+                $("#Chart").css("display", "block");
+            }
         }
         else {
             $("#Dashboard").css("display", "none");
@@ -151,6 +156,7 @@ $(document).on('change', '#account', function () {
 });
 
 $(document).on('click', '.SelectedResource', function () {
+
     checklogin();
     $("li").removeClass("active");
     $(this).closest("li").addClass("active");
@@ -165,10 +171,15 @@ $(document).on('click', '.SelectedResource', function () {
         $("#Chart").css("display", "none");
     }
     else if (SelectedResourceVar == "linechart") {
-        $("#Dashboard").css("display", "none");
-        $("#Services").css("display", "none");
-        $("#Chart").css("display", "block");
-        stopRequests(SelectedResourceVar);
+        if (!isCloudThatEmail(window.localStorage.getItem('email'))) {
+            pop_notifier("info", "This is a Professional Feature Kindly Contact Us on consulting@cloudthat.com", 10000);
+        }
+        else {
+            $("#Dashboard").css("display", "none");
+            $("#Services").css("display", "none");
+            $("#Chart").css("display", "block");
+            stopRequests(SelectedResourceVar);
+        }
     }
     else {
         $("#Dashboard").css("display", "none");
@@ -188,7 +199,13 @@ function reloadFunc() {
 }
 
 $(document).on('click', '#btnmultipledelete', function () {
-    checkdelete(SelectedResourceVar);
+    if (!isCloudThatEmail(window.localStorage.getItem('email'))) {
+        $('#btnmultipledelete').addClass("disabled");
+        pop_notifier("info", "This is a Professional Feature Kindly Contact Us on consulting@cloudthat.com", 10000);
+    }
+    else {
+        checkdelete(SelectedResourceVar);
+    }
 });
 
 $(document).on('click', '#yesModal', function () {

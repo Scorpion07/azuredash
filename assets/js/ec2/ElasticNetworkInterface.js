@@ -38,6 +38,7 @@ function ListENIData() {
         submethod: SelectedResourceVar,
         method: "ListResources",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     //console.log(submit);
@@ -184,6 +185,7 @@ function deleteENIs() {
         region: region,
         method: "netinterDelete",
         account: account,
+        roleARN: roleARN,
         netinterids: eniid,
         username: username
     };

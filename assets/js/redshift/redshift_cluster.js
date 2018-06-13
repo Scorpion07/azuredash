@@ -38,6 +38,7 @@ function ListRedShiftClusterData() {
         submethod: SelectedResourceVar,
         method: "ListResources",
         account: account,
+        roleARN: roleARN,
         username: username
     };
     //console.log(submit);
@@ -236,6 +237,7 @@ function deleteRSCluster() {
             method: "redshiftClusterDelete",
             account: account,
             cluster: main_array,
+            roleARN: roleARN,
             username: username
         };
         $.ajax({
