@@ -668,8 +668,13 @@ function CostofResources() {
     else
         date = date.toString();
 
-
-    var getUrl = 'http://resources.cloudthat.com/' + "cost/" + account + "/" + year + "/" + month + "/" + date + '.json';
+    if (!isCloudThatEmail(window.localStorage.getItem('email'))) {
+        location = window.localStorage.getItem('username')
+    }
+    else {
+        location = account
+    }
+    var getUrl = 'http://resources.cloudthat.com/' + "cost/" + location + "/" + year + "/" + month + "/" + date + '.json';
     //console.log(getUrl);
     $.getJSON(getUrl, function (r) {
         if(_config.logLevel != "error")
@@ -705,17 +710,18 @@ function CostofResources() {
             $("#totalOtherCost").html("");
         }
         else{
-            $("#ec2Instancecost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Pro Feature</marquee>');
-            $("#elbcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Pro Feature</marquee>');
-            $("#snapcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Pro Feature</marquee>');
-            $("#volumecost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Pro Feature</marquee>');
-            $("#eipcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Pro Feature</marquee>');
-            $("#dbintcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Pro Feature</marquee>');
-            $("#dbsnapcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Pro Feature</marquee>');
-            $("#natcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Pro Feature</marquee>');
+            pop_notifier("danger", "Cost Explorer Permission is Not Grated. Please contact consulting@cloudthat.com", 5000);
+            $("#ec2Instancecost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Error in Role Permissions</marquee>');
+            $("#elbcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Error in Role Permissions</marquee>');
+            $("#snapcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Error in Role Permissions</marquee>');
+            $("#volumecost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Error in Role Permissions</marquee>');
+            $("#eipcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Error in Role Permissions</marquee>');
+            $("#dbintcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Error in Role Permissions</marquee>');
+            $("#dbsnapcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Error in Role Permissions</marquee>');
+            $("#natcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Error in Role Permissions</marquee>');
             $("#totalAccountCost").html("");
-            // $("#totalEc2Cost").html(" <b>( $ " + '<marquee behavior="scroll" direction="left" scrollamount="3">Pro Feature</marquee>' + " ) </b>");
-            // $("#totalRdsCost").html(" <b>( $ " + '<marquee behavior="scroll" direction="left" scrollamount="3">Pro Feature</marquee>' + " ) </b>");
+            // $("#totalEc2Cost").html(" <b>( $ " + '<marquee behavior="scroll" direction="left" scrollamount="3">Error in Role Permissions</marquee>' + " ) </b>");
+            // $("#totalRdsCost").html(" <b>( $ " + '<marquee behavior="scroll" direction="left" scrollamount="3">Error in Role Permissions</marquee>' + " ) </b>");
             $("#totalOtherCost").html("");
         }
     });
