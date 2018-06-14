@@ -140,33 +140,33 @@ function sessionValid() {
 Already Login
  */
 
-function alreadylogin() {
-    if (window.localStorage.length === 0) {
-        window.localStorage.clear();
-    }
-    else {
-        console.log("Session Already Defined");
-        var next = getQueryVariable("next");
-        if (next) {
-            window.location.href = next;
-        }
-        else {
-            window.location.href = 'index.html';
-        }
-    }
-}
-
-function getQueryVariable(variable) {
-    var query = window.location.search.substring(1);
-    var vars = query.split('&');
-    for (var i = 0; i < vars.length; i++) {
-        var pair = vars[i].split('=');
-        if (decodeURIComponent(pair[0]) == variable) {
-            return decodeURIComponent(pair[1]);
-        }
-    }
-    console.log('Query variable %s not found', variable);
-}
+// function alreadylogin() {
+//     if (window.localStorage.length === 0) {
+//         window.localStorage.clear();
+//     }
+//     else {
+//         console.log("Session Already Defined");
+//         var next = getQueryVariable("next");
+//         if (next) {
+//             window.location.href = next;
+//         }
+//         else {
+//             window.location.href = 'index.html';
+//         }
+//     }
+// }
+//
+// function getQueryVariable(variable) {
+//     var query = window.location.search.substring(1);
+//     var vars = query.split('&');
+//     for (var i = 0; i < vars.length; i++) {
+//         var pair = vars[i].split('=');
+//         if (decodeURIComponent(pair[0]) == variable) {
+//             return decodeURIComponent(pair[1]);
+//         }
+//     }
+//     console.log('Query variable %s not found', variable);
+// }
 
 /*
 Signout
