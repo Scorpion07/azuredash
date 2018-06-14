@@ -914,7 +914,11 @@
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-        Contact Us to Enable Pro Features<br>
+        <script type="text/javascript">
+            if(!isCloudThatEmail(window.localStorage.getItem('email'))){
+                document.write("Contact Us to Enable Pro Features<br>")
+            }
+        </script>
         <div class="pull-right hidden-xs">
             <b>Version</b> 1.12.1
         </div>
