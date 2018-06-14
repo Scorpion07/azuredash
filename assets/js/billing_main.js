@@ -223,49 +223,45 @@ function stopRequests(SelectedResourceVar) {
     }
 }
 
-// $(document).on('click', '.select_all', function () {
-//     $(this).change(function () {
-//         if ($(this).prop("checked")) {
-//             var rows = table.rows({'search': 'applied'}).nodes();
-//             $('.checkboxclick', rows).prop('checked', this.checked);
-//
-//         }
-//         else {
-//             var rows = table.rows({'search': 'applied'}).nodes();
-//             $('.checkboxclick', rows).prop('checked', false);
-//         }
-//     });
-// });
-// $(document).on('change', '.checkboxclick', function () {
-//     var flag;
-//     if ($(this).prop("checked")) {
-//         $(".checkboxes").each(function () {
-//             if (!$(this).is(":checked")) {
-//                 flag = false;
-//                 return false;
-//                 //console.log(flag)
-//             }
-//             else {
-//                 flag = true;
-//                 //console.log(flag)
-//             }
-//         });
-//     }
-//     else {
-//         flag = false;
-//         //console.log(flag)
-//     }
-//     //console.log(flag);
-//
-//     if (flag === true) {
-//         $(".select_all").prop("checked", true);
-//     }
-//     else {
-//         $(".select_all").prop("checked", false);
-//     }
-//
-// });
-//
+$(document).on('click', '.select_all', function () {
+    $(this).change(function () {
+        if ($(this).prop("checked")) {
+            var rows = table.rows({'search': 'applied'}).nodes();
+            $('.checkboxclick', rows).prop('checked', this.checked);
+
+        }
+        else {
+            var rows = table.rows({'search': 'applied'}).nodes();
+            $('.checkboxclick', rows).prop('checked', false);
+        }
+    });
+});
+
+$(document).on('change', '.checkboxclick', function () {
+    var flag;
+    if ($(this).prop("checked")) {
+        $(".checkboxes").each(function () {
+            if (!$(this).is(":checked")) {
+                flag = false;
+                return false;
+            }
+            else {
+                flag = true;
+            }
+        });
+    }
+    else {
+        flag = false;
+    }
+    if (flag === true) {
+        $(".select_all").prop("checked", true);
+    }
+    else {
+        $(".select_all").prop("checked", false);
+    }
+});
+
+
 // function pop_notifier(alertType, message, delay = 500) {
 //     var ico = "";
 //     if ("danger" === alertType) {
