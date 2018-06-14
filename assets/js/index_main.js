@@ -22,12 +22,18 @@ jQuery(function ($) {
             $("#login_li").css("display", "block");
             $("#signup_li").css("display", "block");
             $("#logout_li").css("display","none");
+            $("#login_li-fixed").css("display", "block");
+            $("#signup_li-fixed").css("display", "block");
+            $("#logout_li-fixed").css("display","none");
         }
         else {
             //show logout
             $("#login_li").css("display", "none");
             $("#signup_li").css("display", "none");
             $("#logout_li").css("display","block");
+            $("#login_li-fixed").css("display", "none");
+            $("#signup_li-fixed").css("display", "none");
+            $("#logout_li-fixed").css("display","block");
         }
         /////
         // Header Init
@@ -63,12 +69,18 @@ jQuery(function ($) {
         $('nav').addClass('original').clone().insertAfter('nav').addClass('navbar-fixed-top').css('position', 'fixed').css('top', '0').css('margin-top', '0').removeClass('original');
         $('.mobile-nav ul').html($('nav .navbar-nav').html());
         $('nav.navbar-fixed-top .navbar-brand img').attr('src', $('nav.navbar-fixed-top .navbar-brand img').data("active-url"));
+        $('nav.navbar-fixed-top .navbar-right li').each(function (index, value) {
+            if( $(this).attr('id'))
+                $(this).attr('id',$(this).attr('id')+"-fixed")
+            // console.log('div' + index + ':' + $(this).attr('class'));
+        });
         $('nav.navbar-fixed-top .navbar-right li a').each(function (index, value) {
             if($(this).attr('class') == "btn btn-white-fill"){
                 $(this).attr('class',"btn btn-blue-fill");
             }
             // console.log('div' + index + ':' + $(this).attr('class'));
         });
+
         // Typing Intro Init
         $(".typed").typewriter({
             speed: 60

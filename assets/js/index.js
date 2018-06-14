@@ -127,6 +127,9 @@ function signin_event() {
                     $("#login_li").css("display", "none");
                     $("#signup_li").css("display", "none");
                     $("#logout_li").css("display","block");
+                    $("#login_li-fixed").css("display", "none");
+                    $("#signup_li-fixed").css("display", "none");
+                    $("#logout_li-fixed").css("display","block");
                     $(".close-link").click();
                     // sessionValid();
                 }
