@@ -83,8 +83,10 @@ function ModalClickdelete(SelectedResourceVar)
     else if (SelectedResourceVar == "kinesis_datastream"){
         deleteKinesisDataStream();
     }
-    else
-	{
+    else if (SelectedResourceVar == 'S3_Buckets') {
+        deleteS3Bucket();
+    }
+    else {
 
-	}
+    }
 }

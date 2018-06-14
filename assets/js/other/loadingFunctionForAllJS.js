@@ -86,6 +86,9 @@ function load_resource_js(SelectedResourceVar) {
     else if (SelectedResourceVar == "kinesis_datastream"){
         showKinesisDataStream();
     }
+    else if (SelectedResourceVar == 'S3_Buckets') {
+        showS3();
+    }
     else {
 
     }

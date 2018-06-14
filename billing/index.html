@@ -361,6 +361,18 @@
                                     class="fa fa-circle-o"></i>Data Stream</a></li>
                         </ul>
                     </li>
+                    <li class="treeview">
+                        <a href="#" class="select">
+                            <img src='../assets/images/aws-icons/s3.png'> <span style="width:229px;">S3
+                            <span class="pull-right-container" style="margin: -3px;">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span></span>
+                        </a>
+                        <ul class="treeview-menu" style="display: none;top:unset;width: 229px">
+                            <li><a href="#" class="SelectedResource" data-resource="S3_Buckets"><i
+                                    class="fa fa-circle-o"></i>S3 Buckets</a></li>
+                        </ul>
+                    </li>
 
                 </ul>
             </b>
@@ -497,6 +509,30 @@
                                     <!-- <td id="dbintcost"></td> -->
                                     <td>
                                         <h7 class="card-title" id="hostedzone"></h7>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="small-box bg border-bottom">
+                            <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;"
+                                   width="100%">
+                                <tr>
+                                    <td colspan="2">
+                                        <h4>S3
+                                            <div style="display: inline;" id="s3Cost"></div>
+                                        </h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Resource</b></td>
+                                    <!-- <td><b>Cost</b></td> -->
+                                    <td><b>Total</b></td>
+                                </tr>
+                                <tr id="s3">
+                                    <td>Bucket</td>
+                                    <!-- <td id="dbintcost"></td> -->
+                                    <td>
+                                        <h7 class="card-title" id="bucket"></h7>
                                     </td>
                                 </tr>
                             </table>
@@ -880,7 +916,7 @@
     <footer class="main-footer">
         Contact Us to Enable Pro Features<br>
         <div class="pull-right hidden-xs">
-            <b>Version</b> 1.1.1
+            <b>Version</b> 1.12.1
         </div>
         <strong>Copyright © 2018 <a href="//www.cloudthat.com">CloudThat</a>.</strong> All rights
         reserved.
@@ -914,6 +950,7 @@
 <script type="text/javascript" src="../assets/js/beanstalk/application.js"></script>
 <script type="text/javascript" src="../assets/js/beanstalk/environment.js"></script>
 <script type="text/javascript" src="../assets/js/kinesis/datastream.js"></script>
+<script type="text/javascript" src="../assets/js/s3/bucket.js"></script>
 <script type="text/javascript" src="../assets/js/other/loadingFunctionForAllJS.js"></script>
 <script type="text/javascript" src="../assets/js/other/forOpeningModel.js"></script>
 <script type="text/javascript" src="../assets/js/other/forDeletingResourceFunction.js"></script>

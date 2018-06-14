@@ -100,9 +100,9 @@ function showDashboard() {
         roleARN: roleARN,
         username: username
     };
-    var route53 = {
+    var global = {
         method: "getCount",
-        service: "route53",
+        service: "global",
         account: account,
         roleARN: roleARN,
         username: username
@@ -514,12 +514,14 @@ function showDashboard() {
 
             //dataType: 'json',
             contentType: 'application/json',
-            data: JSON.stringify(route53),
+            data: JSON.stringify(global),
             success: function (result) {
                 count += 1;
                 loader();
                 //console.log(result);
                 $("#hostedzone").text(result.hostzone);
+                $("#bucket").text(result.s3);
+
                 if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
                     if (result.hostzone == "0" || result.hostzone == 0) {
                         $("#route53").removeClass("text-danger");
@@ -533,6 +535,7 @@ function showDashboard() {
                     $("#route53").removeClass("text-danger");
 
                 }
+
                 //$("#loading").hide();
                 // $("#loading").css("style", "display: none;");
             },
