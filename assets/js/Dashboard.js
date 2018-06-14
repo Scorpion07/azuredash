@@ -667,14 +667,14 @@ function CostofResources() {
         date = "0" + date.toString();
     else
         date = date.toString();
-
+    var s3Folder;
     if (!isCloudThatEmail(window.localStorage.getItem('email'))) {
-        location = window.localStorage.getItem('username')
+        s3Folder = window.localStorage.getItem('username');
     }
     else {
-        location = account
+        s3Folder = account;
     }
-    var getUrl = 'http://resources.cloudthat.com/' + "cost/" + location + "/" + year + "/" + month + "/" + date + '.json';
+    var getUrl = 'http://resources.cloudthat.com/' + "cost/" + s3Folder + "/" + year + "/" + month + "/" + date + '.json';
     //console.log(getUrl);
     $.getJSON(getUrl, function (r) {
         if(_config.logLevel != "error")
