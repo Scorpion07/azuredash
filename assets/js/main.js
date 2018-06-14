@@ -10,22 +10,18 @@ var poolData = {
 };
 
 var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
-var cognitoUser, username, token
+var cognitoUser, username, token;
 
 if(_config.logLevel === 'debug')
-    console.log("window.localstorage"+ JSON.stringify(window.localStorage))
+    console.log("window.localstorage" + JSON.stringify(window.localStorage));
 
 
 if (window.localStorage.UserDetails != "undefined" && window.localStorage.UserDetails != null && window.localStorage.UserDetails.length > 0) {
     cognitoUser = userPool.getCurrentUser();
     username = window.localStorage.getItem('username');
     token = window.localStorage.getItem('token');
-    checklogin();
+    alreadylogin();
 }
-
-
-
-
 
 //Dependancy Across The Platform
 /*
@@ -55,7 +51,6 @@ Session Validity
 
  */
 
-
 function sessionValid() {
     if (cognitoUser === undefined) {
         //console.log("undefined")
@@ -76,8 +71,12 @@ function sessionValid() {
             RefreshToken: window.localStorage.reftoken
         });
 
-        var session = new AmazonCognitoIdentity.CognitoUserSession({IdToken : idToken,RefreshToken : refreshToken,AccessToken : accessToken})
-        cognitoUser.signInUserSession = session
+        var session = new AmazonCognitoIdentity.CognitoUserSession({
+            IdToken: idToken,
+            RefreshToken: refreshToken,
+            AccessToken: accessToken
+        });
+        cognitoUser.signInUserSession = session;
         if(cognitoUser.signInUserSession.isValid()){
             if(window.localStorage.custexp <= new Date().getTime()){
                 cognitoUser.refreshSession(refreshToken, function(err, session) {
@@ -163,7 +162,7 @@ Signout
 
 function signout() {
     if(_config.logLevel != "error")
-        console.log("Data : " + window.localStorage.getItem('token'))
+        console.log("Data : " + window.localStorage.getItem('token'));
     if(_config.logLevel === "debug")
         console.log("User Name : " + JSON.stringify(userPool.getCurrentUser()));
         console.log(cognitoUser);
@@ -171,10 +170,10 @@ function signout() {
         cognitoUser.signOut();
     }
     if(_config.logLevel === "debug")
-        console.log(cognitoUser)
+        console.log(cognitoUser);
     window.localStorage.clear();
     if(_config.logLevel === "debug")
-        console.log("clear : " + window.localStorage.getItem('token'))
+        console.log("clear : " + window.localStorage.getItem('token'));
     window.location.href = '/';
     if(_config.logLevel === "debug")
         console.log("Signout");
@@ -246,7 +245,7 @@ $(document).on('change', '.checkboxclick', function () {
 
 function cloudbilling(){
     if(_config.logLevel === "debug"){
-        console.log("in cloudbilling function")
+        console.log("in cloudbilling function");
         console.log(window.localStorage.UserDetails)
     }
     if (window.localStorage.UserDetails != "undefined" && window.localStorage.UserDetails != null && window.localStorage.UserDetails.length > 0) {
@@ -256,7 +255,7 @@ function cloudbilling(){
     }
     else {
         if(_config.logLevel === "debug")
-            console.log("else")
+            console.log("else");
         $("#login_button").click();
 
     }
@@ -264,7 +263,7 @@ function cloudbilling(){
 
 function resourceCreation(){
     if(_config.logLevel === "debug"){
-        console.log("in ResourceCreation function")
+        console.log("in ResourceCreation function");
         console.log(window.localStorage.UserDetails)
     }
     if (window.localStorage.UserDetails != "undefined" && window.localStorage.UserDetails != null && window.localStorage.UserDetails.length > 0) {
@@ -281,7 +280,7 @@ function resourceCreation(){
     }
     else {
         if(_config.logLevel === "debug")
-            console.log("else")
+            console.log("else");
         $("#login_button").click();
 
     }
@@ -290,7 +289,7 @@ function resourceCreation(){
 function isCloudThatEmail(mail){
     if (!(mail.includes("cloudthat.in") || mail.includes("cloudthat.com")) && mail != "") {
         if(_config.logLevel=="debug"){
-            console.log("Not CloudThat Email")
+            console.log("Not CloudThat Email");
             console.log(mail);
         }
         return false;
