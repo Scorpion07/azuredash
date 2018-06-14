@@ -21,7 +21,7 @@ function signin_event() {
             Username: $('#lusername').val(),
             Password: $('#lpassword').val()
         };
-        console.log("DATA " + authenticationData)
+        console.log("DATA " + authenticationData);
         var userData = {
             Username: $('#lusername').val(), // your username here
             Pool: userPool
@@ -83,8 +83,8 @@ function signin_event() {
                  */
                 if(_config.logLevel != "error")
                     console.log('authentication successful!');
-                message = "Welcome "+ result['idToken']['payload']['cognito:username'].toString() +"("+ result["idToken"]["payload"]["email"].toString()+")"
-                console.log(message)
+                message = "Welcome " + result['idToken']['payload']['cognito:username'].toString() + "(" + result["idToken"]["payload"]["email"].toString() + ")";
+                console.log(message);
                 pop_notifier("success",message,1000);
                 window.localStorage.setItem("UserDetails",result);
                 if (typeof(Storage) !== "undefined") {
@@ -96,10 +96,11 @@ function signin_event() {
                     window.localStorage.setItem('reftoken', reftoken);
                     window.localStorage.setItem('username', result["accessToken"]["payload"]["username"]);
                     window.localStorage.setItem('exp', result['idToken']['payload']['exp']);
-                    window.localStorage.setItem('custexp', (new Date().getTime() + 3600000))
+                    window.localStorage.setItem('custexp', (new Date().getTime() + 3600000));
                     window.localStorage.setItem('exptime', ((result['idToken']['payload']['exp']) + (new Date().getTime())));
                     console.log("Session : " + result.isValid());
                     window.localStorage.setItem('email', result['idToken']['payload']['email']);
+
                     if(!isCloudThatEmail(window.localStorage.getItem('email'))){
                         cognitoUser.getUserAttributes(function(err, result) {
                             if (err) {
@@ -113,6 +114,7 @@ function signin_event() {
                                     if(_config.logLevel === "debug")
                                         console.log("Found ROLE ARN"+ result[i].getValue());
                                     window.localStorage.setItem('roleARN',result[i].getValue());
+                                    calculateUserCost();
                                 }
                                 // console.log('attribute ' + result[i].getName() + ' has value ' + result[i].getValue());
                             }
@@ -121,7 +123,7 @@ function signin_event() {
                         });
                     }
                     if(_config.logLevel === "debug")
-                        console.log(window.localStorage)
+                        console.log(window.localStorage);
                     // window.location.reload();
                     //show logout
                     $("#login_li").css("display", "none");
@@ -141,9 +143,33 @@ function signin_event() {
             },
             onFailure: function (err) {
                 //alert(err);
-                console.log("Error Signin",err)
+                console.log("Error Signin", err);
                 pop_notifier("danger",err,1500)
             }
         });
     }
+}
+
+function calculateUserCost() {
+    var reqData = {
+        'method': 'updateCost',
+        'roleARN': window.localStorage.getItem('roleARN'),
+        'username': window.localStorage.getItem('username')
+    };
+    $.ajax({
+        url: _config.api.invokeUrl + '/billing/services',
+        type: 'post',
+        headers: {"Authorization": window.localStorage.getItem('token')},
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify(reqData),
+        success: function (result) {
+            if (_config.logLevel != "error") {
+                console.log(result)
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            error_occured(xhr, ajaxOptions, thrownError)
+        }
+    });
 }
