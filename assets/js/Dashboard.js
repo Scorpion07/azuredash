@@ -520,7 +520,9 @@ function showDashboard() {
                 loader();
                 //console.log(result);
                 $("#hostedzone").text(result.hostzone);
+                $("#hostzonecost").text("$ " + (int(result.hostzone) * 0.5));
                 $("#bucket").text(result.s3);
+
 
                 if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
                     if (result.hostzone == "0" || result.hostzone == 0) {
@@ -690,6 +692,8 @@ function CostofResources() {
         $("#totalAccountCost").html("Cost of Current Month is: <b>$ " + parseFloat(r.totalAccount).toFixed(2) + "</b>");
         $("#totalEc2Cost").html(" <b>( $ " + parseFloat(r.totalEc2).toFixed(2) + " ) </b>");
         $("#totalRdsCost").html(" <b>( $ " + parseFloat(r.totalRds).toFixed(2) + " ) </b>");
+        $("#s3Cost").html(" <b>( $ " + parseFloat(r.totalS3).toFixed(2) + " ) </b>");
+
         var totalofAll = parseFloat(r.totalEc2) + parseFloat(r.totalRds);
         var totalOtherCost = parseFloat(r.totalAccount) - totalofAll;
         $("#totalOtherCost").html("Cost of Other services : <b>$ " + (totalOtherCost).toFixed(2) + "</b>");
