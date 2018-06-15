@@ -520,7 +520,7 @@ function showDashboard() {
                 loader();
                 //console.log(result);
                 $("#hostedzone").text(result.hostzone);
-                $("#hostzonecost").text("$ " + (int(result.hostzone) * 0.5));
+                $("#hostzonecost").text("$ " + parseFloat((int(result.hostzone) * 0.5)).toFixed(2));
                 $("#bucket").text(result.s3);
 
 
@@ -694,7 +694,7 @@ function CostofResources() {
         $("#totalRdsCost").html(" <b>( $ " + parseFloat(r.totalRds).toFixed(2) + " ) </b>");
         $("#s3Cost").html(" <b>( $ " + parseFloat(r.totalS3).toFixed(2) + " ) </b>");
 
-        var totalofAll = parseFloat(r.totalEc2) + parseFloat(r.totalRds);
+        var totalofAll = parseFloat(r.totalEc2) + parseFloat(r.totalRds) + parseFloat(r.totalS3);
         var totalOtherCost = parseFloat(r.totalAccount) - totalofAll;
         $("#totalOtherCost").html("Cost of Other services : <b>$ " + (totalOtherCost).toFixed(2) + "</b>");
     }).fail(function()
@@ -708,6 +708,7 @@ function CostofResources() {
             $("#dbintcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Error In Cost File</marquee>');
             $("#dbsnapcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Error In Cost File</marquee>');
             $("#natcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Error In Cost File</marquee>');
+            $("#hostzonecost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Error In Cost File</marquee>');
             $("#totalAccountCost").html("");
             // $("#totalEc2Cost").html(" <b>( $ " + '<marquee behavior="scroll" direction="left" scrollamount="3">Error In Cost File</marquee>' + " ) </b>");
             // $("#totalRdsCost").html(" <b>( $ " + '<marquee behavior="scroll" direction="left" scrollamount="3">Error In Cost File</marquee>' + " ) </b>");
@@ -723,6 +724,7 @@ function CostofResources() {
             $("#dbintcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Error in Role Permissions</marquee>');
             $("#dbsnapcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Error in Role Permissions</marquee>');
             $("#natcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Error in Role Permissions</marquee>');
+            $("#hostzonecost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Error in Role Permissions</marquee>');
             $("#totalAccountCost").html("");
             // $("#totalEc2Cost").html(" <b>( $ " + '<marquee behavior="scroll" direction="left" scrollamount="3">Error in Role Permissions</marquee>' + " ) </b>");
             // $("#totalRdsCost").html(" <b>( $ " + '<marquee behavior="scroll" direction="left" scrollamount="3">Error in Role Permissions</marquee>' + " ) </b>");
