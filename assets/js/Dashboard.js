@@ -521,7 +521,7 @@ function showDashboard() {
                 //console.log(result);
                 $("#hostedzone").text(result.hostzone);
                 $("#hostzonecost").text("$ " + parseFloat((int(result.hostzone) * 0.5)).toFixed(2));
-                $("#bucket").text(result.s3);
+                $("#bucket").text(result.counts3);
 
 
                 if (currentTime.getHours() < 11 || currentTime.getHours() > 18) {
