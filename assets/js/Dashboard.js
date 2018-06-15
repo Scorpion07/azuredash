@@ -520,7 +520,8 @@ function showDashboard() {
                 loader();
                 //console.log(result);
                 $("#hostedzone").text(result.hostzone);
-                $("#hostzonecost").text("$ " + parseFloat((int(result.hostzone) * 0.5)).toFixed(2));
+                $("#hostzonecost").text(" $ " + parseFloat((int(result.hostzone) * 0.5)).toFixed(2));
+                console.log("hzone : " + parseFloat((int(result.hostzone) * 0.5)).toFixed(2));
                 $("#bucket").text(result.counts3);
 
 
