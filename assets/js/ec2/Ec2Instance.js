@@ -157,7 +157,7 @@ function deleteModalInstances() {
 
 function deleteInstances() {
     $('.deleteMul').attr('disabled', true);
-    $("#loadingModal").show();
+    $("#loadingMulModal").show();
     var instanceid = [];
     var region = [];
     $(".checkboxes").each(function () {
@@ -186,7 +186,8 @@ function deleteInstances() {
         data: JSON.stringify(submit),
         success: function (respdata) {
             //console.log(respdata)
-            $("#loadingModal").hide();
+            $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
 
             if (respdata == "0" || respdata == 0) {
                 showEc2Instances();
@@ -195,10 +196,10 @@ function deleteInstances() {
             else {
                 $.notify({message:"Unable to Terminate Instance"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
             }
-            $('#deleteMulConformation').modal('hide');
         },
         error: function (xhr, ajaxOptions, thrownError) {
             $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
             if (ajaxOptions === "abort"){
 
             }

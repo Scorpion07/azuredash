@@ -169,9 +169,8 @@ function deleteELBs() {
         data: JSON.stringify(deleteData),
         success: function (result) {
             $(".btnmultipledelete").addClass("disabled");
-            $("#loadingMulModal").hide();
             $('#deleteMulConformation').modal('hide');
-            //console.log(result);
+            $("#loadingMulModal").hide();
             if (result > 0) {
                 showELBs();
                 $.notify({message: "Elastic Load Balancer Deleted successfully"}, {
@@ -193,6 +192,7 @@ function deleteELBs() {
         },
         error: function (xhr, ajaxOptions, thrownError) {
             $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
             if (ajaxOptions === "abort") {
 
             }

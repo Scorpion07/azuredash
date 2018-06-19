@@ -167,7 +167,7 @@ function deleteModalBSEnvs() {
 
 function deleteBSEnvs() {
     $('.deleteMul').attr('disabled', true);
-    $("#loadingModal").show();
+    $("#loadingMulModal").show();
     var Data = {};
     $(".checkboxes").each(function () {
         if ($(this).is(":checked")) {
@@ -202,7 +202,8 @@ function deleteBSEnvs() {
         data: JSON.stringify(submit),
         success: function (respdata) {
             //console.log(respdata)
-            $("#loadingModal").hide();
+            $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
 
             if (respdata > 0) {
                 showBSEnv();
@@ -225,7 +226,9 @@ function deleteBSEnvs() {
             $('#deleteConformation').modal('hide');
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            $('#deleteConformation').modal('hide');
+            $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
+
             if (ajaxOptions === "abort") {
 
             }

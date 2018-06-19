@@ -163,7 +163,7 @@ function deleteModalVPCs() {
 
 function deleteVPCs() {
     $('.deleteMul').attr('disabled', true);
-    $("#loadingModal").show();
+    $("#loadingMulModal").show();
     var vpcid = [];
     var region = [];
     $(".checkboxes").each(function () {
@@ -194,8 +194,8 @@ function deleteVPCs() {
         data: JSON.stringify(submit),
         success: function (respdata) {
             //console.log(respdata)
-            $("#loadingModal").hide();
             $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
             if (respdata >= 0) {
                 $.notify({message: "VPC Deleted Successfully"}, {
                     type: "success",
@@ -216,8 +216,8 @@ function deleteVPCs() {
 
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            $("#loadingModal").hide();
-            $('#deleteConformation').modal('hide');
+            $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
             if (ajaxOptions === "abort") {
 
             }

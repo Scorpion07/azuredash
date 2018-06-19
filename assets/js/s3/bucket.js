@@ -138,7 +138,7 @@ function deleteModalS3() {
 
 function deleteS3Bucket() {
     $('.deleteMul').attr('disabled', true);
-    $("#loading").show();
+    $("#loadingMulModal").show();
     var bucketnames = [];
     $(".checkboxes").each(function () {
         if ($(this).is(":checked")) {
@@ -165,10 +165,10 @@ function deleteS3Bucket() {
         success: function (respdata) {
             //console.log(respdata)
             $('#deleteMulConformation').modal('hide');
-            $("#loading").hide();
+            $("#loadingMulModal").hide();
 
             if (respdata == true) {
-                showR53Hostzone();
+                showS3();
                 $.notify({message: "S3 Bucket Deleted Successfully"}, {
                     type: "success",
                     placement: {from: "top", align: "center"},

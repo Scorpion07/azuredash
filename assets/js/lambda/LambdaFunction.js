@@ -202,8 +202,8 @@ function deleteLambdaFunctions() {
         crossDomain: true,
         data: JSON.stringify(deleteData),
         success: function (result) {
+            $('#deleteMulConformation').modal('hide');
             $("#loadingMulModal").hide();
-            //console.log(result);
             if (result > 0 || parseInt(result.ResponseMetadata.HTTPStatusCode) >= 200 || parseInt(result.ResponseMetadata.HTTPStatusCode) <= 208) {
                 showLambda();
                 $.notify({message: "Lambda Function Deleted successfully"}, {
@@ -225,7 +225,8 @@ function deleteLambdaFunctions() {
             $('#deleteMulConformation').modal('hide');
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            $('#deleteConformation').modal('hide');
+            $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
             if (ajaxOptions === "abort") {
 
             }

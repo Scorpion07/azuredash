@@ -168,7 +168,7 @@ function deleteModalENIs() {
 
 function deleteENIs() {
     $('.deleteMul').attr('disabled', true);
-    $("#loadingModal").show();
+    $("#loadingMulModal").show();
     var eniid = [];
     var region = [];
     $(".checkboxes").each(function () {
@@ -200,9 +200,8 @@ function deleteENIs() {
         crossDomain: true,
         data: JSON.stringify(submit),
         success: function (respdata) {
-            //console.log(respdata)
-            $("#loadingModal").hide();
             $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
             if (respdata > -1) {
                 showENIs();
                 $.notify({message:"Elastic Network Interface Deleted Successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
@@ -213,6 +212,7 @@ function deleteENIs() {
         },
         error: function (xhr, ajaxOptions, thrownError) {
             $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
             if (ajaxOptions === "abort"){
 
             }
