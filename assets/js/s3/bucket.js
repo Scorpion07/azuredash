@@ -143,9 +143,9 @@ function deleteS3Bucket() {
     });
     //console.log(bucketnames);
     var submit = {
-        method: "bucketDelete",
+        method: "deleteS3",
         account: account,
-        bucketname: bucketnames,
+        bucket: bucketnames,
         roleARN: roleARN,
         username: username
     };
@@ -162,7 +162,7 @@ function deleteS3Bucket() {
             //console.log(respdata)
             $("#loadingModal").hide();
 
-            if (respdata > -1) {
+            if (respdata == 0) {
                 showR53Hostzone();
                 $.notify({message: "S3 Bucket Deleted Successfully"}, {
                     type: "success",
