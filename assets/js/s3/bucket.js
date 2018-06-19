@@ -20,12 +20,12 @@ function showS3() {
     $("#tablehead").html("");
     $("#tablebody").html("");
     if (account !== 'prod') {
-        $("#tablehead").append('<tr><th><input name="select_all" class="select_all" type="checkbox"></th><th>Name</th><th>Creation Date</th></tr>');
-        $("#tablebody").append('<tr><th></th><th>Name</th><th>Creation Date</th></tr>');
+        $("#tablehead").append('<tr><th><input name="select_all" class="select_all" type="checkbox"></th><th>Name</th><th>Creation Date</th><th>Region</th></tr>');
+        $("#tablebody").append('<tr><th></th><th>Name</th><th>Creation Date</th><th>Region</th></tr>');
     }
     else {
-        $("#tablehead").append('<tr><th>No.</th><th>Name</th><th>Creation Date</th></tr>');
-        $("#tablebody").append('<tr><th></th><th>Name</th><th>Creation Date</th></tr>');
+        $("#tablehead").append('<tr><th>No.</th><th>Name</th><th>Creation Date</th><th>Region</th></tr>');
+        $("#tablebody").append('<tr><th></th><th>Name</th><th>Creation Date</th><th>Region</th></tr>');
     }
     listS3Data();
 }
@@ -84,7 +84,12 @@ function listS3Data() {
                         {
                             'targets': [2],
                             'orderable': true,
-                            'data': 'CreationDate',
+                            'data': 'CreationDate'
+                        },
+                        {
+                            'target': [3],
+                            'orderable': true,
+                            'data': 'Region',
                         }
                     ],
 
