@@ -225,7 +225,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="select" data-resource="S3_Buckets">
+                        <a href="#" class="SelectedResource select" data-resource="S3_Buckets">
                             <img src='../assets/images/aws-icons/s3.png'> <span style="width:229px;">S3 Buckets</span>
                         </a>
                     </li>
@@ -456,37 +456,6 @@
                                    width="100%">
                                 <tr>
                                     <td colspan="3">
-                                        <h4>RDS Running Resources
-                                            <div style="display: inline;" id="totalRdsCost"></div>
-                                        </h4>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><b>Resources</b></td>
-                                    <td><b>Cost</b></td>
-                                    <td><b>Running</b></td>
-                                </tr>
-                                <tr id="dbinstancecluster">
-                                    <td>DB Instances/Clusters</td>
-                                    <td id="dbintcost"></td>
-                                    <td>
-                                        <h7 class="card-title" id="DBInstances"></h7>
-                                    </td>
-                                </tr>
-                                <tr id="dbsnapshot">
-                                    <td>DB Snapshots</td>
-                                    <td id="dbsnapcost"></td>
-                                    <td>
-                                        <h7 class="card-title" id="DBSnapshots"></h7>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="small-box bg border-bottom">
-                            <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;"
-                                   width="100%">
-                                <tr>
-                                    <td colspan="3">
                                         <h4>Route53 Resources
                                             <div style="display: inline;" id="route53Cost"></div>
                                         </h4>
@@ -512,6 +481,38 @@
                                    width="100%">
                                 <tr>
                                     <td colspan="2">
+                                        <h4>Redshift Running Resources
+                                            <div style="display: inline;" id="totalRSCost"></div>
+                                        </h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Resources</b></td>
+                                    <td><b>Running</b></td>
+                                </tr>
+                                <tr id="redshift_cluster">
+                                    <td>Redshift Clusters</td>
+                                    <td>
+                                        <h7 class="card-title" id="red_clust"></h7>
+                                    </td>
+                                </tr>
+                                <tr id="redsnapshot">
+                                    <td>Redshift Snapshots</td>
+                                    <td>
+                                        <h7 class="card-title" id="red_snapshots"></h7>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-4 col-xs-6">
+                        <div class="small-box bg border-bottom">
+                            <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;"
+                                   width="100%">
+                                <tr>
+                                    <td colspan="2">
                                         <h4>S3
                                             <div style="display: inline;" id="s3Cost"></div>
                                         </h4>
@@ -531,9 +532,6 @@
                                 </tr>
                             </table>
                         </div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-lg-4 col-xs-6">
                         <div class="small-box bg border-bottom">
                             <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;"
                                    width="100%">
@@ -643,30 +641,34 @@
                             <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;"
                                    width="100%">
                                 <tr>
-                                    <td colspan="2">
-                                        <h4>Redshift Running Resources
-                                            <div style="display: inline;" id="totalRSCost"></div>
+                                    <td colspan="3">
+                                        <h4>RDS Running Resources
+                                            <div style="display: inline;" id="totalRdsCost"></div>
                                         </h4>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td><b>Resources</b></td>
+                                    <td><b>Cost</b></td>
                                     <td><b>Running</b></td>
                                 </tr>
-                                <tr id="redshift_cluster">
-                                    <td>Redshift Clusters</td>
+                                <tr id="dbinstancecluster">
+                                    <td>DB Instances/Clusters</td>
+                                    <td id="dbintcost"></td>
                                     <td>
-                                        <h7 class="card-title" id="red_clust"></h7>
+                                        <h7 class="card-title" id="DBInstances"></h7>
                                     </td>
                                 </tr>
-                                <tr id="redsnapshot">
-                                    <td>Redshift Snapshots</td>
+                                <tr id="dbsnapshot">
+                                    <td>DB Snapshots</td>
+                                    <td id="dbsnapcost"></td>
                                     <td>
-                                        <h7 class="card-title" id="red_snapshots"></h7>
+                                        <h7 class="card-title" id="DBSnapshots"></h7>
                                     </td>
                                 </tr>
                             </table>
                         </div>
+
                         <div class="small-box bg border-bottom">
                             <table border="1" class="table table-bordered" style="border: 5px solid #3d6692;"
                                    width="100%">
