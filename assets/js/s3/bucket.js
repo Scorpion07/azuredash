@@ -69,7 +69,7 @@ function listS3Data() {
                     },
 
                     'columnDefs': [
-                        {"className": "dt-center", "defaultContent": "-", "targets": "_all"},
+                        {"className": "dt-center", "targets": "_all"},
                         {
                             'targets': [0],
                             'searchable': false,
@@ -87,9 +87,9 @@ function listS3Data() {
                             'data': 'CreationDate'
                         },
                         {
-                            'target': [3],
+                            'targets': [3],
                             'orderable': true,
-                            'data': 'Region',
+                            'data': 'Region'
                         }
                     ],
 
