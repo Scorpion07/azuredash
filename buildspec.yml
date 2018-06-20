@@ -10,4 +10,7 @@ phases:
       - echo S3 Copy Started
       - aws s3 cp ./. s3://resources.cloudthat.com/ --recursive
       - echo S3 Copy Completed
+      - echo submitting invalidation request
+      - aws cloudfront  create-invalidation --distribution-id E3D9FYQQDJXU21 --paths / * /*
+      - echo Invalidation Submitted
       - echo Build completed on `date`
