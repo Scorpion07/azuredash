@@ -9,7 +9,7 @@ The plugin has no dependencies other than jQuery and works with all modern
 browsers and also Internet Explorer 6 and later (excanvas is not required
 for IE support).
 
-See the [jQuery Sparkline project page](http://omnipotent.net/jquery.sparkline/)
+See the [jQuery Sparkline project page](//omnipotent.net/jquery.sparkline/)
 for live examples and documentation.
 
 ## License

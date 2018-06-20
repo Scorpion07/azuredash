@@ -15,7 +15,7 @@ jvm.SVGShapeElement.prototype.applyAttr = function(attr, value){
     if (!jvm.SVGShapeElement.images[value]) {
       jvm.whenImageLoaded(value).then(function(img){
         imageEl = new jvm.SVGElement('image');
-        imageEl.node.setAttributeNS('http://www.w3.org/1999/xlink', 'href', value);
+        imageEl.node.setAttributeNS('//www.w3.org/1999/xlink', 'href', value);
         imageEl.applyAttr('x', '0');
         imageEl.applyAttr('y', '0');
         imageEl.applyAttr('width', img[0].width);

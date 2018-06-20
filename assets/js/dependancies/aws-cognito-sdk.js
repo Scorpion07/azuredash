@@ -4219,7 +4219,7 @@ module.exports={
         },
         "UserPoolTags":{
           "shape":"UserPoolTagsType",
-          "documentation":"<p>The cost allocation tags for the user pool. For more information, see <a href=\"http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-cost-allocation-tagging.html\">Adding Cost Allocation Tags to Your User Pool</a> </p>"
+          "documentation":"<p>The cost allocation tags for the user pool. For more information, see <a href=\"//docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-cost-allocation-tagging.html\">Adding Cost Allocation Tags to Your User Pool</a> </p>"
         },
         "AdminCreateUserConfig":{
           "shape":"AdminCreateUserConfigType",
@@ -5515,19 +5515,19 @@ module.exports={
       "members":{
         "kty":{
           "shape":"StringType",
-          "documentation":"<p>A \"kty\" key type parameter. For more information, see <a href=\"http://self-issued.info/docs/draft-ietf-jose-json-web-key.html\">JSON Web Key (JWK) Format</a>.</p>"
+          "documentation":"<p>A \"kty\" key type parameter. For more information, see <a href=\"//self-issued.info/docs/draft-ietf-jose-json-web-key.html\">JSON Web Key (JWK) Format</a>.</p>"
         },
         "alg":{
           "shape":"StringType",
-          "documentation":"<p>A \"kty\" (Key Type) parameter. For more information, see <a href=\"http://self-issued.info/docs/draft-ietf-jose-json-web-key.html#ktyDef\">\"kty\" (Key Type) Parameter</a>.</p>"
+          "documentation":"<p>A \"kty\" (Key Type) parameter. For more information, see <a href=\"//self-issued.info/docs/draft-ietf-jose-json-web-key.html#ktyDef\">\"kty\" (Key Type) Parameter</a>.</p>"
         },
         "use":{
           "shape":"StringType",
-          "documentation":"<p>A \"use\" (Public Key Use) parameter. For more information, see <a href=\"http://self-issued.info/docs/draft-ietf-jose-json-web-key.html#useDef\">\"use\" (Public Key Use) Parameter</a>.</p>"
+          "documentation":"<p>A \"use\" (Public Key Use) parameter. For more information, see <a href=\"//self-issued.info/docs/draft-ietf-jose-json-web-key.html#useDef\">\"use\" (Public Key Use) Parameter</a>.</p>"
         },
         "kid":{
           "shape":"StringType",
-          "documentation":"<p>A \"kid\" (Key ID) parameter. For more information, see <a href=\"http://self-issued.info/docs/draft-ietf-jose-json-web-key.html#kidDef\">\"kid\" (Key ID) Parameter</a>.</p>"
+          "documentation":"<p>A \"kid\" (Key ID) parameter. For more information, see <a href=\"//self-issued.info/docs/draft-ietf-jose-json-web-key.html#kidDef\">\"kid\" (Key ID) Parameter</a>.</p>"
         },
         "n":{
           "shape":"StringType",
@@ -5538,7 +5538,7 @@ module.exports={
           "documentation":"<p>An \"e\" parameter.</p>"
         }
       },
-      "documentation":"<p>A JSON Web Key key type in <a href=\"http://self-issued.info/docs/draft-ietf-jose-json-web-key.html#rfc.section.4\">JSON Web Key (JWK) Format</a>.</p>"
+      "documentation":"<p>A JSON Web Key key type in <a href=\"//self-issued.info/docs/draft-ietf-jose-json-web-key.html#rfc.section.4\">JSON Web Key (JWK) Format</a>.</p>"
     },
     "LambdaConfigType":{
       "type":"structure",
@@ -5860,7 +5860,7 @@ module.exports={
         },
         "Filter":{
           "shape":"UserFilterType",
-          "documentation":"<p>A filter string of the form \"<i>AttributeName</i> <i>Filter-Type</i> \"<i>AttributeValue</i>\"\". Quotation marks within the filter string must be escaped using the backslash (\\) character. For example, \"<code>family_name</code> = \\\"Reddy\\\"\".</p> <ul> <li> <p> <i>AttributeName</i>: The name of the attribute to search for. You can only search for one attribute at a time.</p> </li> <li> <p> <i>Filter-Type</i>: For an exact match, use =, for example, \"<code>given_name</code> = \\\"Jon\\\"\". For a prefix (\"starts with\") match, use ^=, for example, \"<code>given_name</code> ^= \\\"Jon\\\"\". </p> </li> <li> <p> <i>AttributeValue</i>: The attribute value that must be matched for each user.</p> </li> </ul> <p>If the filter string is empty, <code>ListUsers</code> returns all users in the user pool.</p> <p>You can only search for the following standard attributes:</p> <ul> <li> <p> <code>username</code> (case-sensitive)</p> </li> <li> <p> <code>email</code> </p> </li> <li> <p> <code>phone_number</code> </p> </li> <li> <p> <code>name</code> </p> </li> <li> <p> <code>given_name</code> </p> </li> <li> <p> <code>family_name</code> </p> </li> <li> <p> <code>preferred_username</code> </p> </li> <li> <p> <code>cognito:user_status</code> (called <b>Enabled</b> in the Console) (case-sensitive)</p> </li> <li> <p> <code>status</code> (case-insensitive)</p> </li> </ul> <p>Custom attributes are not searchable.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-using-listusers-api\">Searching for Users Using the ListUsers API</a> and <a href=\"http://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-listusers-api-examples\">Examples of Using the ListUsers API</a> in the <i>Amazon Cognito Developer Guide</i>.</p>"
+          "documentation":"<p>A filter string of the form \"<i>AttributeName</i> <i>Filter-Type</i> \"<i>AttributeValue</i>\"\". Quotation marks within the filter string must be escaped using the backslash (\\) character. For example, \"<code>family_name</code> = \\\"Reddy\\\"\".</p> <ul> <li> <p> <i>AttributeName</i>: The name of the attribute to search for. You can only search for one attribute at a time.</p> </li> <li> <p> <i>Filter-Type</i>: For an exact match, use =, for example, \"<code>given_name</code> = \\\"Jon\\\"\". For a prefix (\"starts with\") match, use ^=, for example, \"<code>given_name</code> ^= \\\"Jon\\\"\". </p> </li> <li> <p> <i>AttributeValue</i>: The attribute value that must be matched for each user.</p> </li> </ul> <p>If the filter string is empty, <code>ListUsers</code> returns all users in the user pool.</p> <p>You can only search for the following standard attributes:</p> <ul> <li> <p> <code>username</code> (case-sensitive)</p> </li> <li> <p> <code>email</code> </p> </li> <li> <p> <code>phone_number</code> </p> </li> <li> <p> <code>name</code> </p> </li> <li> <p> <code>given_name</code> </p> </li> <li> <p> <code>family_name</code> </p> </li> <li> <p> <code>preferred_username</code> </p> </li> <li> <p> <code>cognito:user_status</code> (called <b>Enabled</b> in the Console) (case-sensitive)</p> </li> <li> <p> <code>status</code> (case-insensitive)</p> </li> </ul> <p>Custom attributes are not searchable.</p> <p>For more information, see <a href=\"//docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-using-listusers-api\">Searching for Users Using the ListUsers API</a> and <a href=\"//docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-listusers-api-examples\">Examples of Using the ListUsers API</a> in the <i>Amazon Cognito Developer Guide</i>.</p>"
         }
       },
       "documentation":"<p>Represents the request to list users.</p>"
@@ -7137,7 +7137,7 @@ module.exports={
         },
         "UserPoolTags":{
           "shape":"UserPoolTagsType",
-          "documentation":"<p>The cost allocation tags for the user pool. For more information, see <a href=\"http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-cost-allocation-tagging.html\">Adding Cost Allocation Tags to Your User Pool</a> </p>"
+          "documentation":"<p>The cost allocation tags for the user pool. For more information, see <a href=\"//docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-cost-allocation-tagging.html\">Adding Cost Allocation Tags to Your User Pool</a> </p>"
         },
         "AdminCreateUserConfig":{
           "shape":"AdminCreateUserConfigType",
@@ -7549,7 +7549,7 @@ module.exports={
         },
         "UserPoolTags":{
           "shape":"UserPoolTagsType",
-          "documentation":"<p>The cost allocation tags for the user pool. For more information, see <a href=\"http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-cost-allocation-tagging.html\">Adding Cost Allocation Tags to Your User Pool</a> </p>"
+          "documentation":"<p>The cost allocation tags for the user pool. For more information, see <a href=\"//docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-cost-allocation-tagging.html\">Adding Cost Allocation Tags to Your User Pool</a> </p>"
         },
         "SmsConfigurationFailure":{
           "shape":"StringType",
@@ -18738,7 +18738,7 @@ function error () {
   throw new Error([
     m,
     'we accept pull requests',
-    'http://github.com/dominictarr/crypto-browserify'
+    '//github.com/dominictarr/crypto-browserify'
     ].join('\n'))
 }
 

@@ -379,7 +379,7 @@ $(document).on('change', '.checkboxclick', function () {
 //                 }
 //                 else {
 //                     // Sorry! No Web Storage support..
-//                     pop_notifier("danger","The current version of your browser does not support web storage. Please use the latest version of your browser or use the recommended http://chrome.com",delay=6000);
+//                     pop_notifier("danger","The current version of your browser does not support web storage. Please use the latest version of your browser or use the recommended //chrome.com",delay=6000);
 //                     // alert("Sorry no support of local storage");
 //                 }
 //             },

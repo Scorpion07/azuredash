@@ -6,7 +6,7 @@
  * You may not use this file except in compliance with the
  * License. A copy of the License is located at
  * 
- *     http://aws.amazon.com/asl/
+ *     //aws.amazon.com/asl/
  * 
  * or in the "license" file accompanying this file. This file is
  * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
@@ -132,7 +132,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                           * You may not use this file except in compliance with the
 	                                                                                                                                                           * License. A copy of the License is located at
 	                                                                                                                                                           *
-	                                                                                                                                                           *     http://aws.amazon.com/asl/
+	                                                                                                                                                           *     //aws.amazon.com/asl/
 	                                                                                                                                                           *
 	                                                                                                                                                           * or in the "license" file accompanying this file. This file is
 	                                                                                                                                                           * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
@@ -471,7 +471,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	"use strict";
 
 	exports.__esModule = true;
-	// A small implementation of BigInteger based on http://www-cs-students.stanford.edu/~tjw/jsbn/
+	// A small implementation of BigInteger based on //www-cs-students.stanford.edu/~tjw/jsbn/
 	//
 	// All public methods have been removed except the following:
 	//   new BigInteger(a, b) (only radix 2, 4, 8, 16 and 32 supported)
@@ -1295,7 +1295,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * You may not use this file except in compliance with the
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * License. A copy of the License is located at
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *     http://aws.amazon.com/asl/
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *     //aws.amazon.com/asl/
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * or in the "license" file accompanying this file. This file is
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
@@ -1352,7 +1352,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * You may not use this file except in compliance with the
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * License. A copy of the License is located at
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *     http://aws.amazon.com/asl/
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *     //aws.amazon.com/asl/
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * or in the "license" file accompanying this file. This file is
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
@@ -1401,7 +1401,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                           * You may not use this file except in compliance with the
 	                                                                                                                                                           * License. A copy of the License is located at
 	                                                                                                                                                           *
-	                                                                                                                                                           *     http://aws.amazon.com/asl/
+	                                                                                                                                                           *     //aws.amazon.com/asl/
 	                                                                                                                                                           *
 	                                                                                                                                                           * or in the "license" file accompanying this file. This file is
 	                                                                                                                                                           * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
@@ -1488,7 +1488,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * You may not use this file except in compliance with the
 	 * License. A copy of the License is located at
 	 *
-	 *     http://aws.amazon.com/asl/
+	 *     //aws.amazon.com/asl/
 	 *
 	 * or in the "license" file accompanying this file. This file is
 	 * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
@@ -1583,7 +1583,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                           * You may not use this file except in compliance with the
 	                                                                                                                                                           * License. A copy of the License is located at
 	                                                                                                                                                           *
-	                                                                                                                                                           *     http://aws.amazon.com/asl/
+	                                                                                                                                                           *     //aws.amazon.com/asl/
 	                                                                                                                                                           *
 	                                                                                                                                                           * or in the "license" file accompanying this file. This file is
 	                                                                                                                                                           * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
@@ -3278,7 +3278,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * You may not use this file except in compliance with the
 	 * License. A copy of the License is located at
 	 *
-	 *     http://aws.amazon.com/asl/
+	 *     //aws.amazon.com/asl/
 	 *
 	 * or in the "license" file accompanying this file. This file is
 	 * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
@@ -3391,7 +3391,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * You may not use this file except in compliance with the
 	 * License. A copy of the License is located at
 	 *
-	 *     http://aws.amazon.com/asl/
+	 *     //aws.amazon.com/asl/
 	 *
 	 * or in the "license" file accompanying this file. This file is
 	 * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
@@ -3513,7 +3513,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * You may not use this file except in compliance with the
 	 * License. A copy of the License is located at
 	 *
-	 *     http://aws.amazon.com/asl/
+	 *     //aws.amazon.com/asl/
 	 *
 	 * or in the "license" file accompanying this file. This file is
 	 * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
@@ -3588,7 +3588,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * You may not use this file except in compliance with the
 	 * License. A copy of the License is located at
 	 *
-	 *     http://aws.amazon.com/asl/
+	 *     //aws.amazon.com/asl/
 	 *
 	 * or in the "license" file accompanying this file. This file is
 	 * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
@@ -3714,7 +3714,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * You may not use this file except in compliance with the
 	 * License. A copy of the License is located at
 	 *
-	 *     http://aws.amazon.com/asl/
+	 *     //aws.amazon.com/asl/
 	 *
 	 * or in the "license" file accompanying this file. This file is
 	 * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
@@ -3819,7 +3819,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                           * You may not use this file except in compliance with the
 	                                                                                                                                                           * License. A copy of the License is located at
 	                                                                                                                                                           *
-	                                                                                                                                                           *     http://aws.amazon.com/asl/
+	                                                                                                                                                           *     //aws.amazon.com/asl/
 	                                                                                                                                                           *
 	                                                                                                                                                           * or in the "license" file accompanying this file. This file is
 	                                                                                                                                                           * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR

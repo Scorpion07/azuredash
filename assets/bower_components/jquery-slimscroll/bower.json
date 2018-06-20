@@ -13,9 +13,9 @@
     "jquery-plugin",
     "ecosystem:jquery"
   ],
-  "homepage": "http://rocha.la/jQuery-slimScroll/",
+  "homepage": "//rocha.la/jQuery-slimScroll/",
   "authors": [
-    { "name": "Piotr Rochala", "homepage": "http://rocha.la/" }
+    { "name": "Piotr Rochala", "homepage": "//rocha.la/" }
   ],
   "repository": {
     "type": "git",
@@ -28,11 +28,11 @@
   "licenses" : [
     {
       "type": "MIT",
-      "url": "http://www.opensource.org/licenses/mit-license.php"
+      "url": "//www.opensource.org/licenses/mit-license.php"
     },
     {
       "type": "GPL",
-      "url": "http://www.opensource.org/licenses/gpl-license.php"
+      "url": "//www.opensource.org/licenses/gpl-license.php"
     }
   ],
   "moduleType": [],

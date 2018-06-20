@@ -15,19 +15,19 @@
     "version": "2.1.2",
     "author": {
         "name": "Gareth Watts",
-        "url": "http://gwatts.com/"
+        "url": "//gwatts.com/"
     },
     "licenses": [
         {
             "type": "BSD-3-Clause",
-            "url": "http://opensource.org/licenses/BSD-3-Clause"
+            "url": "//opensource.org/licenses/BSD-3-Clause"
         }
     ],
     "bugs": "https://github.com/gwatts/jquery.sparkline/issues",
-    "homepage": "http://omnipotent.net/jquery.sparkline/",
-    "demo": "http://omnipotent.net/jquery.sparkline/",
-    "docs": "http://omnipotent.net/jquery.sparkline/#s-docs",
-    "download": "http://omnipotent.net/jquery.sparkline/#s-download",
+    "homepage": "//omnipotent.net/jquery.sparkline/",
+    "demo": "//omnipotent.net/jquery.sparkline/",
+    "docs": "//omnipotent.net/jquery.sparkline/#s-docs",
+    "download": "//omnipotent.net/jquery.sparkline/#s-download",
     "dependencies": {
         "jquery": ">=1.4.3"
     }

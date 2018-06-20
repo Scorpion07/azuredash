@@ -1,6 +1,6 @@
-/*! Copyright (c) 2011 Piotr Rochala (http://rocha.la)
- * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
- * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
+/*! Copyright (c) 2011 Piotr Rochala (//rocha.la)
+ * Dual licensed under the MIT (//www.opensource.org/licenses/mit-license.php)
+ * and GPL (//www.opensource.org/licenses/gpl-license.php) licenses.
  *
  * Version: 1.3.8
  *

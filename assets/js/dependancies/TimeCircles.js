@@ -90,7 +90,7 @@
     /**
      * Converts hex color code into object containing integer values for the r,g,b use
      * This function (hexToRgb) originates from:
-     * http://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+     * //stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
      * @param {string} hex color code
      */
     function hexToRgb(hex) {
@@ -128,7 +128,7 @@
 
     /**
      * Function s4() and guid() originate from:
-     * http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript
+     * //stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript
      */
     function s4() {
         return Math.floor((1 + Math.random()) * 0x10000)

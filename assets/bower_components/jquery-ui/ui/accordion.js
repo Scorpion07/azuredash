@@ -1,12 +1,12 @@
 /*!
  * jQuery UI Accordion 1.11.4
- * http://jqueryui.com
+ * //jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * //jquery.org/license
  *
- * http://api.jqueryui.com/accordion/
+ * //api.jqueryui.com/accordion/
  */
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {

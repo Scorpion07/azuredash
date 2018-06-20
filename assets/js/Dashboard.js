@@ -677,7 +677,7 @@ function CostofResources() {
     else {
         s3Folder = account;
     }
-    var getUrl = 'http://resources.cloudthat.com/' + "cost/" + s3Folder + "/" + year + "/" + month + "/" + date + '.json';
+    var getUrl = '//resources.cloudthat.com/' + "cost/" + s3Folder + "/" + year + "/" + month + "/" + date + '.json';
     //console.log(getUrl);
     $.getJSON(getUrl, function (r) {
         if(_config.logLevel != "error")

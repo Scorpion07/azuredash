@@ -200,7 +200,7 @@
         return $.isArray(val) ? val : [val];
     };
 
-    // http://paulirish.com/2008/bookmarklet-inject-new-css-rules/
+    // //paulirish.com/2008/bookmarklet-inject-new-css-rules/
     addCSS = function(css) {
         var tag, iefail;
         if (document.createStyleSheet) {

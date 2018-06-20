@@ -5,7 +5,7 @@
 * v2.1.3
 * (c) Splunk, Inc
 * Contact: Gareth Watts (gareth@splunk.com)
-* http://omnipotent.net/jquery.sparkline/
+* //omnipotent.net/jquery.sparkline/
 *
 * Generates inline sparkline charts from data supplied either to the method
 * or inline in HTML
@@ -578,7 +578,7 @@
         return $.isArray(val) ? val : [val];
     };
 
-    // http://paulirish.com/2008/bookmarklet-inject-new-css-rules/
+    // //paulirish.com/2008/bookmarklet-inject-new-css-rules/
     addCSS = function(css) {
         var tag, iefail;
         if (document.createStyleSheet) {

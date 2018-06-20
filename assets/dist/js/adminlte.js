@@ -9,7 +9,7 @@
 * @Email   <abdullah@almsaeedstudio.com>
 * @version 2.4.2
 * @repository git://github.com/almasaeed2010/AdminLTE.git
-* @license MIT <http://opensource.org/licenses/MIT>
+* @license MIT <//opensource.org/licenses/MIT>
 */
 
 // Make sure jQuery has been loaded

@@ -9,7 +9,7 @@ jvm.SVGImageElement.prototype.applyAttr = function(attr, value){
 
   if (attr == 'image') {
     jvm.whenImageLoaded(value).then(function(img){
-      that.node.setAttributeNS('http://www.w3.org/1999/xlink', 'href', value);
+      that.node.setAttributeNS('//www.w3.org/1999/xlink', 'href', value);
       that.width = img[0].width;
       that.height = img[0].height;
       that.applyAttr('width', that.width);

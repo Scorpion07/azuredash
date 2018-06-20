@@ -132,7 +132,7 @@ function getDataSet() {
             tempdate = i.toString();
         ajaxrequests.push(
             $.ajax({
-                url: 'http://resources.cloudthat.com/' + "cost/dev/" + year + "/" + month + "/" + tempdate + '.json',
+                url: '//resources.cloudthat.com/' + "cost/dev/" + year + "/" + month + "/" + tempdate + '.json',
                 contentType: 'application/json',
                 dataType: 'json',
                 async: false,
@@ -152,7 +152,7 @@ function getDataSet() {
             }));
         ajaxrequests.push(
             $.ajax({
-                url: 'http://resources.cloudthat.com/' + "cost/prod/" + year + "/" + month + "/" + tempdate + '.json',
+                url: '//resources.cloudthat.com/' + "cost/prod/" + year + "/" + month + "/" + tempdate + '.json',
                 contentType: 'application/json',
                 dataType: 'json',
                 async: false,
@@ -172,7 +172,7 @@ function getDataSet() {
             }));
         ajaxrequests.push(
             $.ajax({
-                url: 'http://resources.cloudthat.com/' + "cost/exttrain/" + year + "/" + month + "/" + tempdate + '.json',
+                url: '//resources.cloudthat.com/' + "cost/exttrain/" + year + "/" + month + "/" + tempdate + '.json',
                 contentType: 'application/json',
                 dataType: 'json',
                 async: false,
@@ -192,7 +192,7 @@ function getDataSet() {
             }));
         ajaxrequests.push(
             $.ajax({
-                url: 'http://resources.cloudthat.com/' + "cost/training/" + year + "/" + month + "/" + tempdate + '.json',
+                url: '//resources.cloudthat.com/' + "cost/training/" + year + "/" + month + "/" + tempdate + '.json',
                 contentType: 'application/json',
                 dataType: 'json',
                 async: false,
