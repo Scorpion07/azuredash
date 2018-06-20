@@ -168,7 +168,7 @@ function deleteModalNats() {
 function deleteNats() {
     var token = window.localStorage.getItem('token');
     $('.deleteMul').attr('disabled', true);
-    $("#loadingModal").show();
+    $("#loadingMulModal").show();
     var natgatewayid = [];
     var region = [];
     $(".checkboxes").each(function () {
@@ -198,9 +198,8 @@ function deleteNats() {
         crossDomain: true,
         data: JSON.stringify(submit),
         success: function (respdata) {
-            //console.log(respdata)
-            $("#loadingModal").hide();
-            $('#deleteConformation').modal('hide');
+            $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
             if (respdata.totalnatg >= 0 || respdata.totaleip >= 0) {
                 showNats();
                 $.notify({message:"NAT Gateway and EIPs Deleted Successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
@@ -211,8 +210,8 @@ function deleteNats() {
 
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            $("#loadingModal").hide();
-            $('#deleteConformation').modal('hide');
+            $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
             if (ajaxOptions === "abort"){
 
             }

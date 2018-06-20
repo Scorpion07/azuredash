@@ -153,7 +153,7 @@ function deleteModalVPNs() {
 
 function deleteVPNs() {
     $('.deleteMul').attr('disabled', true);
-    $("#loadingModal").show();
+    $("#loadingMulModal").show();
     var Data = {};
     var region = [];
     $(".checkboxes").each(function () {
@@ -195,8 +195,8 @@ function deleteVPNs() {
         data: JSON.stringify(submit),
         success: function (respdata) {
             //console.log(respdata)
-            $("#loadingModal").hide();
-
+            $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
             if (respdata > 0) {
                 showVPNs();
                 $.notify({message:"VPN Connection Deleted Successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
@@ -207,8 +207,8 @@ function deleteVPNs() {
             $('#deleteConformation').modal('hide');
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            $("#loadingModal").hide();
-            $('#deleteConformation').modal('hide');
+            $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
             if (ajaxOptions === "abort"){
 
             }

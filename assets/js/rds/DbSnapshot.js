@@ -174,8 +174,8 @@ function deleteDBSnaps() {
         crossDomain: true,
         data: JSON.stringify(deleteData),
         success: function (result) {
+            $('#deleteMulConformation').modal('hide');
             $("#loadingMulModal").hide();
-            //console.log(result);
             if (result > -1) {
                 $('#deleteMulConformation').modal('hide');
                 showDBSnaps();
@@ -197,7 +197,8 @@ function deleteDBSnaps() {
             $('#deleteMulConformation').modal('hide');
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            $('#deleteConformation').modal('hide');
+            $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
             if (ajaxOptions === "abort") {
 
             }

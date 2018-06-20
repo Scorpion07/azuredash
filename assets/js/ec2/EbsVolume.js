@@ -166,7 +166,7 @@ function deleteModalVolume() {
 
 function deleteVolume() {
     $('.deleteMul').attr('disabled', true);
-    $("#loadingModal").show();
+    $("#loadingMulModal").show();
     var volumeid = [];
     var region = [];
     $(".checkboxes").each(function () {
@@ -198,7 +198,8 @@ function deleteVolume() {
         data: JSON.stringify(submit),
         success: function (respdata) {
             //console.log(respdata)
-            $("#loadingModal").hide();
+            $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
 
             if (respdata > 0) {
                 showVolumes();
@@ -211,6 +212,8 @@ function deleteVolume() {
         },
         error: function (xhr, ajaxOptions, thrownError) {
             $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
+
             if (ajaxOptions === "abort"){
 
             }

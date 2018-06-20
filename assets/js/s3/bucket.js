@@ -69,7 +69,7 @@ function listS3Data() {
                     },
 
                     'columnDefs': [
-                        {"className": "dt-center", "defaultContent": "-", "targets": "_all"},
+                        {"className": "dt-center", "targets": "_all"},
                         {
                             'targets': [0],
                             'searchable': false,
@@ -87,9 +87,9 @@ function listS3Data() {
                             'data': 'CreationDate'
                         },
                         {
-                            'target': [3],
+                            'targets': [3],
                             'orderable': true,
-                            'data': 'Region',
+                            'data': 'Region'
                         }
                     ],
 
@@ -134,12 +134,11 @@ function deleteModalS3() {
     });
     $('.deleteMul').attr('disabled', false);
     $('#deleteMulConformation').modal('show');
-
 }
 
 function deleteS3Bucket() {
     $('.deleteMul').attr('disabled', true);
-    $("#loadingModal").show();
+    $("#loadingMulModal").show();
     var bucketnames = [];
     $(".checkboxes").each(function () {
         if ($(this).is(":checked")) {
@@ -165,10 +164,11 @@ function deleteS3Bucket() {
         data: JSON.stringify(submit),
         success: function (respdata) {
             //console.log(respdata)
-            $("#loadingModal").hide();
+            $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
 
-            if (respdata == 0) {
-                showR53Hostzone();
+            if (respdata == true) {
+                showS3();
                 $.notify({message: "S3 Bucket Deleted Successfully"}, {
                     type: "success",
                     placement: {from: "top", align: "center"},

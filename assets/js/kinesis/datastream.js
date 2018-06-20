@@ -153,7 +153,7 @@ function deleteModalKinesisDataStream() {
 
 function deleteKinesisDataStream() {
     $('.deleteMul').attr('disabled', true);
-    $("#loadingModal").show();
+    $("#loadingMulModal").show();
     var Data = {};
     $(".checkboxes").each(function () {
         if ($(this).is(":checked")) {
@@ -188,7 +188,8 @@ function deleteKinesisDataStream() {
         data: JSON.stringify(submit),
         success: function (respdata) {
             //console.log(respdata)
-            $("#loadingModal").hide();
+            $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
 
             if (respdata > 0) {
                 showKinesisDataStream();
@@ -200,17 +201,22 @@ function deleteKinesisDataStream() {
             $('#deleteConformation').modal('hide');
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            $('#deleteConformation').modal('hide');
-        if (ajaxOptions === "abort"){
+            $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
 
+            if (ajaxOptions === "abort") {
+
+            }
+            else {
+                $.notify({message: "Unable to Load"}, {
+                    type: "danger",
+                    placement: {from: "top", align: "center"},
+                    delay: 500,
+                    timer: 500
+                });
+            }
         }
-        else {
-            $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
-        }
 
-    }
-
-
-});
+    });
 
 }

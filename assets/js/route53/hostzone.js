@@ -149,7 +149,7 @@ function deleteModalR53Hostzone() {
 
 function deleteR53Hostzone() {
     $('.deleteMul').attr('disabled', true);
-    $("#loadingModal").show();
+    $("#loadingMulModal").show();
     var hostzoneids = [];
     $(".checkboxes").each(function () {
         if ($(this).is(":checked")) {
@@ -174,9 +174,8 @@ function deleteR53Hostzone() {
         crossDomain: true,
         data: JSON.stringify(submit),
         success: function (respdata) {
-            //console.log(respdata)
-            $("#loadingModal").hide();
-
+            $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
             if (respdata > -1) {
                 showR53Hostzone();
                 $.notify({message:"Route53 Hostedzone Deleted Successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
@@ -187,7 +186,8 @@ function deleteR53Hostzone() {
             $('#deleteConformation').modal('hide');
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            $('#deleteConformation').modal('hide');
+            $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
             if (ajaxOptions === "abort"){
 
             }

@@ -193,7 +193,7 @@ function deleteModalRSCluster() {
 
 function deleteRSCluster() {
 
-    $("#loadingModal").show();
+    $("#loadingMulModal").show();
     var deleteids = $("#deleteids").val();
     var delete_regions = $("#delete_regions").val();
     var cluster_ids_array = (deleteids).split(",");
@@ -250,9 +250,8 @@ function deleteRSCluster() {
             crossDomain: true,
             data: JSON.stringify(submit),
             success: function (respdata) {
-                //console.log(respdata)
-                $("#loadingModal").hide();
-
+                $('#deleteMulConformation').modal('hide');
+                $("#loadingMulModal").hide();
                 if (respdata > 0) {
                     showRed_Cluster();
                     $.notify({message: "Redshift Cluster Deleted Successfully"}, {
@@ -273,7 +272,8 @@ function deleteRSCluster() {
                 $('#deleteConformation').modal('hide');
             },
             error: function (xhr, ajaxOptions, thrownError) {
-                $('#deleteConformation').modal('hide');
+                $('#deleteMulConformation').modal('hide');
+                $("#loadingMulModal").hide();
                 if (ajaxOptions === "abort") {
 
                 }

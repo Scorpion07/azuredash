@@ -176,6 +176,7 @@ function deleteSnaps() {
         crossDomain: true,
         data: JSON.stringify(deleteData),
         success: function (result) {
+            $('#deleteMulConformation').modal('hide');
             $("#loadingMulModal").hide();
             //console.log(result);
             if (result > 0 || result.ResponseMetadata.HTTPStatusCode == 200 || result.ResponseMetadata.HTTPStatusCode == "200") {
@@ -195,11 +196,11 @@ function deleteSnaps() {
                     timer: 500
                 });
             }
-
-            $('#deleteMulConformation').modal('hide');
         },
         error: function (xhr, ajaxOptions, thrownError) {
             $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
+
             if (ajaxOptions === "abort") {
 
             }

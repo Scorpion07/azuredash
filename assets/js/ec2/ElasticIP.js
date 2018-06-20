@@ -173,10 +173,9 @@ function deleteEIPs() {
         crossDomain: true,
         data: JSON.stringify(deleteData),
         success: function (result) {
-            $("#select_all").prop("checked", false);
-            $(".btnmultipledelete").addClass("disabled");
-            $("#loadingMulModal").hide();
             //console.log(result);
+            $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
             if (result > 0) {
 
                 $('.deleteMul').attr('disabled', false);
@@ -196,10 +195,10 @@ function deleteEIPs() {
                     timer: 500
                 });
             }
-            $('#deleteMulConformation').modal('hide');
         },
         error: function (xhr, ajaxOptions, thrownError) {
             $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
             if (ajaxOptions === "abort") {
 
             }

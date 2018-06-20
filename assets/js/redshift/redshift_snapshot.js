@@ -167,7 +167,7 @@ function deleteModalRSSnapshot() {
 
 function deleteRSSnapshot() {
     $('.deleteMul').attr('disabled', true);
-    $("#loadingModal").show();
+    $("#loadingMulModal").show();
     var Data = {};
     $(".checkboxes").each(function () {
         if ($(this).is(":checked")) {
@@ -203,9 +203,8 @@ function deleteRSSnapshot() {
         crossDomain: true,
         data: JSON.stringify(submit),
         success: function (respdata) {
-            //console.log(respdata)
-            $("#loadingModal").hide();
-
+            $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
             if (respdata > -1) {
                 showRed_Snapshot();
                 $.notify({message: "Redshift Cluster Snapshot Deleted Successfully"}, {
@@ -226,7 +225,8 @@ function deleteRSSnapshot() {
             $('#deleteConformation').modal('hide');
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            $('#deleteConformation').modal('hide');
+            $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
             if (ajaxOptions === "abort") {
 
             }

@@ -188,8 +188,8 @@ function deleteDBInstances() {
         crossDomain: true,
         data: JSON.stringify(deleteData),
         success: function (result) {
+            $('#deleteMulConformation').modal('hide');
             $("#loadingMulModal").hide();
-            //console.log(result);
             if (result > 0) {
                 $('#deleteMulConformation').modal('hide');
                 showDBInstances();
@@ -211,7 +211,8 @@ function deleteDBInstances() {
             $('#deleteMulConformation').modal('hide');
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            $('#deleteConformation').modal('hide');
+            $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
             if (ajaxOptions === "abort") {
 
             }

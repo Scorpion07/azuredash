@@ -153,7 +153,7 @@ function deleteModalSagemakerEndpoint() {
 
 function deleteSagemakerEndpoint() {
     $('.deleteMul').attr('disabled', true);
-    $("#loadingModal").show();
+    $("#loadingMulModal").show();
     var Data = {};
     $(".checkboxes").each(function () {
         if ($(this).is(":checked")) {
@@ -189,9 +189,8 @@ function deleteSagemakerEndpoint() {
         crossDomain: true,
         data: JSON.stringify(submit),
         success: function (respdata) {
-            //console.log(respdata)
-            $("#loadingModal").hide();
-
+            $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
             if (respdata > -1) {
                 showSagemakerEndpoints();
                 $.notify({message:"SageMaker Endpoints Deleted Successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
@@ -202,7 +201,8 @@ function deleteSagemakerEndpoint() {
             $('#deleteConformation').modal('hide');
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            $('#deleteConformation').modal('hide');
+            $('#deleteMulConformation').modal('hide');
+            $("#loadingMulModal").hide();
             if (ajaxOptions === "abort"){
 
             }
