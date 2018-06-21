@@ -16,8 +16,15 @@ function error_occured(xhr, ajaxOptions, thrownError){
         return;
     }
     if(xhr["responseJSON"]["message"] == "The incoming token has expired"){
-        pop_notifier("warning","Token Has Expired Hence Refreshing the Page");
-        location.reload();
+        if(!window.localStorage.expiredRefresh){
+            pop_notifier("warning","Token Has Expired Hence Refreshing the Page");
+            location.reload();
+            window.localStorage.setItem("expiredRefresh", true);
+        }
+        else{
+            pop_notifier("info","Login Session Has Expired You need to Relogin", 10000);
+            location.href('/?login=true');
+        }
     }
     else {
         pop_notifier("danger","Unable to Load")

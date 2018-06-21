@@ -7,6 +7,7 @@ jQuery(function ($) {
 
     // Window Load
     $(window).load(function () {
+
         // Preloader
         $('.intro-tables, .parallax, header').css('opacity', '0');
         $('.preloader').addClass('animated fadeOut').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
@@ -105,6 +106,14 @@ jQuery(function ($) {
             scrollSpeed: 400,
             filter: ':not(.btn)'
         });
+
+        //load Login Modal
+        if(getQueryVariable('login') && (getQueryVariable('login') == true || getQueryVariable('login') == "true"){
+            window.localStorage.clear();
+            $('#login_button').click();
+        }
+
+
     });
 
     // Window Scroll
