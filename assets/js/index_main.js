@@ -108,7 +108,7 @@ jQuery(function ($) {
         });
 
         //load Login Modal
-        if(getQueryVariable('login') && (getQueryVariable('login') == true || getQueryVariable('login') == "true"){
+        if (getQueryVariable('login') && (getQueryVariable('login') == true || getQueryVariable('login') == "true")) {
             window.localStorage.clear();
             $('#login_button').click();
         }
