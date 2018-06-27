@@ -28,6 +28,7 @@ function signup_event(){
     if ($('#email').val() == "" || $('#password').val() == "" || $('c_#password').val() == "" || $('#mobile').val() == "") {
         // alert("no data")
         pop_notifier("danger","please fill up all the form Details");
+
     }
     else if ($('#password').val() !== $('#c_password').val()) {
         // alert("password not matched")
@@ -37,6 +38,12 @@ function signup_event(){
     //     pop_notifier("danger","Please use CloudThat email address to register",1000);
     //     $("#roleARN").show();
     // }
+    else if (!($("#email").val()).includes("cloudthat"))
+    {
+       if ($("#roleARN").val() == "") {
+           pop_notifier("danger", "Please, Provide a Read Only Role for your AWS account",1000);
+       }
+    }
     else {
 
         var attributeList = [];
