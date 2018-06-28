@@ -53,11 +53,10 @@ $("#filter").keyup(function () {
 });
 
 $(window).on("load", function () {
+    checklogin();
+    token = window.localStorage.getItem('token');
     if(document.getElementById("defaultclick"))
         document.getElementById("defaultclick").click();
-    checklogin();
-
-    token = window.localStorage.getItem('token');
 
     if(isCloudThatEmail(window.localStorage.getItem('email'))) {
         if (window.localStorage.getItem('account')) {

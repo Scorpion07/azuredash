@@ -20,7 +20,7 @@ if (window.localStorage.UserDetails != undefined && window.localStorage.UserDeta
     cognitoUser = userPool.getCurrentUser();
     username = window.localStorage.getItem('username');
     token = window.localStorage.getItem('token');
-    checklogin();
+    alreadylogin();
 }
 
 //Dependancy Across The Platform
@@ -140,10 +140,10 @@ function sessionValid() {
 Already Login
  */
 
-function checklogin() {
+function alreadylogin() {
     if (window.localStorage.length === 0) {
         window.localStorage.clear();
-        window.location.href = 'index.html';
+        window.location.href = '/';
     }
     else {
         console.log("Session Already Defined");
