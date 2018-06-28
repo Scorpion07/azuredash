@@ -18,8 +18,12 @@ function sessionValid() {
             RefreshToken: window.localStorage.reftoken
         });
 
-        var session = new AmazonCognitoIdentity.CognitoUserSession({IdToken : idToken,RefreshToken : refreshToken,AccessToken : accessToken})
-        cognitoUser.signInUserSession = session
+        var session = new AmazonCognitoIdentity.CognitoUserSession({
+            IdToken: idToken,
+            RefreshToken: refreshToken,
+            AccessToken: accessToken
+        });
+        cognitoUser.signInUserSession = session;
         if(cognitoUser.signInUserSession.isValid()){
            if(window.localStorage.custexp <= new Date().getTime()){
                 cognitoUser.refreshSession(refreshToken, function(err, session) {
@@ -83,7 +87,7 @@ function checklogin() {
 
     //console.log(window.localStorage.length)
     if (window.localStorage.length === 0) {
-        window.location.href = '/login.html';
+        window.location.href = '/';
     }
     else {
         //console.log("Alreay logged in");
