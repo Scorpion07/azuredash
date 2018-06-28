@@ -16,7 +16,7 @@ if(_config.logLevel === 'debug')
     console.log("window.localstorage" + JSON.stringify(window.localStorage));
 
 
-if (window.localStorage.UserDetails != "undefined" && window.localStorage.UserDetails != null && window.localStorage.UserDetails.length > 0) {
+if (window.localStorage.UserDetails != undefined && window.localStorage.UserDetails != null && window.localStorage.UserDetails.length > 0) {
     cognitoUser = userPool.getCurrentUser();
     username = window.localStorage.getItem('username');
     token = window.localStorage.getItem('token');
@@ -140,21 +140,22 @@ function sessionValid() {
 Already Login
  */
 
-// function alreadylogin() {
-//     if (window.localStorage.length === 0) {
-//         window.localStorage.clear();
-//     }
-//     else {
-//         console.log("Session Already Defined");
-//         var next = getQueryVariable("next");
-//         if (next) {
-//             window.location.href = next;
-//         }
-//         else {
-//             window.location.href = 'index.html';
-//         }
-//     }
-// }
+function alreadylogin() {
+    if (window.localStorage.length === 0) {
+        window.localStorage.clear();
+        window.location.href = '/';
+    }
+    else {
+        console.log("Session Already Defined");
+        var next = getQueryVariable("next");
+        console.log(next);
+        if (next != undefined) {
+            console.log("next");
+            window.location.href = next;
+        }
+
+    }
+}
 //
 // function getQueryVariable(variable) {
 //     var query = window.location.search.substring(1);
@@ -260,7 +261,7 @@ function cloudbilling(){
         console.log("in cloudbilling function");
         console.log(window.localStorage.UserDetails)
     }
-    if (window.localStorage.UserDetails != "undefined" && window.localStorage.UserDetails != null && window.localStorage.UserDetails.length > 0) {
+    if (window.localStorage.UserDetails != undefined && window.localStorage.UserDetails != null && window.localStorage.UserDetails.length > 0) {
         if(_config.logLevel === "debug")
             console.log("if");
         window.location.href = '/billing/';
@@ -278,7 +279,7 @@ function resourceCreation(){
         console.log("in ResourceCreation function");
         console.log(window.localStorage.UserDetails)
     }
-    if (window.localStorage.UserDetails != "undefined" && window.localStorage.UserDetails != null && window.localStorage.UserDetails.length > 0) {
+    if (window.localStorage.UserDetails != undefined && window.localStorage.UserDetails != null && window.localStorage.UserDetails.length > 0) {
         if(_config.logLevel === "debug")
             console.log("if");
         if(isCloudThatEmail(window.localStorage.email)){

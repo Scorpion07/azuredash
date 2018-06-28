@@ -192,7 +192,10 @@
 						<input type="text" class="form-control"  placeholder="arn:aws:iam::111111111111:role/ReadOnlyRole" id="ARN"></div>
 					<input type="password" class="form-control form-white" id="password" placeholder="Enter password">
 					<input type="password" class="form-control form-white" id="c_password" placeholder="Confirm password">
-					<button type="button" class="btn btn-submit" onclick="signup_event()">Sign Up</button>
+					<div class="form-control form-white">
+					<input type="checkbox" class="pull-left" id="terms"> Terms and Conditions "By providing above information I am allowing CloudThat to read only access of my AWS account's resources and cost explorer"
+					</div>
+					<button type="button" id="action_btn" class="btn btn-submit" onclick="signup_event()">Sign Up</button>
 				</div>
 				<div id="verifydiv" style="display:none;">
 					<div class="form-group">
