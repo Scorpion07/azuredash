@@ -55,7 +55,7 @@ $("#filter").keyup(function () {
 $(window).on("load", function () {
     if(document.getElementById("defaultclick"))
         document.getElementById("defaultclick").click();
-    // checklogin();
+    checklogin();
 
     token = window.localStorage.getItem('token');
 
