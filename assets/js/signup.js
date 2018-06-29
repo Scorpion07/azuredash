@@ -14,6 +14,50 @@ $('document').ready(function(){
             }
 
     });
+    $("#username,#email,#c_password,#password,#mobile,#roleARN,#terms").change(function (e) {
+        console.log("keyup in")
+        flag = false;
+        if($("#email").val() == "" || $('#username').val() == "" || $("#c_password").val() == "" || $("#password").val() == "" || $("#mobile").val() == "") {
+            flag = false;
+            console.log("keyup in if  "+ flag)
+        }
+        else if (!($("#email").val()).includes("cloudthat"))
+        {
+            if($("#roleARN").val() == "") {
+                flag = false;
+            }
+            else
+            {
+                flag = true;
+            }
+        }
+        else{
+            flag = true;
+        }
+
+
+
+        if (flag == false)
+        {
+            $("#action_btn").addClass("disabled");
+            $("#action_btn").off('click');
+            console.log("disableing")
+        }
+        else
+        {
+            if ($('#terms').is(':checked')) {
+                $("#action_btn").removeClass("disabled");
+                $("#action_btn").on('click');
+                console.log("not disableing")
+            }
+            else
+            {
+                $("#action_btn").addClass("disabled");
+                $("#action_btn").off('click');
+                console.log("disableing")
+            }
+        }
+    });
 });
 
 function signup_event(){
@@ -25,7 +69,7 @@ function signup_event(){
     console.log(userPool)
 
     console.log((($('#email').val()).substring(($('#email').val()).lastIndexOf("@") + 1)));
-    if ($('#email').val() == "" || $('#password').val() == "" || $('c_#password').val() == "" || $('#mobile').val() == "") {
+    if ($('#email').val() == "" || $('#password').val() == "" || $('#c_password').val() == "" || $('#mobile').val() == "") {
         // alert("no data")
         pop_notifier("danger","please fill up all the form Details");
 

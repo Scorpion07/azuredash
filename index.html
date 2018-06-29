@@ -179,7 +179,7 @@
 			<a href="index.html" id="modal_close_button" class="close-link" style="display: block"><i class="icon_close_alt2"></i></a>
 			<h3 class="white" id="modalTitle">Create Your Account</h3>
 			<form action="" class="popup-form">
-				<div id="signup_form" style="display: block">
+				<form id="signup_form" style="display: block">
 					<input type="text" class="form-control form-white" id="username" placeholder="Enter username">
 					<input type="email" class="form-control form-white" autocomplete="email" id="email" placeholder="Enter email">
 					<input type="text" class="form-control form-white" autocomplete="tel" id="mobile" placeholder="Enter mobile number">
@@ -193,10 +193,10 @@
 					<input type="password" class="form-control form-white" id="password" placeholder="Enter password">
 					<input type="password" class="form-control form-white" id="c_password" placeholder="Confirm password">
 					<div class="form-control form-white">
-					<input type="checkbox" class="pull-left" id="terms"> Terms and Conditions "By providing above information I am allowing CloudThat to read only access of my AWS account's resources and cost explorer"
+						<input type="checkbox" class="pull-left" id="terms">Accept <a target="_blank" class="form-white" style="color: white" href="assets/files/terms_and_conditions.pdf">Terms and Conditions</a>
 					</div>
-					<button type="button" id="action_btn" class="btn btn-submit" onclick="signup_event()">Sign Up</button>
-				</div>
+					<button type="button" id="action_btn" class="btn btn-submit disabled" onclick="signup_event()">Sign Up</button>
+				</form>
 				<div id="verifydiv" style="display:none;">
 					<div class="form-group">
 						<input type="text" class="form-control form-white" id="code" placeholder="Enter Verification Code">
@@ -204,11 +204,11 @@
 					</div>
 				</div>
 				<div id="logindiv" style="display:none;">
-				<div class="form-group">
+				<form class="form-group">
 					<input type="text" class="form-control form-white" id="lusername" placeholder="Enter username">
 					<input type="password" class="form-control form-white" id="lpassword" placeholder="Enter password">
 					<button type="button" class="btn btn-submit" onclick="signin_event()">Login</button>
-				</div>
+				</form>
 			</div>
 			</form>
 		</div>
