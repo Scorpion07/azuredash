@@ -2,247 +2,259 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>AWS Cleanup</title>
-	<meta name="description"
-		  content="Cardio is a free one page template made exclusively for Codrops by Luka Cvetinovic"/>
-	<meta name="keywords" content="html template, css, free, one page, gym, fitness, web design"/>
-	<meta name="author" content="Luka Cvetinovic for Codrops"/>
-	<!-- Favicons (created with //realfavicongenerator.net/)-->
-	<link rel="apple-touch-icon" sizes="57x57" href="favicon.ico">
-	<link rel="apple-touch-icon" sizes="60x60" href="favicon.ico">
-	<link rel="icon" type="image/png" href="favicon.ico" sizes="32x32">
-	<link rel="icon" type="image/png" href="favicon.ico" sizes="16x16">
-	<link rel="shortcut icon" href="favicon.ico">
-	<meta name="msapplication-TileColor" content="#00a8ff">
-	<meta name="msapplication-config" content="assets/index_page/img/favicons/browserconfig.xml">
-	<meta name="theme-color" content="#ffffff">
-	<!-- Normalize -->
-	<link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
-	<!-- Bootstrap -->
-	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.index.css">
-	<!-- Owl -->
-	<link rel="stylesheet" type="text/css" href="assets/css/owl.css">
-	<!-- Animate.css -->
-	<link rel="stylesheet" type="text/css" href="assets/css/animate.css">
-	<!-- Font Awesome -->
-	<link rel="stylesheet" type="text/css" href="assets/fonts/font-awesome-4.1.0/css/font-awesome.min.css">
-	<!-- Elegant Icons -->
-	<link rel="stylesheet" type="text/css" href="assets/fonts/eleganticons/et-icons.css">
-	<!-- Main style -->
-	<link rel="stylesheet" type="text/css" href="assets/css/cardio.css">
-	<style>
-		#a1:hover {
-			color: #FFFFFF;
-		}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AWS Cleanup</title>
+    <meta name="description"
+          content="Cardio is a free one page template made exclusively for Codrops by Luka Cvetinovic"/>
+    <meta name="keywords" content="html template, css, free, one page, gym, fitness, web design"/>
+    <meta name="author" content="Luka Cvetinovic for Codrops"/>
+    <!-- Favicons (created with //realfavicongenerator.net/)-->
+    <link rel="apple-touch-icon" sizes="57x57" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="60x60" href="favicon.ico">
+    <link rel="icon" type="image/png" href="favicon.ico" sizes="32x32">
+    <link rel="icon" type="image/png" href="favicon.ico" sizes="16x16">
+    <link rel="shortcut icon" href="favicon.ico">
+    <meta name="msapplication-TileColor" content="#00a8ff">
+    <meta name="msapplication-config" content="assets/index_page/img/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Normalize -->
+    <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.index.css">
+    <!-- Owl -->
+    <link rel="stylesheet" type="text/css" href="assets/css/owl.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" type="text/css" href="assets/fonts/font-awesome-4.1.0/css/font-awesome.min.css">
+    <!-- Elegant Icons -->
+    <link rel="stylesheet" type="text/css" href="assets/fonts/eleganticons/et-icons.css">
+    <!-- Main style -->
+    <link rel="stylesheet" type="text/css" href="assets/css/cardio.css">
+    <style>
+        #a1:hover {
+            color: #FFFFFF;
+        }
 
-		#a1:active {
-			color: black;
-		}
+        #a1:active {
+            color: black;
+        }
 
-	</style>
+    </style>
 
-	<script src="assets/js/jquery-1.11.1.min.js"></script>
-	<script src="assets/js/owl.carousel.min.js"></script>
-	<script src="assets/js/bootstrap.min.js"></script>
-	<script src="assets/js/wow.min.js"></script>
-	<script src="assets/js/typewriter.js"></script>
-	<script src="assets/js/jquery.onepagenav.js"></script>
-	<script src="assets/js/index_main.js"></script>
-	<!--<script src="assets/js/dependancies/jquery.min.js"></script>-->
-	<script src="assets/js/dependancies/config.js"></script>
-	<script src="assets/js/dependancies/aws-cognito-sdk.min.js"></script>
-	<script src="assets/js/dependancies/amazon-cognito-identity.min.js"></script>
-	<script src="assets/js/dependancies/bootstrap-notify.js"></script>
-	<script src="assets/js/dependancies/bootstrap-notify.min.js"></script>
+    <script src="assets/js/jquery-1.11.1.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/typewriter.js"></script>
+    <script src="assets/js/jquery.onepagenav.js"></script>
+    <script src="assets/js/index_main.js"></script>
+    <!--<script src="assets/js/dependancies/jquery.min.js"></script>-->
+    <script src="assets/js/dependancies/config.js"></script>
+    <script src="assets/js/dependancies/aws-cognito-sdk.min.js"></script>
+    <script src="assets/js/dependancies/amazon-cognito-identity.min.js"></script>
+    <script src="assets/js/dependancies/bootstrap-notify.js"></script>
+    <script src="assets/js/dependancies/bootstrap-notify.min.js"></script>
 </head>
 
 <body>
 <div class="preloader">
-	<img src="assets/images/index_loader.gif" alt="Preloader image">
+    <img src="assets/images/index_loader.gif" alt="Preloader image">
 </div>
 <nav class="navbar">
-	<div class="container">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-					data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#"><img src="assets/images/logo_white.png" data-active-url="assets/images/logo-active.png" alt="" style="height:80px !important;"></a>
-		</div>
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img src="assets/images/logo_white.png"
+                                                  data-active-url="assets/images/logo-active.png" alt=""
+                                                  style="height:80px !important;"></a>
+        </div>
 
 
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav navbar-right main-nav">
-				<li><a href="#intro">Home</a></li>
-				<li><a href="#Feedback" data-toggle="modal" data-target="#modal2">Feedback</a></li>
-				<li id="login_li"><a href="#" id="login_button" data-toggle="modal" onclick="login_modal()" data-target="#modal1" class="btn btn-white-fill">Login</a></li>
-				<li id="signup_li"><a href="#" data-toggle="modal" onclick="signup_modal()" data-target="#modal1" data-backdrop="static" data-keyboard="false" class="btn btn-white-fill">Sign Up</a></li>
-				<li id="logout_li"><a href="javascript:signout();" class="btn btn-white-fill">Log Out</a></li>
-			</ul>
-		</div>
-		<!-- /.navbar-collapse -->
-	</div>
-	<!-- /.container-fluid -->
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right main-nav">
+                <li><a href="#intro">Home</a></li>
+                <li><a href="#Feedback" data-toggle="modal" data-target="#modal2">Feedback</a></li>
+                <li id="login_li"><a href="#" id="login_button" data-toggle="modal" onclick="login_modal()"
+                                     data-target="#modal1" class="btn btn-white-fill">Login</a></li>
+                <li id="signup_li"><a href="#" data-toggle="modal" onclick="signup_modal()" data-target="#modal1"
+                                      data-backdrop="static" data-keyboard="false" class="btn btn-white-fill">Sign
+                    Up</a></li>
+                <li id="logout_li"><a href="javascript:signout();" class="btn btn-white-fill">Log Out</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
 </nav>
 <header id="intro">
-	<div class="container">
-		<div class="table">
-			<div class="header-text">
-				<div class="row">
-					<div class="col-md-12 text-center">
-						<h3 class="light white">Take care of your AWS Resources</h3>
-						<h2 class="white typed">Now, manage aws resources with just one click.</h2>
-						<br><br><br><br><br><br><br>
-						<a href="#services" data-target="#services" class="btn btn-white-fill"><i class="fa fa-angle-double-down wow pulse animated" data-wow-iteration="infinite" style="visibility: visible;-webkit-animation-iteration-count: infinite; -moz-animation-iteration-count: infinite; animation-iteration-count: infinite;"></i></a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="table">
+            <div class="header-text">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h3 class="light white">Take care of your AWS Resources</h3>
+                        <h2 class="white typed">Now, manage aws resources with just one click.</h2>
+                        <br><br><br><br><br><br><br>
+                        <a href="#services" data-target="#services" class="btn btn-white-fill"><i
+                                class="fa fa-angle-double-down wow pulse animated" data-wow-iteration="infinite"
+                                style="visibility: visible;-webkit-animation-iteration-count: infinite; -moz-animation-iteration-count: infinite; animation-iteration-count: infinite;"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 
 <section id="services" class="section section-padded">
-	<div class="container">
-		<div class="row text-center title">
-			<h2>Services Offered</h2>
-			<h4 class="light muted">Create/Clean-up your AWS Resources</h4>
-		</div>
-		<div class="row services">
-			<div class="col-md-6">
-				<div class="service">
-					<div class="icon-holder">
-						<h4 class="heading">CLOUD BILLING</h4>
-					</div>
+    <div class="container">
+        <div class="row text-center title">
+            <h2>Services Offered</h2>
+            <h4 class="light muted">Create/Clean-up your AWS Resources</h4>
+        </div>
+        <div class="row services">
+            <div class="col-md-6">
+                <div class="service">
+                    <div class="icon-holder">
+                        <h4 class="heading">CLOUD BILLING</h4>
+                    </div>
 
-					<a href="javascript:cloudbilling();"><p class="description">A dashboard where<br/>
-						you can keep track and <br/>
-						manage all the AWS resources<br/><br/></p></a>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="service">
-					<div class="icon-holder">
-						<h4 class="heading">RESOURCE CREATION</h4>
-					</div>
+                    <a href="javascript:cloudbilling();"><p class="description">A dashboard where<br/>
+                        you can keep track and <br/>
+                        manage all the AWS resources<br/><br/></p></a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="service">
+                    <div class="icon-holder">
+                        <h4 class="heading">RESOURCE CREATION</h4>
+                    </div>
 
-					<a href="javascript:resourceCreation();"><p class="description">A dashboard where<br/>
-						you can create and remove <br/>
-						your AWS training resources<br/><br/></p></a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="cut cut-bottom"></div>
+                    <a href="javascript:resourceCreation();"><p class="description">A dashboard where<br/>
+                        you can create and remove <br/>
+                        your AWS training resources<br/><br/></p></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cut cut-bottom"></div>
 </section>
 
 <section id="pricing" class="section">
-	<div class="container">
-		<div class="row title text-center">
-			<h2 class="margin-top">Trainings</h2>
-			<h4 class="light">Choose your dream course and sign up today!</h4>
-		</div>
-		<div class="row no-margin">
-			<div class="col-md-7 no-padding col-md-offset-5 pricings text-center">
-				<div class="pricing">
-					<div class="box-main active" data-img="">
-						<h4 class="white">Trainings offered</h4>
-						<a href="//www.cloudthat.com" class="btn btn-white-fill">Sign Up Now</a>
-						<i class="info-icon icon_question"></i>
-					</div>
-					<div class="box-second active">
-						<ul class="white-list text-left">
-							<li>AWS</li>
-							<li>AZURE</li>
-							<li>BIG DATA</li>
-							<li>OPENSTACK</li>
-							<li>MONGODB</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row title text-center">
+            <h2 class="margin-top">Trainings</h2>
+            <h4 class="light">Choose your dream course and sign up today!</h4>
+        </div>
+        <div class="row no-margin">
+            <div class="col-md-7 no-padding col-md-offset-5 pricings text-center">
+                <div class="pricing">
+                    <div class="box-main active" data-img="">
+                        <h4 class="white">Trainings offered</h4>
+                        <a href="//www.cloudthat.com" class="btn btn-white-fill">Sign Up Now</a>
+                        <i class="info-icon icon_question"></i>
+                    </div>
+                    <div class="box-second active">
+                        <ul class="white-list text-left">
+                            <li>AWS</li>
+                            <li>AZURE</li>
+                            <li>BIG DATA</li>
+                            <li>OPENSTACK</li>
+                            <li>MONGODB</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content modal-popup">
-			<a href="index.html" id="modal_close_button" class="close-link" style="display: block"><i class="icon_close_alt2"></i></a>
-			<h3 class="white" id="modalTitle">Create Your Account</h3>
-			<form action="" class="popup-form">
-				<form id="signup_form" style="display: block">
-					<input type="text" class="form-control form-white" id="username" placeholder="Enter username">
-					<input type="email" class="form-control form-white" autocomplete="email" id="email" placeholder="Enter email">
-					<input type="text" class="form-control form-white" autocomplete="tel" id="mobile" placeholder="Enter mobile number">
-					<div class="form-control form-white" style="display: none;" id="roleARN">
-						<label>Please Provide a Read Only Role for your AWS account.
-							<a href="/billing/howto/" target="_blank">
-								<i class="fa fa-cog fa-spin fa-fw" aria-hidden="true" id="roleInfo" style="color: white"> </i>
-							</a>
-						</label>
-						<input type="text" class="form-control"  placeholder="arn:aws:iam::111111111111:role/ReadOnlyRole" id="ARN"></div>
-					<input type="password" class="form-control form-white" id="password" placeholder="Enter password">
-					<input type="password" class="form-control form-white" id="c_password" placeholder="Confirm password">
-					<div class="form-control form-white">
-						<input type="checkbox" class="pull-left" id="terms">Accept <a target="_blank" class="form-white" style="color: white" href="assets/files/terms_and_conditions.pdf">Terms and Conditions</a>
-					</div>
-					<button type="button" id="action_btn" class="btn btn-submit disabled" onclick="signup_event()">Sign Up</button>
-				</form>
-				<div id="verifydiv" style="display:none;">
-					<div class="form-group">
-						<input type="text" class="form-control form-white" id="code" placeholder="Enter Verification Code">
-						<button type="button" class="btn btn-submit" id="verifybutton">Verify</button>
-					</div>
-				</div>
-				<div id="logindiv" style="display:none;">
-				<form class="form-group">
-					<input type="text" class="form-control form-white" id="lusername" placeholder="Enter username">
-					<input type="password" class="form-control form-white" id="lpassword" placeholder="Enter password">
-					<button type="button" class="btn btn-submit" onclick="signin_event()">Login</button>
-				</form>
-			</div>
-			</form>
-		</div>
-	</div>
+    <div class="modal-dialog">
+        <div class="modal-content modal-popup">
+            <a href="index.html" id="modal_close_button" class="close-link" style="display: block"><i
+                    class="icon_close_alt2"></i></a>
+            <h3 class="white" id="modalTitle">Create Your Account</h3>
+            <form id="signup_form" style="display: block" class="popup-form">
+                <input type="text" class="form-control form-white" id="username" placeholder="Enter username">
+                <input type="email" class="form-control form-white" autocomplete="email" id="email"
+                       placeholder="Enter email">
+                <input type="text" class="form-control form-white" autocomplete="tel" id="mobile"
+                       placeholder="Enter mobile number">
+                <div class="form-control form-white" style="display: none;" id="roleARN">
+                    <label>Please Provide a Read Only Role for your AWS account.
+                        <a href="/billing/howto/" target="_blank">
+                            <i class="fa fa-cog fa-spin fa-fw" aria-hidden="true" id="roleInfo"
+                               style="color: white"> </i>
+                        </a>
+                    </label>
+                    <input type="text" class="form-control" placeholder="arn:aws:iam::111111111111:role/ReadOnlyRole"
+                           id="ARN"></div>
+                <input type="password" class="form-control form-white" id="password" placeholder="Enter password">
+                <input type="password" class="form-control form-white" id="c_password" placeholder="Confirm password">
+                <div class="form-control form-white">
+                    <input type="checkbox" class="pull-left" id="terms">Accept <a target="_blank" class="form-white"
+                                                                                  style="color: white"
+                                                                                  href="assets/files/terms_and_conditions.pdf">Terms
+                    and Conditions</a>
+                </div>
+                <button type="button" id="action_btn" class="btn btn-submit disabled" onclick="signup_event()">Sign Up
+                </button>
+            </form>
+            <form id="verifydiv" style="display:none;">
+                <div class="form-group">
+                    <input type="text" class="form-control form-white" id="code" placeholder="Enter Verification Code">
+                    <button type="button" class="btn btn-submit" id="verifybutton">Verify</button>
+                </div>
+            </form>
+            <form id="logindiv" style="display:none;" class="form-group">
+                <input type="text" class="form-control form-white" id="lusername" placeholder="Enter username">
+                <input type="password" class="form-control form-white" id="lpassword" placeholder="Enter password">
+                <button type="button" class="btn btn-submit" onclick="signin_event()">Login</button>
+
+            </form>
+        </div>
+    </div>
 </div>
 <footer>
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-6 text-center-mobile">
-				<h3 class="white">Get started with Free Trial</h3>
-				<a href="#" class="btn btn-blue ripple trial-button">Start Free Trial</a>
-			</div>
-			<div class="row bottom-footer text-center-mobile">
-				<div class="col-sm-8">
-					<p>&copy; Copyright@2012-18,CloudThat Technologies Private Limited</p>
-				</div>
-				<div class="col-sm-4 text-right text-center-mobile">
-					<ul class="social-footer">
-						<li><a href="//www.facebook.com/pages/Codrops/159107397912"><i class="fa fa-facebook"></i></a>
-						</li>
-						<li><a href="//www.twitter.com/cloudthat"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="https://plus.google.com/101095823814290637419"><i
-								class="fa fa-google-plus"></i></a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 text-center-mobile">
+                <h3 class="white">Get started with Free Trial</h3>
+                <a href="#" class="btn btn-blue ripple trial-button">Start Free Trial</a>
+            </div>
+            <div class="row bottom-footer text-center-mobile">
+                <div class="col-sm-8">
+                    <p>&copy; Copyright@2012-18,CloudThat Technologies Private Limited</p>
+                </div>
+                <div class="col-sm-4 text-right text-center-mobile">
+                    <ul class="social-footer">
+                        <li><a href="//www.facebook.com/pages/Codrops/159107397912"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="//www.twitter.com/cloudthat"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="https://plus.google.com/101095823814290637419"><i
+                                class="fa fa-google-plus"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </footer>
 <!-- Holder for mobile navigation -->
 <div class="mobile-nav">
-	<ul>
-	</ul>
-	<a href="#" class="close-link"><i class="arrow_up"></i></a>
+    <ul>
+    </ul>
+    <a href="#" class="close-link"><i class="arrow_up"></i></a>
 </div>
 
 <!-- Scripts -->
