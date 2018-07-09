@@ -23,7 +23,7 @@ function error_occured(xhr, ajaxOptions, thrownError){
         }
         else{
             pop_notifier("info","Login Session Has Expired You need to Relogin", 10000);
-            location.href('/?login=true');
+            location.href('/');
         }
     }
     else {
