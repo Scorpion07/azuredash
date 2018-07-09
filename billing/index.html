@@ -73,114 +73,116 @@
                 <span class="sr-only">Toggle navigation</span>
             </a>
             <div style="margin-right: 1%; float:right" id="advmenu">
-                        <table style="background: none;" >
-                            <tr>
-                                <td class="text-white" style="width:auto; padding-right: 5px;padding-top: 5px;"  id="totalOtherCost">
-                                    Display Other Cost
-                                </td>
-                                <td rowspan="2" style="padding-right: 5px;padding-top: 5px;">
-                                    <select class="form-control" id="account"
-                                        style="font-size: 16px;width: auto;">
-                                        <option value="dev">Developer</option>
-                                        <option value="prod">Production</option>
-                                        <option value="training">Training</option>
-                                        <option value="exttrain">External Training</option>
-                                    </select>
-                                </td>
-                                <td rowspan="2" style="padding-right: 5px;padding-top: 5px;">
-                                    <button type="button" class="btn btn-default btn-sm" id="signout"
+                <table style="background: none;">
+                    <tr>
+                        <td class="text-white" style="width:auto; padding-right: 5px;padding-top: 5px;"
+                            id="totalOtherCost">
+                            Display Other Cost
+                        </td>
+                        <td rowspan="2" style="padding-right: 5px;padding-top: 5px;">
+                            <select class="form-control" id="account"
+                                    style="font-size: 16px;width: auto;">
+                                <option value="dev">Developer</option>
+                                <option value="prod">Production</option>
+                                <option value="training">Training</option>
+                                <option value="exttrain">External Training</option>
+                            </select>
+                        </td>
+                        <td rowspan="2" style="padding-right: 5px;padding-top: 5px;">
+                            <button type="button" class="btn btn-default btn-sm" id="signout"
                                     onclick="signout();"
                                     style="float:right; color:#20629b; font-size:16.5px;">
-                                    <span class="glyphicon glyphicon-log-out"></span> Log out
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-white" style="width:auto;padding-right: 5px;padding-top: 5px;" id="totalAccountCost">
-                                    Display Total Cost of Account
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div style="margin-right: 1%; float:right; display:none;" id="smallmenu">
-                        <table style="background: none;" >
-                            <tr>
-                                <td rowspan="2" style="padding: 5px;">
-                                    <button type="button" class="btn btn-default btn-sm" id="signout"
-                                            onclick="signout();"
-                                            style="float:right; color:#20629b; font-size:16.5px;">
-                                        <span class="glyphicon glyphicon-log-out"></span> Log out
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </div>
+                                <span class="glyphicon glyphicon-log-out"></span> Log out
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-white" style="width:auto;padding-right: 5px;padding-top: 5px;"
+                            id="totalAccountCost">
+                            Display Total Cost of Account
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style="margin-right: 1%; float:right; display:none;" id="smallmenu">
+                <table style="background: none;">
+                    <tr>
+                        <td rowspan="2" style="padding: 5px;">
+                            <button type="button" class="btn btn-default btn-sm" id="signout"
+                                    onclick="signout();"
+                                    style="float:right; color:#20629b; font-size:16.5px;">
+                                <span class="glyphicon glyphicon-log-out"></span> Log out
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
             <!-- Navbar Right Menu -->
             <!--<div class="navbar-custom-menu">-->
-                <!--<div class="nav navbar-nav">-->
-                    <!--<div class="row" style="margin-right: 10%;">-->
-                        <!--<div class="col-lg-1" style="margin-right: 33px; margin-top: 1%; ">-->
-                            <!--&lt;!&ndash;<img src="assets/images/ct_image.png" height="20px" style="margin-top: 10%;"/>&ndash;&gt;-->
-                        <!--</div>-->
-                        <!--<div class="col-lg-4" >&lt;!&ndash; <li></li> &ndash;&gt;-->
-                            <!--<div class="form-group" style="margin-bottom:unset;margin-top: 1%;">-->
-                                <!--<div class="form-group" style="margin-bottom:unset;font-size: 18px;">-->
-                                    <!--<label class="nav-link text-white" style="margin-bottom:unset;">-->
-                                        <!--<div id="totalOtherCost" class="col align-self-start" style="margin-top: 3%;">Cost of Other services : $ 12.8</div>-->
-                                    <!--</label>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>&lt;!&ndash;  <ul> &ndash;&gt;-->
-                        <!--<div class="col-lg-4" >&lt;!&ndash; <li></li> &ndash;&gt;-->
-                            <!--<div class="form-group" style="margin-bottom:unset;margin-top: 1%;">-->
-                                <!--<div class="form-group" style="margin-bottom:unset;font-size: 18px;">-->
-                                    <!--<label class="nav-link text-white" style="margin-bottom:unset;">-->
-                                        <!--<div id="totalAccountCost" class="col align-self-end" style="margin-top: 2.5%;">Cost of Other services : $ 12.83</div>-->
-                                    <!--</label>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>&lt;!&ndash;  <ul> &ndash;&gt;-->
-                        <!--<div class="col-lg-1" style=" float: none;display: inline-block;">&lt;!&ndash; <li></li> &ndash;&gt;-->
-                            <!--<table style="background: none;">-->
-                                <!--<tr>-->
-                                    <!--<td>-->
-                                        <!--<div class="form-group"-->
-                                             <!--style="margin-right: 22px;margin-top: 3%;margin-bottom: 0px;">-->
-                                            <!--<select class="form-control" id="account"-->
-                                                    <!--style="font-size: 16px;width: 170px;height: 36px;">-->
-                                                <!--<option value="dev">Developer</option>-->
-                                                <!--<option value="prod">Production</option>-->
-                                                <!--<option value="training">Training</option>-->
-                                                <!--<option value="exttrain">External Training</option>-->
-                                            <!--</select>-->
-                                        <!--</div>-->
-                                    <!--</td>-->
-                                    <!--<td>-->
-                                        <!--<div>  &lt;!&ndash; <li></li> &ndash;&gt;-->
-                                            <!--&lt;!&ndash; <a href="#" data-toggle="control-sidebar" style="float: right;margin-top: -32px;padding-right: 20px;"><i class="fa fa-gears"></i></a> &ndash;&gt;-->
-                                            <!--&lt;!&ndash;<a class="btn" id="signout" onclick="signout();" title="signout"&ndash;&gt;-->
-                                            <!--&lt;!&ndash;style="float: right;margin-top: -44px;  padding-right: 17px; ">&ndash;&gt;-->
-                                            <!--&lt;!&ndash;<input type="image" src="assets/icons/logout.png" alt="Submit" width="25"></a>&ndash;&gt;-->
+            <!--<div class="nav navbar-nav">-->
+            <!--<div class="row" style="margin-right: 10%;">-->
+            <!--<div class="col-lg-1" style="margin-right: 33px; margin-top: 1%; ">-->
+            <!--&lt;!&ndash;<img src="assets/images/ct_image.png" height="20px" style="margin-top: 10%;"/>&ndash;&gt;-->
+            <!--</div>-->
+            <!--<div class="col-lg-4" >&lt;!&ndash; <li></li> &ndash;&gt;-->
+            <!--<div class="form-group" style="margin-bottom:unset;margin-top: 1%;">-->
+            <!--<div class="form-group" style="margin-bottom:unset;font-size: 18px;">-->
+            <!--<label class="nav-link text-white" style="margin-bottom:unset;">-->
+            <!--<div id="totalOtherCost" class="col align-self-start" style="margin-top: 3%;">Cost of Other services : $ 12.8</div>-->
+            <!--</label>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>&lt;!&ndash;  <ul> &ndash;&gt;-->
+            <!--<div class="col-lg-4" >&lt;!&ndash; <li></li> &ndash;&gt;-->
+            <!--<div class="form-group" style="margin-bottom:unset;margin-top: 1%;">-->
+            <!--<div class="form-group" style="margin-bottom:unset;font-size: 18px;">-->
+            <!--<label class="nav-link text-white" style="margin-bottom:unset;">-->
+            <!--<div id="totalAccountCost" class="col align-self-end" style="margin-top: 2.5%;">Cost of Other services : $ 12.83</div>-->
+            <!--</label>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>&lt;!&ndash;  <ul> &ndash;&gt;-->
+            <!--<div class="col-lg-1" style=" float: none;display: inline-block;">&lt;!&ndash; <li></li> &ndash;&gt;-->
+            <!--<table style="background: none;">-->
+            <!--<tr>-->
+            <!--<td>-->
+            <!--<div class="form-group"-->
+            <!--style="margin-right: 22px;margin-top: 3%;margin-bottom: 0px;">-->
+            <!--<select class="form-control" id="account"-->
+            <!--style="font-size: 16px;width: 170px;height: 36px;">-->
+            <!--<option value="dev">Developer</option>-->
+            <!--<option value="prod">Production</option>-->
+            <!--<option value="training">Training</option>-->
+            <!--<option value="exttrain">External Training</option>-->
+            <!--</select>-->
+            <!--</div>-->
+            <!--</td>-->
+            <!--<td>-->
+            <!--<div>  &lt;!&ndash; <li></li> &ndash;&gt;-->
+            <!--&lt;!&ndash; <a href="#" data-toggle="control-sidebar" style="float: right;margin-top: -32px;padding-right: 20px;"><i class="fa fa-gears"></i></a> &ndash;&gt;-->
+            <!--&lt;!&ndash;<a class="btn" id="signout" onclick="signout();" title="signout"&ndash;&gt;-->
+            <!--&lt;!&ndash;style="float: right;margin-top: -44px;  padding-right: 17px; ">&ndash;&gt;-->
+            <!--&lt;!&ndash;<input type="image" src="assets/icons/logout.png" alt="Submit" width="25"></a>&ndash;&gt;-->
 
-                                            <!--<button type="button" class="btn btn-default btn-sm" id="signout"-->
-                                                    <!--onclick="signout();"-->
-                                                    <!--style="float:right; color:#20629b; font-size:16.5px; margin-top: 6%; margin-right: 10%">-->
-                                                <!--<span class="glyphicon glyphicon-log-out"></span> Log out-->
-                                            <!--</button>-->
+            <!--<button type="button" class="btn btn-default btn-sm" id="signout"-->
+            <!--onclick="signout();"-->
+            <!--style="float:right; color:#20629b; font-size:16.5px; margin-top: 6%; margin-right: 10%">-->
+            <!--<span class="glyphicon glyphicon-log-out"></span> Log out-->
+            <!--</button>-->
 
-                                        <!--</div>-->
-                                    <!--</td>-->
-                                <!--</tr>-->
-                            <!--</table>-->
+            <!--</div>-->
+            <!--</td>-->
+            <!--</tr>-->
+            <!--</table>-->
 
 
-                        <!--</div>-->
-                    <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
 
-                <!--</div>-->
+            <!--</div>-->
             <!--</div>-->
         </nav>
     </header>
@@ -221,20 +223,14 @@
                             <i class="fa fa-th"></i> <span style="width:229px;">Dashboard</span>
                         </a>
                     </li>
-                    <li class="treeview">
-                        <a href="#" class="select">
-                            <i class="fa fa-th"></i>  <span style="width:229px;">Admin Panel
-                            <span class="pull-right-container" style="margin: -3px;">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span></span>
-                        </a>
-                        <ul class="treeview-menu" style="display: none;top:unset;width: 229px">
-                            <li><a href="#" class="SelectedResource" data-resource="manage_user"><i
-                                    class="fa fa-circle-o"></i>Manage User</a></li>
-                            <li><a href="#" class="SelectedResource" data-resource="manage_dashboard"><i
-                                    class="fa fa-circle-o"></i>Manage Dashboard</a></li>
-                        </ul>
-                    </li>
+
+
+                    <script type="text/javascript">
+                        var admins = ["sana", "rutvik", "prarthit"]
+                        if (admins.includes(window.localStorage.username)) {
+                            document.write("<li class='treeview'><a href='#' class='select'><i class='fa fa-th'></i><span style='width:229px;'>Admin Panel<span class='pull-right-container' style='margin: -3px;'><i class='fa fa-angle-left pull-right'></i></span></span></a><ul class='treeview-menu' style='display: none;top:unset;width: 229px'><li><a href='#' class='SelectedResource' data-resource='manage_user'><i class='fa fa-circle-o'></i>Manage User</a></li><li><a href='#' class='SelectedResource' data-resource='manage_dashboard'><i class='fa fa-circle-o'></i>Manage Dashboard</a></li></ul></li>")
+                        }
+                    </script>
                     <li>
                         <a href="#" class="SelectedResource select" data-resource="linechart">
                             <img src='../assets/images/chart.png' style="margin-left: -2px"> <span style="width:229px;">Cost Chart</span>
@@ -347,12 +343,14 @@
                     </li>
                     <li>
                         <a href="#" class="SelectedResource select" data-resource="route53">
-                            <img src='../assets/images/aws-icons/route53.png'> <span style="width:229px;">Route 53</span>
+                            <img src='../assets/images/aws-icons/route53.png'> <span
+                                style="width:229px;">Route 53</span>
                         </a>
                     </li>
                     <li>
                         <a href="#" class="SelectedResource select" data-resource="cloudtrail">
-                            <img src='../assets/images/aws-icons/cloudtrail.png'> <span style="width:229px;">CloudTrail</span>
+                            <img src='../assets/images/aws-icons/cloudtrail.png'> <span
+                                style="width:229px;">CloudTrail</span>
                         </a>
                     </li>
                     <li class="treeview">
@@ -864,7 +862,7 @@
 
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i>CloudBilling</a></li>
-                    <li class="active" >Cost Chart</li>
+                    <li class="active">Cost Chart</li>
                 </ol>
             </section>
             <section class="content">
@@ -932,7 +930,8 @@
                         class="icon_close_alt2"></i></a>
                 <h3 class="white" id="modalTitle">Edit User</h3>
                 <form id="signup_form" style="display: block" class="popup-form">
-                    <input type="text" class="form-control form-white" id="edit_username" placeholder="Enter username" contenteditable="false" disabled>
+                    <input type="text" class="form-control form-white" id="edit_username" placeholder="Enter username"
+                           contenteditable="false" disabled>
                     <input type="email" class="form-control form-white" autocomplete="email" id="edit_email"
                            placeholder="Enter email">
                     <input type="text" class="form-control form-white" autocomplete="tel" id="edit_mobile"
@@ -948,7 +947,7 @@
     <!-- /.content-wrapper -->
     <footer class="main-footer">
         <script type="text/javascript">
-            if(!isCloudThatEmail(window.localStorage.getItem('email'))){
+            if (!isCloudThatEmail(window.localStorage.getItem('email'))) {
                 document.write("Contact Us to Enable Pro Features<br>")
             }
         </script>
