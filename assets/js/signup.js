@@ -23,7 +23,7 @@ $('document').ready(function(){
         }
         else if (!($("#email").val()).includes("cloudthat"))
         {
-            if($("#roleARN").val() == "") {
+            if ($("#roleARN").val() == "") {
                 flag = false;
             }
             else
@@ -34,8 +34,6 @@ $('document').ready(function(){
         else{
             flag = true;
         }
-
-
 
         if (flag == false)
         {

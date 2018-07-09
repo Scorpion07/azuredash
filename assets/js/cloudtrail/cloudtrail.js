@@ -58,6 +58,10 @@ function ListCloudTrailData() {
                     data: respdata.data,
                     serverside: true,
                     order: [],
+                    "language": {"lengthMenu": 'Display <select>' + '<option value="50" selected>50</option>' + '<option value="100">100</option>' + '<option value="200">200</option>' + '<option value="500">500</option>' + '<option value="-1">All</option>' + '</select> records'},
+                    "dom": '<"top"fli>t<"bottom"ip><"clear">',
+                    "pageLength": 50,
+
 
                     'rowCallback': function (row, data, iDisplayIndex) {
                         if (account !== 'prod') {
@@ -65,7 +69,7 @@ function ListCloudTrailData() {
                             $('td:eq(0)', row).html(check);
                         }
                         else {
-                            $('td:eq(0)', row).html(count += 1);
+                            $('td:eq(0)', row).html(iDisplayIndex + 1);
                         }
 
                     },
@@ -111,11 +115,16 @@ function ListCloudTrailData() {
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 $('#loading').hide();
-                if (ajaxOptions === "abort"){
+                if (ajaxOptions === "abort") {
 
                 }
                 else {
-                    $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                    $.notify({message: "Unable to Load"}, {
+                        type: "danger",
+                        placement: {from: "top", align: "center"},
+                        delay: 500,
+                        timer: 500
+                    });
                 }
             }
         }));
@@ -133,8 +142,8 @@ function deleteModalCloudTrail() {
     });
     cloudtrail_name.forEach(function (id) {
 
-            var add = '<li><label>"' + id + '"</label></li>';
-            $("#delete_li_show").append(add);
+        var add = '<li><label>"' + id + '"</label></li>';
+        $("#delete_li_show").append(add);
 
     });
     $('.deleteMul').attr('disabled', false);
@@ -185,21 +194,36 @@ function deleteCloudTrail() {
 
             if (respdata > -1) {
                 show_cloudtrail();
-                $.notify({message:"CloudTrails Deleted Successfully"},{type:"success",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                $.notify({message: "CloudTrails Deleted Successfully"}, {
+                    type: "success",
+                    placement: {from: "top", align: "center"},
+                    delay: 500,
+                    timer: 500
+                });
             }
             else {
-                $.notify({message:"Unable to Delete CloudTrails"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                $.notify({message: "Unable to Delete CloudTrails"}, {
+                    type: "danger",
+                    placement: {from: "top", align: "center"},
+                    delay: 500,
+                    timer: 500
+                });
             }
             $('#deleteConformation').modal('hide');
         },
         error: function (xhr, ajaxOptions, thrownError) {
             $('#deleteMulConformation').modal('hide');
             $("#loadingMulModal").hide();
-            if (ajaxOptions === "abort"){
+            if (ajaxOptions === "abort") {
 
             }
             else {
-                $.notify({message:"Unable to Load"},{type:"danger",placement: {from: "top", align: "center"},delay: 500, timer: 500 });
+                $.notify({message: "Unable to Load"}, {
+                    type: "danger",
+                    placement: {from: "top", align: "center"},
+                    delay: 500,
+                    timer: 500
+                });
             }
 
         }

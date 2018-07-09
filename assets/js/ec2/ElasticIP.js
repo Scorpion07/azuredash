@@ -58,14 +58,14 @@ function ListEIPData() {
                 table = $('#table').DataTable({
                     data: respdata.data,
                     serverside: true,
-                    order: [],
+                    order: [],"language": {                         "lengthMenu": 'Display <select>' +                         '<option value="50" selected>50</option>' +                         '<option value="100">100</option>' +                         '<option value="200">200</option>' +                         '<option value="500">500</option>' +                         '<option value="-1">All</option>' +                         '</select> records'                     },                     "dom": '<"top"fli>t<"bottom"ip><"clear">',                     "pageLength": 50,
                     'rowCallback': function (row, data, iDisplayIndex) {
                         if (account !== 'prod') {
                             var check = '<input type="checkbox" name="elasticip_id_check[]" class="checkboxes checkboxclick  elasticip_id_check" data-AllocationId="' + data.AllocationId + '" data-AssociationId="' + data.AssociationId + '" data-region="' + data.Region + '" value="elasticipId">';
                             $('td:eq(0)', row).html(check);
                         }
                         else {
-                            $('td:eq(0)', row).html(count += 1);
+                            $('td:eq(0)', row).html(iDisplayIndex + 1);
                         }
 
                     },

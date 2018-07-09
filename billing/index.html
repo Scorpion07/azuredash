@@ -214,10 +214,26 @@
             <b>
                 <ul class="sidebar-menu tree" data-widget="tree">
                     <li class="header">AWS Services</li>
+
+
                     <li class="active">
                         <a href="#" class="SelectedResource select" data-resource="dashboard">
                             <i class="fa fa-th"></i> <span style="width:229px;">Dashboard</span>
                         </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="#" class="select">
+                            <i class="fa fa-th"></i>  <span style="width:229px;">Admin Panel
+                            <span class="pull-right-container" style="margin: -3px;">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span></span>
+                        </a>
+                        <ul class="treeview-menu" style="display: none;top:unset;width: 229px">
+                            <li><a href="#" class="SelectedResource" data-resource="manage_user"><i
+                                    class="fa fa-circle-o"></i>Manage User</a></li>
+                            <li><a href="#" class="SelectedResource" data-resource="manage_dashboard"><i
+                                    class="fa fa-circle-o"></i>Manage Dashboard</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a href="#" class="SelectedResource select" data-resource="linechart">
@@ -787,7 +803,7 @@
                     <div class="col-md-9">
 
                     </div>
-                    <div class="col-md-2 pull-left" style="display: block">
+                    <div class="col-md-2 pull-left" id="delete_button_datatable" style="display: block">
                         <a class="btn btn-danger pull-right" id="btnmultipledelete"
                            class="disable disabled btnmultipledelete" title="Delete selected"></a>
                     </div>
@@ -909,6 +925,26 @@
             <img src="../assets/images/loader.gif"/>
         </p>
     </div>
+    <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content modal-popup">
+                <a href="#" id="modal_close_button" class="close-link" style="display: block"><i
+                        class="icon_close_alt2"></i></a>
+                <h3 class="white" id="modalTitle">Edit User</h3>
+                <form id="signup_form" style="display: block" class="popup-form">
+                    <input type="text" class="form-control form-white" id="edit_username" placeholder="Enter username" contenteditable="false" disabled>
+                    <input type="email" class="form-control form-white" autocomplete="email" id="edit_email"
+                           placeholder="Enter email">
+                    <input type="text" class="form-control form-white" autocomplete="tel" id="edit_mobile"
+                           placeholder="Enter mobile number">
+                    <input type="text" class="form-control form-white" autocomplete="tel" id="edit_roleARN"
+                           placeholder="Enter role arn">
+                    <button type="button" id="submit_profile_btn" class="btn btn-submit disabled" onclick="">Sign Up
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
         <script type="text/javascript">
@@ -939,6 +975,7 @@
 <script type="text/javascript" src="../assets/js/vpc/NatGateway.js"></script>
 <script type="text/javascript" src="../assets/js/vpc/VpnConnection.js"></script>
 <script type="text/javascript" src="../assets/js/vpc/Vpc.js"></script>
+<script type="text/javascript" src="../assets/js/admin_panel/manage_user.js"></script>
 <script type="text/javascript" src="../assets/js/redshift/redshift_cluster.js"></script>
 <script type="text/javascript" src="../assets/js/redshift/redshift_snapshot.js"></script>
 <script type="text/javascript" src="../assets/js/sagemaker/NotebookInstance.js"></script>
