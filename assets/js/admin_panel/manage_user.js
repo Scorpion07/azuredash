@@ -1,6 +1,6 @@
 function showManageUser() {
     $(".tableDisplay").html(" ");
-    $("#main_title").html("Manage User");
+    $("#main_title").html("Users");
     $("#tableHeading").html("Manage all users");
     console.log("hello sana")
     $("#delete_button_datatable").css("display","none");
@@ -10,7 +10,7 @@ function showManageUser() {
     var addTbody = '';
     var service;
     var token = window.localStorage.getItem('token');
-    $("#tablehead").append('<tr><th>No.</th><th>Username</th><th>Email</th><th>Phone</th><th>isAdmin</th><th>Action</th></tr>');
+    $("#tablehead").append('<tr><th style="width: 3%;">No.</th><th style="width: 14%;">Username</th><th style="width: 30%;">Email</th><th>Phone</th><th>isAdmin</th><th>Action</th></tr>');
     $("#tablebody").append('<tr><th>No.</th><th>Username</th><th>Email</th><th>Phone</th><th>isAdmin</th><th>Action</th></tr>');
     listUserData();
 }
@@ -20,6 +20,7 @@ function listUserData() {
     $('#loading').show();
     var submit = {
         method: "ListResources",
+
         submethod: "cognito_users",
         account: "prod",
         username: username,
@@ -42,36 +43,45 @@ function listUserData() {
                 table = $('#table').DataTable({
                     data: respdata.data,
                     serverside: true,
+                    autoWidth: true,
                     order: [],"language": {                         "lengthMenu": 'Display <select>' +                         '<option value="50" selected>50</option>' +                         '<option value="100">100</option>' +                         '<option value="200">200</option>' +                         '<option value="500">500</option>' +                         '<option value="-1">All</option>' +                         '</select> records'                     },                     "dom": '<"top"fli>t<"bottom"ip><"clear">',                     "pageLength": 50,
 
                     'rowCallback': function (row, data, iDisplayIndex) {
                         $('td:eq(0)', row).html(iDisplayIndex + 1);
-
-                        // var right = "<img src='/assets/images/right.png' style='width: 15px;'>";
-                        var not_verified_email = data.email + "&ensp; <img src='../assets/icons/warn.png'>";
-                        var not_verified_phone = data.phone + "&ensp; <img src='../assets/icons/no_phone.png'>";
-                        var edit = "<button data-toggle='modal' data-target='#modal1' class='btn btn-white-fill' onclick='editModal(this)'><img src='../assets/icons/edit.png'></button>";
+                        // var edit = '<a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill" user-data="'+JSON.stringify(data).replace(/"/g , "'")+'" onclick="editModal(this)"><img src="../assets/icons/edit.png"></a>';
+                        var edit = '<button style="background-color: transparent" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill" user-data="'+JSON.stringify(data).replace(/"/g , "'")+'" onclick="editModal(this)"><i class="fa fa-fw fa-edit"></i></button>';
+                        var delete_user = '<button style="background-color: transparent" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill" user-data="'+JSON.stringify(data).replace(/"/g , "'")+'" onclick="disableUserModal(this)"><i class="fa fa-fw fa-user-times"></i></button>';
+                        var disable_user;
                         if (data.email_verified == "true")
                         {
-                            $('td:eq(2)', row).html(data.email);
+                            $('td:eq(2)', row).html(data.email + "&nbsp;<i class=\"pull-right fa fa-fw fa-check-circle-o\" style='color:limegreen'></i>");
                         }
                         else
                         {
-                            $('td:eq(2)', row).html(not_verified_email);
+                            $('td:eq(2)', row).html(data.email + "&nbsp;<i class=\"pull-right fa fa-fw fa-times-circle-o\" style='color:red'></i>");
                         }
                         if (data.phone_verified == "true")
                         {
-                            $('td:eq(3)', row).html(data.phone);
+                            $('td:eq(3)', row).html(data.phone + "&ensp; <i class=\"pull-right fa fa-fw fa-phone-square\" style='color:limegreen'></i>");
                         }
                         else
                         {
-                            $('td:eq(3)', row).html(not_verified_phone);
+                            $('td:eq(3)', row).html(data.phone + "&ensp; <i class=\"pull-right fa fa-fw fa-phone-square\" style='color:red'></i>");
                         }
-                        $('td:eq(5)', row).html(edit);
+                        if (data.enabled == true)
+                        {
+                            disable_user = '<button style="background-color: transparent" title="Disable" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill" user-data="'+JSON.stringify(data).replace(/"/g , "'")+'" onclick="disableUserModal(this)"><i class="fa fa-fw fa-lock" style="color:red"></i></button>';
+                        }
+                        else
+                        {
+                            disable_user = '<button style="background-color: transparent" title="Enable" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill" user-data="'+JSON.stringify(data).replace(/"/g , "'")+'" onclick="disableUserModal(this)"><i class="fa fa-fw fa-unlock" style="color:limegreen"></i></button>';
+                        }
+
+                        $('td:eq(5)', row).html(edit + disable_user+delete_user);
                     },
 
                     'columnDefs': [
-                        {"className": "dt-center", "targets": "_all", "defaultContent":"-"},
+                        {"className": "dt-left", "targets": "_all", "defaultContent":"-"},
                         {
                             'targets': [0],
                             'searchable': false,
@@ -125,29 +135,30 @@ function listUserData() {
             }
         }));
 }
-function editModal(button) {
-
-    console.log("RameshParesh");
+function editModal(btn) {
+    var data = $(btn).attr("user-data");
+    if(_config.logLevel !="info")
+        console.log(data);
+    var data_user = JSON.parse(data.replace(/'/g,"\""));
+    if(_config.logLevel !="info")
+        console.log(data_user);
+    $("#edit_username").val(data_user.username);
+    $("#edit_email").val(data_user.email);
+    $("#edit_phone").val(data_user.phone);
+    if (data_user.role_arn)
+    {
+        console.log("role arn")
+        $("#role_arn").css("display","block");
+        $("#edit_arn").val(data_user.role_arn);
+    }
+    else
+    {
+        console.log("no no no role arn")
+        $("#role_arn").css("display","none");
+    }
+    $("#edit_modal").modal('show');
 }
-function deleteModalS3() {
-    $("#modal_title").html("<h3>S3 Bucket Deletion </h3>");
-    $("#delete_heading").text("Are you sure, you want to delete all this Buckets ?");
-    $("#delete_li_show").html(" ");
-    var bucketname_list = [];
-    $(".checkboxes").each(function () {
-        if ($(this).is(":checked")) {
-            bucketname_list.push($(this).attr("data_bucket_name"));
-        }
-    });
-    bucketname_list.forEach(function (id) {
-        var add = '<li><label>"' + id + '"</label></li>';
-        $("#delete_li_show").append(add);
-    });
-    $('.deleteMul').attr('disabled', false);
-    $('#deleteMulConformation').modal('show');
-}
-
-function deleteS3Bucket() {
+function editCognitoUser() {
     $('.deleteMul').attr('disabled', true);
     $("#loadingMulModal").show();
     var bucketnames = [];
