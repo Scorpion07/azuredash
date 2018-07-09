@@ -13,6 +13,9 @@ $('document').ready(function(){
                 $("#roleARN").hide();
             }
 
+
+
+
     });
     $("#username,#email,#c_password,#password,#mobile,#roleARN,#terms").change(function (e) {
         console.log("keyup in")
@@ -23,7 +26,7 @@ $('document').ready(function(){
         }
         else if (!($("#email").val()).includes("cloudthat"))
         {
-            if ($("#roleARN").val() == "") {
+            if($("#ARN").val() == "") {
                 flag = false;
             }
             else
@@ -34,6 +37,8 @@ $('document').ready(function(){
         else{
             flag = true;
         }
+
+
 
         if (flag == false)
         {
@@ -80,11 +85,12 @@ function signup_event(){
     //     pop_notifier("danger","Please use CloudThat email address to register",1000);
     //     $("#roleARN").show();
     // }
-    else if (!($("#email").val()).includes("cloudthat"))
+    else if(!isCloudThatEmail($("#email").val()) && $("#ARN").val() == "")
     {
-       if ($("#roleARN").val() == "") {
-           pop_notifier("danger", "Please, Provide a Read Only Role for your AWS account",1000);
-       }
+        if(_config.logLevel=="debug")
+            console.log($("#ARN").val())
+        pop_notifier("danger", "Please, Provide a Read Only Role for your AWS account",1000);
+
     }
     else {
 
