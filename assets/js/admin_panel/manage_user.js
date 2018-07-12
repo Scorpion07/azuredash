@@ -50,7 +50,7 @@ function listUserData() {
                         $('td:eq(0)', row).html(iDisplayIndex + 1);
                         // var edit = '<a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill" user-data="'+JSON.stringify(data).replace(/"/g , "'")+'" onclick="editModal(this)"><img src="../assets/icons/edit.png"></a>';
                         var edit = '<button style="background-color: transparent" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill" user-data="'+JSON.stringify(data).replace(/"/g , "'")+'" onclick="editModal(this)"><i class="fa fa-fw fa-edit"></i></button>';
-                        var delete_user = '<button style="background-color: transparent" title="Deletion" class="btn btn-white-fill" data-user-attribute = "custom:isDeleted" data-user-attribute-value = "1" data-user-target = "deletion" onclick="actionUser(this)"><i class="fa fa-fw fa-user-times"></i></button>';
+                        var delete_user = '<button style="background-color: transparent" title="Deletion" class="btn btn-white-fill" data-user-target = "delete" data-username="'+data.username+'" onclick="delete_modal(this)"><i class="fa fa-fw fa-user-times"></i></button>';
                         var admin_btn;
                         if(isCloudThatEmail(data.email)){
                         if (data.admin == 0)
@@ -123,9 +123,6 @@ function listUserData() {
                             'orderable': false,
                             'className': 'dt-center',
                             'searchable': true
-                            'data':{
-
-                            }
                         },
                         {
                             'targets': [5],
@@ -156,6 +153,10 @@ function listUserData() {
         }));
 }
 function editModal(btn) {
+    $("#modaltitle_action").html("Edit User Profile");
+    $("#passord_modal").css("display","none");
+    $("#edit_form_modal").css("display","block");
+
     var data = $(btn).attr("user-data");
     if(_config.logLevel !="info")
         console.log(data);
@@ -165,6 +166,8 @@ function editModal(btn) {
     $("#edit_username").val(data_user.username);
     $("#edit_email").val(data_user.email);
     $("#edit_phone").val(data_user.phone);
+    $(".modal-submit").attr("data-user-target","edit");
+    $(".modal-submit").attr("data-user-name",data_user.username);
     if (data_user.role_arn)
     {
         $("#role_arn").css("display","block");
@@ -174,6 +177,16 @@ function editModal(btn) {
     {
         $("#role_arn").css("display","none");
     }
+    $("#edit_modal").modal('show');
+}
+function delete_modal(data) {
+    var target = $(data).attr("data-user-target");
+    var user = $(data).attr("data-username");
+    $(".modal-submit").attr("data-user-target",target);
+    $(".modal-submit").attr("data-user-name",user);
+    $("#modaltitle_action").html("Please, provide your password to proceed...!");
+    $("#passord_modal").css("display","block");
+    $("#edit_form_modal").css("display","none");
     $("#edit_modal").modal('show');
 }
 function getSubmitValues(data)
@@ -192,6 +205,7 @@ function getSubmitValues(data)
     if (target == "admin"){
         submit['admin_action']= admin_action;
     }
+
     if(_config.logLevel!="info"){
         console.log("Created Ajax Request Data: "+JSON.stringify(submit));
     }

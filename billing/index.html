@@ -930,13 +930,21 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content box box-primary">
                 <div class="modal-header box-header with-border">
-                    <h5 class="modal-title box-title" id="modaltitle">Edit User Profile</h5>
+                    <h5 class="modal-title box-title" id="modaltitle_action">Edit User Profile</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form role="form">
+                    <form role="form" id="passord_modal" style="display: none;">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="password_delete">Password</label>
+                                <input type="password" class="form-control" id="password_delete">
+                            </div>
+                        </div>
+                    </form>
+                    <form role="form" id="edit_form_modal" style="display: block;">
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="edit_username">Username</label>
@@ -968,7 +976,7 @@
                     </p>
                 </div>
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary modal-submit" data-user-target="" data-user-name="" >Submit</button>
                 </div>
             </div>
         </div>
