@@ -18,6 +18,11 @@ jQuery(function ($) {
         });
         //show login logout button
         if (!window.localStorage.length || window.localStorage.length == 0) {
+            if (_config.logLevel != "info") {
+                console.log(window.localStorage.length);
+                console.log()
+            }
+
             //show signup / login
             window.localStorage.clear();
             $("#login_li").css("display", "block");

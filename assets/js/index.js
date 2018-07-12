@@ -130,6 +130,9 @@ function signin_event() {
                     $("#logout_li-fixed").css("display","block");
                     $(".close-link").click();
                     // sessionValid();
+                    if (getQueryVariable('next')) {
+                        window.location.href = getQueryVariable('next');
+                    }
                 }
                 else {
                     // Sorry! No Web Storage support..
@@ -146,26 +149,3 @@ function signin_event() {
     }
 }
 
-function calculateUserCost() {
-    var reqData = {
-        'method': 'updateCost',
-        'roleARN': window.localStorage.getItem('roleARN'),
-        'username': window.localStorage.getItem('username')
-    };
-    $.ajax({
-        url: _config.api.invokeUrl + '/billing/services',
-        type: 'post',
-        headers: {"Authorization": window.localStorage.getItem('token')},
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify(reqData),
-        success: function (result) {
-            if (_config.logLevel != "error") {
-                console.log(result)
-            }
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            error_occured(xhr, ajaxOptions, thrownError)
-        }
-    });
-}

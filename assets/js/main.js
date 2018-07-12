@@ -12,7 +12,7 @@ var poolData = {
 var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
 var cognitoUser, username, token;
 
-if(_config.logLevel === 'debug')
+if (_config.logLevel === 'debug')
     console.log("window.localstorage" + JSON.stringify(window.localStorage));
 
 
@@ -56,14 +56,17 @@ Session Validity
 
 function sessionValid() {
     if (cognitoUser === undefined) {
-        //console.log("undefined")
+        if (_config.logLevel != "info")
+            console.log("undefined");
         signout();
     }
     else if (cognitoUser === null) {
-        //console.log("null")
+        if (_config.logLevel != "info")
+            console.log("null");
         signout();
     }
     else {
+
         var idToken = new AmazonCognitoIdentity.CognitoIdToken({
             IdToken: window.localStorage.token
         });
@@ -80,62 +83,42 @@ function sessionValid() {
             AccessToken: accessToken
         });
         cognitoUser.signInUserSession = session;
-        if(cognitoUser.signInUserSession.isValid()){
-            if(window.localStorage.custexp <= new Date().getTime()){
-                cognitoUser.refreshSession(refreshToken, function(err, session) {
-                    if(err){
+        if (cognitoUser.signInUserSession.isValid()) {
+            if (window.localStorage.custexp <= new Date().getTime()) {
+                cognitoUser.refreshSession(refreshToken, function (err, session) {
+                    if (err) {
+                        if (cognitoUser !== null) {
+                            cognitoUser.signOut();
+                        }
+                        window.location.href = '/?login=true';
                         signout();
                     }
-                    else{
-                        window.localStorage.setItem('custexp',(new Date().getTime()+3600000));
-                        //console.log('In a refreshtoken : '+session)
+                    else {
+                        window.localStorage.setItem('custexp', (new Date().getTime() + 3600000));
+                        if (_config.logLevel != "info")
+                            console.log('In a refreshtoken : ' + session);
                         window.localStorage.setItem('token', session.getIdToken().getJwtToken());
                         window.localStorage.setItem('actoken', session.getAccessToken().getJwtToken());
                         window.localStorage.setItem('reftoken', session.getRefreshToken().getToken());
-                        window.localStorage.setItem('exp',session['idToken']['payload']['exp']);
-                        window.localStorage.setItem('exptime',((session['idToken']['payload']['exp'])+(new Date().getTime())));
+                        window.localStorage.setItem('exp', session['idToken']['payload']['exp']);
+                        window.localStorage.setItem('exptime', ((session['idToken']['payload']['exp']) + (new Date().getTime())));
                     }
                 });
             }
-            else{
-                //console.log('session validity: ' + cognitoUser.signInUserSession.isValid());
+            else {
+                if (_config.logLevel != "info")
+                    console.log('session validity: ' + cognitoUser.signInUserSession.isValid());
             }
         }
-        else{
-            //console.log('session validity: ' + cognitoUser.signInUserSession.isValid());
+        else {
+            if (_config.logLevel != "info")
+                console.log('session validity: ' + cognitoUser.signInUserSession.isValid());
             window.localStorage.clear();
-            window.location.href = '/login.html';
             if (cognitoUser !== null) {
                 cognitoUser.signOut();
             }
+            window.location.href = '/?login=true';
         }
-        // cognitoUser.getSession(function (err, session) {
-        //     if (err) {
-        //         //console.log(err);
-        //         signout();
-        //         return;
-        //     }
-        //     else if (session.isValid()) {
-        //         //console.log('session validity: ' + session.isValid());
-        //         if(window.localStorage.exptime <= new Date().getTime()){
-        //             var idToken = new AmazonCognitoIdentity.CognitoIdToken({
-        //                 IdToken: window.localStorage.token
-        //             });
-        //             var accessToken = new AmazonCognitoIdentity.CognitoAccessToken({
-        //                 AccessToken: window.localStorage.actoken
-        //             });
-        //             var refreshToken = new AmazonCognitoIdentity.CognitoRefreshToken({
-        //                 RefreshToken: window.localStorage.reftoken
-        //             });
-        //
-        //          }
-        //     }
-        //     else {
-        //         //console.log('session validity: ' + session.isValid());
-        //         window.localStorage.clear();
-        //         window.location.href = '/login.html';
-        //     }
-        // });
     }
 }
 
@@ -159,40 +142,29 @@ function alreadylogin() {
 
     }
 }
-//
-// function getQueryVariable(variable) {
-//     var query = window.location.search.substring(1);
-//     var vars = query.split('&');
-//     for (var i = 0; i < vars.length; i++) {
-//         var pair = vars[i].split('=');
-//         if (decodeURIComponent(pair[0]) == variable) {
-//             return decodeURIComponent(pair[1]);
-//         }
-//     }
-//     console.log('Query variable %s not found', variable);
-// }
 
 /*
 Signout
  */
 
 function signout() {
-    if(_config.logLevel != "error")
-        console.log("Data : " + window.localStorage.getItem('token'));
-    if(_config.logLevel === "debug")
-        console.log("User Name : " + JSON.stringify(userPool.getCurrentUser()));
+    if (_config.logLevel != "info") {
         console.log(cognitoUser);
-    if (!(cognitoUser === "" ||cognitoUser === null || cognitoUser === undefined)) {
+        console.log("Data : " + window.localStorage.getItem('token'));
+        console.log("User Name : " + JSON.stringify(userPool.getCurrentUser()));
+    }
+
+    if (!(cognitoUser === "" || cognitoUser === null || cognitoUser === undefined)) {
         cognitoUser.signOut();
     }
-    if(_config.logLevel === "debug")
-        console.log(cognitoUser);
-    window.localStorage.clear();
-    if(_config.logLevel === "debug")
+
+    if (_config.logLevel === "debug") {
         console.log("clear : " + window.localStorage.getItem('token'));
-    window.location.href = '/';
-    if(_config.logLevel === "debug")
         console.log("Signout");
+        console.log(cognitoUser);
+    }
+    window.localStorage.clear();
+    window.location.href = '/';
 }
 
 
@@ -259,60 +231,108 @@ $(document).on('change', '.checkboxclick', function () {
 
 });
 
-function cloudbilling(){
-    if(_config.logLevel === "debug"){
+function cloudbilling() {
+    if (_config.logLevel === "debug") {
         console.log("in cloudbilling function");
         console.log(window.localStorage.UserDetails)
     }
     if (window.localStorage.UserDetails != undefined && window.localStorage.UserDetails != null && window.localStorage.UserDetails.length > 0) {
-        if(_config.logLevel === "debug")
+        if (_config.logLevel === "debug")
             console.log("if");
         window.location.href = '/billing/';
     }
     else {
-        if(_config.logLevel === "debug")
+        if (_config.logLevel === "debug")
             console.log("else");
+        if (history.pushState) {
+            var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?next=/billing/';
+            window.history.pushState({path: newurl}, '', newurl);
+        }
         $("#login_button").click();
 
     }
 }
 
-function resourceCreation(){
-    if(_config.logLevel === "debug"){
+function resourceCreation() {
+    if (_config.logLevel === "debug") {
         console.log("in ResourceCreation function");
         console.log(window.localStorage.UserDetails)
     }
     if (window.localStorage.UserDetails != undefined && window.localStorage.UserDetails != null && window.localStorage.UserDetails.length > 0) {
-        if(_config.logLevel === "debug")
+        if (_config.logLevel === "debug")
             console.log("if");
-        if(isCloudThatEmail(window.localStorage.email)){
-           window.location.href = '/resources/';
+        if (isCloudThatEmail(window.localStorage.email)) {
+            if (history.pushState) {
+                var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?next=/resources/';
+                window.history.pushState({path: newurl}, '', newurl);
+            }
+            $("#login_button").click();
         }
         else {
-            pop_notifier("info","This is a Professional Feature Kindly Contact Us on consulting@cloudthat.com",10000);
+            pop_notifier("info", "This is a Professional Feature Kindly Contact Us on consulting@cloudthat.com", 10000);
             //Show Inquiry Modal
         }
 
     }
     else {
-        if(_config.logLevel === "debug")
+        if (_config.logLevel === "debug")
             console.log("else");
         $("#login_button").click();
 
     }
 }
 
-function isCloudThatEmail(mail){
+function isCloudThatEmail(mail) {
     if (!(mail.includes("cloudthat.in") || mail.includes("cloudthat.com")) && mail != "") {
-        if(_config.logLevel=="debug"){
+        if (_config.logLevel == "debug") {
             console.log("Not CloudThat Email");
             console.log(mail);
         }
         return false;
     }
-    else{
-        if(_config.logLevel=="debug")
+    else {
+        if (_config.logLevel == "debug")
             console.log(mail);
         return true;
     }
+}
+
+
+function checklogin() {
+
+    if (_config.logLevel != "info")
+        console.log(window.localStorage.length);
+    if (window.localStorage.length === 0) {
+        window.location.href = '/';
+    }
+    else {
+        if (_config.logLevel != "info")
+            console.log("Alreay logged in");
+        sessionValid();
+    }
+}
+
+
+function calculateUserCost() {
+    var reqData = {
+        'method': 'updateCost',
+        'roleARN': window.localStorage.getItem('roleARN'),
+        'username': window.localStorage.getItem('username')
+    };
+    $.ajax({
+        url: _config.api.invokeUrl + '/billing/services',
+        type: 'post',
+        headers: {"Authorization": window.localStorage.getItem('token')},
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify(reqData),
+        success: function (result) {
+            if (_config.logLevel != "error") {
+                console.log(result)
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            error_occured(xhr, ajaxOptions, thrownError)
+        }
+    });
 }
