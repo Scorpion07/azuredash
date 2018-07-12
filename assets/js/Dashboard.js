@@ -724,6 +724,7 @@ function CostofResources() {
             $("#totalOtherCost").html("");
         }
         else{
+            calculateUserCost();
             pop_notifier("danger", "Cost Explorer Permission is Not Grated. Please contact consulting@cloudthat.com", 5000);
             $("#ec2Instancecost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Error in Role Permissions</marquee>');
             $("#elbcost").html('<marquee behavior="scroll" direction="left" scrollamount="3">Error in Role Permissions</marquee>');
