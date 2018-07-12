@@ -114,6 +114,12 @@ function signup_event(){
         console.log('Attribute Email :' + attributeEmail);
         attributeList.push(attributeEmail);
         attributeList.push(attributePhoneNumber);
+        var dataAdmin = {
+            Name: 'custom:isAdmin',
+            Value: 0
+        }
+        var attributeAdmin = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataAdmin);
+        attributeList.push(attributeAdmin);
         if (!isCloudThatEmail($('#email').val())){
             if(_config.logLevel == "debug")
                 console.log($('#ARN').val());
@@ -121,9 +127,15 @@ function signup_event(){
                 Name:'custom:roleARN',
                 Value: $('#ARN').val()
             }
-            console.log(dataRoleARN);
+
+            if(_config.logLevel!="info"){
+                console.log(dataRoleARN);
+                console.log(dataAdmin);
+
+            }
             var attributeRoleARN = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataRoleARN);
             attributeList.push(attributeRoleARN);
+
         }
 
         console.log('attributeList :' + attributeList);

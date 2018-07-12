@@ -228,7 +228,9 @@
 
                     <script type="text/javascript">
                         var admins = ["sana", "rutvik", "prarthit"]
-                        if (admins.includes(window.localStorage.username)) {
+                        if(_config.logLevel != "info")
+                            console.log(!!parseInt(window.localStorage.isAdmin))
+                        if (!!parseInt(window.localStorage.isAdmin)) {
                             document.write("<li class='treeview'><a href='#' class='select'><i class='fa fa-th'></i><span style='width:229px;'>Admin Panel<span class='pull-right-container' style='margin: -3px;'><i class='fa fa-angle-left pull-right'></i></span></span></a><ul class='treeview-menu' style='display: none;top:unset;width: 229px'><li><a href='#' class='SelectedResource' data-resource='manage_user'><i class='fa fa-circle-o'></i>Manage User</a></li><li><a href='#' class='SelectedResource' data-resource='manage_dashboard'><i class='fa fa-circle-o'></i>Manage Dashboard</a></li></ul></li>")
                         }
                     </script>

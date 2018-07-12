@@ -31,10 +31,13 @@ Pop Up Notifier /////////
 function pop_notifier(alertType, message, delay = 500) {
     var ico = "";
     if ("danger" === alertType) {
-        ico = "fa fa-exclamation-circle";
+        ico = "fa fa-times-circle";
     }
     if ("success" === alertType) {
         ico = "fa fa-check-circle";
+    }
+    if ("info" === alertType) {
+        ico = "fa fa-exclamation-circle";
     }
     $.notify({icon: ico, message: message}, {
         type: alertType,
