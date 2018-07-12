@@ -130,6 +130,9 @@ function signin_event() {
                     $("#logout_li-fixed").css("display","block");
                     $(".close-link").click();
                     // sessionValid();
+                    if (getQueryVariable('next')) {
+                        window.location.href = getQueryVariable('next');
+                    }
                 }
                 else {
                     // Sorry! No Web Storage support..
