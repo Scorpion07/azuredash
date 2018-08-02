@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generate Temp Creds</title>
+    <script src="../../assets/js/dependancies/jquery.min.js"></script>
+    <script src="../../assets/js/dependancies/config.js"></script>
+    <script src="../../assets/js/dependancies/aws-cognito-sdk.min.js"></script>
+    <script src="../../assets/js/dependancies/amazon-cognito-identity.min.js"></script>
+    <!--<script src="../../assets/js/dependancies/jquery-1.12.4.js"></script>-->
+    <script src="../../assets/js/dependancies/bootstrap-notify.min.js"></script>
+    <script type="text/javascript" src="../../assets/js/main.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            checklogin();
+            $("#creds").hide();
+        });
+
+        function generateCreds() {
+            $("#loading").show();
+            var reqData = {
+                account: 'dev',
+                method: 'genCreds',
+                username: window.localStorage.username
+            }
+            console.log(JSON.stringify(reqData));
+            $.ajax({
+                url: _config.api.invokeUrl + '/resources/iam',
+                // url: _config.api.invokeUrlR + '/iam',
+                type: 'POST',
+                headers: {"Authorization": window.localStorage.token},
+                crossDomain: true,
+                contentType: 'application/json',
+                dataType: 'json',
+                data: JSON.stringify(reqData),
+                success: function (response) {
+                    console.log(JSON.parse(response));
+                    result = JSON.parse(response);
+                    $("#access").html(result.Credentials.AccessKeyId);
+                    $("#secret").html(result.Credentials.SecretAccessKey);
+                    $("#token").html(result.Credentials.SessionToken);
+                    $("#expired").html(result.Credentials.Expiration);
+                    $("#creds").show();
+                    $("#loading").hide();
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    $.notify("Data Not Found")
+                    $("#loading").hide();
+                    //error handling stuff
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<button type=button onclick="generateCreds()">Generate Temporary Credential</button>
+<div id="creds">
+    <table>
+        <tr>
+            <th>AccessKey</th>
+            <td id="access"></td>
+        </tr>
+        <tr>
+            <th>SecretKey</th>
+            <td id="secret"></td>
+        </tr>
+        <tr>
+            <th>SessionToken</th>
+            <td id="token"></td>
+        </tr>
+        <tr>
+            <th>ExpirationTime</th>
+            <td id="expired"></td>
+        </tr>
+
+    </table>
+    <div>
+        client = boto3.client('s3', aws_access_key_id=GENERATED_ACCESS_KEY,
+        aws_secret_access_key=GENERATED_SECRET_ACCESS_KEY, aws_session_token=<GENERATED_SESSION_KEY></GENERATED_SESSION_KEY>)
+    </div>
+</div>
+<div id="loading" style="display: none;background-color: rgb(20, 20, 20);">
+    <p style="position: absolute; top: 25%; left:45%;">
+        <img src="../../assets/images/loader.gif"/>
+    </p>
+</body>
+</html>
