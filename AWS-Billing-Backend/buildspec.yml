@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - apt-get update
+      - apt-get install -y zip unzip
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Reading the Repo...
+      -
+  post_build:
+    commands:
+      - zip -qr aws-billing-backend.zip ./*
+      - ls -la
+      - aws lambda update-function-code --function-name aws-billing-backend --zip-file fileb://aws-billing-backend.zip
+      - echo Build Finished on `date`
+#artifect:
+#  type: zip
+#  files:
+#    - '**/*'

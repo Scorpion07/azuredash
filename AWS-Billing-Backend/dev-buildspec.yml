@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - apt-get update
+      - apt-get install -y zip unzip curl
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Reading the Repo...
+      -
+  post_build:
+    commands:
+      - zip -qr aws-billing-backend.zip ./*
+      - ls -la
+      - aws s3 cp aws-billing-backend.zip s3://resources.cloudthat.com/dev/billing/
+      - echo Build Finished on `date`
+      - curl https://8hjl913gfh.execute-api.ap-south-1.amazonaws.com/dev/updatebilling
+#artifect:
+#  type: zip
+#  files:
+#    - '**/*'

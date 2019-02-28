@@ -1,0 +1,17 @@
+{
+	"dev": {
+		"AWS-L2": ["arn:aws:iam::869630519277:policy/AWS_L2"],
+		"AWS-L3":["arn:aws:iam::869630519277:policy/AWS_L2","arn:aws:iam::869630519277:policy/L3-Intuit-training"],
+		"L3-Intuit-training": ["arn:aws:iam::869630519277:policy/L3-Intuit-training"]
+	},
+	"training": {
+		"AWS-L2": ["arn:aws:iam::257958864084:policy/AWS_Level2"],
+		"AWS-L3":["arn:aws:iam::257958864084:policy/AWS_Level2","arn:aws:iam::257958864084:policy/Level_3"],
+		"L3-Intuit-training": ["arn:aws:iam::257958864084:policy/AmazonS3FullAccess-201703081737"]
+	},
+	"ext": {
+		"AWS-L2": ["arn:aws:iam::007507930313:policy/AWS-Level2-Policy","arn:aws:iam::007507930313:policy/AWS-Level3-DenyIAM"],
+		"AWS-L3":["arn:aws:iam::007507930313:policy/AWS-Level2-Policy","arn:aws:iam::007507930313:policy/AWS-Level3-Policy","arn:aws:iam::007507930313:policy/AWS-Level3-DenyIAM"],
+		"L3-Intuit-training": ["arn:aws:iam::007507930313:policy/AWS-Level3-DenyIAM","arn:aws:iam::007507930313:policy/Security-AWS","arn:aws:iam::007507930313:policy/AWS-Level2-Policy","arn:aws:iam::007507930313:policy/AWS-Level3-Policy"]
+	}
+}

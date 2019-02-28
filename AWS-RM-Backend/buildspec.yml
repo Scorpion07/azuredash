@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - apt-get update
+      - apt-get install -y zip unzip
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Reading the Repo...
+      -
+  post_build:
+    commands:
+      - echo Build Finished on `date`
+      - zip -qr aws-rm-backend.zip ./*
+      - ls
+      - aws lambda update-function-code --function-name aws-rm-backend --zip-file fileb://aws-rm-backend.zip
+#artifect:
+#  type: zip
+#  files:
+#    - '**/*'

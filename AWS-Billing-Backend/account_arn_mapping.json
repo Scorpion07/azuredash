@@ -1,0 +1,6 @@
+{
+  "dev":"arn:aws:iam::869630519277:role/STSAssumeforDev",
+  "prod":"arn:aws:iam::775267928995:role/ProdReadOnlyRoleforDev",
+  "exttrain":"arn:aws:iam::007507930313:role/OverseasAccountAccesstoDev",
+  "training":"arn:aws:iam::257958864084:role/TrainigAccountAccessToDev"
+}
